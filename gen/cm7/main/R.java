@@ -38,15 +38,17 @@ public final class R {
         public static final int project_icon=0x7f020007;
     }
     public static final class id {
-        public static final int main_LL_buttons=0x7f070002;
-        public static final int main_bt_back=0x7f070003;
-        public static final int main_bt_forward=0x7f070005;
-        public static final int main_bt_up=0x7f070004;
-        public static final int main_sv_dir_path=0x7f070000;
-        public static final int main_tv_dir_path=0x7f070001;
+        public static final int list_row_slimple_1_tv=0x7f070000;
+        public static final int main_LL_buttons=0x7f070003;
+        public static final int main_bt_back=0x7f070004;
+        public static final int main_bt_forward=0x7f070006;
+        public static final int main_bt_up=0x7f070005;
+        public static final int main_sv_dir_path=0x7f070001;
+        public static final int main_tv_dir_path=0x7f070002;
     }
     public static final class layout {
-        public static final int main=0x7f030000;
+        public static final int list_row_simple_1=0x7f030000;
+        public static final int main=0x7f030001;
     }
     public static final class string {
         public static final int app_name=0x7f050000;

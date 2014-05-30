@@ -220,7 +220,8 @@ public class MainActv extends ListActivity {
 	private boolean set_ListToAdapter() {
 		CONS.MainActv.adp_dir_list = new ArrayAdapter<String>(
 				this,
-				android.R.layout.simple_list_item_1,
+				R.layout.list_row_simple_1,
+//				android.R.layout.simple_list_item_1,
 				CONS.MainActv.list_RootDir
 				);
 
