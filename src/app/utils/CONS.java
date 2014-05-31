@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.provider.MediaStore;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import app.adapters.Adp_MainList;
 
 public class CONS {
 
@@ -98,7 +99,9 @@ public class CONS {
 		public static String pname_MainActv = "main_activity";
 //		public static String pname_CurrentPath = "current_path";
 		
-		public static String pkey_CurrentPath = "current_path";
+		public static String pkey_CurrentPath = "pkey_CurrentPath";
+		
+		public static String pkey_CurrentPosition = "pkey_CurrentPosition";
 		
 	}
 
@@ -107,6 +110,8 @@ public class CONS {
 		public static List<String> list_RootDir = null;
 		
 		public static ArrayAdapter<String> adp_dir_list = null;
+		
+		public static Adp_MainList aAdapter;
 		
 	}
 	

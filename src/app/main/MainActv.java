@@ -208,6 +208,17 @@ public class MainActv extends ListActivity {
 					+ "]", "CONS.MainActv.list_RootDir != null");
 			
 		}//if (this.CONS.MainActv.list_RootDir == null)
+
+//		for (List<String> CONS.MainActv.list_RootDir : item) {
+		for (String item : CONS.MainActv.list_RootDir) {
+			
+			// Log
+			String msg_log = "list_RootDir item = " + item;
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_log);
+			
+		}
 		
 		////////////////////////////////
 
@@ -248,7 +259,8 @@ public class MainActv extends ListActivity {
 				CONS.MainActv.list_RootDir
 				);
 		
-		Adp_MainList aAdapter = new Adp_MainList(
+//		Adp_MainList aAdapter = new Adp_MainList(
+		CONS.MainActv.aAdapter = new Adp_MainList(
 				this,
 				R.layout.list_row_simple_1,
 //				android.R.layout.simple_list_item_1,
@@ -268,7 +280,8 @@ public class MainActv extends ListActivity {
 			
 		}//if (adapter == null)
 
-		this.setListAdapter(aAdapter);
+		this.setListAdapter(CONS.MainActv.aAdapter);
+//		this.setListAdapter(aAdapter);
 //		this.setListAdapter(CONS.MainActv.adp_dir_list);
 		
 		return true;
@@ -501,6 +514,25 @@ public class MainActv extends ListActivity {
 			
 		}//if (item_)
 		
+		/******************************
+			Set pref: Current position
+		 ******************************/
+		Methods.set_Pref_Int(
+				this,
+				CONS.Pref.pname_MainActv,
+				CONS.Pref.pkey_CurrentPosition,
+				position);
+		
+		// Log
+		String msg_log = "Pref: " + CONS.Pref.pkey_CurrentPosition
+						+ " => "
+						+ "Set to: " + position;
+		
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_log);
+		
+		CONS.MainActv.aAdapter.notifyDataSetChanged();
 		
 //		/*********************************
 //		 * 2. Get file object

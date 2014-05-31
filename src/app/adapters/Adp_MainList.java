@@ -7,6 +7,8 @@ import java.util.List;
 
 
 
+
+
 import cm7.main.R;
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -27,6 +29,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import app.utils.CONS;
+import app.utils.Methods;
 
 public class Adp_MainList extends ArrayAdapter<String> implements OnTouchListener {
 
@@ -98,6 +102,60 @@ public class Adp_MainList extends ArrayAdapter<String> implements OnTouchListene
 				+ "]", msg_log);
     	
 		
+		////////////////////////////////
+
+		// Get: view
+
+		////////////////////////////////
+		TextView tv_main = (TextView) v.findViewById(R.id.list_row_slimple_1_tv);
+		
+		////////////////////////////////
+
+		// Set: text
+
+		////////////////////////////////
+		tv_main.setText(item);
+		
+		////////////////////////////////
+
+		// Set: background
+
+		////////////////////////////////
+		int pref_CurrentPosition = Methods.get_Pref_Int(
+						(Activity)con, 
+						CONS.Pref.pname_MainActv, 
+						CONS.Pref.pkey_CurrentPosition, 
+						-1);
+
+		if (pref_CurrentPosition == position) {
+			
+			tv_main.setBackgroundColor(
+					((Activity)con).getResources().getColor(R.color.blue1));
+			
+//			this.notifyDataSetChanged();
+			
+		} else {
+			
+			tv_main.setBackgroundColor(
+					((Activity)con).getResources().getColor(R.color.white));
+			
+//			this.notifyDataSetChanged();
+
+		}
+		
+//		// Log
+//		msg_log = "item = " + item
+//				+ " / "
+//				+ "position = " + position
+//				;
+//		Log.d("Adp_MainList.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_log);
+		////////////////////////////////
+
+		// Set: listener
+
+		////////////////////////////////
 //		v = super.getView(position, convertView, parent);
         v.setOnTouchListener(this);
 //        View v2 = super.getView(position, convertView, parent);
