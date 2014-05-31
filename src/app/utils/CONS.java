@@ -54,16 +54,65 @@ public class CONS {
 	}//public static class Intent
 	
 	public static class DB {
+		////////////////////////////////
+
+		// Paths and names
+
+		////////////////////////////////
+		public static String dbName = "cm7.db";
 		
-		public static String dbName = "cm5.db";
+		public static String dPath_dbFile;
+//		public static String dPath_dbFile = "/data/data/cm7.main/databases";
 		
-		public static String dPath_dbFile = "/data/data/cm5.main/databases";
-		
-		public static String dPath_dbFile_backup = "/mnt/sdcard-ext/cm5_backup";
+		public static String dPath_dbFile_backup = "/mnt/sdcard-ext/cm7_backup";
 		
 //		public static String dPath_dbFile = 
 //							Methods.get_DirPath(new MainActv().getFilesDir().getPath());
 		
+		
+		////////////////////////////////
+		
+		// Table: cm7
+		
+		////////////////////////////////
+		public static final String tname_CM7 = "cm7";
+
+		public static final String[] col_names_CM7 = {
+			
+			"file_name", "file_path",	// 0, 1
+			"title", "memo",			// 2, 3
+			"last_played_at",			// 4
+			"table_name",				// 5
+			"length"					// 6
+			
+		};
+		
+		public static final String[] col_names_CM7_full = {
+			
+			android.provider.BaseColumns._ID,	// 0
+			"created_at", "modified_at",		// 1, 2
+			"file_name", "file_path",			// 3, 4
+			"title", "memo",					// 5, 6
+			"last_played_at",					// 7
+			"table_name",						// 8
+			"length"							// 9
+			
+		};
+
+		public static final String[] col_types_CM7 = {
+			"TEXT", "TEXT",
+			"TEXT", "TEXT",
+			"INTEGER",
+			"TEXT",
+			"INTEGER"
+		};
+		
+		
+		////////////////////////////////
+
+		// Table: BM (bookmark)
+
+		////////////////////////////////
 		public static final String tname_BM = "bm";
 
 		public static final String[] cols_bm = {
@@ -79,7 +128,23 @@ public class CONS {
 		public static final String[] col_types_bm = {
 			"INTEGER", "INTEGER", "TEXT", "TEXT", "TEXT"
 		};
+
+		////////////////////////////////
 		
+		// Table: refresh_history
+		
+		////////////////////////////////
+		public static String tname_RefresHistory = "refresh_history";
+		
+		public static String[] col_names_RefreshHistory = {
+			"last_refreshed", "num_of_items_added"
+		};
+		
+		public static String[] col_types_RefreshHistory = {
+			"INTEGER", 			"INTEGER"
+		};
+		
+
 	}//public static class DB
 
 	public static class Pref {

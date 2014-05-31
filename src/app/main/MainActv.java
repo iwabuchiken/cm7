@@ -111,11 +111,33 @@ public class MainActv extends ListActivity {
 		/*********************************
 		 * Debugs
 		 *********************************/
-//		do_debug();
+		do_debug();
         
     }//public void onCreate(Bundle savedInstanceState)
 
-    private void set_Listeners() {
+    private void do_debug() {
+		// TODO Auto-generated method stub
+		String path = this.getFilesDir().getPath();
+		
+		String dbPath = this.getDatabasePath(CONS.DB.dbName).getPath();
+		
+		// Log
+		String msg_log = "this.getFilesDir().getPath() = " + path;
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_log);
+		
+		// Log
+		msg_log = "getDatabasePath() = " + dbPath
+					+ " / "
+					+ "dbName = " + CONS.DB.dbName;
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_log);
+		
+	}
+
+	private void set_Listeners() {
 		// TODO Auto-generated method stub
 //    	ListView lv = this.getListView();
 //		
