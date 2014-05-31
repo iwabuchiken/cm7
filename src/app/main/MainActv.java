@@ -26,8 +26,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
+import app.adapters.Adp_MainList;
 import app.utils.CONS;
 import app.utils.Methods;
+import app.utils.Tags;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -96,6 +98,16 @@ public class MainActv extends ListActivity {
         	
 		}
         
+        ////////////////////////////////
+
+		// Set: listeners
+
+		////////////////////////////////
+		/******************************
+			List
+		 ******************************/
+		set_Listeners();
+        
 		/*********************************
 		 * Debugs
 		 *********************************/
@@ -103,7 +115,18 @@ public class MainActv extends ListActivity {
         
     }//public void onCreate(Bundle savedInstanceState)
 
-    /******************************
+    private void set_Listeners() {
+		// TODO Auto-generated method stub
+//    	ListView lv = this.getListView();
+//		
+////		lv.setTag(Methods.ItemTags.dir_list);
+//		lv.setTag(Tags.ListTags.actv_main_lv);
+//		
+//		lv.seto
+//		lv.setOnItemLongClickListener(new CustomOnItemLongClickListener(this));
+	}
+
+	/******************************
 
 		set_DirList()
 		
@@ -224,6 +247,13 @@ public class MainActv extends ListActivity {
 //				android.R.layout.simple_list_item_1,
 				CONS.MainActv.list_RootDir
 				);
+		
+		Adp_MainList aAdapter = new Adp_MainList(
+				this,
+				R.layout.list_row_simple_1,
+//				android.R.layout.simple_list_item_1,
+				CONS.MainActv.list_RootDir
+				);
 
 		
 		if (CONS.MainActv.adp_dir_list == null) {
@@ -238,7 +268,8 @@ public class MainActv extends ListActivity {
 			
 		}//if (adapter == null)
 
-		this.setListAdapter(CONS.MainActv.adp_dir_list);
+		this.setListAdapter(aAdapter);
+//		this.setListAdapter(CONS.MainActv.adp_dir_list);
 		
 		return true;
 		
@@ -432,8 +463,120 @@ public class MainActv extends ListActivity {
 	@Override
 	protected void onListItemClick(ListView lv, View v, int position, long id) {
 		
+//		super.onListItemClick(lv, v, position, id);
 		
-		super.onListItemClick(lv, v, position, id);
+		/*********************************
+		 * 0. Vibrate
+		 * 
+		 * 1. Get item name
+		 * 2. Get file object
+		 * 2-2. File object exists?
+		 * 
+		 * 3. Is a directory?
+		 * 		=> If yes, update the current path
+		 * 
+		 * 4. Is a "list.txt"?
+		 *********************************/
+		//
+		vib.vibrate(Methods.vibLength_click);
+		
+		/*********************************
+		 * 1. Get item name
+		 *********************************/
+		String item = (String) lv.getItemAtPosition(position);
+		
+		if (item != null) {
+			
+			// Log
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "item=" + item);
+			
+		} else {//if (item_)
+			
+			// Log
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "item == null");
+			
+		}//if (item_)
+		
+		
+//		/*********************************
+//		 * 2. Get file object
+//		 *********************************/
+//		File target = get_file_object(item);
+//		
+////		// Log
+////		Log.d("MainActv.java" + "["
+////				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+////				+ "]", "target=" + target.getAbsolutePath());
+//		
+//		/*********************************
+//		 * 2-2. File object exists?
+//		 *********************************/
+//		if (!target.exists()) {
+//			// debug
+//			Toast.makeText(this, "This item doesn't exist in the directory: " + item, 
+//					2000)
+//					.show();
+//			
+//			// Log
+//			Log.e("MainActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", 
+//					"This item doesn't exist in the directory: " + item);
+//
+//			return;
+//		} else {//if (!target.exists())
+//			
+//			// Log
+//			Log.d("MainActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", "Target exists: " + item);
+//			
+//		}//if (!target.exists())
+//
+//		/*********************************
+//		 * 3. Is a directory?
+//		 * 		=> If yes, update the current path
+//		 *********************************/
+//		if (target.isDirectory()) {
+//			
+////			// Log
+////			Log.d("MainActv.java" + "["
+////					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+////					+ "]", "target=" + target.getAbsolutePath());
+//			
+//			Methods.enterDir(this, target);
+//			
+////			// debug
+////			Toast.makeText(this, "Enter directory: " + item, 
+////					2000)
+////					.show();
+//			
+//		} else if (target.isFile()) {//if (target.isDirectory())
+//			
+//			/*********************************
+//			 * 4. Is a "list.txt"?
+//			 *********************************/
+//			if (!target.getName().equals(CONS.fname_list)) {
+//				
+//				// debug
+//				Toast.makeText(this, "list.txt �ｿｽﾅはゑｿｽ�ｿｽ�ｿｽﾜゑｿｽ�ｿｽ�ｿｽ", 2000).show();
+//				
+//				return;
+//			}//if (!target.getName().equals(ImageFileManager8Activity.fname_list))
+//
+////			Methods.startThumbnailActivity(this, target.getName());
+//			Methods.start_actv_allist(this);
+//			
+//		}//if (target.isDirectory())
+		
+		
+		
+//		super.onListItemClick(lv, v, position, id);
+		
 	}//protected void onListItemClick(ListView l, View v, int position, long id)
 
 	@Override
@@ -565,5 +708,6 @@ public class MainActv extends ListActivity {
 		super.onStart();
 	}//protected void onStart()
 
+	
 
 }//public class MainActv extends Activity
