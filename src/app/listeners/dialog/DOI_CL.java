@@ -75,7 +75,7 @@ public class DOI_CL implements OnItemClickListener {
 		
 		case dlg_db_admin_lv://----------------------------------------------
 			
-			case_dlg_db_admin_lv(item);
+			case_Dlg_Db_Admin_lv(item);
 			
 			break;// case dlg_add_memos_gv
 
@@ -85,7 +85,7 @@ public class DOI_CL implements OnItemClickListener {
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
 
-	private void case_dlg_db_admin_lv(String item) {
+	private void case_Dlg_Db_Admin_lv(String item) {
 		// TODO Auto-generated method stub
 		////////////////////////////////
 
@@ -96,6 +96,11 @@ public class DOI_CL implements OnItemClickListener {
 				R.string.dlg_db_admin_item_exec_sql))) {
 			
 			Methods.exec_Sql(actv);
+			
+		} else if (item.equals(actv.getString(
+				R.string.dlg_db_admin_item_backup_db))) {
+			
+			Methods.db_Backup(actv);
 			
 		} else {
 

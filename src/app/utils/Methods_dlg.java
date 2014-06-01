@@ -54,6 +54,7 @@ public class Methods_dlg {
 			****************************/
 		String[] choices = {
 					actv.getString(R.string.dlg_db_admin_item_exec_sql),
+					actv.getString(R.string.dlg_db_admin_item_backup_db),
 //					actv.getString(R.string.dlg_db_admin_item_refresh_db)
 					};
 		

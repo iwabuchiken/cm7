@@ -69,6 +69,10 @@ public class CONS {
 //		public static String dPath_dbFile = 
 //							Methods.get_DirPath(new MainActv().getFilesDir().getPath());
 		
+		public static String fname_DB_Backup_Trunk = "cm7_backup";
+		
+		public static String fname_DB_Backup_ext = ".bk";
+		
 		
 		////////////////////////////////
 		
