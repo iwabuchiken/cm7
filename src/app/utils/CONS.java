@@ -73,6 +73,7 @@ public class CONS {
 		
 		public static String fname_DB_Backup_ext = ".bk";
 		
+		public static String dname_TapeATalk_Sdcard = "tapeatalk_records";
 		
 		////////////////////////////////
 		
@@ -148,6 +149,12 @@ public class CONS {
 			"INTEGER", 			"INTEGER"
 		};
 		
+		////////////////////////////////
+
+		// Others
+
+		////////////////////////////////
+		public static String jointString_TableName = "__";
 
 	}//public static class DB
 
@@ -227,4 +234,24 @@ public class CONS {
 		public static String  dname_Base = "cm7";
 		
 	}
+	
+	public static class Retval {
+		////////////////////////////////
+
+		// Errors
+
+		////////////////////////////////
+		/******************************
+			Refresh DB
+		 ******************************/
+		public static int CantCreateTable =		-10;
+		
+		public static int CantRefreshAudioDir=	-11;
+		
+		public static int NoNewFiles =			-12;
+		
+		
+		
+	}
+	
 }//public class CONS

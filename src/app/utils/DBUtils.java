@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -26,6 +27,7 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import app.items.AI;
 
 /****************************************
  * Copy & pasted from => C:\WORKS\WORKSPACES_ANDROID\ShoppingList\src\shoppinglist\main\DBUtils.java
@@ -1235,6 +1237,133 @@ public class DBUtils extends SQLiteOpenHelper{
 		}//if (result > 0)
 		
 	}//isInDB_bm(SQLiteDatabase wdb, long dbId)
+
+	public static boolean
+	insertData_AI(Activity actv, AI ai)
+	{
+		// TODO Auto-generated method stub
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		//
+		SQLiteDatabase wdb = dbu.getWritableDatabase();
+		
+		////////////////////////////////
+
+		// Build: data
+
+		////////////////////////////////
+//		"file_name", "file_path",	// 0, 1
+//		"title", "memo",			// 2, 3
+//		"last_played_at",			// 4
+//		"table_name",				// 5
+//		"length"					// 6
+		Object[] values = new Object[]{
+				
+				ai.getFile_name(), ai.getFile_path(),
+				null, null,
+				0,
+				ai.getTable_name(),
+				ai.getLength()
+				
+		};
+		
+		////////////////////////////////
+
+		// Insert
+
+		////////////////////////////////
+		/*----------------------------
+		* 1. Insert data
+		----------------------------*/
+		try {
+			// Start transaction
+			wdb.beginTransaction();
+			
+			// ContentValues
+			ContentValues val = new ContentValues();
+			
+			// Put values
+//			"file_name", "file_path",	// 0, 1
+//			"title", "memo",			// 2, 3
+//			"last_played_at",			// 4
+//			"table_name",				// 5
+//			"length"					// 6
+			val.put(CONS.DB.col_names_CM7[0], ai.getFile_name());
+			val.put(CONS.DB.col_names_CM7[1], ai.getFile_path());
+			val.put(CONS.DB.col_names_CM7[2], ai.getTitle());
+			val.put(CONS.DB.col_names_CM7[3], ai.getMemo());
+			val.put(CONS.DB.col_names_CM7[4], ai.getLast_played_at());
+			val.put(CONS.DB.col_names_CM7[5], ai.getTable_name());
+			val.put(CONS.DB.col_names_CM7[6], ai.getLength());
+//			val.put(CONS.DB.col_names_CM7[0], (String)values[0]);
+//			val.put(CONS.DB.col_names_CM7[1], (String)values[1]);
+//			val.put(CONS.DB.col_names_CM7[2], (String)values[2]);
+//			val.put(CONS.DB.col_names_CM7[3], (String)values[3]);
+//			val.put(CONS.DB.col_names_CM7[4], (Long)values[4]);
+//			val.put(CONS.DB.col_names_CM7[5], (String)values[5]);
+//			val.put(CONS.DB.col_names_CM7[6], (Long)values[6]);
+//			for (int i = 0; i < CONS.DB.col_names_CM7.length; i++) {
+//				
+//				val.put(CONS.DB.col_names_CM7[i], values[i]);
+//				
+//			}//for (int i = 0; i < columnNames.length; i++)
+			
+			// Insert data
+			long res = wdb.insert(CONS.DB.tname_CM7, null, val);
+			
+			if (res == -1) {
+				
+				// Log
+				String msg_Log = "Insertion => failed: " + ai.getFile_name();
+				Log.d("DBUtils.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+				// End transaction
+				wdb.endTransaction();
+				
+				return true;
+				
+			} else {
+
+				wdb.setTransactionSuccessful();
+				
+				// Log
+				String msg_Log = "Insertion => done: " + ai.getFile_name();
+				Log.d("DBUtils.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				// End transaction
+				wdb.endTransaction();
+				
+				return true;
+				
+			}
+			// Set as successful
+			
+//			// End transaction
+//			wdb.endTransaction();
+//			
+//			// Log
+////			Log.d("DBUtils.java" + "["
+////				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+////				+ "]", "Data inserted => " + "(" + columnNames[0] + " => " + values[0] + 
+////				" / " + columnNames[3] + " => " + values[3] + ")");
+//			
+//			return true;
+		} catch (Exception e) {
+			// Log
+			Log.e("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", "Exception! => " + e.toString());
+			
+			return false;
+			
+		}//try
+		
+	}//insertData_AI(Activity actv, AI ai)
 
 }//public class DBUtils
 

@@ -117,24 +117,80 @@ public class MainActv extends ListActivity {
     }//public void onCreate(Bundle savedInstanceState)
 
     private void do_debug() {
+    	
+    	_do_debug__Conv_Path2Tname();
+    	
+//		// TODO Auto-generated method stub
+//		String path = this.getFilesDir().getPath();
+//		
+//		String dbPath = this.getDatabasePath(CONS.DB.dbName).getPath();
+//		
+//		// Log
+//		String msg_log = "this.getFilesDir().getPath() = " + path;
+//		Log.d("MainActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_log);
+//		
+//		// Log
+//		msg_log = "getDatabasePath() = " + dbPath
+//					+ " / "
+//					+ "dbName = " + CONS.DB.dbName;
+//		Log.d("MainActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_log);
+		
+	}
+
+	private void _do_debug__Conv_Path2Tname() {
+
+		String currentPath = CONS.Pref.prefs_MainActv
+				.getString(CONS.Pref.pkey_CurrentPath, null);
+		
+		if (currentPath == null) {
+			
+			// Log
+			String msg_log = "currentPath => null";
+			Log.e("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_log);
+			
+			return;
+			
+		}
+		
+		String tname = Methods.conv_CurrentPath_to_TableName(currentPath);
+		
+		// Log
+		String msg_log = "currentPath = " + currentPath
+						+ " // "
+						+ "tname = " + tname;
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_log);
+		
+		
 		// TODO Auto-generated method stub
-		String path = this.getFilesDir().getPath();
-		
-		String dbPath = this.getDatabasePath(CONS.DB.dbName).getPath();
-		
-		// Log
-		String msg_log = "this.getFilesDir().getPath() = " + path;
-		Log.d("MainActv.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_log);
-		
-		// Log
-		msg_log = "getDatabasePath() = " + dbPath
-					+ " / "
-					+ "dbName = " + CONS.DB.dbName;
-		Log.d("MainActv.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_log);
+//		String s = CONS.Paths.dpath_Storage_Sdcard + CONS.Paths.dname_Base;
+//		
+//		// Log
+//		String msg_log = "s = " + s;
+//		Log.d("MainActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_log);
+//		
+//		String s1 = CONS.Paths.dpath_Storage_Sdcard;
+//		
+//		int len_s1 = s1.length();
+//		
+//		String s_new = s.substring(len_s1);
+//		
+//		// Log
+//		msg_log = "s1 = " + s1
+//					+ " / "
+//					+ "s_new = " + s_new;
+//		Log.d("MainActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_log);
 		
 	}
 
