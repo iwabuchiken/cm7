@@ -32,4 +32,9 @@
    	<string name="dlg_db_admin_item_drop_table_cm7">Drop table: cm7</string>
    	<string name="dlg_db_admin_item_create_table_cm7">Create table: cm7</string>
    	
+   	<string name="dlg_db_admin_item_drop_table_refresh_history">
+   	    									Drop table: refresh_history</string>
+   	<string name="dlg_db_admin_item_create_table_refresh_history">
+   	    									Create table: refresh_history</string>
+   	
 </resources>

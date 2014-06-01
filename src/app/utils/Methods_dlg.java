@@ -53,11 +53,13 @@ public class Methods_dlg {
 		 * 2. Prep => List
 			****************************/
 		String[] choices = {
-					actv.getString(R.string.dlg_db_admin_item_exec_sql),
-					actv.getString(R.string.dlg_db_admin_item_backup_db),
-					actv.getString(R.string.dlg_db_admin_item_refresh_db),
-					actv.getString(R.string.dlg_db_admin_item_drop_table_cm7),
-					actv.getString(R.string.dlg_db_admin_item_create_table_cm7),
+				actv.getString(R.string.dlg_db_admin_item_exec_sql),
+				actv.getString(R.string.dlg_db_admin_item_backup_db),
+				actv.getString(R.string.dlg_db_admin_item_refresh_db),
+				actv.getString(R.string.dlg_db_admin_item_drop_table_cm7),
+				actv.getString(R.string.dlg_db_admin_item_create_table_cm7),
+				actv.getString(R.string.dlg_db_admin_item_drop_table_refresh_history),
+				actv.getString(R.string.dlg_db_admin_item_create_table_refresh_history),
 //					actv.getString(R.string.dlg_db_admin_item_refresh_db)
 					};
 		

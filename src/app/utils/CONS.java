@@ -142,14 +142,15 @@ public class CONS {
 		// Table: refresh_history
 		
 		////////////////////////////////
-		public static String tname_RefresHistory = "refresh_history";
+		public static String tname_RefreshHistory = "refresh_history";
 		
 		public static String[] col_names_RefreshHistory = {
 			"last_refreshed", "num_of_items_added"
 		};
 		
 		public static String[] col_types_RefreshHistory = {
-			"INTEGER", 			"INTEGER"
+			"TEXT", 			"INTEGER"
+//			"INTEGER", 			"INTEGER"
 		};
 		
 		////////////////////////////////

@@ -504,7 +504,7 @@ public class Methods {
 		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
 		
 		boolean res = dbu.createTable(actv, 
-							CONS.DB.tname_RefresHistory, CONS.DB.col_names_RefreshHistory, 
+							CONS.DB.tname_RefreshHistory, CONS.DB.col_names_RefreshHistory, 
 							CONS.DB.col_types_RefreshHistory);
 //		CONS.DB.col_types_RefresHistory);
 //		CONS.DB.tname_CM7, CONS.DB.col_names_CM7, 
@@ -1067,9 +1067,32 @@ public class Methods {
 				
 			}
 			
-		} else {
+		} else if (tname.equals(CONS.DB.tname_RefreshHistory)) {
+			
+			res = dbu.createTable(actv, 
+					CONS.DB.tname_RefreshHistory, CONS.DB.col_names_RefreshHistory, 
+					CONS.DB.col_types_RefreshHistory);
+			
+			if (res == true) {
+				
+				// debug
+				String msg_Toast = "Table => created: " + CONS.DB.tname_RefreshHistory;
+				Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+				
+				
+			} else {
 
-		}
+				// debug
+				String msg_Toast = "Table => can't create: " 
+								+ CONS.DB.tname_RefreshHistory;
+				Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+				
+			}
+			
+		} else {
+			
+
+		}//if (tname.equals(CONS.DB.tname_CM7))
 		
 //		res = dbu.createTable(actv, 
 //							CONS.DB.tname_RefresHistory, CONS.DB.col_names_RefreshHistory, 

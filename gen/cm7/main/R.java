@@ -62,7 +62,9 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int dlg_db_admin_item_backup_db=0x7f050010;
         public static final int dlg_db_admin_item_create_table_cm7=0x7f050015;
+        public static final int dlg_db_admin_item_create_table_refresh_history=0x7f050017;
         public static final int dlg_db_admin_item_drop_table_cm7=0x7f050014;
+        public static final int dlg_db_admin_item_drop_table_refresh_history=0x7f050016;
         public static final int dlg_db_admin_item_exec_sql=0x7f050012;
         public static final int dlg_db_admin_item_refresh_db=0x7f050011;
         public static final int dlg_db_admin_item_restore_db=0x7f050013;
