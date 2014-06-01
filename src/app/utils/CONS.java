@@ -111,7 +111,8 @@ public class CONS {
 			"TEXT", "TEXT",			// 2,3
 			"TEXT",					// 4
 			"TEXT",					// 5
-			"INTEGER",				// 6
+			"TEXT",				// 6
+//			"INTEGER",				// 6
 			"TEXT"					// 7
 		};
 		
@@ -222,7 +223,10 @@ public class CONS {
 		////////////////////////////////
 		public static final int vibLength_click = 35;
 		
-		public static final String date_Format = "yyyy/MM/dd hh:mm:ss.SSS";
+		public static final String format_Date = "yyyy/MM/dd hh:mm:ss.SSS";
+//		public static final String date_Format = "yyyy/MM/dd hh:mm:ss.SSS";
+		
+		public static final String format_Clock = "%02d:%02d";
 		
 	}
 

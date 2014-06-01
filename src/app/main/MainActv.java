@@ -112,13 +112,14 @@ public class MainActv extends ListActivity {
 		/*********************************
 		 * Debugs
 		 *********************************/
-		do_debug();
+//		do_debug();
         
     }//public void onCreate(Bundle savedInstanceState)
 
     private void do_debug() {
     	
-    	_do_debug_MillSec_to_TimeLabel();
+    	_do_debug_MillSec_to_ClockLabel();
+//    	_do_debug_MillSec_to_TimeLabel();
     	
 //    	_do_debug__Conv_Path2Tname();
     	
@@ -140,6 +141,40 @@ public class MainActv extends ListActivity {
 //		Log.d("MainActv.java" + "["
 //				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //				+ "]", msg_log);
+		
+	}
+
+	private void _do_debug_MillSec_to_ClockLabel() {
+		// TODO Auto-generated method stub
+		
+		String label = "09:45";
+		
+		long millSec = Methods.conv_ClockLabel_to_MillSec(label);
+		
+		// Log
+		String msg_Log = "label = " + label
+						+ " // "
+						+ "millSec = " + millSec;
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+
+		// Appendix
+
+		////////////////////////////////
+//		String s = "05";
+//		
+//		int num = Integer.parseInt(s);
+//		
+//		// Log
+//		msg_Log = "s = " + s
+//						+ " // "
+//						+ "num = " + num;
+//		Log.d("MainActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
 		
 	}
 

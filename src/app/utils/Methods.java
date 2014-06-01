@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -844,7 +845,8 @@ public class Methods {
 					.setFile_name(file.getName())
 					.setFile_path(file.getPath())
 					.setTable_name(CONS.DB.tname_CM7)
-					.setLength(file.length())
+					.setLength(Methods.conv_MillSec_to_ClockLabel(file.length()))
+//					.setLength(file.length())
 					.setAudio_created_at(
 							Methods.conv_MillSec_to_TimeLabel(file.lastModified()))
 					.build();
@@ -1141,7 +1143,7 @@ public class Methods {
 	conv_MillSec_to_TimeLabel(long millSec)
 	{
 		//REF http://stackoverflow.com/questions/7953725/how-to-convert-milliseconds-to-date-format-in-android answered Oct 31 '11 at 12:59
-		String dateFormat = CONS.Admin.date_Format;
+		String dateFormat = CONS.Admin.format_Date;
 //		String dateFormat = "yyyy/MM/dd hh:mm:ss.SSS";
 		
 		DateFormat formatter = new SimpleDateFormat(dateFormat);
@@ -1163,7 +1165,7 @@ public class Methods {
 		Date date;
 		try {
 			date = new SimpleDateFormat(
-						CONS.Admin.date_Format, Locale.JAPAN).parse(timeLabel);
+						CONS.Admin.format_Date, Locale.JAPAN).parse(timeLabel);
 			
 			return date.getTime();
 //			long milliseconds = date.getTime();
@@ -1186,6 +1188,77 @@ public class Methods {
 //		Date date = new SimpleDateFormat("EEE MMM dd yyyy", Locale.ENGLISH).parse(input);
 //		long milliseconds = date.getTime();
 		
-	}
+	}//conv_TimeLabel_to_MillSec(String timeLabel)
+	
+	/******************************
+		REF http://stackoverflow.com/questions/625433/how-to-convert-milliseconds-to-x-mins-x-seconds-in-java answered Mar 9 '09 at 10:01
+	 ******************************/
+	public static String
+	conv_MillSec_to_ClockLabel(long millSec)
+	{
+		return String.format(
+			Locale.JAPAN,
+			CONS.Admin.format_Clock, 
+//			"%02d:%02d", 
+			TimeUnit.MILLISECONDS.toMinutes(millSec),
+			TimeUnit.MILLISECONDS.toSeconds(millSec) - 
+			TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millSec))
+		);
+		
+	}//conv_MillSec_to_ClockLabel(long millSec)
+	
+	public static long
+	conv_ClockLabel_to_MillSec(String clockLabel)
+	{
+		
+		String[] tokens = clockLabel.split(":");
+		
+		/******************************
+			Validate
+		 ******************************/
+		if (tokens == null || tokens.length != 2) {
+
+			// Log
+			String msg_Log = "Label format => unknown: " + clockLabel;
+			Log.e("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return -1;
+			
+		}
+		
+		/******************************
+			Build: long number
+		 ******************************/
+		long mill_Min = Integer.parseInt(tokens[0]) * (60 * 1000);
+		long mill_Sec = Integer.parseInt(tokens[1]) * (1000);
+		
+		return mill_Min + mill_Sec;
+		
+//		SimpleDateFormat formatter = 
+//				new SimpleDateFormat("mm:ss"); // I assume d-M, you may refer to M-d for month-day instead.
+////		new SimpleDateFormat("d-M-yyyy hh:mm"); // I assume d-M, you may refer to M-d for month-day instead.
+//		Date date;
+//		try {
+//			
+//			date = formatter.parse(clockLabel);
+//			return date.getTime();
+//			
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			// Log
+//			String msg_Log = "Exception: " + e.toString();
+//			Log.e("Methods.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
+//			
+//			return -1;
+//			
+//		} // You will need try/catch around this
+//		long millis = date.getTime();
+		
+	}//conv_ClockLabel_to_MillSec(String clockLabel)
+	
 }//public class Methods
 

@@ -21,7 +21,8 @@ public class AI {
 	
 	String table_name;
 
-	long length;
+	String length;
+//	long length;
 
 	////////////////////////////////
 
@@ -240,7 +241,7 @@ public class AI {
 
 
 
-	public long getLength() {
+	public String getLength() {
 		return length;
 	}
 
@@ -317,7 +318,7 @@ public class AI {
 
 
 
-	public void setLength(long length) {
+	public void setLength(String length) {
 		this.length = length;
 	}
 
@@ -345,7 +346,7 @@ public class AI {
 		
 		String table_name;
 
-		long length;
+		String length;
 
 		////////////////////////////////
 
@@ -399,7 +400,7 @@ public class AI {
 			this.table_name = table_name; return this;
 		}
 
-		public Builder setLength(long length) {
+		public Builder setLength(String length) {
 			this.length = length; return this;
 		}
 
