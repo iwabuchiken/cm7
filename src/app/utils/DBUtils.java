@@ -36,7 +36,8 @@ public class DBUtils extends SQLiteOpenHelper{
 	 * Class fields
 	 *****************************************************************/
 	 // DB name
-	static String dbName = null;
+	String dbName = null;
+//	static String dbName = null;
 	
 	// Activity
 	Activity activity;
@@ -50,61 +51,6 @@ public class DBUtils extends SQLiteOpenHelper{
 	// Database
 	SQLiteDatabase db = null;
 
-	//
-//	String[] cols_with_index = 
-//				{android.provider.BaseColumns._ID, 
-//					"file_id", 		"file_path", "file_name", "date_added",
-//					"date_modified", "memos", "tags"};
-//	
-//	String[] col_types_with_index =
-//				{	"INTEGER", "TEXT", 	"TEXT",		"INTEGER",
-//					"INTEGER",		"TEXT",	"TEXT"};
-//
-//	// Main data
-//	public static String[] cols = 
-//		{"file_id", "file_path", "file_name", 	"date_added",
-//		"date_modified",	"memos", "tags", 	"last_viewed_at"};
-////	"date_modified", "memos", "tags"};
-//
-//	public static String[] col_types =
-//		{"INTEGER", "TEXT", 	"TEXT",			"INTEGER",
-//		"INTEGER",			"TEXT",	"TEXT",		"INTEGER"};
-//
-//	static String[] cols_for_insert_data = 
-//		{"file_id", 		"file_path", "file_name", "date_added", "date_modified"};
-//
-//	// Proj
-//	static String[] proj = {
-//		MediaStore.Images.Media._ID, 
-//		MediaStore.Images.Media.DATA,
-//		MediaStore.Images.Media.DISPLAY_NAME,
-//		MediaStore.Images.Media.DATE_ADDED,
-//		MediaStore.Images.Media.DATE_MODIFIED,
-//		};
-//
-//	static String[] proj_for_get_data = {
-//		MediaStore.Images.Media._ID, 
-//		MediaStore.Images.Media.DATA,
-//		MediaStore.Images.Media.DISPLAY_NAME,
-//		MediaStore.Images.Media.DATE_ADDED,
-//		MediaStore.Images.Media.DATE_MODIFIED,
-//		"memos",
-//		"tags"
-//		};
-//
-//	static String[] cols_refresh_log = {
-//		"last_refreshed", "num_of_items_added"
-//	};
-//	
-//	static String[] col_types_refresh_log = {
-//		"INTEGER", 			"INTEGER"
-//	};
-//
-//	static String[] cols_memo_patterns = {"word", "table_name"};
-//	static String[] col_types_memo_patterns = {"TEXT", "TEXT"};
-//	
-//	static String table_name_memo_patterns = "memo_patterns";
-	
 	/*****************************************************************
 	 * Constructor
 	 *****************************************************************/
@@ -120,22 +66,16 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//public DBUtils(Context context)
 
-//	public DBUtils() {
-//		// TODO ?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½ê‚½?¿½R?¿½?¿½?¿½X?¿½g?¿½?¿½?¿½N?¿½^?¿½[?¿½E?¿½X?¿½^?¿½u
-//	}
-
 	/*******************************************************
 	 * Methods
 	 *******************************************************/
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// TODO ?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½ê‚½?¿½?¿½?¿½\?¿½b?¿½h?¿½E?¿½X?¿½^?¿½u
 		
 	}//public void onCreate(SQLiteDatabase db)
 
 	@Override
 	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
-		// TODO ?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½ê‚½?¿½?¿½?¿½\?¿½b?¿½h?¿½E?¿½X?¿½^?¿½u
 		
 	}
 
@@ -151,8 +91,9 @@ public class DBUtils extends SQLiteOpenHelper{
 	 * 
 	 * <Steps> 1.
 	 ****************************************/
-	public boolean createTable(
-					SQLiteDatabase db, String tableName, String[] columns, String[] types) {
+	public boolean createTable
+	(SQLiteDatabase db, String tableName, 
+			String[] columns, String[] types) {
 		/*----------------------------
 		 * Steps
 		 * 1. Table exists?
@@ -225,6 +166,11 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//public boolean createTable(SQLiteDatabase db, String tableName)
 
+	/******************************
+		createTable()
+		
+		@param columns, types => use non-full version
+	 ******************************/
 	public boolean createTable
 	(Activity actv, String tableName, String[] columns, String[] types)
 	{
@@ -234,16 +180,17 @@ public class DBUtils extends SQLiteOpenHelper{
 		 * 2. Build sql
 		 * 3. Exec sql
 			----------------------------*/
-		DBUtils dbu = new DBUtils(actv, dbName);
+//		DBUtils dbu = new DBUtils(actv, dbName);
 		
 		//
-		SQLiteDatabase wdb = dbu.getWritableDatabase();
+		SQLiteDatabase wdb = this.getWritableDatabase();
+//		SQLiteDatabase wdb = dbu.getWritableDatabase();
 		
 		//
 		//if (!tableExists(db, tableName)) {
 		if (tableExists(wdb, tableName)) {
 			// Log
-			Log.d("DBUtils.java" + "["
+			Log.i("DBUtils.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "Table exists => " + tableName);
 			

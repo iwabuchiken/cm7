@@ -1,6 +1,7 @@
 package app.listeners.dialog;
 
 
+import cm7.main.R;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import app.utils.CONS;
+import app.utils.Methods;
 import app.utils.Tags;
 
 public class DOI_CL implements OnItemClickListener {
@@ -64,12 +66,16 @@ public class DOI_CL implements OnItemClickListener {
 //		
 		vib.vibrate(CONS.Admin.vibLength_click);
 		
+		String item = (String) parent.getItemAtPosition(position);
+		
 		/*----------------------------
 		 * 3. Switching
 			----------------------------*/
 		switch (tag) {
 		
 		case dlg_db_admin_lv://----------------------------------------------
+			
+			case_dlg_db_admin_lv(item);
 			
 			break;// case dlg_add_memos_gv
 
@@ -78,5 +84,27 @@ public class DOI_CL implements OnItemClickListener {
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+
+	private void case_dlg_db_admin_lv(String item) {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// Dispatch
+
+		////////////////////////////////
+		if (item.equals(actv.getString(
+				R.string.dlg_db_admin_item_exec_sql))) {
+			
+			Methods.exec_Sql(actv);
+			
+		} else {
+
+		}
+	
+		
+		dlg1.dismiss();
+		
+		
+	}
 
 }//public class DialogOnItemClickListener implements OnItemClickListener

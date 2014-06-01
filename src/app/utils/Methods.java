@@ -495,6 +495,25 @@ public class Methods {
 		return prefs.getInt(pref_key, defValue);
 
 	}//public static boolean set_pref(String pref_name, String value)
+
+	public static void exec_Sql(Activity actv) {
+		// TODO Auto-generated method stub
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		boolean res = dbu.createTable(actv, 
+							CONS.DB.tname_RefresHistory, CONS.DB.col_names_RefreshHistory, 
+							CONS.DB.col_types_RefreshHistory);
+//		CONS.DB.col_types_RefresHistory);
+//		CONS.DB.tname_CM7, CONS.DB.col_names_CM7, 
+//		CONS.DB.col_types_CM7);
+		
+		// Log
+		String msg_log = "Create table => done: " + CONS.DB.tname_CM7;
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_log);
+		
+	}
 	
 }//public class Methods
 
