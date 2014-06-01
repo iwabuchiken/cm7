@@ -222,6 +222,8 @@ public class CONS {
 		////////////////////////////////
 		public static final int vibLength_click = 35;
 		
+		public static final String date_Format = "yyyy/MM/dd hh:mm:ss.SSS";
+		
 	}
 
 	public static class Paths {

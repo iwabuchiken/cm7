@@ -12,6 +12,8 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +23,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -1113,5 +1116,58 @@ public class Methods {
 		
 	}
 	
+	/******************************
+		Format => yyyy/MM/dd hh:mm:ss.SSS
+	 ******************************/
+	public static String
+	conv_MillSec_to_TimeLabel(long millSec)
+	{
+		//REF http://stackoverflow.com/questions/7953725/how-to-convert-milliseconds-to-date-format-in-android answered Oct 31 '11 at 12:59
+		String dateFormat = CONS.Admin.date_Format;
+//		String dateFormat = "yyyy/MM/dd hh:mm:ss.SSS";
+		
+		DateFormat formatter = new SimpleDateFormat(dateFormat);
+
+		// Create a calendar object that will convert the date and time value in milliseconds to date. 
+		Calendar calendar = Calendar.getInstance();
+		
+		calendar.setTimeInMillis(millSec);
+		
+		return formatter.format(calendar.getTime());
+		
+	}//conv_MillSec_to_TimeLabel(long millSec)
+
+	public static long
+	conv_TimeLabel_to_MillSec(String timeLabel)
+//	conv_MillSec_to_TimeLabel(long millSec)
+	{
+//		String input = "Sat Feb 17 2012";
+		Date date;
+		try {
+			date = new SimpleDateFormat(
+						CONS.Admin.date_Format, Locale.JAPAN).parse(timeLabel);
+			
+			return date.getTime();
+//			long milliseconds = date.getTime();
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+			// Log
+			String msg_Log = "Exception: " + e.toString();
+			Log.e("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return -1;
+			
+		}
+		
+//		Locale.ENGLISH).parse(input);
+		
+//		Date date = new SimpleDateFormat("EEE MMM dd yyyy", Locale.ENGLISH).parse(input);
+//		long milliseconds = date.getTime();
+		
+	}
 }//public class Methods
 

@@ -118,7 +118,9 @@ public class MainActv extends ListActivity {
 
     private void do_debug() {
     	
-    	_do_debug__Conv_Path2Tname();
+    	_do_debug_MillSec_to_TimeLabel();
+    	
+//    	_do_debug__Conv_Path2Tname();
     	
 //		// TODO Auto-generated method stub
 //		String path = this.getFilesDir().getPath();
@@ -138,6 +140,37 @@ public class MainActv extends ListActivity {
 //		Log.d("MainActv.java" + "["
 //				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //				+ "]", msg_log);
+		
+	}
+
+	private void _do_debug_MillSec_to_TimeLabel() {
+		// TODO Auto-generated method stub
+		long now = Methods.getMillSeconds_now();
+		
+		String label = Methods.conv_MillSec_to_TimeLabel(now);
+		
+		// Log
+		String msg_Log = "now = " + now
+						+ " // "
+						+ "label = " + label;
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+
+		// Conv: millsec to label
+
+		////////////////////////////////
+		long now_2 = Methods.conv_TimeLabel_to_MillSec(label);
+		
+		// Log
+		msg_Log = "now_2 = " + now_2
+						+ " // ";
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
 		
 	}
 
