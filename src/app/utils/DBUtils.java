@@ -1302,19 +1302,32 @@ public class DBUtils extends SQLiteOpenHelper{
 			// ContentValues
 			ContentValues val = new ContentValues();
 			
-			// Put values
-//			"file_name", "file_path",	// 0, 1
-//			"title", "memo",			// 2, 3
-//			"last_played_at",			// 4
-//			"table_name",				// 5
-//			"length"					// 6
-			val.put(CONS.DB.col_names_CM7[0], ai.getFile_name());
-			val.put(CONS.DB.col_names_CM7[1], ai.getFile_path());
-			val.put(CONS.DB.col_names_CM7[2], ai.getTitle());
-			val.put(CONS.DB.col_names_CM7[3], ai.getMemo());
-			val.put(CONS.DB.col_names_CM7[4], ai.getLast_played_at());
-			val.put(CONS.DB.col_names_CM7[5], ai.getTable_name());
-			val.put(CONS.DB.col_names_CM7[6], ai.getLength());
+//			col_names_CM7_full
+//			android.provider.BaseColumns._ID,	// 0
+//			"created_at", "modified_at",		// 1, 2
+//			"file_name", "file_path",			// 3, 4
+//			"title", "memo",					// 5, 6
+//			"last_played_at",					// 7
+//			"table_name",						// 8
+//			"length",							// 9
+//			"audio_created_at"					// 10
+			
+			val.put(CONS.DB.col_names_CM7_full[1], 
+					Methods.conv_MillSec_to_TimeLabel(Methods.getMillSeconds_now()));
+			val.put(CONS.DB.col_names_CM7_full[2], 
+					Methods.conv_MillSec_to_TimeLabel(Methods.getMillSeconds_now()));
+			
+			val.put(CONS.DB.col_names_CM7_full[3], ai.getFile_name());
+			val.put(CONS.DB.col_names_CM7_full[4], ai.getFile_path());
+			val.put(CONS.DB.col_names_CM7_full[5], ai.getTitle());
+			
+			val.put(CONS.DB.col_names_CM7_full[6], ai.getMemo());
+			val.put(CONS.DB.col_names_CM7_full[7], ai.getLast_played_at());
+			val.put(CONS.DB.col_names_CM7_full[8], ai.getTable_name());
+			
+			val.put(CONS.DB.col_names_CM7_full[9], ai.getLength());
+			val.put(CONS.DB.col_names_CM7_full[10], ai.getAudio_created_at());
+			
 //			val.put(CONS.DB.col_names_CM7[0], (String)values[0]);
 //			val.put(CONS.DB.col_names_CM7[1], (String)values[1]);
 //			val.put(CONS.DB.col_names_CM7[2], (String)values[2]);
@@ -1343,6 +1356,8 @@ public class DBUtils extends SQLiteOpenHelper{
 				// End transaction
 				wdb.endTransaction();
 				
+				wdb.close();
+				
 				return true;
 				
 			} else {
@@ -1357,6 +1372,8 @@ public class DBUtils extends SQLiteOpenHelper{
 								.getLineNumber() + "]", msg_Log);
 				// End transaction
 				wdb.endTransaction();
+				
+				wdb.close();
 				
 				return true;
 				

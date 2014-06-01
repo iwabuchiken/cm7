@@ -845,7 +845,25 @@ public class Methods {
 					.setFile_path(file.getPath())
 					.setTable_name(CONS.DB.tname_CM7)
 					.setLength(file.length())
+					.setAudio_created_at(
+							Methods.conv_MillSec_to_TimeLabel(file.lastModified()))
 					.build();
+			
+			//debug
+			// Log
+			String msg_Log = "file.lastModified() = " + file.lastModified()
+						+ " // "
+						+ "setAudio_created_at = "
+						+ Methods.conv_MillSec_to_TimeLabel(file.lastModified());
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			// Log
+			msg_Log = "ai.getAudio_created_at() = " + ai.getAudio_created_at();
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
 			
 			res = DBUtils.insertData_AI(actv, ai);
 			

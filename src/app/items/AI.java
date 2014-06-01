@@ -48,6 +48,7 @@ public class AI {
 
 		this.length		= builder.length;
 
+		this.audio_created_at	= builder.audio_created_at;
 		
 //		this.id				= builder.id;
 //		this.created_at		= builder.created_at;
