@@ -217,7 +217,8 @@ public class DBUtils extends SQLiteOpenHelper{
 							" INTEGER PRIMARY KEY AUTOINCREMENT, ");
 		
 		// created_at, modified_at
-		sb.append("created_at INTEGER, modified_at INTEGER, ");
+		sb.append("created_at TEXT, modified_at TEXT, ");
+//		sb.append("created_at INTEGER, modified_at INTEGER, ");
 		
 		int i = 0;
 		for (i = 0; i < columns.length - 1; i++) {

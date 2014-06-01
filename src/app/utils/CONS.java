@@ -88,7 +88,8 @@ public class CONS {
 			"title", "memo",			// 2, 3
 			"last_played_at",			// 4
 			"table_name",				// 5
-			"length"					// 6
+			"length",					// 6
+			"audio_created_at"			// 7
 			
 		};
 		
@@ -100,16 +101,18 @@ public class CONS {
 			"title", "memo",					// 5, 6
 			"last_played_at",					// 7
 			"table_name",						// 8
-			"length"							// 9
+			"length",							// 9
+			"audio_created_at"					// 10
 			
 		};
 
 		public static final String[] col_types_CM7 = {
-			"TEXT", "TEXT",
-			"TEXT", "TEXT",
-			"INTEGER",
-			"TEXT",
-			"INTEGER"
+			"TEXT", "TEXT",			// 0, 1
+			"TEXT", "TEXT",			// 2,3
+			"TEXT",					// 4
+			"TEXT",					// 5
+			"INTEGER",				// 6
+			"TEXT"					// 7
 		};
 		
 		
