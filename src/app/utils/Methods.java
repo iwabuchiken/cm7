@@ -61,6 +61,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.os.AsyncTask;
 import app.items.AI;
+import app.items.Refresh;
 import app.listeners.dialog.DL;
 
 // Apache
@@ -819,14 +820,36 @@ public class Methods {
 			****************************/
 		wdb.close();
 		
+		////////////////////////////////
+
+		// refresh history
+
+		////////////////////////////////
+		_refresh_MainDB__RefreshHistory(actv, numOfItemsAdded);
+		
 		/****************************
 		 * 10. Return
 			****************************/
-//		return numOfItemsAdded;
+		return numOfItemsAdded;
 		
-		return -1;
+//		return -1;
 				
 	}//public static void refresh_MainDB(Activity actv)
+
+	private static void
+	_refresh_MainDB__RefreshHistory
+	(Activity actv, int numOfItemsAdded) {
+		// TODO Auto-generated method stub
+		
+		Refresh refresh = new Refresh.Builder()
+						.setLast_refreshed(Methods.conv_MillSec_to_TimeLabel(Methods.getMillSeconds_now()))
+						.setNum_ItemsAdded(numOfItemsAdded)
+						.build();
+		
+		boolean res = DBUtils.insertData_Refresh(actv, refresh);
+		
+		
+	}//_refresh_MainDB__RefreshHistory
 
 	private static int
 	_refresh_MainDB__InsertData

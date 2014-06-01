@@ -7,6 +7,7 @@ import java.util.List;
 
 
 
+
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -28,6 +29,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.items.AI;
+import app.items.Refresh;
 
 /****************************************
  * Copy & pasted from => C:\WORKS\WORKSPACES_ANDROID\ShoppingList\src\shoppinglist\main\DBUtils.java
@@ -1258,6 +1260,12 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//isInDB_bm(SQLiteDatabase wdb, long dbId)
 
+	/******************************
+		insertData_AI(Activity actv, AI ai)
+		
+		@return false => 1. transaction exception<br>
+						2. Insertion failed
+	 ******************************/
 	public static boolean
 	insertData_AI(Activity actv, AI ai)
 	{
@@ -1358,7 +1366,7 @@ public class DBUtils extends SQLiteOpenHelper{
 				
 				wdb.close();
 				
-				return true;
+				return false;
 				
 			} else {
 
@@ -1401,6 +1409,105 @@ public class DBUtils extends SQLiteOpenHelper{
 		}//try
 		
 	}//insertData_AI(Activity actv, AI ai)
+
+	/******************************
+		insertData_Refresh
+		(Activity actv, Refresh refresh)
+		
+		@return false => 1. transaction exception<br>
+						2. Insertion failed
+	 ******************************/
+	public static boolean
+	insertData_Refresh
+	(Activity actv, Refresh refresh) {
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		//
+		SQLiteDatabase wdb = dbu.getWritableDatabase();
+		
+		////////////////////////////////
+
+		// Build: data
+
+		////////////////////////////////
+		
+		////////////////////////////////
+
+		// Insert
+
+		////////////////////////////////
+		try {
+			// Start transaction
+			wdb.beginTransaction();
+			
+			// ContentValues
+			ContentValues val = new ContentValues();
+
+//			col_names_RefreshHistory_full
+//			android.provider.BaseColumns._ID,		// 0
+//			"created_at", "modified_at",			// 1,2
+//			"last_refreshed", "num_of_items_added"	// 3,4
+			
+			val.put(CONS.DB.col_names_RefreshHistory_full[1], 
+					Methods.conv_MillSec_to_TimeLabel(Methods.getMillSeconds_now()));
+			val.put(CONS.DB.col_names_RefreshHistory_full[2], 
+					Methods.conv_MillSec_to_TimeLabel(Methods.getMillSeconds_now()));
+			
+			val.put(CONS.DB.col_names_RefreshHistory_full[3], 
+										refresh.getLast_refreshed());
+			val.put(CONS.DB.col_names_RefreshHistory_full[4], 
+										refresh.getNum_ItemsAdded());
+			
+			// Insert data
+			long res = wdb.insert(CONS.DB.tname_RefreshHistory, null, val);
+			
+			if (res == -1) {
+				
+				// Log
+				String msg_Log = "Insertion => failed: " + refresh.getLast_refreshed();
+				Log.d("DBUtils.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+				// End transaction
+				wdb.endTransaction();
+				
+				wdb.close();
+				
+				return false;
+				
+			} else {
+
+				wdb.setTransactionSuccessful();
+				
+				// Log
+				String msg_Log = "Insertion => done: " + refresh.getLast_refreshed();
+				Log.d("DBUtils.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				// End transaction
+				wdb.endTransaction();
+				
+				wdb.close();
+				
+				return true;
+				
+			}
+			// Set as successful
+			
+		} catch (Exception e) {
+			// Log
+			Log.e("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", "Exception! => " + e.toString());
+			
+			return false;
+			
+		}//try
+		
+	}//insertData_Refresh
 
 }//public class DBUtils
 

@@ -149,6 +149,12 @@ public class CONS {
 			"last_refreshed", "num_of_items_added"
 		};
 		
+		public static String[] col_names_RefreshHistory_full = {
+			android.provider.BaseColumns._ID,		// 0
+			"created_at", "modified_at",			// 1,2
+			"last_refreshed", "num_of_items_added"	// 3,4
+		};
+		
 		public static String[] col_types_RefreshHistory = {
 			"TEXT", 			"INTEGER"
 //			"INTEGER", 			"INTEGER"
