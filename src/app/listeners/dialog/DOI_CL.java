@@ -102,10 +102,20 @@ public class DOI_CL implements OnItemClickListener {
 			
 			Methods.db_Backup(actv);
 			
-		} else if (item.equals(actv.getString(
+		} else if (item.equals(actv.getString(		// Refresh DB
 				R.string.dlg_db_admin_item_refresh_db))) {
 			
 			Methods.refresh_MainDB(actv);
+			
+		} else if (item.equals(actv.getString(		// Create table: cm7
+				R.string.dlg_db_admin_item_create_table_cm7))) {
+			
+			Methods.create_Table(actv, CONS.DB.tname_CM7);
+			
+		} else if (item.equals(actv.getString(		// Drop table: cm7
+				R.string.dlg_db_admin_item_drop_table_cm7))) {
+			
+			Methods.drop_Table(actv, CONS.DB.tname_CM7);
 			
 		} else {
 

@@ -1034,6 +1034,61 @@ public class Methods {
 		}//if (result == false)
 		
 	}//_refresh_MainDB__Setup_Table
+
+	public static void create_Table(Activity actv, String tname) {
+		// TODO Auto-generated method stub
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		boolean res;
+		
+		////////////////////////////////
+
+		// Dispatch
+
+		////////////////////////////////
+		if (tname.equals(CONS.DB.tname_CM7)) {
+			
+			res = dbu.createTable(actv, 
+					CONS.DB.tname_CM7, CONS.DB.col_names_CM7, 
+					CONS.DB.col_types_CM7);
+			
+			if (res == true) {
+				
+				// debug
+				String msg_Toast = "Table => created: " + CONS.DB.tname_CM7;
+				Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+				
+				
+			} else {
+
+				// debug
+				String msg_Toast = "Table => can't create: " + CONS.DB.tname_CM7;
+				Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+				
+			}
+			
+		} else {
+
+		}
+		
+//		res = dbu.createTable(actv, 
+//							CONS.DB.tname_RefresHistory, CONS.DB.col_names_RefreshHistory, 
+//							CONS.DB.col_types_RefreshHistory);
+//		CONS.DB.col_types_RefresHistory);
+//		CONS.DB.tname_CM7, CONS.DB.col_names_CM7, 
+//		CONS.DB.col_types_CM7);
+		
+	}
+
+	public static void drop_Table
+	(Activity actv, String tname) {
+		// TODO Auto-generated method stub
+
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		boolean res = dbu.dropTable(actv, tname);
+		
+	}
 	
 }//public class Methods
 

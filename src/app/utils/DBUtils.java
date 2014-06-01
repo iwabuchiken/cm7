@@ -172,6 +172,7 @@ public class DBUtils extends SQLiteOpenHelper{
 		createTable()
 		
 		@param columns, types => use non-full version
+		@return true => Table created or exists
 	 ******************************/
 	public boolean createTable
 	(Activity actv, String tableName, String[] columns, String[] types)
@@ -196,7 +197,13 @@ public class DBUtils extends SQLiteOpenHelper{
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "Table exists => " + tableName);
 			
-			return false;
+			// debug
+			String msg_Toast = "Table exists => " + tableName;
+			Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+			
+			
+			return true;
+//			return false;
 		}//if (!tableExists(SQLiteDatabase db, String tableName))
 		
 		/*----------------------------
@@ -476,7 +483,14 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//public insertData(String tableName, String[] columnNames, String[] values)
 
-	public boolean dropTable(Activity actv, String tableName) {
+	/******************************
+		public boolean dropTable
+		
+		@return
+			false	=> Table can't be dropped or doesn't exist
+	 ******************************/
+	public boolean dropTable
+	(Activity actv, String tableName) {
 		/***************************************
 		 * Setup: DB
 		 ***************************************/
@@ -522,6 +536,11 @@ public class DBUtils extends SQLiteOpenHelper{
 			Log.d("DBUtils.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "The table dropped => " + tableName);
+			
+			// debug
+			String msg_Toast = "The table dropped => " + tableName;
+			Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+			
 			
 			wdb.close();
 			
