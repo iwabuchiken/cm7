@@ -843,7 +843,11 @@ public class Methods {
 			
 			AI ai = new AI.Builder()
 					.setFile_name(file.getName())
-					.setFile_path(file.getPath())
+					
+					//REF http://www.xinotes.net/notes/note/774/
+					.setFile_path(file.getParent())
+//					.setFile_path(file.getPath())
+					
 					.setTable_name(CONS.DB.tname_CM7)
 					.setLength(Methods.conv_MillSec_to_ClockLabel(file.length()))
 //					.setLength(file.length())
