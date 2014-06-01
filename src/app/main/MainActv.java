@@ -29,6 +29,7 @@ import android.widget.Toast;
 import app.adapters.Adp_MainList;
 import app.utils.CONS;
 import app.utils.Methods;
+import app.utils.Methods_dlg;
 import app.utils.Tags;
 
 import java.io.FileInputStream;
@@ -661,8 +662,8 @@ public class MainActv extends ListActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// 
-//		MenuInflater mi = getMenuInflater();
-//		mi.inflate(R.menu.main_menu, menu);
+		MenuInflater mi = getMenuInflater();
+		mi.inflate(R.menu.menu_main, menu);
 //		
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -671,6 +672,11 @@ public class MainActv extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 
+		case R.id.opt_menu_main_db://----------------------------------
+			
+			Methods_dlg.dlg_Db_Activity(this);
+			
+			break;// case R.id.main_opt_menu_create_folder
 			
 		}//switch (item.getItemId())
 		

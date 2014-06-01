@@ -54,7 +54,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.AsyncTask;
-import app.listeners.dialog.DialogListener;
+import app.listeners.dialog.DL;
 
 // Apache
 
@@ -169,11 +169,11 @@ public class Methods {
 	        
 	        dialog.setPositiveButton(
 	        				actv.getString(R.string.generic_bt_quit),
-	        				new DialogListener(actv, dialog, 0));
+	        				new DL(actv, dialog, 0));
 	        
 	        dialog.setNegativeButton(
 	        				actv.getString(R.string.generic_bt_cancel),
-	        				new DialogListener(actv, dialog, 1));
+	        				new DL(actv, dialog, 1));
 	        
 	        dialog.create();
 	        dialog.show();

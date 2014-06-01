@@ -32,26 +32,41 @@ public final class R {
         public static final int main_back_disenabled=0x7f020001;
         public static final int main_forward_disenabled=0x7f020002;
         public static final int main_up_disenabled=0x7f020003;
-        public static final int proj_icon=0x7f020004;
-        public static final int proj_icon_2=0x7f020005;
-        public static final int proj_icon_3=0x7f020006;
-        public static final int project_icon=0x7f020007;
+        public static final int opt_menu_main_db=0x7f020004;
+        public static final int proj_icon=0x7f020005;
+        public static final int proj_icon_2=0x7f020006;
+        public static final int proj_icon_3=0x7f020007;
+        public static final int project_icon=0x7f020008;
     }
     public static final class id {
-        public static final int list_row_slimple_1_tv=0x7f070000;
-        public static final int main_LL_buttons=0x7f070003;
-        public static final int main_bt_back=0x7f070004;
-        public static final int main_bt_forward=0x7f070006;
-        public static final int main_bt_up=0x7f070005;
-        public static final int main_sv_dir_path=0x7f070001;
-        public static final int main_tv_dir_path=0x7f070002;
+        public static final int dlg_tmpl_list_cancel_bt_cancel=0x7f080001;
+        public static final int dlg_tmpl_list_cancel_lv=0x7f080000;
+        public static final int list_row_slimple_1_tv=0x7f080002;
+        public static final int main_LL_buttons=0x7f080005;
+        public static final int main_bt_back=0x7f080006;
+        public static final int main_bt_forward=0x7f080008;
+        public static final int main_bt_up=0x7f080007;
+        public static final int main_sv_dir_path=0x7f080003;
+        public static final int main_tv_dir_path=0x7f080004;
+        public static final int opt_menu_main_db=0x7f080009;
     }
     public static final class layout {
-        public static final int list_row_simple_1=0x7f030000;
-        public static final int main=0x7f030001;
+        public static final int dlg_tmpl_list_cancel=0x7f030000;
+        public static final int list_row_simple_1=0x7f030001;
+        public static final int main=0x7f030002;
+    }
+    public static final class menu {
+        public static final int menu_main=0x7f070000;
     }
     public static final class string {
         public static final int app_name=0x7f050000;
+        public static final int dlg_db_admin_item_backup_db=0x7f050010;
+        public static final int dlg_db_admin_item_exec_sql=0x7f050012;
+        public static final int dlg_db_admin_item_refresh_db=0x7f050011;
+        public static final int dlg_db_admin_item_restore_db=0x7f050013;
+        /**  dlg_db_admin.xml 
+         */
+        public static final int dlg_db_admin_title=0x7f05000f;
         public static final int generic_bt_back=0x7f050003;
         public static final int generic_bt_cancel=0x7f050002;
         /**  Generic items 
@@ -69,6 +84,9 @@ public final class R {
         /**  main.xml 
          */
         public static final int main_tv_dir_path=0x7f05000d;
+        /**  menu_main.xml 
+         */
+        public static final int opt_menu_main_db=0x7f05000e;
     }
     public static final class style {
         /** 

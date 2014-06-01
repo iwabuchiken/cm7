@@ -5,14 +5,14 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 
-public class DialogListener implements OnClickListener {
+public class DL implements OnClickListener {
 
 	Activity actv;
 //	Dialog dlg;
 	Builder dialog;
 	int type;
 	
-	public DialogListener(Activity actv, Builder dialog, int type) {
+	public DL(Activity actv, Builder dialog, int type) {
 		
 		this.actv = actv;
 		this.dialog = dialog;

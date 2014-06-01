@@ -200,6 +200,12 @@ public class CONS {
 		////////////////////////////////
 		public static String fname_List = "list.txt";
 		
+		////////////////////////////////
+
+		// Utilities
+
+		////////////////////////////////
+		public static final int vibLength_click = 35;
 		
 	}
 
