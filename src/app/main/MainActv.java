@@ -688,47 +688,171 @@ public class MainActv extends ListActivity {
 		/*********************************
 		 * 1. Get item name
 		 *********************************/
-		String item = (String) lv.getItemAtPosition(position);
+		String item = _ItemClick_GetItem(lv, position);
 		
-		if (item != null) {
-			
-			// Log
-			Log.d("MainActv.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", "item=" + item);
-			
-		} else {//if (item_)
-			
-			// Log
-			Log.d("MainActv.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", "item == null");
-			
-		}//if (item_)
+//		String item = (String) lv.getItemAtPosition(position);
+//		
+//		if (item != null) {
+//			
+//			// Log
+//			Log.d("MainActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", "item=" + item);
+//			
+//		} else {//if (item_)
+//			
+//			// Log
+//			Log.d("MainActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", "item == null");
+//			
+//		}//if (item_)
 		
 		/******************************
 			Set pref: Current position
 		 ******************************/
-		Methods.set_Pref_Int(
-				this,
-				CONS.Pref.pname_MainActv,
-				CONS.Pref.pkey_CurrentPosition,
-				position);
+		_ItemClick_SetPref_CurrentPosition(position);
+//		Methods.set_Pref_Int(
+//				this,
+//				CONS.Pref.pname_MainActv,
+//				CONS.Pref.pkey_CurrentPosition,
+//				position);
+//		
+//		// Log
+//		String msg_log = "Pref: " + CONS.Pref.pkey_CurrentPosition
+//						+ " => "
+//						+ "Set to: " + position;
+//		
+//		Log.d("MainActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_log);
+//		
+//		CONS.MainActv.aAdapter.notifyDataSetChanged();
+
+		////////////////////////////////
+
+		// Get file object
+
+		////////////////////////////////
+		SharedPreferences prefs = 
+				this.getSharedPreferences(
+						CONS.Pref.pname_MainActv, MODE_PRIVATE);
+		
+		String currentPath = prefs.getString(CONS.Pref.pkey_CurrentPath, null);
 		
 		// Log
-		String msg_log = "Pref: " + CONS.Pref.pkey_CurrentPosition
-						+ " => "
-						+ "Set to: " + position;
-		
+		String msg_Log = "currentPath = " + currentPath;
 		Log.d("MainActv.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_log);
+				+ "]", msg_Log);
 		
-		CONS.MainActv.aAdapter.notifyDataSetChanged();
+		/******************************
+			Validate: Current path => null?
+		 ******************************/
+		if (currentPath == null) {
+			
+			// Log
+			msg_Log = "currentPath => null";
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return;
+			
+		}
 		
-//		/*********************************
-//		 * 2. Get file object
-//		 *********************************/
+		////////////////////////////////
+
+		// File path
+
+		////////////////////////////////
+		File f = new File(currentPath, item);
+		
+		// Log
+		msg_Log = "File path = " + f.getAbsolutePath();
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		
+		boolean res = f.exists();
+		
+		/******************************
+			validate
+		 ******************************/
+		if (res == false) {
+			
+			// Log
+			msg_Log = "File => doesnt exist: " + f.getAbsolutePath();
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			// debug
+			Toast.makeText(this, msg_Log, Toast.LENGTH_SHORT).show();
+			
+			return;
+			
+		}
+
+		////////////////////////////////
+
+		// Is file?
+
+		////////////////////////////////
+		if (f.isFile()) {
+			
+			////////////////////////////////
+
+			// list.txt?
+
+			////////////////////////////////
+			if (item.equals(CONS.Admin.fname_List)) {
+				
+				Methods.start_Activity_ALActv(this, currentPath);
+				
+			} else {
+				
+				// Log
+				msg_Log = "File => not list.txt";
+				Log.d("MainActv.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+				// debug
+				Toast.makeText(this, msg_Log, Toast.LENGTH_SHORT).show();
+				
+				return;
+
+			}
+			
+//			// Log
+//			msg_Log = "File => is a file";
+//			Log.d("MainActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
+			
+		} else if (f.isDirectory()) {
+			
+			// Log
+			msg_Log = "File => is a directory";
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		} else {
+			
+			// Log
+			msg_Log = "File => unknown type";
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return;
+			
+		}
+		
 //		File target = get_file_object(item);
 //		
 ////		// Log
@@ -802,6 +926,52 @@ public class MainActv extends ListActivity {
 //		super.onListItemClick(lv, v, position, id);
 		
 	}//protected void onListItemClick(ListView l, View v, int position, long id)
+
+	private void
+	_ItemClick_SetPref_CurrentPosition(int position) {
+		// TODO Auto-generated method stub
+		Methods.set_Pref_Int(
+				this,
+				CONS.Pref.pname_MainActv,
+				CONS.Pref.pkey_CurrentPosition,
+				position);
+		
+		// Log
+		String msg_log = "Pref: " + CONS.Pref.pkey_CurrentPosition
+						+ " => "
+						+ "Set to: " + position;
+		
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_log);
+		
+		CONS.MainActv.aAdapter.notifyDataSetChanged();
+
+	}
+
+	private String _ItemClick_GetItem(ListView lv, int position) {
+		// TODO Auto-generated method stub
+		String item = (String) lv.getItemAtPosition(position);
+		
+		if (item != null) {
+			
+			// Log
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "item=" + item);
+			
+		} else {//if (item_)
+			
+			// Log
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "item == null");
+			
+		}//if (item_)
+
+		return item;
+		
+	}
 
 	@Override
 	protected void onDestroy() {

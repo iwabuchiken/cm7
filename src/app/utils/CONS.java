@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.SharedPreferences;
+import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -31,25 +32,27 @@ public class CONS {
 
 	public static class Intent {
 		
-		public static String bmactv_key_ai_id = "bmactv_key_ai_id";
+		public static String iKey_CurrentPath_MainActv = "current_path";
 		
-		public static String bmactv_key_table_name = "bmactv_key_table_name";
-		
-		public static String bmactv_key_position = "bmactv_key_position";
-		
-		/***************************************
-		 * Request codes
-		 ***************************************/
-		public final static int REQUEST_CODE_SEE_BOOKMARKS = 0;
-		
-		public final static int REQUEST_CODE_HISTORY = 1;
-		
-		/***************************************
-		 * Result code
-		 ***************************************/
-		public final static int RESULT_CODE_SEE_BOOKMARKS_OK = 1;
-		
-		public final static int RESULT_CODE_SEE_BOOKMARKS_CANCEL = 0;
+//		public static String bmactv_key_ai_id = "bmactv_key_ai_id";
+//		
+//		public static String bmactv_key_table_name = "bmactv_key_table_name";
+//		
+//		public static String bmactv_key_position = "bmactv_key_position";
+//		
+//		/***************************************
+//		 * Request codes
+//		 ***************************************/
+//		public final static int REQUEST_CODE_SEE_BOOKMARKS = 0;
+//		
+//		public final static int REQUEST_CODE_HISTORY = 1;
+//		
+//		/***************************************
+//		 * Result code
+//		 ***************************************/
+//		public final static int RESULT_CODE_SEE_BOOKMARKS_OK = 1;
+//		
+//		public final static int RESULT_CODE_SEE_BOOKMARKS_CANCEL = 0;
 		
 	}//public static class Intent
 	
@@ -201,6 +204,16 @@ public class CONS {
 		
 		public static String pkey_CurrentPosition = "pkey_CurrentPosition";
 		
+		////////////////////////////////
+
+		// ALActv
+
+		////////////////////////////////
+		public static SharedPreferences prefs_ALActv;
+		
+		public static String pname_ALActv = "al_activity";
+
+		
 	}
 
 	public static class MainActv {
@@ -212,7 +225,13 @@ public class CONS {
 		public static Adp_MainList aAdapter;
 		
 	}
-	
+
+	public static class ALActv {
+		
+		public static String currentPath;
+		
+	}
+
 	public static class PlayActv {
 	
 		public static TextView tvCurrentPosition;
@@ -238,6 +257,8 @@ public class CONS {
 		// Utilities
 
 		////////////////////////////////
+		public static Vibrator vib;
+		
 		public static final int vibLength_click = 35;
 		
 		public static final String format_Date = "yyyy/MM/dd hh:mm:ss.SSS";
@@ -245,7 +266,7 @@ public class CONS {
 		
 		public static final String format_Clock = "%02d:%02d";
 		
-	}
+	}//public static class Admin
 
 	public static class Paths {
 		////////////////////////////////

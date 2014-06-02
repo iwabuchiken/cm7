@@ -28,37 +28,59 @@ public final class R {
         public static final int yello=0x7f040009;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int main_back_disenabled=0x7f020001;
-        public static final int main_forward_disenabled=0x7f020002;
-        public static final int main_up_disenabled=0x7f020003;
-        public static final int opt_menu_main_db=0x7f020004;
-        public static final int proj_icon=0x7f020005;
-        public static final int proj_icon_2=0x7f020006;
-        public static final int proj_icon_3=0x7f020007;
-        public static final int project_icon=0x7f020008;
+        public static final int actv_al_back_50x50_disenabled=0x7f020000;
+        public static final int actv_al_bottom_disenabled_50x50=0x7f020001;
+        public static final int actv_al_down_disenabled_50x50=0x7f020002;
+        public static final int actv_al_opt_menu_move_file=0x7f020003;
+        public static final int actv_al_opt_menu_move_mode_off=0x7f020004;
+        public static final int actv_al_opt_menu_move_mode_on=0x7f020005;
+        public static final int actv_al_top_disenabled_50x50=0x7f020006;
+        public static final int actv_al_up_disenabled_50x50=0x7f020007;
+        public static final int ic_launcher=0x7f020008;
+        public static final int main_back_disenabled=0x7f020009;
+        public static final int main_forward_disenabled=0x7f02000a;
+        public static final int main_up_disenabled=0x7f02000b;
+        public static final int opt_menu_main_db=0x7f02000c;
+        public static final int proj_icon=0x7f02000d;
+        public static final int proj_icon_2=0x7f02000e;
+        public static final int proj_icon_3=0x7f02000f;
+        public static final int project_icon=0x7f020010;
     }
     public static final class id {
-        public static final int dlg_tmpl_list_cancel_bt_cancel=0x7f080001;
-        public static final int dlg_tmpl_list_cancel_lv=0x7f080000;
-        public static final int list_row_slimple_1_tv=0x7f080002;
-        public static final int main_LL_buttons=0x7f080005;
-        public static final int main_bt_back=0x7f080006;
-        public static final int main_bt_forward=0x7f080008;
-        public static final int main_bt_up=0x7f080007;
-        public static final int main_sv_dir_path=0x7f080003;
-        public static final int main_tv_dir_path=0x7f080004;
-        public static final int opt_menu_main_db=0x7f080009;
+        public static final int actv_al_LL_buttons=0x7f080000;
+        public static final int actv_al_ib_back=0x7f080003;
+        public static final int actv_al_ib_next_page=0x7f080004;
+        public static final int actv_al_ib_prev_page=0x7f080002;
+        public static final int actv_al_ib_toBottom=0x7f080005;
+        public static final int actv_al_ib_toTop=0x7f080001;
+        public static final int al_actv_menu_move_files=0x7f080010;
+        public static final int al_actv_menu_move_mode=0x7f08000f;
+        public static final int dlg_tmpl_list_cancel_bt_cancel=0x7f080007;
+        public static final int dlg_tmpl_list_cancel_lv=0x7f080006;
+        public static final int list_row_slimple_1_tv=0x7f080008;
+        public static final int main_LL_buttons=0x7f08000b;
+        public static final int main_bt_back=0x7f08000c;
+        public static final int main_bt_forward=0x7f08000e;
+        public static final int main_bt_up=0x7f08000d;
+        public static final int main_sv_dir_path=0x7f080009;
+        public static final int main_tv_dir_path=0x7f08000a;
+        public static final int opt_menu_main_db=0x7f080011;
     }
     public static final class layout {
-        public static final int dlg_tmpl_list_cancel=0x7f030000;
-        public static final int list_row_simple_1=0x7f030001;
-        public static final int main=0x7f030002;
+        public static final int actv_al=0x7f030000;
+        public static final int dlg_tmpl_list_cancel=0x7f030001;
+        public static final int list_row_simple_1=0x7f030002;
+        public static final int main=0x7f030003;
     }
     public static final class menu {
-        public static final int menu_main=0x7f070000;
+        public static final int menu_al_actv=0x7f070000;
+        public static final int menu_main=0x7f070001;
     }
     public static final class string {
+        public static final int al_actv_menu_move_files=0x7f050019;
+        /**  ALActv.java 
+         */
+        public static final int al_actv_menu_move_mode=0x7f050018;
         public static final int app_name=0x7f050000;
         public static final int dlg_db_admin_item_backup_db=0x7f050010;
         public static final int dlg_db_admin_item_create_table_cm7=0x7f050015;
@@ -108,5 +130,12 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f060001;
+        /**  <style name="v1_ib"> 
+ image_activity.xml 
+         */
+        public static final int image_activity_ib=0x7f060003;
+        /**  v1_ib 
+         */
+        public static final int v1_ib=0x7f060002;
     }
 }

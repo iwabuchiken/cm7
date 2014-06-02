@@ -95,12 +95,12 @@ public class Adp_MainList extends ArrayAdapter<String> implements OnTouchListene
     	//test
     	String item = (String) getItem(position);
     	
-    	// Log
-		String msg_log = "item => " + item;
-		Log.d("Adp_MainList.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_log);
-    	
+//    	// Log
+//		String msg_log = "item => " + item;
+//		Log.d("Adp_MainList.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_log);
+//    	
 		
 		////////////////////////////////
 

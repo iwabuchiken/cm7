@@ -63,6 +63,7 @@ import android.os.AsyncTask;
 import app.items.AI;
 import app.items.Refresh;
 import app.listeners.dialog.DL;
+import app.main.ALActv;
 
 // Apache
 
@@ -1295,6 +1296,22 @@ public class Methods {
 //		long millis = date.getTime();
 		
 	}//conv_ClockLabel_to_MillSec(String clockLabel)
+
+	public static void
+	start_Activity_ALActv
+	(Activity actv, String currentPath) {
+
+		Intent i = new Intent();
+		
+		i.setClass(actv, ALActv.class);
+		
+		i.putExtra(CONS.Intent.iKey_CurrentPath_MainActv, currentPath);
+		
+		i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		
+		actv.startActivity(i);
+		
+	}//start_Activity_ALActv
 	
 }//public class Methods
 
