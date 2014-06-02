@@ -971,25 +971,34 @@ public class Methods {
 
 		////////////////////////////////
 		File[] audioFile_list_Filtered = 
-				dir_TapeATalk.listFiles(new FileFilter(){
+				dir_TapeATalk.listFiles(new FFRefresh(actv, pastXDays));
+//					dir_TapeATalk.listFiles(new FileFilter(){
 			
-						@Override
-						public boolean accept(File file) {
-							
-							//REF http://stackoverflow.com/questions/4348525/get-date-as-of-4-hours-ago answered Dec 3 '10 at 18:19
-							Calendar calendar = Calendar.getInstance();
-							calendar.add(Calendar.DAY_OF_MONTH, pastXDays);
-			//				calendar.add(Calendar.HOUR_OF_DAY, -4);
-							Date date = calendar.getTime();
-							
-							long time_4DaysAgo = date.getTime();
-							
-							// TODO Auto-generated method stub
-							return file.lastModified() > time_4DaysAgo;
-							
-						}
-			
-		});
+//						@Override
+//						public boolean accept(File file) {
+//							
+//							////////////////////////////////
+//
+//							// Get: history
+//
+//							////////////////////////////////
+//							String last_history = DBUtils.get_Latest_Entry(
+//											actv, CONS.DB.tname_RefreshHistory);
+//							
+//							//REF http://stackoverflow.com/questions/4348525/get-date-as-of-4-hours-ago answered Dec 3 '10 at 18:19
+//							Calendar calendar = Calendar.getInstance();
+//							calendar.add(Calendar.DAY_OF_MONTH, pastXDays);
+//			//				calendar.add(Calendar.HOUR_OF_DAY, -4);
+//							Date date = calendar.getTime();
+//							
+//							long time_4DaysAgo = date.getTime();
+//							
+//							// TODO Auto-generated method stub
+//							return file.lastModified() > time_4DaysAgo;
+//							
+//						}
+//			
+//		});
 		
 		/******************************
 			Validate: Filtering done?

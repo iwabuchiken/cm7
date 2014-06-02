@@ -167,6 +167,17 @@ public class CONS {
 		////////////////////////////////
 		public static String jointString_TableName = "__";
 
+		////////////////////////////////
+
+		// FileFilter
+
+		////////////////////////////////
+		public static enum FFType {
+			
+			RefreshHistory
+		}
+		
+		
 	}//public static class DB
 
 	public static class Pref {

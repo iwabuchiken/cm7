@@ -4,10 +4,6 @@ package app.utils;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
-
-
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -1508,6 +1504,113 @@ public class DBUtils extends SQLiteOpenHelper{
 		}//try
 		
 	}//insertData_Refresh
+
+	public static Refresh
+	get_LatestEntry_Refresh(Activity actv) {
+		// TODO Auto-generated method stub
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		SQLiteDatabase rdb = dbu.getReadableDatabase();
+
+		Cursor c = null;
+		
+		////////////////////////////////
+
+		// Query
+
+		////////////////////////////////
+		try {
+			
+			c = rdb.query(
+							CONS.DB.tname_RefreshHistory,			// 1
+							CONS.DB.col_names_RefreshHistory_full,	// 2
+							null, null,								// 3,4
+							null, null,								// 5,6
+							CONS.DB.col_names_RefreshHistory_full[3] + " desc",	// 7
+							null);
+//			null, null, null);
+			
+		} catch (Exception e) {
+
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", e.toString());
+			
+			rdb.close();
+			
+			return null;
+			
+		}//try
+		
+		/***************************************
+		 * Validate
+		 * 	Cursor => Null?
+		 * 	Entry => 0?
+		 ***************************************/
+		if (c == null) {
+			
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "Query failed");
+			
+			rdb.close();
+			
+			return null;
+			
+		} else if (c.getCount() < 1) {//if (c == null)
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "No entry in the table");
+			
+			rdb.close();
+			
+			return null;
+			
+		}//if (c == null)
+		
+		/***************************************
+		 * Build list
+		 ***************************************/
+		c.moveToFirst();
+
+//		col_names_RefreshHistory_full
+//		android.provider.BaseColumns._ID,		// 0
+//		"created_at", "modified_at",			// 1,2
+//		"last_refreshed", "num_of_items_added"	// 3,4
+
+		Refresh refresh = new Refresh.Builder()
+						.setDb_id(c.getLong(0))
+						.setCreated_at(c.getString(1))
+						.setModified_at(c.getString(2))
+						.setLast_refreshed(c.getString(3))
+						.setNum_ItemsAdded(c.getInt(4))
+						.build();
+		
+//		BM bm = new BM.Builder()
+//			.setPosition(c.getLong(c.getColumnIndex("position")))
+//			.setTitle(c.getString(c.getColumnIndex("title")))
+//			.setMemo(c.getString(c.getColumnIndex("memo")))
+//			.setAiId(c.getLong(c.getColumnIndex("ai_id")))
+//			.setAiTableName(c.getString(c.getColumnIndex("aiTableName")))
+//			.setDbId(c.getLong(c.getColumnIndex(CONS.DB.cols_bm_full[0])))
+//			.build();
+
+		rdb.close();
+		
+		return refresh;
+//		return null;
+	}
 
 }//public class DBUtils
 

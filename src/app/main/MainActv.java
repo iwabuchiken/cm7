@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import android.app.Activity;
@@ -27,7 +29,9 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 import app.adapters.Adp_MainList;
+import app.items.Refresh;
 import app.utils.CONS;
+import app.utils.DBUtils;
 import app.utils.Methods;
 import app.utils.Methods_dlg;
 import app.utils.Tags;
@@ -118,7 +122,8 @@ public class MainActv extends ListActivity {
 
     private void do_debug() {
     	
-    	_do_debug_MillSec_to_ClockLabel();
+    	_do_debug_Get_LastEntry_Refresh();
+//    	_do_debug_MillSec_to_ClockLabel();
 //    	_do_debug_MillSec_to_TimeLabel();
     	
 //    	_do_debug__Conv_Path2Tname();
@@ -141,6 +146,46 @@ public class MainActv extends ListActivity {
 //		Log.d("MainActv.java" + "["
 //				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //				+ "]", msg_log);
+		
+	}
+
+	private void _do_debug_Get_LastEntry_Refresh() {
+		// TODO Auto-generated method stub
+		Refresh last_history = DBUtils.get_LatestEntry_Refresh(this);
+		
+		String last = last_history.getLast_refreshed();
+		
+		long last_refreshed = 
+				Methods.conv_TimeLabel_to_MillSec(last);
+		
+		// Log
+		String msg_Log = "last = " + last
+						+ " // "
+						+ "refreshed = " + last_refreshed;
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+
+		// 4 days ago
+
+		////////////////////////////////
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DAY_OF_MONTH, -4);
+//				calendar.add(Calendar.HOUR_OF_DAY, -4);
+		Date date = calendar.getTime();
+		
+		long time_4DaysAgo = date.getTime();
+		
+		// Log
+		msg_Log = "4 days ago = " + time_4DaysAgo
+				+ " // "
+				+ "(time_4DaysAgo > last_refreshed) => "
+				+ (time_4DaysAgo > last_refreshed);
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
 		
 	}
 
