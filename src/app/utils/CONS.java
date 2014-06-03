@@ -9,6 +9,7 @@ import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import app.adapters.Adp_AIList;
 import app.adapters.Adp_MainList;
 import app.items.AI;
 
@@ -213,7 +214,9 @@ public class CONS {
 		public static SharedPreferences prefs_ALActv;
 		
 		public static String pname_ALActv = "al_activity";
-
+		
+		public static String pkey_CurrentPosition_ALActv
+									= "pkey_CurrentPosition_ALActv";
 		
 	}
 
@@ -232,6 +235,8 @@ public class CONS {
 		public static String currentPath;
 		
 		public static List<AI> list_AI;
+		
+		public static Adp_AIList adp_AIList;
 		
 	}
 

@@ -34,6 +34,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
+import app.adapters.Adp_AIList;
 import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
@@ -117,6 +118,24 @@ public class ALActv extends ListActivity {
 		Log.d("ALActv.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
+		
+		////////////////////////////////
+
+		// Adapter
+
+		////////////////////////////////
+		CONS.ALActv.adp_AIList = new Adp_AIList(
+				this,
+				R.layout.list_row_ai_list,
+				CONS.ALActv.list_AI
+				);
+		
+		////////////////////////////////
+
+		// Set adapter
+
+		////////////////////////////////
+		this.setListAdapter(CONS.ALActv.adp_AIList);
 		
 		/****************************
 		 * 5. Initialize vars

@@ -1313,6 +1313,35 @@ public class Methods {
 		
 	}//start_Activity_ALActv
 
+	public static String get_Pref_String
+	(Activity actv, String pref_name,
+			String pref_key, String defValue) {
+		
+		SharedPreferences prefs = 
+				actv.getSharedPreferences(
+						pref_name, Context.MODE_PRIVATE);
+
+		/****************************
+		 * Return
+			****************************/
+		return prefs.getString(pref_key, defValue);
+
+	}//public static String get_Pref_String
+	
+	public static int get_Pref_String
+	(Activity actv, String pref_name,
+			String pref_key, int defValue) {
+		
+		SharedPreferences prefs = 
+				actv.getSharedPreferences(
+						pref_name, Context.MODE_PRIVATE);
+		
+		/****************************
+		 * Return
+		 ****************************/
+		return prefs.getInt(pref_key, defValue);
+		
+	}//public static String get_Pref_String
 	
 
 }//public class Methods
