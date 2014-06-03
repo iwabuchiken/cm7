@@ -1343,6 +1343,17 @@ public class Methods {
 		
 	}//public static String get_Pref_String
 	
+	public static void
+	sort_List_ai_List
+	(List<AI> ai_List, 
+		final CONS.Enums.SortType sortType, 
+		final CONS.Enums.SortOrder sortOrder) {
+		
+		Comparator_AI aiComp = new Comparator_AI(ai_List, sortType, sortOrder);
+		
+		Collections.sort(ai_List, aiComp);
+
+	}//sort_List_ai_List
 
 }//public class Methods
 

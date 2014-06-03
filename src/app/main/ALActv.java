@@ -119,6 +119,12 @@ public class ALActv extends ListActivity {
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		
+		// Sort list
+		Methods.sort_List_ai_List(
+				CONS.ALActv.list_AI,
+				CONS.Enums.SortType.FileName, 
+				CONS.Enums.SortOrder.DEC);
+		
 		////////////////////////////////
 
 		// Adapter

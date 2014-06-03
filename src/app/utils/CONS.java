@@ -15,12 +15,13 @@ import app.items.AI;
 
 public class CONS {
 
-	// Sort order
-	public static enum SORT_ORDER {
-			ASC, DEC,
-			CREATED_AT,
-	};
+//	// Sort order
+//	public static enum SORT_ORDER {
+//			ASC, DEC,
+//			CREATED_AT,
+//	};
 
+	
 	
 
 	// Table => show_history
@@ -309,5 +310,20 @@ public class CONS {
 		
 		
 	}
-	
+
+	public static class Enums {
+		
+		public static enum SortType {
+			
+			FileName,
+			
+		}
+
+		// Sort order
+		public static enum SortOrder {
+				ASC, DEC,
+				CREATED_AT,
+		};
+
+	}
 }//public class CONS

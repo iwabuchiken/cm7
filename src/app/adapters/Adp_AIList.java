@@ -99,17 +99,103 @@ public class Adp_AIList extends ArrayAdapter<AI> implements OnTouchListener {
     	AI ai = (AI) this.getItem(position);
 //    	AI ai = (AI) getItem(position);
     	
-    	// Log
-		String msg_Log = "ai.getFile_name() = " + ai.getFile_name();
-		Log.d("Adp_AIList.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
+    	////////////////////////////////
+
+		// Set value: file name
+
+		////////////////////////////////
+    	_getView_Set_FileName(ai, v, position);
     	
-		////////////////////////////////
+    	////////////////////////////////
 
-		// Get: view
+		// Set value: Title
 
 		////////////////////////////////
+    	_getView_Set_FileTitle(ai, v, position);
+    	
+    	////////////////////////////////
+    	
+    	// Set value: Length
+    	
+    	////////////////////////////////
+    	_getView_Set_FileLength(ai, v, position);
+    	
+		
+		return v;
+		
+    }//public View getView(int position, View convertView, ViewGroup parent)
+
+    private void
+    _getView_Set_FileLength
+    (AI ai, View v, int position) {
+		// TODO Auto-generated method stub
+    	////////////////////////////////
+
+		// View: length
+
+		////////////////////////////////
+    	TextView tv_Length = 
+    			(TextView) v.findViewById(R.id.list_row_ai_list_tv_file_length);
+    	
+    	////////////////////////////////
+
+		// Set: length
+
+		////////////////////////////////
+    	tv_Length.setText(ai.getLength());
+    	
+    	////////////////////////////////
+
+		// Background
+
+		////////////////////////////////
+		tv_Length.setBackgroundColor(
+				((Activity)con).getResources().getColor(R.color.black));
+
+		tv_Length.setTextColor(
+    			((Activity)con).getResources().getColor(R.color.white));
+		
+	}//_getView_Set_FileLength
+
+	private void
+	_getView_Set_FileTitle
+    (AI ai, View v, int position) {
+		// TODO Auto-generated method stub
+    	////////////////////////////////
+
+		// View: tv_Title
+
+		////////////////////////////////
+    	TextView tv_Title = 
+    			(TextView) v.findViewById(R.id.list_row_ai_list_tv_title);
+//    	(TextView) v.findViewById(R.id.list_row_ai_list_tv_file_name);
+
+    	////////////////////////////////
+
+		// Set: Title
+
+		////////////////////////////////
+    	tv_Title.setText(ai.getTitle());
+    	
+    	////////////////////////////////
+
+		// Background
+
+		////////////////////////////////
+    	tv_Title.setBackgroundColor(
+				((Activity)con).getResources().getColor(R.color.black));
+    	
+    	tv_Title.setTextColor(
+    			((Activity)con).getResources().getColor(R.color.white));
+//    	tv_Title.setTextColor((Activity)con).getResources().getColor(R.color.white)));
+		
+		
+	}//private void _getView_Set_Others
+
+	
+    private void
+    _getView_Set_FileName(AI ai, View v, int position) {
+		// TODO Auto-generated method stub
     	////////////////////////////////
 
 		// View: tv_FileName
@@ -125,11 +211,11 @@ public class Adp_AIList extends ArrayAdapter<AI> implements OnTouchListener {
 		////////////////////////////////
 		tv_FileName.setText(ai.getFile_name());
     	
-		// Log
-		msg_Log = "tv_FileName => set";
-		Log.d("Adp_AIList.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
+//		// Log
+//		String msg_Log = "tv_FileName => set";
+//		Log.d("Adp_AIList.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
 		
     	////////////////////////////////
 
@@ -164,23 +250,9 @@ public class Adp_AIList extends ArrayAdapter<AI> implements OnTouchListener {
 
 		}
 		
-//		////////////////////////////////
-//
-//		// Set: listener
-//
-//		////////////////////////////////
-////		v = super.getView(position, convertView, parent);
-//        v.setOnTouchListener(this);
-////        View v2 = super.getView(position, convertView, parent);
-////        v2.setOnTouchListener(this);
-//		
-////    	return null;
-		
-		return v;
-		
-    }//public View getView(int position, View convertView, ViewGroup parent)
+	}//_getView_Set_FileName(AI ai, View v, int position)
 
-    //REF http://nimroddayan.wordpress.com/2013/01/01/hooking-ontouchlistener-event-to-android-listviews-item/
+	//REF http://nimroddayan.wordpress.com/2013/01/01/hooking-ontouchlistener-event-to-android-listviews-item/
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 //        float currentX = event.getX();
