@@ -94,10 +94,21 @@ public class Adp_AIList extends ArrayAdapter<AI> implements OnTouchListener {
 //			v = inflater.inflate(R.layout.list_row_simple_1, null);
 
 		}//if (convertView != null)
-		
-    	//test
+
+    	//debug
+    	// Log
+		String msg_Log = "position = " + position;
+		Log.d("Adp_AIList.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+    	
+    	
+    	////////////////////////////////
+
+		// Get: AI
+
+		////////////////////////////////
     	AI ai = (AI) this.getItem(position);
-//    	AI ai = (AI) getItem(position);
     	
     	////////////////////////////////
 

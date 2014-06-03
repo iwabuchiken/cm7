@@ -14,6 +14,7 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 
 import cm7.main.R;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
@@ -143,6 +144,48 @@ public class ALActv extends ListActivity {
 
 		////////////////////////////////
 		this.setListAdapter(CONS.ALActv.adp_AIList);
+
+		////////////////////////////////
+
+		// Set: list position
+
+		////////////////////////////////
+		_onCreate_SetSelection();
+//		int pref_CurrentPosition = 
+//    			Methods.get_Pref_Int(
+//    					this, 
+//    					CONS.Pref.pname_ALActv, 
+//    					CONS.Pref.pkey_CurrentPosition_ALActv,
+//    					-1);
+//		
+//		// 1. If the current position is non-"-1" and
+//		//	(position - 3) is non-"less than 0"
+//		//	=> set the list selection to the position
+//		// 2. The value -3 is arbitrary;
+//		//	=> Change to your choice if favorable
+//		if (pref_CurrentPosition != -1
+//				&& (pref_CurrentPosition - 3) > 0) {
+////			&& (pref_CurrentPosition - 3) < 0) {
+//			
+//			this.getListView().setSelection(pref_CurrentPosition - 3);
+//			
+//			// Log
+//			msg_Log = "Selection => set";
+//			Log.d("ALActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
+//			
+//		} else {
+//			
+//			// Log
+//			msg_Log = "Selectin => won't be set"
+//							+ " // "
+//							+ "position =" + pref_CurrentPosition;
+//			Log.d("ALActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
+//			
+//		}
 		
 		/****************************
 		 * 5. Initialize vars
@@ -179,6 +222,49 @@ public class ALActv extends ListActivity {
 
 		
 	}//public void onCreate(Bundle savedInstanceState)
+
+
+	private void
+	_onCreate_SetSelection() {
+		// TODO Auto-generated method stub
+		
+		int pref_CurrentPosition = 
+    			Methods.get_Pref_Int(
+    					this, 
+    					CONS.Pref.pname_ALActv, 
+    					CONS.Pref.pkey_CurrentPosition_ALActv,
+    					-1);
+		
+		// 1. If the current position is non-"-1" and
+		//	(position - 3) is non-"less than 0"
+		//	=> set the list selection to the position
+		// 2. The value -3 is arbitrary;
+		//	=> Change to your choice if favorable
+		if (pref_CurrentPosition != -1
+				&& (pref_CurrentPosition - 3) > 0) {
+//			&& (pref_CurrentPosition - 3) < 0) {
+			
+			this.getListView().setSelection(pref_CurrentPosition - 3);
+			
+			// Log
+			String msg_Log = "Selection => set";
+			Log.d("ALActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		} else {
+			
+			// Log
+			String msg_Log = "Selectin => won't be set"
+							+ " // "
+							+ "position =" + pref_CurrentPosition;
+			Log.d("ALActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}		
+		
+	}//_onCreate_SetSelection()
 
 
 	private boolean _onCreate_Get_AIList() {
