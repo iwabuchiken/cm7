@@ -20,7 +20,10 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import app.items.AI;
 import app.utils.CONS;
+import app.utils.DBUtils;
+import app.utils.Methods;
 
 public class PlayActv extends Activity {
 
@@ -41,13 +44,200 @@ public class PlayActv extends Activity {
 		// Get: intent values
 
 		////////////////////////////////
-		_onCreate_Get_IntentValues();
+		boolean res = _onCreate_Get_IntentValues();
 		
+		/******************************
+			validate
+		 ******************************/
+		if (res == false) {
+			
+			// Log
+			String msg_Log = "Intent values => cant obtain";
+			Log.e("PlayActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			// debug
+			Toast.makeText(this, msg_Log, Toast.LENGTH_SHORT).show();
+			
+			return;
+			
+		}
+
+		////////////////////////////////
+
+		// Setup: views
+
+		////////////////////////////////
+		res = _onCreate_SetupViews();
+
+		/******************************
+			validate
+		 ******************************/
+		if (res == false) {
+			
+			// Log
+			String msg_Log = "Intent values => cant obtain";
+			Log.e("PlayActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			// debug
+			Toast.makeText(this, msg_Log, Toast.LENGTH_SHORT).show();
+			
+			return;
+			
+		}
+
 //		setup_1_set_file_name();
 //		
 //		setup_2_set_listeners();
 		
 	}//public void onCreate(Bundle savedInstanceState)
+
+	private boolean
+	_onCreate_SetupViews() {
+		// - Get AI instance using db_id and tableName
+		// - Get values from the AI instance
+		// - Set the values to the views
+		
+		////////////////////////////////
+
+		// Get: AI
+
+		////////////////////////////////
+		AI ai = DBUtils.find_AI_ById(
+							this,
+							CONS.PlayActv.ai_Db_Id,
+							CONS.PlayActv.ai_TableName);
+		
+		/******************************
+			validate
+		 ******************************/
+		if (ai == null) {
+			
+			// Log
+			String msg_Log = "Can't build AI instance";
+			Log.d("PlayActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			// debug
+			Toast.makeText(this, msg_Log, Toast.LENGTH_SHORT).show();
+			
+			return false;
+			
+		}
+		
+//		// Log
+//		String msg_Log = "ai.getFile_name() = " + ai.getFile_name();
+//		Log.d("PlayActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+		
+		////////////////////////////////
+
+		// Set: values: File name
+
+		////////////////////////////////
+		TextView tv_FileName = 
+					(TextView) findViewById(R.id.actv_play_tv_file_name);
+		
+		if (!ai.getFile_name().equals("")) {
+			
+			tv_FileName.setText(ai.getFile_name());
+			
+		} else {//if (!ai.getFile_name().equals(""))
+			
+			tv_FileName.setText(this.getString(R.string.generic_tv_no_data));
+			
+		}//if (!ai.getFile_name().equals(""))
+
+		////////////////////////////////
+
+		// Set: values: Title
+
+		////////////////////////////////
+		TextView tv_Title = (TextView) findViewById(R.id.actv_play_tv_title);
+		
+		if (ai.getTitle() != null && !ai.getTitle().equals("")) {
+			
+			tv_Title.setText(ai.getTitle());
+			
+		} else {//if (!ai.getFile_name().equals(""))
+			
+//			tv_title.setText(this.getString(R.string.generic_tv_no_data));
+			tv_Title.setText((this.getString(R.string.generic_tv_no_data)));
+			
+		}//if (!ai.getFile_name().equals(""))
+		
+		////////////////////////////////
+		
+		// Set: values: Memo
+		
+		////////////////////////////////
+		TextView tv_Memo = (TextView) findViewById(R.id.actv_play_tv_memo);
+		
+		if (ai.getMemo() != null && !ai.getMemo().equals("")) {
+			
+			tv_Memo.setText(ai.getMemo());
+			
+			// Log
+			Log.d("PlayActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Memo set => " + ai.getMemo());
+			
+		} else {//if (!ai.getFile_name().equals(""))
+			
+//			tv_title.setText(this.getString(R.string.generic_tv_no_data));
+			tv_Memo.setText((this.getString(R.string.generic_tv_no_data)));
+			
+		}//if (!ai.getFile_name().equals(""))
+		
+		////////////////////////////////
+		
+		// Set: values: Length
+		
+		////////////////////////////////
+		TextView tv_Length = (TextView) findViewById(R.id.actv_play_tv_length);
+		
+		if (ai.getLength() != null) {
+			
+			tv_Length.setText(ai.getLength());
+			
+		} else {
+			
+			tv_Length.setText("xx:xx");
+			
+		}
+		
+//		long length = Methods.conv_ClockLabel_to_MillSec(ai.getLength());
+		
+//		// Log
+//		Log.d("PlayActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ ":"
+//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//				+ "]", "length=" + length);
+//		
+//		if (length > 0) {
+//			
+//			tvLength.setText(Methods.convert_intSec2Digits_lessThanHour((int)length / 1000));
+//			
+//		} else {//if (length == condition)
+//			
+//			// Log
+//			Log.d("PlayActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "length <= 0");
+//			
+//		}//if (length == condition)
+		
+		return true;
+		
+	}//_onCreate_SetupViews()
 
 	private boolean _onCreate_Get_IntentValues() {
 		// TODO Auto-generated method stub
@@ -60,6 +250,10 @@ public class PlayActv extends Activity {
 				i.getLongExtra(
 						CONS.Intent.iKey_AI_Db_Id, 
 						CONS.Intent.dflt_LongExtra_value);
+		
+		CONS.PlayActv.ai_TableName = 
+				i.getStringExtra(
+						CONS.Intent.iKey_AI_TableName);
 		
 		/******************************
 			validate
@@ -87,22 +281,33 @@ public class PlayActv extends Activity {
 			
 			return false;
 			
+		} else if (CONS.PlayActv.ai_TableName == null) {
+			
+			// Log
+			String msg_Log = "CONS.PlayActv.ai_TableName => null";
+			
+			Log.d("PlayActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return false;
+			
 		}
 
-		// Log
-		String msg_Log = "CONS.PlayActv.ai_FilePath_Full = "
-						+ CONS.PlayActv.ai_FilePath_Full;
-		Log.d("PlayActv.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
-		
-		// Log
-		msg_Log = "CONS.PlayActv.ai_Db_Id = "
-						+ CONS.PlayActv.ai_Db_Id;
-		
-		Log.d("PlayActv.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
+//		// Log
+//		String msg_Log = "CONS.PlayActv.ai_FilePath_Full = "
+//						+ CONS.PlayActv.ai_FilePath_Full;
+//		Log.d("PlayActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+//		
+//		// Log
+//		msg_Log = "CONS.PlayActv.ai_Db_Id = "
+//						+ CONS.PlayActv.ai_Db_Id;
+//		
+//		Log.d("PlayActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
 		
 		return true;
 

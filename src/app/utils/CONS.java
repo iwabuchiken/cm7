@@ -59,6 +59,8 @@ public class CONS {
 		
 		public static String iKey_AI_Db_Id = "iKey_AI_Db_Id";
 		
+		public static String iKey_AI_TableName = "iKey_AI_TableName";
+		
 //		public static String bmactv_key_ai_id = "bmactv_key_ai_id";
 //		
 //		public static String bmactv_key_table_name = "bmactv_key_table_name";
@@ -270,9 +272,15 @@ public class CONS {
 	
 		public static TextView tvCurrentPosition;
 		
+		/******************************
+			Intent value receiver
+		 ******************************/
 		public static String ai_FilePath_Full;
 		
 		public static long ai_Db_Id;
+		
+		public static String ai_TableName;
+		
 		
 	}
 	

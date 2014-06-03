@@ -1382,6 +1382,8 @@ public class Methods {
 		
 		i.putExtra(CONS.Intent.iKey_AI_Db_Id, ai.getDb_id());
 		
+		i.putExtra(CONS.Intent.iKey_AI_TableName, ai.getTable_name());
+		
 		// Flags
 		i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 		

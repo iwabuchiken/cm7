@@ -95,12 +95,12 @@ public class Adp_AIList extends ArrayAdapter<AI> implements OnTouchListener {
 
 		}//if (convertView != null)
 
-    	//debug
-    	// Log
-		String msg_Log = "position = " + position;
-		Log.d("Adp_AIList.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
+//    	//debug
+//    	// Log
+//		String msg_Log = "position = " + position;
+//		Log.d("Adp_AIList.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
     	
 		////////////////////////////////
 
