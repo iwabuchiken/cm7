@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import app.utils.CONS;
 
 public class PlayActv extends Activity {
 
@@ -35,11 +36,77 @@ public class PlayActv extends Activity {
 
 		this.setTitle(this.getClass().getName());
 
+		////////////////////////////////
+
+		// Get: intent values
+
+		////////////////////////////////
+		_onCreate_Get_IntentValues();
+		
 //		setup_1_set_file_name();
 //		
 //		setup_2_set_listeners();
 		
 	}//public void onCreate(Bundle savedInstanceState)
+
+	private boolean _onCreate_Get_IntentValues() {
+		// TODO Auto-generated method stub
+		Intent i = this.getIntent();
+		
+		CONS.PlayActv.ai_FilePath_Full = 
+				i.getStringExtra(CONS.Intent.iKey_AI_FilePath_Full);
+		
+		CONS.PlayActv.ai_Db_Id = 
+				i.getLongExtra(
+						CONS.Intent.iKey_AI_Db_Id, 
+						CONS.Intent.dflt_LongExtra_value);
+		
+		/******************************
+			validate
+		 ******************************/
+		if (CONS.PlayActv.ai_FilePath_Full == null) {
+			
+			// Log
+			String msg_Log = "CONS.PlayActv.ai_FilePath_Full => null";
+			Log.e("PlayActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return false;
+			
+		} else if (CONS.PlayActv.ai_Db_Id == 
+						CONS.Intent.dflt_LongExtra_value) {
+			
+			// Log
+			String msg_Log = "CONS.PlayActv.ai_Db_Id => "
+						+ CONS.Intent.dflt_LongExtra_value;
+			
+			Log.d("PlayActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return false;
+			
+		}
+
+		// Log
+		String msg_Log = "CONS.PlayActv.ai_FilePath_Full = "
+						+ CONS.PlayActv.ai_FilePath_Full;
+		Log.d("PlayActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		// Log
+		msg_Log = "CONS.PlayActv.ai_Db_Id = "
+						+ CONS.PlayActv.ai_Db_Id;
+		
+		Log.d("PlayActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		return true;
+
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -123,5 +190,16 @@ public class PlayActv extends Activity {
 		// TODO ?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½ê‚½?¿½?¿½?¿½\?¿½b?¿½h?¿½E?¿½X?¿½^?¿½u
 		super.onStop();
 	}
-	
+
+	@Override
+	public void onBackPressed() {
+		/****************************
+		 * memo
+			****************************/
+		this.finish();
+		
+		overridePendingTransition(0, 0);
+		
+	}//public void onBackPressed()
+
 }//public class PlayActv extends Activity

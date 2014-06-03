@@ -35,7 +35,29 @@ public class CONS {
 
 	public static class Intent {
 		
+		////////////////////////////////
+
+		// commons
+
+		////////////////////////////////
+		public static long dflt_LongExtra_value = -1;
+		
+		////////////////////////////////
+
+		// MainActv
+
+		////////////////////////////////
 		public static String iKey_CurrentPath_MainActv = "current_path";
+
+		
+		////////////////////////////////
+
+		// ALActv
+
+		////////////////////////////////
+		public static String iKey_AI_FilePath_Full = "iKey_AI_FilePath_Full";
+		
+		public static String iKey_AI_Db_Id = "iKey_AI_Db_Id";
 		
 //		public static String bmactv_key_ai_id = "bmactv_key_ai_id";
 //		
@@ -247,6 +269,10 @@ public class CONS {
 	public static class PlayActv {
 	
 		public static TextView tvCurrentPosition;
+		
+		public static String ai_FilePath_Full;
+		
+		public static long ai_Db_Id;
 		
 	}
 	

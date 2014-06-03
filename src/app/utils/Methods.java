@@ -64,6 +64,7 @@ import app.items.AI;
 import app.items.Refresh;
 import app.listeners.dialog.DL;
 import app.main.ALActv;
+import app.main.PlayActv;
 
 // Apache
 
@@ -1354,6 +1355,40 @@ public class Methods {
 		Collections.sort(ai_List, aiComp);
 
 	}//sort_List_ai_List
+
+	public static void
+	start_Activity_PlayActv(Activity actv, AI ai) {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// Prep: infos
+
+		////////////////////////////////
+		String ai_FilePath_Full = StringUtils.join(
+							new String[]{
+								
+								ai.getFile_path(),
+								ai.getFile_name()
+									
+							},
+							File.separator);
+		
+		Intent i = new Intent();
+		
+		i.setClass(actv, PlayActv.class);
+		
+		// Put extras
+		i.putExtra(CONS.Intent.iKey_AI_FilePath_Full, ai_FilePath_Full);
+		
+		i.putExtra(CONS.Intent.iKey_AI_Db_Id, ai.getDb_id());
+		
+		// Flags
+		i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		
+		// Start
+		actv.startActivity(i);
+		
+	}//start_Activity_PlayActv(Activity actv, AI ai)
 
 }//public class Methods
 

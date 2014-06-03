@@ -274,6 +274,7 @@ public class ALActv extends ListActivity {
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		
+		//REF http://stackoverflow.com/questions/7561353/programmatically-scroll-to-a-specific-position-in-an-android-listview answered Sep 26 '11 at 21:39
 		this.getListView().setSelection(target_Position);
 		
 //		int pref_CurrentPosition = 
@@ -506,6 +507,13 @@ public class ALActv extends ListActivity {
 
 		////////////////////////////////
 		_ItemClick_SetPref_CurrentPosition(position);
+		
+		////////////////////////////////
+
+		// Start: PlayActv
+
+		////////////////////////////////
+		Methods.start_Activity_PlayActv(this, ai);
 		
 //		vib.vibrate(Methods.vibLength_click);
 
