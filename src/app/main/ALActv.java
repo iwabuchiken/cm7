@@ -228,41 +228,89 @@ public class ALActv extends ListActivity {
 	_onCreate_SetSelection() {
 		// TODO Auto-generated method stub
 		
-		int pref_CurrentPosition = 
-    			Methods.get_Pref_Int(
-    					this, 
-    					CONS.Pref.pname_ALActv, 
-    					CONS.Pref.pkey_CurrentPosition_ALActv,
-    					-1);
+		/******************************
+			validate: position => set?
+		 ******************************/
+		if(CONS.ALActv.display_TopPosition_Current == -1
+				|| CONS.ALActv.display_TopPosition_Previous == -1)
+			
+			return;
 		
-		// 1. If the current position is non-"-1" and
-		//	(position - 3) is non-"less than 0"
-		//	=> set the list selection to the position
-		// 2. The value -3 is arbitrary;
-		//	=> Change to your choice if favorable
-		if (pref_CurrentPosition != -1
-				&& (pref_CurrentPosition - 3) > 0) {
-//			&& (pref_CurrentPosition - 3) < 0) {
+		////////////////////////////////
+
+		// Calculate: target position
+
+		////////////////////////////////
+		int target_Position;
+		
+		// If the current is larger than the previous,
+		//	i.e. the position is increasing
+		//	=> modify the target
+		if (CONS.ALActv.display_TopPosition_Current > 
+				CONS.ALActv.display_TopPosition_Previous) {
 			
-			this.getListView().setSelection(pref_CurrentPosition - 3);
-			
-			// Log
-			String msg_Log = "Selection => set";
-			Log.d("ALActv.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", msg_Log);
+			target_Position = CONS.ALActv.display_TopPosition_Current - 5;
 			
 		} else {
 			
-			// Log
-			String msg_Log = "Selectin => won't be set"
-							+ " // "
-							+ "position =" + pref_CurrentPosition;
-			Log.d("ALActv.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", msg_Log);
-			
-		}		
+			// If the current is smaller than the previous,
+			//	i.e. the position is decreasing
+			//	=> set the target with the current
+			target_Position = CONS.ALActv.display_TopPosition_Current;
+
+		}
+		
+		// Log
+		String msg_Log = "CONS.ALActv.display_TopPosition_Current = "
+						+ CONS.ALActv.display_TopPosition_Current
+						+ " // "
+						+ "CONS.ALActv.display_TopPosition_Previous = "
+						+ CONS.ALActv.display_TopPosition_Previous
+						+ " // "
+						+ "target_Position = "
+						+ target_Position
+						;
+		Log.d("ALActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		this.getListView().setSelection(target_Position);
+		
+//		int pref_CurrentPosition = 
+//    			Methods.get_Pref_Int(
+//    					this, 
+//    					CONS.Pref.pname_ALActv, 
+//    					CONS.Pref.pkey_CurrentPosition_ALActv,
+//    					-1);
+//		
+//		// 1. If the current position is non-"-1" and
+//		//	(position - 3) is non-"less than 0"
+//		//	=> set the list selection to the position
+//		// 2. The value -3 is arbitrary;
+//		//	=> Change to your choice if favorable
+//		if (pref_CurrentPosition != -1
+//				&& (pref_CurrentPosition - 3) > 0) {
+////			&& (pref_CurrentPosition - 3) < 0) {
+//			
+//			this.getListView().setSelection(pref_CurrentPosition - 3);
+//			
+//			// Log
+//			String msg_Log = "Selection => set";
+//			Log.d("ALActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
+//			
+//		} else {
+//			
+//			// Log
+//			String msg_Log = "Selectin => won't be set"
+//							+ " // "
+//							+ "position =" + pref_CurrentPosition;
+//			Log.d("ALActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
+//			
+//		}		
 		
 	}//_onCreate_SetSelection()
 

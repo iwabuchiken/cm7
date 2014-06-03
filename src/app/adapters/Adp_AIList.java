@@ -102,6 +102,15 @@ public class Adp_AIList extends ArrayAdapter<AI> implements OnTouchListener {
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
     	
+		////////////////////////////////
+
+		// Set: display_TopPosition
+
+		////////////////////////////////
+		CONS.ALActv.display_TopPosition_Previous =
+					CONS.ALActv.display_TopPosition_Current;
+		
+		CONS.ALActv.display_TopPosition_Current = position;
     	
     	////////////////////////////////
 

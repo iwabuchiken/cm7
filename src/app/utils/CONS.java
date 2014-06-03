@@ -239,6 +239,9 @@ public class CONS {
 		
 		public static Adp_AIList adp_AIList;
 		
+		public static int display_TopPosition_Current = -1;
+		public static int display_TopPosition_Previous = -1;
+		
 	}
 
 	public static class PlayActv {
