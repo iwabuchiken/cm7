@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import app.items.AI;
 import app.utils.CONS;
+import app.utils.Methods;
 import app.utils.Tags;
 
 public class BO_CL implements OnClickListener {
@@ -121,12 +122,9 @@ public class BO_CL implements OnClickListener {
 
 	private void case_ActvPlay_BtStop() {
 		// TODO Auto-generated method stub
-		// Log
-		String msg_Log = "Stop";
-		Log.d("BO_CL.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
 
+		Methods.stop_Player(actv);
+		
 	}
 
 	private void case_ActvPlay_BtPlay() {

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.widget.ArrayAdapter;
@@ -273,6 +274,8 @@ public class CONS {
 		public static TextView tvCurrentPosition;
 		
 		public static AI ai;
+		
+		public static MediaPlayer mp = null;
 		
 		/******************************
 			Intent value receiver

@@ -99,11 +99,26 @@ public class PlayActv extends Activity {
 		////////////////////////////////
 		_onCreate_SetListeners();
 		
+		
+		////////////////////////////////
+
+		// Init: vars
+
+		////////////////////////////////
+		_onCreate_InitVars();
+		
 //		setup_1_set_file_name();
 //		
 //		setup_2_set_listeners();
 		
 	}//public void onCreate(Bundle savedInstanceState)
+
+	private void _onCreate_InitVars() {
+		// TODO Auto-generated method stub
+		
+		CONS.PlayActv.mp = new MediaPlayer();
+		
+	}
 
 	private void _onCreate_SetListeners() {
 		// TODO Auto-generated method stub

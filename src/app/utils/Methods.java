@@ -1392,5 +1392,55 @@ public class Methods {
 		
 	}//start_Activity_PlayActv(Activity actv, AI ai)
 
+	public static void
+	stop_Player(Activity actv) {
+		// TODO Auto-generated method stub
+		if (CONS.PlayActv.mp != null && CONS.PlayActv.mp.isPlaying()) {
+
+			CONS.PlayActv.mp.stop();
+			
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Player => Stopped");
+			
+//			/***************************************
+//			 * Stop: Service
+//			 ***************************************/
+//			Intent i = new Intent((Context) actv, Service_ShowProgress.class);
+//
+//			//
+////			i.putExtra("counter", timeLeft);
+//
+//			// Log
+//			Log.d("DialogOnItemClickListener.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "Stopping service...");
+//
+//			//
+////			actv.startService(i);
+//			actv.stopService(i);
+
+			
+		} else if (CONS.PlayActv.mp == null) {//if (mp.isPlaying())
+
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "CONS.PlayActv.mp != null");
+
+		} else if (!CONS.PlayActv.mp.isPlaying()) {//if (mp.isPlaying())
+
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "CONS.PlayActv.mp => Not playing");
+
+		}//if (mp.isPlaying())	
+		
+	}//stop_Player(Activity actv)
+
 }//public class Methods
 
