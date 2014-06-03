@@ -136,6 +136,8 @@ public class BO_CL implements OnClickListener {
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 
+		Methods.play_File(actv, ai);
+		
 	}
 
 }//public class ButtonOnClickListener implements OnClickListener

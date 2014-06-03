@@ -1442,5 +1442,129 @@ public class Methods {
 		
 	}//stop_Player(Activity actv)
 
+	public static void
+	play_File(Activity actv, AI ai) {
+		// TODO Auto-generated method stub
+		/*********************************
+		 * 1. Media player is playing?
+		 *********************************/
+		if (CONS.PlayActv.mp != null && CONS.PlayActv.mp.isPlaying()) {
+
+			CONS.PlayActv.mp.stop();
+			
+		}//if (mp.isPlaying())
+
+//		/*********************************
+//		 * 2. OnCompletionListener
+//		 *********************************/
+//		CONS.PlayActv.mp = new MediaPlayer();
+//		
+//		CONS.PlayActv.mp.setOnCompletionListener(new MPOnCompletionListener(actv));
+
+		/*********************************
+		 * 3. Set data source
+		 *********************************/
+		String file_full_path = StringUtils.join(
+				new String[]{ai.getFile_path(), ai.getFile_name()},
+				File.separator);
+
+		try {
+
+			CONS.PlayActv.mp.setDataSource(file_full_path);
+			
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Data source => Set");
+			
+		} catch (IllegalArgumentException e) {
+			
+			// Log
+			Log.e("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception: " + e.toString());
+			
+			
+		} catch (IllegalStateException e) {
+			
+			// Log
+			Log.e("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception: " + e.toString());
+
+		} catch (IOException e) {
+
+			// Log
+			Log.e("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception: " + e.toString());
+
+		}//try
+
+		/*********************************
+		 * 4. Prepare mp
+		 *********************************/
+		try {
+
+			CONS.PlayActv.mp.prepare();
+			
+		} catch (IllegalStateException e) {
+			
+			// Log
+			Log.e("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception: " + e.toString());
+
+		} catch (IOException e) {
+			
+			// Log
+			Log.e("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception: " + e.toString());
+
+		}//try
+
+//		/***************************************
+//		 * Position set in the preference?
+//		 ***************************************/
+//		long prefPosition = 
+//				Methods.getPref_long(
+//						actv,
+//						CONS.Pref.pname_PlayActv,
+//						CONS.Pref.pkey_PlayActv_position,
+//						-1);
+//		
+//		if (prefPosition >= 0) {
+//			
+//			CONS.PlayActv.mp.seekTo((int) prefPosition);
+//			
+//		}//if (prefPosition == condition)
+		
+//		/***************************************
+//		 * Prepare: Service
+//		 ***************************************/
+//		Intent i = new Intent((Context) actv, Service_ShowProgress.class);
+//
+//		//
+////		i.putExtra("counter", timeLeft);
+//		
+//		
+//		// Log
+//		Log.d("DialogOnItemClickListener.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ ":"
+//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//				+ "]", "Starting service...");
+//		//
+//		actv.startService(i);
+
+		
+		/*********************************
+		 * 5. Start
+		 *********************************/
+		CONS.PlayActv.mp.start();
+		
+	}//play_File(Activity actv, AI ai)
+
 }//public class Methods
 
