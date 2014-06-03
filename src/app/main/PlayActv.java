@@ -21,6 +21,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.items.AI;
+import app.listeners.SBL;
 import app.listeners.button.BO_CL;
 import app.listeners.button.BO_TL;
 import app.utils.CONS;
@@ -158,9 +159,17 @@ public class PlayActv extends Activity {
 		bt_back.setOnTouchListener(new BO_TL(this));
 		bt_back.setOnClickListener(new BO_CL(this));
 		
+		////////////////////////////////
+
+		// SeekBar
+
+		////////////////////////////////
+		CONS.PlayActv.sb = (SeekBar) findViewById(R.id.actv_play_sb);
 		
+		CONS.PlayActv.sb.setOnSeekBarChangeListener(
+							new SBL(this, CONS.PlayActv.sb));
 		
-	}
+	}//private void _onCreate_SetListeners()
 
 	private boolean
 	_onCreate_SetupViews() {
@@ -278,6 +287,16 @@ public class PlayActv extends Activity {
 			tv_Length.setText("xx:xx");
 			
 		}
+		
+		////////////////////////////////
+
+		// View: Current position
+
+		////////////////////////////////
+		CONS.PlayActv.tvCurrentPosition = 
+				(TextView) findViewById(
+						R.id.actv_play_tv_current_position);
+
 		
 //		long length = Methods.conv_ClockLabel_to_MillSec(ai.getLength());
 		

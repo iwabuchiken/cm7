@@ -9,6 +9,7 @@ import android.media.MediaPlayer;
 import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.widget.ArrayAdapter;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import app.adapters.Adp_AIList;
 import app.adapters.Adp_MainList;
@@ -276,6 +277,8 @@ public class CONS {
 		public static AI ai;
 		
 		public static MediaPlayer mp = null;
+		
+		public static SeekBar sb;
 		
 		/******************************
 			Intent value receiver

@@ -1454,6 +1454,8 @@ public class Methods {
 			
 		}//if (mp.isPlaying())
 
+//		CONS.PlayActv.mp.
+		
 //		/*********************************
 //		 * 2. OnCompletionListener
 //		 *********************************/
@@ -1563,6 +1565,15 @@ public class Methods {
 		 * 5. Start
 		 *********************************/
 		CONS.PlayActv.mp.start();
+		
+		//debug
+		// Log
+		String msg_Log = "getAudioSessionId() = " 
+						+ CONS.PlayActv.mp.getAudioSessionId();
+		
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
 		
 	}//play_File(Activity actv, AI ai)
 
