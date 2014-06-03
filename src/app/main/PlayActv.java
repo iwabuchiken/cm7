@@ -21,9 +21,12 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.items.AI;
+import app.listeners.button.BO_CL;
+import app.listeners.button.BO_TL;
 import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
+import app.utils.Tags;
 
 public class PlayActv extends Activity {
 
@@ -89,11 +92,60 @@ public class PlayActv extends Activity {
 			
 		}
 
+		////////////////////////////////
+
+		// Setup: listeners
+
+		////////////////////////////////
+		_onCreate_SetListeners();
+		
 //		setup_1_set_file_name();
 //		
 //		setup_2_set_listeners();
 		
 	}//public void onCreate(Bundle savedInstanceState)
+
+	private void _onCreate_SetListeners() {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// Get: views
+
+		////////////////////////////////
+		/*********************************
+		 * 1. Button => Play
+		 *********************************/
+		Button bt_play = (Button) findViewById(R.id.actv_play_bt_play);
+		
+		bt_play.setTag(Tags.ButtonTags.actv_play_bt_play);
+		
+		bt_play.setOnTouchListener(new BO_TL(this));
+//		bt_play.setOnClickListener(new ButtonOnClickListener(this));
+		bt_play.setOnClickListener(new BO_CL(this, CONS.PlayActv.ai));
+
+		/*********************************
+		 * 2. Button => Stop
+		 *********************************/
+		Button bt_stop = (Button) findViewById(R.id.actv_play_bt_stop);
+		
+		bt_stop.setTag(Tags.ButtonTags.actv_play_bt_stop);
+		
+		bt_stop.setOnTouchListener(new BO_TL(this));
+		bt_stop.setOnClickListener(new BO_CL(this));
+
+		/*********************************
+		 * 3. Button => Back
+		 *********************************/
+		Button bt_back = (Button) findViewById(R.id.actv_play_bt_back);
+		
+		bt_back.setTag(Tags.ButtonTags.actv_play_bt_back);
+		
+		bt_back.setOnTouchListener(new BO_TL(this));
+		bt_back.setOnClickListener(new BO_CL(this));
+		
+		
+		
+	}
 
 	private boolean
 	_onCreate_SetupViews() {
@@ -106,7 +158,8 @@ public class PlayActv extends Activity {
 		// Get: AI
 
 		////////////////////////////////
-		AI ai = DBUtils.find_AI_ById(
+		CONS.PlayActv.ai = DBUtils.find_AI_ById(
+//				AI ai = DBUtils.find_AI_ById(
 							this,
 							CONS.PlayActv.ai_Db_Id,
 							CONS.PlayActv.ai_TableName);
@@ -114,7 +167,7 @@ public class PlayActv extends Activity {
 		/******************************
 			validate
 		 ******************************/
-		if (ai == null) {
+		if (CONS.PlayActv.ai == null) {
 			
 			// Log
 			String msg_Log = "Can't build AI instance";
@@ -143,9 +196,9 @@ public class PlayActv extends Activity {
 		TextView tv_FileName = 
 					(TextView) findViewById(R.id.actv_play_tv_file_name);
 		
-		if (!ai.getFile_name().equals("")) {
+		if (!CONS.PlayActv.ai.getFile_name().equals("")) {
 			
-			tv_FileName.setText(ai.getFile_name());
+			tv_FileName.setText(CONS.PlayActv.ai.getFile_name());
 			
 		} else {//if (!ai.getFile_name().equals(""))
 			
@@ -160,9 +213,9 @@ public class PlayActv extends Activity {
 		////////////////////////////////
 		TextView tv_Title = (TextView) findViewById(R.id.actv_play_tv_title);
 		
-		if (ai.getTitle() != null && !ai.getTitle().equals("")) {
+		if (CONS.PlayActv.ai.getTitle() != null && !CONS.PlayActv.ai.getTitle().equals("")) {
 			
-			tv_Title.setText(ai.getTitle());
+			tv_Title.setText(CONS.PlayActv.ai.getTitle());
 			
 		} else {//if (!ai.getFile_name().equals(""))
 			
@@ -178,14 +231,14 @@ public class PlayActv extends Activity {
 		////////////////////////////////
 		TextView tv_Memo = (TextView) findViewById(R.id.actv_play_tv_memo);
 		
-		if (ai.getMemo() != null && !ai.getMemo().equals("")) {
+		if (CONS.PlayActv.ai.getMemo() != null && !CONS.PlayActv.ai.getMemo().equals("")) {
 			
-			tv_Memo.setText(ai.getMemo());
+			tv_Memo.setText(CONS.PlayActv.ai.getMemo());
 			
 			// Log
 			Log.d("PlayActv.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", "Memo set => " + ai.getMemo());
+					+ "]", "Memo set => " + CONS.PlayActv.ai.getMemo());
 			
 		} else {//if (!ai.getFile_name().equals(""))
 			
@@ -201,9 +254,9 @@ public class PlayActv extends Activity {
 		////////////////////////////////
 		TextView tv_Length = (TextView) findViewById(R.id.actv_play_tv_length);
 		
-		if (ai.getLength() != null) {
+		if (CONS.PlayActv.ai.getLength() != null) {
 			
-			tv_Length.setText(ai.getLength());
+			tv_Length.setText(CONS.PlayActv.ai.getLength());
 			
 		} else {
 			

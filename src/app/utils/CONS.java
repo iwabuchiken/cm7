@@ -272,6 +272,8 @@ public class CONS {
 	
 		public static TextView tvCurrentPosition;
 		
+		public static AI ai;
+		
 		/******************************
 			Intent value receiver
 		 ******************************/
