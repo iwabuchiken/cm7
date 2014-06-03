@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import app.adapters.Adp_MainList;
+import app.items.AI;
 
 public class CONS {
 
@@ -229,6 +230,8 @@ public class CONS {
 	public static class ALActv {
 		
 		public static String currentPath;
+		
+		public static List<AI> list_AI;
 		
 	}
 

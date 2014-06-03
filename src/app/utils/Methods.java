@@ -677,13 +677,13 @@ public class Methods {
 		
 		String target = full.substring(len + 1);
 
-		// Log
-		String msg_log = "full = " + full
-						+ " // "
-						+ "target = " + target;
-		Log.d("Methods.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_log);
+//		// Log
+//		String msg_log = "full = " + full
+//						+ " // "
+//						+ "target = " + target;
+//		Log.d("Methods.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_log);
 
 		////////////////////////////////
 
@@ -691,7 +691,7 @@ public class Methods {
 
 		////////////////////////////////
 		// Log
-		msg_log = "File.separator = " + File.separator;
+		String msg_log = "File.separator = " + File.separator;
 		Log.d("Methods.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_log);
@@ -1312,6 +1312,8 @@ public class Methods {
 		actv.startActivity(i);
 		
 	}//start_Activity_ALActv
+
 	
+
 }//public class Methods
 

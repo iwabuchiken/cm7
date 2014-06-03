@@ -4,6 +4,7 @@ package app.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -1611,6 +1612,123 @@ public class DBUtils extends SQLiteOpenHelper{
 		return refresh;
 //		return null;
 	}
+
+	public static List<AI>
+	find_All_AI(Activity actv, String tableName) {
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		SQLiteDatabase rdb = dbu.getReadableDatabase();
+
+		Cursor c = null;
+		
+		////////////////////////////////
+
+		// Query
+
+		////////////////////////////////
+		try {
+			
+			c = rdb.query(
+					tableName,			// 1
+					CONS.DB.col_names_CM7_full,	// 2
+					null, null,		// 3,4
+					null, null,		// 5,6
+					null,			// 7
+					null);
+			
+		} catch (Exception e) {
+
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", e.toString());
+			
+			rdb.close();
+			
+			return null;
+			
+		}//try
+		
+		/***************************************
+		 * Validate
+		 * 	Cursor => Null?
+		 * 	Entry => 0?
+		 ***************************************/
+		if (c == null) {
+			
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "Query failed");
+			
+			rdb.close();
+			
+			return null;
+			
+		} else if (c.getCount() < 1) {//if (c == null)
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "No entry in the table");
+			
+			rdb.close();
+			
+			return null;
+			
+		}//if (c == null)
+		
+		/***************************************
+		 * Build list
+		 ***************************************/
+//		c.moveToFirst();
+
+//		col_names_CM7_full
+//		android.provider.BaseColumns._ID,	// 0
+//		"created_at", "modified_at",		// 1, 2
+//		"file_name", "file_path",			// 3, 4
+//		"title", "memo",					// 5, 6
+//		"last_played_at",					// 7
+//		"table_name",						// 8
+//		"length",							// 9
+//		"audio_created_at"					// 10
+
+		List<AI> ai_List = new ArrayList<AI>();
+		
+		while(c.moveToNext()) {
+			
+			AI ai = new AI.Builder()
+			
+					.setDb_id(c.getLong(0))
+					.setCreated_at(c.getString(1))
+					.setModified_at(c.getString(2))
+					.setFile_name(c.getString(3))
+					.setFile_path(c.getString(4))
+					.setTitle(c.getString(5))
+					.setMemo(c.getString(6))
+					.setLast_played_at(c.getString(7))
+					.setTable_name(c.getString(8))
+					.setLength(c.getString(9))
+					.setAudio_created_at(c.getString(10))
+					
+					.build();
+			
+			ai_List.add(ai);
+			
+		}
+
+		rdb.close();
+		
+		return ai_List;
+		
+	}//find_All_AI(Activity actv, String tableName)
 
 }//public class DBUtils
 

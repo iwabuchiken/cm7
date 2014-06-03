@@ -35,6 +35,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 import app.utils.CONS;
+import app.utils.DBUtils;
+import app.utils.Methods;
 
 public class ALActv extends ListActivity {
 
@@ -75,6 +77,46 @@ public class ALActv extends ListActivity {
 		////////////////////////////////
 		_onCreate_Get_CurrentPath();
 		
+		/******************************
+			validate: current path => obtained?
+		 ******************************/
+		if (CONS.ALActv.currentPath == null) {
+			
+			// Log
+			String msg_Log = "CONS.ALActv.currentPath => null";
+			Log.e("ALActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			// debug
+			Toast.makeText(this, msg_Log, Toast.LENGTH_SHORT).show();
+			
+			return;
+			
+		}
+
+		////////////////////////////////
+
+		// Get: AI list
+
+		////////////////////////////////
+		boolean res = _onCreate_Get_AIList();
+		
+		/******************************
+			validate
+		 ******************************/
+		if (res == false) {
+			
+			return;
+			
+		}
+		
+		// Log
+		String msg_Log = "CONS.ALActv.list_AI.size() = "
+						+ CONS.ALActv.list_AI.size();
+		Log.d("ALActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
 		
 		/****************************
 		 * 5. Initialize vars
@@ -111,6 +153,53 @@ public class ALActv extends ListActivity {
 
 		
 	}//public void onCreate(Bundle savedInstanceState)
+
+
+	private boolean _onCreate_Get_AIList() {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// Table name
+
+		////////////////////////////////
+		String tableName = 
+				Methods.conv_CurrentPath_to_TableName(CONS.ALActv.currentPath);
+		
+		// Log
+		String msg_Log = "table name = " + tableName;
+		Log.d("ALActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+
+		////////////////////////////////
+
+		// Get items from: DB
+
+		////////////////////////////////
+		CONS.ALActv.list_AI = DBUtils.find_All_AI(this, tableName);
+//		CONS.ALActv.list_AI = Methods.get_AIList(this, tableName);
+		
+		/******************************
+			validate
+		 ******************************/
+		if (CONS.ALActv.list_AI == null) {
+			
+			// Log
+			msg_Log = "Cant create AI list";
+			Log.d("ALActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			// debug
+			Toast.makeText(this, msg_Log, Toast.LENGTH_SHORT).show();
+			
+			return false;
+			
+		}
+		
+		return true;
+		
+	}//private void _onCreate_SetFileList()
 
 
 	private void _onCreate_Get_CurrentPath() {
