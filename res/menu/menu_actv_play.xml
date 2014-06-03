@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item android:id="@+id/menu_actv_play_register_pattern"
+		android:title="@string/menu_actv_play_register_pattern"
+		android:icon="@drawable/actv_play_opt_menu_add_pattern_30x30"></item>
+	
+</menu>

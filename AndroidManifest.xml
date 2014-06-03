@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name="app.main.ALActv"></activity>
+        <activity android:name="app.main.PlayActv"></activity>
         
         
         

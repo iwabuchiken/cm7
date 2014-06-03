@@ -39,5 +39,15 @@
     <!-- ALActv.java -->
     	<string name="al_actv_menu_move_mode">Move mode</string>
     	<string name="al_actv_menu_move_files">Move</string>
-   		
+
+    	
+    <!-- actv_play.xml -->
+    	<string name="actv_play_bt_play">Play</string>
+    	<string name="actv_play_bt_stop">Stop</string>
+		<string name="actv_play_bt_add_bm">Add bookmark</string>
+   		<string name="actv_play_bt_see_bm">See bookmarks</string>
+
+    <!-- menu_actv_play.xml -->
+    	<string name="menu_actv_play_register_pattern">Register pattern</string>
+						
 </resources>
