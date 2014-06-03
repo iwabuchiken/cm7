@@ -35,6 +35,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 import app.adapters.Adp_AIList;
+import app.items.AI;
 import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
@@ -356,10 +357,45 @@ public class ALActv extends ListActivity {
 		/****************************
 		 * 0. Vibrate
 			****************************/
+		CONS.Admin.vib.vibrate(Methods.vibLength_click);
+		
+		////////////////////////////////
+
+		// Get: AI
+
+		////////////////////////////////
+		AI ai = _ItemClick_GetItem(lv, position);
+		
 //		vib.vibrate(Methods.vibLength_click);
 
 	}//protected void onListItemClick(ListView lv, View v, int position, long id)
 
+	private AI
+	_ItemClick_GetItem(ListView lv, int position) {
+		// TODO Auto-generated method stub
+		AI ai = (AI) lv.getItemAtPosition(position);
+		
+		if (ai != null) {
+			
+			// Log
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "ai =" + ai.getFile_name());
+			
+		} else {//if (item_)
+			
+			// Log
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "ai => null");
+			
+		}//if (item_)
+
+		return ai;
+		
+	}//_ItemClick_GetItem(ListView lv, int position)
+
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// 
