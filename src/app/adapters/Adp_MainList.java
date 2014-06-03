@@ -107,14 +107,14 @@ public class Adp_MainList extends ArrayAdapter<String> implements OnTouchListene
 		// Get: view
 
 		////////////////////////////////
-		TextView tv_main = (TextView) v.findViewById(R.id.list_row_slimple_1_tv);
+		TextView tv_Main = (TextView) v.findViewById(R.id.list_row_slimple_1_tv);
 		
 		////////////////////////////////
 
 		// Set: text
 
 		////////////////////////////////
-		tv_main.setText(item);
+		tv_Main.setText(item);
 		
 		////////////////////////////////
 
@@ -129,16 +129,21 @@ public class Adp_MainList extends ArrayAdapter<String> implements OnTouchListene
 
 		if (pref_CurrentPosition == position) {
 			
-			tv_main.setBackgroundColor(
+			tv_Main.setBackgroundColor(
 					((Activity)con).getResources().getColor(R.color.blue1));
+			
+			tv_Main.setTextColor(
+					((Activity)con).getResources().getColor(R.color.white));
 			
 //			this.notifyDataSetChanged();
 			
 		} else {
 			
-			tv_main.setBackgroundColor(
+			tv_Main.setBackgroundColor(
 					((Activity)con).getResources().getColor(R.color.white));
 			
+			tv_Main.setTextColor(
+					((Activity)con).getResources().getColor(R.color.black));
 //			this.notifyDataSetChanged();
 
 		}

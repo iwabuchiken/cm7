@@ -366,9 +366,41 @@ public class ALActv extends ListActivity {
 		////////////////////////////////
 		AI ai = _ItemClick_GetItem(lv, position);
 		
+		////////////////////////////////
+
+		// Set pref: Current position
+
+		////////////////////////////////
+		_ItemClick_SetPref_CurrentPosition(position);
+		
 //		vib.vibrate(Methods.vibLength_click);
 
 	}//protected void onListItemClick(ListView lv, View v, int position, long id)
+
+	private void
+	_ItemClick_SetPref_CurrentPosition(int position) {
+		// TODO Auto-generated method stub
+		
+		Methods.set_Pref_Int(
+				this,
+				CONS.Pref.pname_ALActv,
+				CONS.Pref.pkey_CurrentPosition_ALActv,
+				position);
+		
+		// Log
+		String msg_log = "Pref: " + CONS.Pref.pkey_CurrentPosition_ALActv
+						+ " => "
+						+ "Set to: " + position;
+		
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_log);
+		
+		CONS.ALActv.adp_AIList.notifyDataSetChanged();
+	
+	}//_ItemClick_SetPref_CurrentPosition(int position)
+	
+
 
 	private AI
 	_ItemClick_GetItem(ListView lv, int position) {

@@ -238,6 +238,9 @@ public class Adp_AIList extends ArrayAdapter<AI> implements OnTouchListener {
 			
 			tv_FileName.setBackgroundColor(
 					((Activity)con).getResources().getColor(R.color.blue1));
+
+			tv_FileName.setTextColor(
+					((Activity)con).getResources().getColor(R.color.white));
 			
 //			this.notifyDataSetChanged();
 			
@@ -246,6 +249,8 @@ public class Adp_AIList extends ArrayAdapter<AI> implements OnTouchListener {
 			tv_FileName.setBackgroundColor(
 					((Activity)con).getResources().getColor(R.color.white));
 			
+			tv_FileName.setTextColor(
+					((Activity)con).getResources().getColor(R.color.black));
 //			this.notifyDataSetChanged();
 
 		}
