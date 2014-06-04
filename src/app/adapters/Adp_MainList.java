@@ -121,7 +121,7 @@ public class Adp_MainList extends ArrayAdapter<String> implements OnTouchListene
 		// Set: background
 
 		////////////////////////////////
-		int pref_CurrentPosition = Methods.get_Pref_Int(
+		int pref_CurrentPosition = Methods.getPref_Int(
 						(Activity)con, 
 						CONS.Pref.pname_MainActv, 
 						CONS.Pref.pkey_CurrentPosition, 

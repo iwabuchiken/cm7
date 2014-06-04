@@ -37,6 +37,12 @@ public class PlayActv extends Activity {
 		 * 
 		 ********************************/
 
+		// Log
+		String msg_Log = "onCreate";
+		Log.d("PlayActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.actv_play);
@@ -56,7 +62,7 @@ public class PlayActv extends Activity {
 		if (res == false) {
 			
 			// Log
-			String msg_Log = "Intent values => cant obtain";
+			msg_Log = "Intent values => cant obtain";
 			Log.e("PlayActv.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", msg_Log);
@@ -81,7 +87,7 @@ public class PlayActv extends Activity {
 		if (res == false) {
 			
 			// Log
-			String msg_Log = "Intent values => cant obtain";
+			msg_Log = "Intent values => cant obtain";
 			Log.e("PlayActv.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", msg_Log);
@@ -107,12 +113,123 @@ public class PlayActv extends Activity {
 
 		////////////////////////////////
 		_onCreate_InitVars();
-		
-//		setup_1_set_file_name();
-//		
-//		setup_2_set_listeners();
+
+		////////////////////////////////
+
+		// Prefs
+
+		////////////////////////////////
+		_onCreate_ManagePrefs();
 		
 	}//public void onCreate(Bundle savedInstanceState)
+
+	private void _onCreate_ManagePrefs() {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// Current file name
+		
+		// - If the file name of the AI instance passed from
+		//		ALActv doesn't match the one stored in the 
+		//		pref
+		//		=> Replace it with the new one
+		////////////////////////////////
+		String tmp = Methods.get_Pref_String(
+							this,
+							CONS.Pref.pname_PlayActv,
+							CONS.Pref.pkey_PlayActv_CurrentFileName,
+							null);
+		
+		if(tmp == null
+				|| !tmp.equals(CONS.PlayActv.ai.getFile_name())) {
+			// Pref current file name => not set yet
+			//	=> then, set the passed file name into the pref
+			boolean res = Methods.setPref_String(this, 
+								CONS.Pref.pname_PlayActv, 
+								CONS.Pref.pkey_PlayActv_CurrentFileName, 
+								CONS.PlayActv.ai.getFile_name());
+			
+			if (res == true) {
+				
+				// Log
+				String msg_Log = "Pref: file name => set";
+				Log.d("PlayActv.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+			} else {
+
+				// Log
+				String msg_Log = "Pref: file name => cant be set";
+				Log.d("PlayActv.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+			}
+
+		} else {//if (!tmp.equals(CONS.PlayActv.ai.getFile_name()))
+			
+			// File name given by ALActv does match that in the pref
+			//	i.e. The user is playing the same audio file
+			//	=> then, set the current position with the one
+			//		stored in the pref
+			long savedPosition = 
+					Methods.getPref_Long(
+							this,
+							CONS.Pref.pname_PlayActv,
+							CONS.Pref.pkey_PlayActv_CurrentPosition,
+							CONS.Pref.dflt_LongExtra_value);
+			
+			// Log
+			String msg_Log = "savedPosition = " + savedPosition;
+			Log.d("PlayActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			
+			if (savedPosition != CONS.Pref.dflt_LongExtra_value) {
+				
+				// Log
+				msg_Log = "savedPosition = " + savedPosition;
+				Log.d("PlayActv.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ "]", msg_Log);
+				
+				// Convert the position value to the seek position
+				int fLength = (int) Methods.conv_ClockLabel_to_MillSec(
+												CONS.PlayActv.ai.getLength());
+				
+				int tmp_i = CONS.PlayActv.sb.getMax() * (int)savedPosition / fLength;
+				
+				// Log
+				msg_Log = "tmp_i = " + tmp_i;
+				Log.d("PlayActv.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+				// Set: position
+				CONS.PlayActv.sb.setProgress(tmp_i);
+//				CONS.PlayActv.sb.setProgress((int) savedPosition);
+				
+			} else {
+				
+				// Log
+				msg_Log = "savedPosition => "
+								+ CONS.Pref.dflt_LongExtra_value;
+				
+				Log.d("PlayActv.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+			}
+			
+		}//if (!tmp.equals(CONS.PlayActv.ai.getFile_name()))
+		
+	}//private void _onCreate_ManagePrefs()
 
 	private void _onCreate_InitVars() {
 		// TODO Auto-generated method stub
@@ -206,11 +323,11 @@ public class PlayActv extends Activity {
 			
 		}
 		
-//		// Log
-//		String msg_Log = "ai.getFile_name() = " + ai.getFile_name();
-//		Log.d("PlayActv.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ "]", msg_Log);
+		// Log
+		String msg_Log = "ai.getFile_name() = " + CONS.PlayActv.ai.getFile_name();
+		Log.d("PlayActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
 		
 		////////////////////////////////
 
@@ -297,36 +414,18 @@ public class PlayActv extends Activity {
 				(TextView) findViewById(
 						R.id.actv_play_tv_current_position);
 
-		
-//		long length = Methods.conv_ClockLabel_to_MillSec(ai.getLength());
-		
-//		// Log
-//		Log.d("PlayActv.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ ":"
-//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//				+ "]", "length=" + length);
-//		
-//		if (length > 0) {
-//			
-//			tvLength.setText(Methods.convert_intSec2Digits_lessThanHour((int)length / 1000));
-//			
-//		} else {//if (length == condition)
-//			
-//			// Log
-//			Log.d("PlayActv.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ ":"
-//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//					+ "]", "length <= 0");
-//			
-//		}//if (length == condition)
-		
 		return true;
 		
 	}//_onCreate_SetupViews()
 
 	private boolean _onCreate_Get_IntentValues() {
+		
+		// Log
+		String msg_Log = "_onCreate_Get_IntentValues";
+		Log.d("PlayActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
 		// TODO Auto-generated method stub
 		Intent i = this.getIntent();
 		
@@ -348,7 +447,7 @@ public class PlayActv extends Activity {
 		if (CONS.PlayActv.ai_FilePath_Full == null) {
 			
 			// Log
-			String msg_Log = "CONS.PlayActv.ai_FilePath_Full => null";
+			msg_Log = "CONS.PlayActv.ai_FilePath_Full => null";
 			Log.e("PlayActv.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", msg_Log);
@@ -359,7 +458,7 @@ public class PlayActv extends Activity {
 						CONS.Intent.dflt_LongExtra_value) {
 			
 			// Log
-			String msg_Log = "CONS.PlayActv.ai_Db_Id => "
+			msg_Log = "CONS.PlayActv.ai_Db_Id => "
 						+ CONS.Intent.dflt_LongExtra_value;
 			
 			Log.d("PlayActv.java" + "["
@@ -371,7 +470,7 @@ public class PlayActv extends Activity {
 		} else if (CONS.PlayActv.ai_TableName == null) {
 			
 			// Log
-			String msg_Log = "CONS.PlayActv.ai_TableName => null";
+			msg_Log = "CONS.PlayActv.ai_TableName => null";
 			
 			Log.d("PlayActv.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()

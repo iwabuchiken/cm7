@@ -534,7 +534,7 @@ public class ALActv extends ListActivity {
 						+ " => "
 						+ "Set to: " + position;
 		
-		Log.d("MainActv.java" + "["
+		Log.d("ALActv.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_log);
 		
@@ -552,14 +552,14 @@ public class ALActv extends ListActivity {
 		if (ai != null) {
 			
 			// Log
-			Log.d("MainActv.java" + "["
+			Log.d("ALActv.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "ai =" + ai.getFile_name());
 			
 		} else {//if (item_)
 			
 			// Log
-			Log.d("MainActv.java" + "["
+			Log.d("ALActv.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "ai => null");
 			

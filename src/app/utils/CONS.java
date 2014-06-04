@@ -213,10 +213,25 @@ public class CONS {
 	}//public static class DB
 
 	public static class Pref {
+		////////////////////////////////
+
+		// Commons
+
+		////////////////////////////////
+		public static long dflt_LongExtra_value = -1;
 		
+		////////////////////////////////
+
+		// PlayActv.java
+
+		////////////////////////////////
 		public static final String pname_PlayActv = "pname_PlayActv";
 		
-		public static final String pkey_PlayActv_position = "prefKey_PlayActv_position";
+		public static final String pkey_PlayActv_CurrentPosition = 
+							"pkey_PlayActv_CurrentPosition";
+		
+		public static final String pkey_PlayActv_CurrentFileName = 
+							"pkey_PlayActv_CurrentFileName";
 		
 		////////////////////////////////
 

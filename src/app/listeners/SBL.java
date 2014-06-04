@@ -29,6 +29,12 @@ public class SBL implements OnSeekBarChangeListener {
 	onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 		// TODO Auto-generated method stub
 		
+		// Log
+		String msg_Log = "progress = " + progress;
+		Log.d("SBL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
 		float length = 
 				(float) Methods.conv_ClockLabel_to_MillSec(
 							CONS.PlayActv.ai.getLength());
@@ -41,7 +47,7 @@ public class SBL implements OnSeekBarChangeListener {
 //						* (float)PlayActv.ai.getLength());
 		
 		// Log
-		String msg_Log = "(double)progress / sb.getMax() = " 
+		msg_Log = "(double)progress / sb.getMax() = " 
 					+ String.format("%.5f", ((double)progress / sb.getMax()));
 		
 		Log.d("SBL.java" + "["
@@ -127,23 +133,43 @@ public class SBL implements OnSeekBarChangeListener {
 		/***************************************
 		 * Set: Current position to preference
 		 ***************************************/
-//		long seekedPosition =
-//				(long) ((float) seekBar.getProgress() * 1.000f / sb.getMax()
-//								* (float)PlayActv.ai.getLength());
-//		
-//
-//		boolean res = 
-//				Methods.setPref_long(
-//						actv,
-//						CONS.Pref.pname_PlayActv,
-//						CONS.Pref.pkey_PlayActv_position,
-//						seekedPosition);
-//		// Log
-//		Log.d("PlayActv.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ ":"
-//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//				+ "]", "Position => Stored in a preference");
+		long seekedPosition =
+				(long) ((float) seekBar.getProgress() * 1.000f / sb.getMax()
+							* (float) Methods.conv_ClockLabel_to_MillSec(
+										CONS.PlayActv.ai.getLength()));
+
+		// Log
+		String msg_Log = "onStopTrackingTouch: seekedPosition = " + seekedPosition;
+		Log.d("SBL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		boolean res = 
+				Methods.setPref_Long(
+						actv,
+						CONS.Pref.pname_PlayActv,
+						CONS.Pref.pkey_PlayActv_CurrentPosition,
+						seekedPosition);
+		
+		/******************************
+			validate
+		 ******************************/
+		if (res == false) {
+			
+			// Log
+			Log.d("SBL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "Position => Not stored: " + seekedPosition);
+			
+		}
+		
+		// Log
+		msg_Log = "Pref: current position => set";
+		Log.d("SBL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
 		
 		
 	}//public void onStopTrackingTouch(SeekBar seekBar)

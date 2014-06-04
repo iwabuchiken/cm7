@@ -243,7 +243,7 @@ public class Adp_AIList extends ArrayAdapter<AI> implements OnTouchListener {
 
 		////////////////////////////////
     	int pref_CurrentPosition = 
-    			Methods.get_Pref_Int(
+    			Methods.getPref_Int(
     					(Activity)con, 
     					CONS.Pref.pname_ALActv, 
     					CONS.Pref.pkey_CurrentPosition_ALActv,
