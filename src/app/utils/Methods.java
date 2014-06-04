@@ -878,7 +878,19 @@ public class Methods {
 		List<AI> ai_List = new ArrayList<AI>();
 		
 		for (File file : audioFile_list) {
+
+			////////////////////////////////
+
+			// Get: File length (audio length)
+
+			////////////////////////////////
+			long audioLength = Methods.get_AudioLength(file.getAbsolutePath());
 			
+			////////////////////////////////
+
+			// Build: AI
+
+			////////////////////////////////
 			AI ai = new AI.Builder()
 					.setFile_name(file.getName())
 					
@@ -887,7 +899,8 @@ public class Methods {
 //					.setFile_path(file.getPath())
 					
 					.setTable_name(CONS.DB.tname_CM7)
-					.setLength(Methods.conv_MillSec_to_ClockLabel(file.length()))
+					.setLength(Methods.conv_MillSec_to_ClockLabel(audioLength))
+//					.setLength(Methods.conv_MillSec_to_ClockLabel(file.length()))
 //					.setLength(file.length())
 					.setAudio_created_at(
 							Methods.conv_MillSec_to_TimeLabel(file.lastModified()))
@@ -1479,10 +1492,24 @@ public class Methods {
 		/*********************************
 		 * 3. Set data source
 		 *********************************/
+//		CONS.PlayActv.mp.reset();
+		
+		// Log
+		String msg_Log = "mp => reset()";
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
 		String file_full_path = StringUtils.join(
 				new String[]{ai.getFile_path(), ai.getFile_name()},
 				File.separator);
 
+		// Log
+		msg_Log = "file_full_path = " + file_full_path;
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
 		try {
 
 			CONS.PlayActv.mp.setDataSource(file_full_path);
@@ -1539,21 +1566,48 @@ public class Methods {
 
 		}//try
 
-//		/***************************************
-//		 * Position set in the preference?
-//		 ***************************************/
-//		long prefPosition = 
-//				Methods.getPref_long(
-//						actv,
-//						CONS.Pref.pname_PlayActv,
-//						CONS.Pref.pkey_PlayActv_position,
-//						-1);
-//		
-//		if (prefPosition >= 0) {
-//			
-//			CONS.PlayActv.mp.seekTo((int) prefPosition);
-//			
-//		}//if (prefPosition == condition)
+		//debug
+		// Log
+		msg_Log = "getDuration() = " + CONS.PlayActv.mp.getDuration();
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		
+		/***************************************
+		 * Position set in the preference?
+		 ***************************************/
+		long prefPosition = 
+				Methods.getPref_Long(
+						actv,
+						CONS.Pref.pname_PlayActv,
+						CONS.Pref.pkey_PlayActv_CurrentPosition,
+						CONS.Pref.dflt_LongExtra_value);
+		
+		// Log
+		msg_Log = "prefPosition = " + prefPosition;
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		//debug
+		// Log
+		msg_Log = "getDuration() = " + CONS.PlayActv.mp.getDuration();
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		if (prefPosition >= 0) {
+			
+			CONS.PlayActv.mp.seekTo((int) prefPosition);
+			
+			// Log
+			msg_Log = "seekTo() => done";
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}//if (prefPosition == condition)
 		
 //		/***************************************
 //		 * Prepare: Service
@@ -1581,7 +1635,7 @@ public class Methods {
 		
 		//debug
 		// Log
-		String msg_Log = "getAudioSessionId() = " 
+		msg_Log = "getAudioSessionId() = " 
 						+ CONS.PlayActv.mp.getAudioSessionId();
 		
 		Log.d("Methods.java" + "["
@@ -1662,6 +1716,63 @@ public class Methods {
 		
 	}//public static boolean setPref_long(Activity actv, String pref_name, String pref_key, long value)
 
-	
+
+	private static long get_AudioLength(String fileFullPath) {
+		
+		// Log
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", "Methods: " + Thread.currentThread().getStackTrace()[2].getMethodName());
+		
+		// Log
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", "File path=" + fileFullPath);
+		
+		MediaPlayer mp = new MediaPlayer();
+		
+//		int len = 0;
+		long len = 0;
+		
+		try {
+			mp.setDataSource(fileFullPath);
+			
+			mp.prepare();
+			
+//			len = mp.getDuration() / 1000;
+			len = mp.getDuration();
+			
+			// REF=> http://stackoverflow.com/questions/9609479/android-mediaplayer-went-away-with-unhandled-events
+			mp.reset();
+			
+			// REF=> http://stackoverflow.com/questions/3761305/android-mediaplayer-throwing-prepare-failed-status-0x1-on-2-1-works-on-2-2
+			mp.release();
+			
+		} catch (IllegalArgumentException e) {
+			
+			// Log
+			Log.d("Methods.java"
+					+ "["
+					+ Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + "]", "Exception=" + e.toString());
+			
+		} catch (IllegalStateException e) {
+			// Log
+			Log.d("Methods.java"
+					+ "["
+					+ Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + "]", "Exception=" + e.toString());
+
+		} catch (IOException e) {
+			// Log
+			Log.d("Methods.java"
+					+ "["
+					+ Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + "]", "Exception=" + e.toString());
+		}//try
+		
+		return len;
+	}//private static long getFileLength(String fileFullPath)
+
 }//public class Methods
 

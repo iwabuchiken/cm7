@@ -114,6 +114,8 @@ public class BO_CL implements OnClickListener {
 
 	private void case_ActvPlay_BtBack() {
 		// TODO Auto-generated method stub
+		Methods.stop_Player(actv);
+		
 		actv.finish();
 		
 		actv.overridePendingTransition(0, 0);

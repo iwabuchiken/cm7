@@ -198,6 +198,8 @@ public class CONS {
 
 		////////////////////////////////
 		public static String jointString_TableName = "__";
+		
+		public static int pastXDays		= -10;
 
 		////////////////////////////////
 

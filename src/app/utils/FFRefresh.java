@@ -37,14 +37,14 @@ public class FFRefresh implements FileFilter {
 //				calendar.add(Calendar.HOUR_OF_DAY, -4);
 		Date date = calendar.getTime();
 		
-		long time_4DaysAgo = date.getTime();
+		long time_XDaysAgo = date.getTime();
 
 		/******************************
 			validate
 		 ******************************/
 		if (last_history == null) {
 			
-			last_refreshed = time_4DaysAgo;
+			last_refreshed = time_XDaysAgo;
 			
 //			return true;
 			
@@ -54,7 +54,7 @@ public class FFRefresh implements FileFilter {
 					Methods.conv_TimeLabel_to_MillSec(last_history.getLast_refreshed());
 			
 			last_refreshed = 
-					(last_record > time_4DaysAgo) ? last_record : time_4DaysAgo;
+					(last_record > time_XDaysAgo) ? last_record : time_XDaysAgo;
 			
 		}
 		

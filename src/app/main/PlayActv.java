@@ -129,10 +129,12 @@ public class PlayActv extends Activity {
 
 		// Current file name
 		
-		// - If the file name of the AI instance passed from
+		//	- If the file name of the AI instance passed from
 		//		ALActv doesn't match the one stored in the 
 		//		pref
 		//		=> Replace it with the new one
+		//	- Set "currentPosition" pref => 0
+		//	- Set player => seekto ~~> 0
 		////////////////////////////////
 		String tmp = Methods.get_Pref_String(
 							this,
@@ -169,6 +171,50 @@ public class PlayActv extends Activity {
 				
 			}
 
+			////////////////////////////////
+
+			// Reset: pref "currentPosition"
+
+			////////////////////////////////
+			res = Methods.setPref_Long(this, 
+									CONS.Pref.pname_PlayActv, 
+									CONS.Pref.pkey_PlayActv_CurrentPosition,
+									0);
+			
+			if (res == true) {
+				
+				// Log
+				String msg_Log = "Pref: currentPosition => set to 0";
+				Log.d("PlayActv.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+			} else {
+				
+				// Log
+				String msg_Log = "Pref: currentPosition => can't be set to 0";
+				Log.d("PlayActv.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+
+			}
+			
+//					Methods.getPref_Long(
+//							this,
+//							CONS.Pref.pname_PlayActv,
+//							CONS.Pref.pkey_PlayActv_CurrentPosition,
+//							CONS.Pref.dflt_LongExtra_value);
+			
+			////////////////////////////////
+
+			// Player => seek to 0
+
+			////////////////////////////////
+			CONS.PlayActv.sb.setProgress(0);
+			
+			
 		} else {//if (!tmp.equals(CONS.PlayActv.ai.getFile_name()))
 			
 			// File name given by ALActv does match that in the pref
@@ -587,6 +633,9 @@ public class PlayActv extends Activity {
 		/****************************
 		 * memo
 			****************************/
+		Methods.stop_Player(this);
+		
+		
 		this.finish();
 		
 		overridePendingTransition(0, 0);
