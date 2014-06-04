@@ -62,6 +62,7 @@ import android.widget.Toast;
 import android.os.AsyncTask;
 import app.items.AI;
 import app.items.Refresh;
+import app.listeners.MP_OCmpL;
 import app.listeners.dialog.DL;
 import app.main.ALActv;
 import app.main.PlayActv;
@@ -1483,12 +1484,12 @@ public class Methods {
 
 //		CONS.PlayActv.mp.
 		
-//		/*********************************
-//		 * 2. OnCompletionListener
-//		 *********************************/
+		/*********************************
+		 * 2. OnCompletionListener
+		 *********************************/
 //		CONS.PlayActv.mp = new MediaPlayer();
-//		
-//		CONS.PlayActv.mp.setOnCompletionListener(new MPOnCompletionListener(actv));
+		
+		CONS.PlayActv.mp.setOnCompletionListener(new MP_OCmpL(actv));
 
 		/*********************************
 		 * 3. Set data source
