@@ -44,6 +44,19 @@ public class CONS {
 		////////////////////////////////
 		public static long dflt_LongExtra_value = -1;
 		
+		public static int dflt_IntExtra_value = -1;
+		
+		
+		////////////////////////////////
+		
+		// PlayActv
+		
+		////////////////////////////////
+		// Used in Service_ShowProgress
+		public static String iKey_PlayActv_TaskPeriod
+								= "iKey_PlayActv_TaskPeriod";
+		
+		
 		////////////////////////////////
 
 		// MainActv
@@ -296,6 +309,14 @@ public class CONS {
 		public static MediaPlayer mp = null;
 		
 		public static SeekBar sb;
+		
+		////////////////////////////////
+
+		// Commons
+
+		////////////////////////////////
+//		public static int playActv_task_Period = 3000;
+		public static int playActv_task_Period = 1000;
 		
 		/******************************
 			Intent value receiver

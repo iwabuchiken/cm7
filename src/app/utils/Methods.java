@@ -65,6 +65,7 @@ import app.items.Refresh;
 import app.listeners.dialog.DL;
 import app.main.ALActv;
 import app.main.PlayActv;
+import app.services.Service_ShowProgress;
 
 // Apache
 
@@ -1430,24 +1431,24 @@ public class Methods {
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "Player => Stopped");
 			
-//			/***************************************
-//			 * Stop: Service
-//			 ***************************************/
-//			Intent i = new Intent((Context) actv, Service_ShowProgress.class);
-//
-//			//
-////			i.putExtra("counter", timeLeft);
-//
-//			// Log
-//			Log.d("DialogOnItemClickListener.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ ":"
-//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//					+ "]", "Stopping service...");
-//
-//			//
-////			actv.startService(i);
-//			actv.stopService(i);
+			/***************************************
+			 * Stop: Service
+			 ***************************************/
+			Intent i = new Intent((Context) actv, Service_ShowProgress.class);
+
+			//
+//			i.putExtra("counter", timeLeft);
+
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "Stopping service...");
+
+			//
+//			actv.startService(i);
+			actv.stopService(i);
 
 			
 		} else if (CONS.PlayActv.mp == null) {//if (mp.isPlaying())
@@ -1609,23 +1610,27 @@ public class Methods {
 			
 		}//if (prefPosition == condition)
 		
-//		/***************************************
-//		 * Prepare: Service
-//		 ***************************************/
-//		Intent i = new Intent((Context) actv, Service_ShowProgress.class);
-//
-//		//
-////		i.putExtra("counter", timeLeft);
-//		
-//		
-//		// Log
-//		Log.d("DialogOnItemClickListener.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ ":"
-//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//				+ "]", "Starting service...");
-//		//
-//		actv.startService(i);
+		/***************************************
+		 * Prepare: Service
+		 ***************************************/
+		Intent i = new Intent((Context) actv, Service_ShowProgress.class);
+
+		i.putExtra(
+				CONS.Intent.iKey_PlayActv_TaskPeriod, 
+				CONS.PlayActv.playActv_task_Period);
+		
+		//
+//		i.putExtra("counter", timeLeft);
+		
+		
+		// Log
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "Starting service...");
+		//
+		actv.startService(i);
 
 		
 		/*********************************
@@ -1773,6 +1778,32 @@ public class Methods {
 		
 		return len;
 	}//private static long getFileLength(String fileFullPath)
+
+	public static void update_ProgressLable() {
+		// TODO Auto-generated method stub
+		int currentPosition = CONS.PlayActv.mp.getCurrentPosition();
+		
+//		TextView tvCurrentPosition = (TextView) this.findViewById(R.id.actv_play_tv_current_position);
+		if (CONS.PlayActv.tvCurrentPosition == null) {
+			
+			// Log
+			String msg_Log = "CONS.PlayActv.tvCurrentPosition => null";
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+
+			CONS.PlayActv.tvCurrentPosition = 
+					(TextView) (new PlayActv()).findViewById(R.id.actv_play_tv_current_position);
+//			(TextView) this.findViewById(R.id.actv_play_tv_current_position);
+			
+		}//if (CONS.PlayActv.tvCurrentPosition == null)
+//		CONS.PlayActv.tvCurrentPosition = (TextView) this.findViewById(R.id.actv_play_tv_current_position);
+		
+		CONS.PlayActv.tvCurrentPosition.setText(
+					Methods.conv_MillSec_to_ClockLabel(currentPosition));
+//		Methods.convert_intSec2Digits_lessThanHour((int)currentPosition / 1000));
+
+	}
 
 }//public class Methods
 
