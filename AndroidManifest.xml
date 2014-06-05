@@ -26,6 +26,7 @@
         </activity>
         <activity android:name="app.main.ALActv"></activity>
         <activity android:name="app.main.PlayActv"></activity>
+        <activity android:name="app.main.BMActv"></activity>
         <service android:name="app.services.Service_ShowProgress"></service>
         
         

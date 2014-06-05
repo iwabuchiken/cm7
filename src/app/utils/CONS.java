@@ -76,25 +76,31 @@ public class CONS {
 		
 		public static String iKey_AI_TableName = "iKey_AI_TableName";
 		
+		////////////////////////////////
+
+		// BMActv
+
+		////////////////////////////////
+		public static String iKey_BMActv_AI_Id = "bmactv_key_ai_id";
 //		public static String bmactv_key_ai_id = "bmactv_key_ai_id";
-//		
-//		public static String bmactv_key_table_name = "bmactv_key_table_name";
-//		
-//		public static String bmactv_key_position = "bmactv_key_position";
-//		
-//		/***************************************
-//		 * Request codes
-//		 ***************************************/
-//		public final static int REQUEST_CODE_SEE_BOOKMARKS = 0;
-//		
-//		public final static int REQUEST_CODE_HISTORY = 1;
-//		
-//		/***************************************
-//		 * Result code
-//		 ***************************************/
-//		public final static int RESULT_CODE_SEE_BOOKMARKS_OK = 1;
-//		
-//		public final static int RESULT_CODE_SEE_BOOKMARKS_CANCEL = 0;
+		
+		public static String iKey_BMActv_TableName = "bmactv_key_table_name";
+		
+		public static String bmactv_key_position = "bmactv_key_position";
+		
+		/***************************************
+		 * Request codes
+		 ***************************************/
+		public final static int REQUEST_CODE_SEE_BOOKMARKS = 0;
+		
+		public final static int REQUEST_CODE_HISTORY = 1;
+		
+		/***************************************
+		 * Result code
+		 ***************************************/
+		public final static int RESULT_CODE_SEE_BOOKMARKS_OK = 1;
+		
+		public final static int RESULT_CODE_SEE_BOOKMARKS_CANCEL = 0;
 		
 	}//public static class Intent
 	

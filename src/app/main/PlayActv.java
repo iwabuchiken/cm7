@@ -76,6 +76,13 @@ public class PlayActv extends Activity {
 
 		////////////////////////////////
 
+		// Init: vars
+
+		////////////////////////////////
+		_onCreate_InitVars();
+
+		////////////////////////////////
+
 		// Setup: views
 
 		////////////////////////////////
@@ -107,13 +114,6 @@ public class PlayActv extends Activity {
 		_onCreate_SetListeners();
 		
 		
-		////////////////////////////////
-
-		// Init: vars
-
-		////////////////////////////////
-		_onCreate_InitVars();
-
 		////////////////////////////////
 
 		// Prefs
@@ -282,6 +282,17 @@ public class PlayActv extends Activity {
 		
 		CONS.PlayActv.mp = new MediaPlayer();
 		
+		////////////////////////////////
+
+		// Get: AI
+
+		////////////////////////////////
+		CONS.PlayActv.ai = DBUtils.find_AI_ById(
+//				AI ai = DBUtils.find_AI_ById(
+							this,
+							CONS.PlayActv.ai_Db_Id,
+							CONS.PlayActv.ai_TableName);
+		
 	}
 
 	private void _onCreate_SetListeners() {
@@ -324,6 +335,18 @@ public class PlayActv extends Activity {
 		
 		////////////////////////////////
 
+		// "See bookmarks"
+
+		////////////////////////////////
+		Button btSeeBM = (Button) findViewById(R.id.actv_play_bt_see_bm);
+		
+		btSeeBM.setTag(Tags.ButtonTags.actv_play_bt_see_bm);
+		
+		btSeeBM.setOnTouchListener(new BO_TL(this));
+		btSeeBM.setOnClickListener(new BO_CL(this, CONS.PlayActv.ai));
+		
+		////////////////////////////////
+
 		// SeekBar
 
 		////////////////////////////////
@@ -336,20 +359,8 @@ public class PlayActv extends Activity {
 
 	private boolean
 	_onCreate_SetupViews() {
-		// - Get AI instance using db_id and tableName
 		// - Get values from the AI instance
 		// - Set the values to the views
-		
-		////////////////////////////////
-
-		// Get: AI
-
-		////////////////////////////////
-		CONS.PlayActv.ai = DBUtils.find_AI_ById(
-//				AI ai = DBUtils.find_AI_ById(
-							this,
-							CONS.PlayActv.ai_Db_Id,
-							CONS.PlayActv.ai_TableName);
 		
 		/******************************
 			validate

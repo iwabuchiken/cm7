@@ -18,7 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 import app.items.AI;
+import app.main.BMActv;
 import app.utils.CONS;
+import app.utils.DBUtils;
 import app.utils.Methods;
 import app.utils.Tags;
 
@@ -108,6 +110,12 @@ public class BO_CL implements OnClickListener {
 			
 			break;// case actv_play_bt_back
 
+		case actv_play_bt_see_bm://----------------------------------------------------
+			
+			case_actv_play_bt_see_bm();
+		
+			break;// case actv_play_bt_see_bm
+
 		}//switch (tag)
 		
 	}//public void onClick(View v)
@@ -141,6 +149,62 @@ public class BO_CL implements OnClickListener {
 		Methods.play_File(actv, ai);
 		
 	}
+
+	private void case_actv_play_bt_see_bm() {
+		// TODO Auto-generated method stub
+
+		/***************************************
+		 * Validate: Any bookmarks?
+		 ***************************************/
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		long numOfBM = dbu.getNumOfEntries_BM(actv, CONS.DB.tname_BM, ai.getDb_id());
+		
+		if (numOfBM < 1) {
+			
+			// Log
+			Log.d("ButtonOnClickListener.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "numOfBM < 1");
+			
+			// debug
+			Toast.makeText(actv, "No bookmarks", Toast.LENGTH_LONG).show();
+			
+			return;
+			
+		} else {//if (numOfBM == condition)
+			
+			// Log
+			Log.d("ButtonOnClickListener.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "numOfBM=" + numOfBM);
+			
+		}//if (numOfBM == condition)
+		
+		/***************************************
+		 * Intent
+		 ***************************************/
+		Intent i = new Intent();
+		
+		i.setClass(actv, BMActv.class);
+		
+		i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		
+//		i.putExtra("ai_dbId", ai.getDb_id());
+		i.putExtra(CONS.Intent.iKey_BMActv_AI_Id, ai.getDb_id());
+//		i.putExtra(CONS.Intent.bmactv_key_ai_id, ai.getDb_id());
+		
+		i.putExtra(CONS.Intent.iKey_BMActv_TableName, ai.getTable_name());
+//		i.putExtra(CONS.Intent.bmactv_key_table_name, ai.getTable_name());
+		
+//		actv.startActivity(i);
+		actv.startActivityForResult(i, CONS.Intent.REQUEST_CODE_SEE_BOOKMARKS);
+
+	}//private void case_actv_play_bt_see_bm()
 
 }//public class ButtonOnClickListener implements OnClickListener
 
