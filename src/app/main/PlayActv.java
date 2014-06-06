@@ -736,7 +736,8 @@ public class PlayActv extends Activity {
 						this,
 						CONS.Pref.pname_PlayActv,
 //						CONS.Pref.pkey_PlayActv_position,
-						CONS.Pref.pkey_CurrentPosition,
+						CONS.Pref.pkey_PlayActv_CurrentPosition,
+//						CONS.Pref.pkey_CurrentPosition,
 						Methods.conv_ClockLabel_to_MillSec(position));
 		// Log
 		Log.d("PlayActv.java" + "["
