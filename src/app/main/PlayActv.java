@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -49,6 +50,18 @@ public class PlayActv extends Activity {
 
 		this.setTitle(this.getClass().getName());
 
+		////////////////////////////////
+
+		// Init: vars
+
+		////////////////////////////////
+		if (CONS.Admin.vib == null) {
+			
+			CONS.Admin.vib = 
+					(Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+			
+		}
+		
 		////////////////////////////////
 
 		// Get: intent values
@@ -690,14 +703,15 @@ public class PlayActv extends Activity {
 				
 			} else if (resultCode == CONS.Intent.RESULT_CODE_SEE_BOOKMARKS_CANCEL) {//if (resultCode == CONS.Intent.RESULT_CODE_SEE_BOOKMARKS_OK)
 				
-				// Log
-				Log.d("PlayActv.java"
-						+ "["
-						+ Thread.currentThread().getStackTrace()[2]
-								.getLineNumber()
-						+ ":"
-						+ Thread.currentThread().getStackTrace()[2]
-								.getMethodName() + "]", "Cancelled");
+				onActivityResult_BM_Cancel();
+//				// Log
+//				Log.d("PlayActv.java"
+//						+ "["
+//						+ Thread.currentThread().getStackTrace()[2]
+//								.getLineNumber()
+//						+ ":"
+//						+ Thread.currentThread().getStackTrace()[2]
+//								.getMethodName() + "]", "Cancelled");
 				
 			}//if (resultCode == CONS.Intent.RESULT_CODE_SEE_BOOKMARKS_OK)
 			
@@ -714,6 +728,43 @@ public class PlayActv extends Activity {
 		}//if (requestCode == CONS.Intent.REQUEST_CODE_SEE_BOOKMARKS)
 		
 	}//onActivityResult(int requestCode, int resultCode, Intent data)
+
+	private void onActivityResult_BM_Cancel() {
+		// TODO Auto-generated method stub
+		// Log
+		Log.d("PlayActv.java"
+				+ "["
+				+ Thread.currentThread().getStackTrace()[2]
+						.getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2]
+						.getMethodName() + "]", "Cancelled");
+		
+		////////////////////////////////
+
+		// Reset: SeekBar
+
+		////////////////////////////////
+		
+		
+//		long currentPosition = Methods.conv_ClockLabel_to_MillSec(position);
+		long currentPosition = Methods.getPref_Long(this, 
+							CONS.Pref.pname_PlayActv, 
+							CONS.Pref.pkey_PlayActv_CurrentPosition, 
+							CONS.Pref.dflt_LongExtra_value);
+		
+		long length =
+				Methods.conv_ClockLabel_to_MillSec(CONS.PlayActv.ai.getLength());
+		
+		int seekPositon = (int)
+//					((currentPosition / length)
+					(((float)currentPosition / length)
+							* CONS.PlayActv.sb.getMax());
+//		
+		CONS.PlayActv.sb.setProgress(seekPositon);
+
+
+	}
 
 	private void
 	onActivityResult_BM_OK(Intent data) {

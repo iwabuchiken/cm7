@@ -141,6 +141,8 @@ public class BO_CL implements OnClickListener {
 		
 		actv.finish();
 		
+		actv.overridePendingTransition(0, 0);
+		
 	}
 
 	private void case_ActvPlay_BtBack() {

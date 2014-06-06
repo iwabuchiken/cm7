@@ -346,6 +346,8 @@ public class CONS {
 //		public static int playActv_task_Period = 3000;
 		public static int playActv_task_Period = 1000;
 		
+		public static long playActv_InitialPosition = 0; 
+		
 		/******************************
 			Intent value receiver
 		 ******************************/

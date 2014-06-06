@@ -4,6 +4,7 @@ import java.util.List;
 
 import cm7.main.R;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -46,6 +47,19 @@ public class BMActv extends ListActivity {
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", "onCreate()");
 
+		////////////////////////////////
+
+		// Init: vars
+
+		////////////////////////////////
+		if (CONS.Admin.vib == null) {
+			
+			CONS.Admin.vib = 
+					(Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+			
+		}
+		
+		
 		////////////////////////////////
 
 		// Get: AI
@@ -378,9 +392,14 @@ public class BMActv extends ListActivity {
 		/***************************************
 		 * Set: Intent
 		 ***************************************/
-//		this.setResult(CONS.Intent.RESULT_CODE_SEE_BOOKMARKS_CANCEL);
+		this.setResult(CONS.Intent.RESULT_CODE_SEE_BOOKMARKS_CANCEL);
+		
+		this.finish();
+		
+		overridePendingTransition(0, 0);
 		
 		return super.onKeyDown(keyCode, event);
+		
 	}
 
 	

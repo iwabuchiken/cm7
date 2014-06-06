@@ -11,6 +11,7 @@ import android.widget.Toast;
 import app.items.BM;
 import app.utils.CONS;
 import app.utils.DBUtils;
+import app.utils.Methods;
 import app.utils.Tags;
 
 public class DB_OCL implements OnClickListener {
@@ -188,6 +189,84 @@ public class DB_OCL implements OnClickListener {
 		String msg_Toast = "BM => deleted: " + bm.getPosition();
 		Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
 			
+		////////////////////////////////
+
+		// Reset: current positin in PlayActv
+
+		////////////////////////////////
+		String bm_Position = bm.getPosition();
+		
+		long pref_Position_Long = Methods.getPref_Long(actv, 
+						CONS.Pref.pname_PlayActv, 
+						CONS.Pref.pkey_PlayActv_CurrentPosition,
+						CONS.Pref.dflt_LongExtra_value);
+		
+		// Log
+		String msg_Log = "pref_Position_Long => now: "
+				+ pref_Position_Long;
+		Log.d("DB_OCL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		// Recalibrate: pref_Position_Long
+		int tmp = (int) pref_Position_Long % 1000;
+		
+		if (tmp > 0) {
+			
+			pref_Position_Long = (pref_Position_Long / 1000) * 1000 + 1000;
+			
+		}
+		
+		// Log
+		msg_Log = "pref_Position_Long => recalibrated: "
+						+ pref_Position_Long;
+		Log.d("DB_OCL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		// Log
+		msg_Log = "Methods.conv_MillSec_to_ClockLabel(pref_Position_Long) = "
+						+ Methods.conv_MillSec_to_ClockLabel(pref_Position_Long)
+						+ " // "
+						+ "bm_Position = " + bm_Position;
+		
+		Log.d("DB_OCL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		// Reset: current position (Long)
+		if (!(pref_Position_Long == CONS.Pref.dflt_LongExtra_value)
+				&& Methods.conv_MillSec_to_ClockLabel(
+						pref_Position_Long).equals(bm_Position)) {
+//			pref_Position_Long) == bm_Position) {
+//			pref_Position_Long) != bm_Position) {
+
+			Methods.setPref_Long(actv, 
+					CONS.Pref.pname_PlayActv, 
+					CONS.Pref.pkey_PlayActv_CurrentPosition, 
+					CONS.PlayActv.playActv_InitialPosition);
+			
+			// Log
+			msg_Log = "Current position => Reset to: " 
+							+ CONS.PlayActv.playActv_InitialPosition
+							+ "("
+							+ Methods.conv_ClockLabel_to_MillSec(bm_Position)
+							+ ")";
+			Log.d("DB_OCL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		} else {
+			
+			// Log
+			msg_Log = "Current position => remains same: "
+							+ Methods.conv_MillSec_to_ClockLabel(pref_Position_Long);
+			Log.d("DB_OCL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}
+		
 	}//private void dlg_Conf_Delete_BM_Ok()
 
 }//DialogButtonOnClickListener
