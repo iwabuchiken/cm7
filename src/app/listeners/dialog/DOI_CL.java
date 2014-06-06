@@ -16,6 +16,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import app.items.BM;
 import app.utils.CONS;
 import app.utils.Methods;
 import app.utils.Tags;
@@ -29,6 +30,8 @@ public class DOI_CL implements OnItemClickListener {
 	
 	//
 	Vibrator vib;
+	
+	BM bm;
 	
 	//
 //	Methods.DialogTags dlgTag = null;
@@ -52,6 +55,16 @@ public class DOI_CL implements OnItemClickListener {
 		
 	}//public DialogOnItemClickListener(Activity actv, Dialog dlg)
 
+
+	public DOI_CL(Activity actv, Dialog dlg, BM bm) {
+		// TODO Auto-generated constructor stub
+		this.actv	= actv;
+		this.dlg1	= dlg;
+		this.bm		= bm;
+		
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+
+	}
 
 	//	@Override
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {

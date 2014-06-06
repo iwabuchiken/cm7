@@ -88,7 +88,7 @@ public class CONS {
 		
 		public static String iKey_BMActv_TableName = "bmactv_key_table_name";
 		
-		public static String bmactv_key_position = "bmactv_key_position";
+		public static String iKey_BMActv_Position = "bmactv_key_position";
 //		public static String bmactv_key_position = "bmactv_key_position";
 		
 		/***************************************

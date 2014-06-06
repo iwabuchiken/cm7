@@ -59,6 +59,12 @@ public class SBL implements OnSeekBarChangeListener {
 //		+ "]", "(double)progress / sb.getMax() = " + String.format("%.5f", ((double)progress / sb.getMax())));
 		
 		// Log
+		msg_Log = "length = " + length;
+		Log.d("SBL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		// Log
 		Log.d("SBL.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
@@ -102,6 +108,30 @@ public class SBL implements OnSeekBarChangeListener {
 		Log.d("SBL.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
+		
+		//test
+		// mill second value => round up
+		int tmp = seekedPosition % 1000;
+		
+		if (tmp > 0) {
+			
+			seekedPosition = (seekedPosition / 1000) * 1000 + 1000;
+			
+			// Log
+			msg_Log = "seekedPosition is now: " + seekedPosition;
+			Log.d("SBL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		} else {
+			
+			// Log
+			msg_Log = "seekedPosition remains to be: " + seekedPosition;
+			Log.d("SBL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+
+		}
 		
 		CONS.PlayActv.tvCurrentPosition.setText(
 				Methods.conv_MillSec_to_ClockLabel(seekedPosition));

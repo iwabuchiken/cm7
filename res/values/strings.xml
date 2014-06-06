@@ -55,5 +55,8 @@
 
     <!-- menu_actv_play.xml -->
     	<string name="menu_actv_play_register_pattern">Register pattern</string>
-						
+
+    <!-- dlg_bmactv_list_long_click -->
+  		<string name="dlg_bmactv_list_long_click_title">Bookmark</string>
+  								
 </resources>

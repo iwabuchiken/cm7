@@ -17,9 +17,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.adapters.Adp_BMList;
+import app.items.BM;
+import app.listeners.LOI_LCL;
+import app.listeners.button.BO_CL;
+import app.listeners.button.BO_TL;
 import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
+import app.utils.Tags;
 
 public class BMActv extends ListActivity {
 
@@ -62,7 +67,38 @@ public class BMActv extends ListActivity {
 		////////////////////////////////
 		_onCreate_Set_BMList();
 		
+		////////////////////////////////
+
+		// Listeners
+
+		////////////////////////////////
+		_onCreate_SetListeners();
+		
+		
 	}//protected void onCreate(Bundle savedInstanceState)
+
+	private void _onCreate_SetListeners() {
+		// TODO Auto-generated method stub
+		/***************************************
+		 * 1. ListView
+		 ***************************************/
+		ListView lv = this.getListView();
+		
+		lv.setTag(Tags.ListTags.actv_bm_lv);
+		
+		lv.setOnItemLongClickListener(new LOI_LCL(this));
+		
+		/***************************************
+		 * Button: "Back"
+		 ***************************************/
+		Button btBack = (Button) findViewById(R.id.actv_bm_bt_back);
+		
+		btBack.setTag(Tags.ButtonTags.actv_bm_bt_back);
+		
+		btBack.setOnTouchListener(new BO_TL(this));
+		btBack.setOnClickListener(new BO_CL(this));
+
+	}
 
 	private boolean _onCreate_Set_BMList() {
 		// TODO Auto-generated method stub
@@ -232,36 +268,35 @@ public class BMActv extends ListActivity {
 		// TODO Auto-generated method stub
 //		super.onListItemClick(l, v, position, id);
 		
-//		vib.vibrate(Methods.vibLength_click);
-//		
-//		/***************************************
-//		 * Get: Item
-//		 ***************************************/
-//		BM bm = (BM) l.getItemAtPosition(position);
-//		
-//		// Log
-//		Log.d("BMActv.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ ":"
-//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//				+ "]", "bm.getPosition()=" + bm.getPosition());
-//		/***************************************
-//		 * Set: Result
-//		 ***************************************/
-//		Intent i = new Intent();
-//		
-//		i.putExtra(CONS.Intent.bmactv_key_position, bm.getPosition());
-//		
+		CONS.Admin.vib.vibrate(CONS.Admin.vibLength_click);
+		
+		/***************************************
+		 * Get: Item
+		 ***************************************/
+		BM bm = (BM) l.getItemAtPosition(position);
+		
+		/***************************************
+		 * Set: Result
+		 ***************************************/
+		Intent i = new Intent();
+		
+		i.putExtra(CONS.Intent.iKey_BMActv_Position, bm.getPosition());
+		
+		i.putExtra(CONS.Intent.iKey_BMActv_AI_Id, bm.getAiId());
+		
+		i.putExtra(CONS.Intent.iKey_BMActv_TableName, bm.getAiId());
 //		i.putExtra(CONS.Intent.bmactv_key_ai_id, this.getAi().getDb_id());
 //		
 //		i.putExtra(CONS.Intent.bmactv_key_table_name, this.getAi().getTable_name());
-//		
-//		setResult(CONS.Intent.RESULT_CODE_SEE_BOOKMARKS_OK, i);
-//		
-//		/***************************************
-//		 * Finish
-//		 ***************************************/
-//		finish();
+		
+		setResult(CONS.Intent.RESULT_CODE_SEE_BOOKMARKS_OK, i);
+		
+		/***************************************
+		 * Finish
+		 ***************************************/
+		finish();
+		
+		overridePendingTransition(0, 0);
 		
 	}//onListItemClick(ListView l, View v, int position, long id)
 
