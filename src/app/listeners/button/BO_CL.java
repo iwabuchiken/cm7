@@ -259,17 +259,21 @@ public class BO_CL implements OnClickListener {
 		
 		} else if (!CONS.PlayActv.mp.isPlaying()) {//if (PlayActv.mp == null)
 			
-			// Log
-			String msg_Log = "Player => not playing";
-			Log.d("BO_CL.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", msg_Log);
+			_case_PlayActv_Add_BM__NotPlaying();
 			
-			// Log
-			msg_Log = "position => " + CONS.PlayActv.mp.getCurrentPosition();
-			Log.d("BO_CL.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", msg_Log);
+//			// Log
+//			String msg_Log = "Player => not playing";
+//			Log.d("BO_CL.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
+//			
+//			// Log
+//			msg_Log = "position => " + CONS.PlayActv.mp.getCurrentPosition();
+//			Log.d("BO_CL.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
+			
+			
 			
 			
 		} else {//if (PlayActv.mp == null)
@@ -379,12 +383,114 @@ public class BO_CL implements OnClickListener {
 		
 	}//case_PlayActv_Add_BM
 
+	private void
+	_case_PlayActv_Add_BM__NotPlaying() {
+		// TODO Auto-generated method stub
+		// Log
+		String msg_Log = "Player => not playing";
+		Log.d("BO_CL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+
+		String currentPosition = 
+				CONS.PlayActv.tvCurrentPosition.getText().toString();
+		
+		// Log
+		msg_Log = "position => " + currentPosition;
+		Log.d("BO_CL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		long currentPosition_long = 
+						Methods.conv_ClockLabel_to_MillSec(currentPosition);
+		
+		if (currentPosition_long == 0) {
+			
+			// Log
+			msg_Log = "Current position => at 0";
+			Log.d("BO_CL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			// debug
+			Toast.makeText(actv, msg_Log, Toast.LENGTH_SHORT).show();
+			
+			return;
+			
+		}
+		
+		/***************************************
+		 * Get: Table name and db id of the ai instance
+		 ***************************************/
+		String tableName = ai.getTable_name();
+		long aiDbId = ai.getDb_id();
+		
+		// Log
+		Log.d("BO_CL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]",
+				"tableName=" + tableName
+				+ "/"
+				+ "aiDbId=" + aiDbId);
+		
+		/***************************************
+		 * Insert BM data into db
+		 * 1. Build a BM instance
+		 * 2. Insert data using the instance
+		 ***************************************/
+		/***************************************
+		 * 1. Build a BM instance
+		 ***************************************/
+		BM bm = new BM.Builder()
+					.setPosition(currentPosition)
+					.setTitle(ai.getTitle())
+					.setMemo(ai.getMemo())
+					.setAiId(ai.getDb_id())
+					.setAiTableName(ai.getTable_name())
+					.build();
+		
+		/***************************************
+		 * 2. Insert data using the instance
+		 ***************************************/
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		boolean res = dbu.insertData_BM(actv, bm);
+		
+		if (res == true) {
+		
+			// Log
+			Log.d("BO_CL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "res=" + res);
+			
+			// debug
+			Toast.makeText(actv, "Bookmark inserted", Toast.LENGTH_LONG).show();
+			
+		} else {//if (res == true)
+
+			// Log
+			Log.d("BO_CL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "res=" + res);
+
+		}//if (res == true)			
+		
+	}//_case_PlayActv_Add_BM__NotPlaying()
+
 	private void _case_PlayActv_Add_BM__Playing() {
 		// TODO Auto-generated method stub
 		/***************************************
 		 * Get: Current position
 		 ***************************************/
-		int currentPosition = CONS.PlayActv.mp.getCurrentPosition();
+//		int currentPosition = CONS.PlayActv.mp.getCurrentPosition();
+		String currentPosition = 
+				Methods.conv_MillSec_to_ClockLabel(
+						CONS.PlayActv.mp.getCurrentPosition());
 		
 		// Log
 		Log.d("BO_CL.java" + "["

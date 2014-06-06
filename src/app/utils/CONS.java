@@ -188,7 +188,8 @@ public class CONS {
 		};
 
 		public static final String[] col_types_BM = {
-			"INTEGER", "INTEGER",			// 0,1
+//			"INTEGER", "INTEGER",			// 0,1
+			"INTEGER", "TEXT",			// 0,1
 			"TEXT", "TEXT", "TEXT"			// 2,3,4
 		};
 

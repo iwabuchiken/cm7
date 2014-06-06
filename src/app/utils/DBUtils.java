@@ -1909,6 +1909,8 @@ public class DBUtils extends SQLiteOpenHelper{
 				"BM inserted: AiID = "
 				+ bm.getAiId());
 			
+			wdb.close();
+			
 			return true;
 			
 		} catch (Exception e) {
@@ -1916,6 +1918,8 @@ public class DBUtils extends SQLiteOpenHelper{
 			Log.e("DBUtils.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", "Exception! => " + e.toString());
+			
+			wdb.close();
 			
 			return false;
 			

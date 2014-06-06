@@ -2,7 +2,8 @@ package app.items;
 
 public class BM {
 
-	long	position;
+//	long	position;
+	String	position;
 	String	title;
 	String	memo;
 	long	aiId;
@@ -30,7 +31,7 @@ public class BM {
 
 
 
-	public long getPosition() {
+	public String getPosition() {
 		return position;
 	}
 
@@ -50,7 +51,7 @@ public class BM {
 		return aiTableName;
 	}
 
-	public void setPosition(long point) {
+	public void setPosition(String point) {
 		this.position = point;
 	}
 
@@ -72,7 +73,7 @@ public class BM {
 	
 	public static class Builder {
 
-		private long	position;
+		private String	position;
 		private String	title;
 		private String	memo;
 		private long	aiId;
@@ -86,7 +87,7 @@ public class BM {
 
 
 
-		public Builder setPosition(long val) {
+		public Builder setPosition(String val) {
 			position = val;	return this;
 		}
 
