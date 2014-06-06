@@ -16,6 +16,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import app.utils.CONS;
+import app.utils.DBUtils;
+import app.utils.Methods;
 
 public class BMActv extends ListActivity {
 
@@ -36,9 +39,105 @@ public class BMActv extends ListActivity {
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", "onCreate()");
+
+		////////////////////////////////
+
+		// Get: AI
+
+		////////////////////////////////
+		_onCreate_GetAI();
 		
+		////////////////////////////////
+
+		// Setup: view: textviews
+
+		////////////////////////////////
+		_onCreate_Setup_Textviews();
 
 	}//protected void onCreate(Bundle savedInstanceState)
+
+	private void _onCreate_Setup_Textviews() {
+		// TODO Auto-generated method stub
+		/***************************************
+		 * Set: File name
+		 ***************************************/
+		TextView tvFileName = (TextView) findViewById(R.id.actv_bm_tv_file_name);
+		
+		tvFileName.setText(CONS.BMActv.ai.getFile_name());
+		
+		/***************************************
+		 * Set: Memo
+		 ***************************************/
+		TextView tvTitle = (TextView) findViewById(R.id.actv_bm_tv_title);
+		
+		tvTitle.setText(CONS.BMActv.ai.getTitle());
+		
+	}
+
+	private boolean _onCreate_GetAI() {
+		// TODO Auto-generated method stub
+		/***************************************
+		 * Get: db id
+		 ***************************************/
+		Intent i = this.getIntent();
+		
+		long aiDbId = i.getLongExtra(
+							CONS.Intent.iKey_BMActv_AI_Id, 
+							CONS.Intent.dflt_LongExtra_value);
+		
+		if (aiDbId == CONS.Intent.dflt_LongExtra_value) {
+			
+			// Log
+			Log.e("BMActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "aiDbId = " + CONS.Intent.dflt_LongExtra_value);
+			
+			return false;
+			
+		}//if (aiDbId == -1)
+		
+		/***************************************
+		 * Get: Table name
+		 ***************************************/
+		String tableName = i.getStringExtra(CONS.Intent.iKey_BMActv_TableName);
+		
+		// Log
+		Log.d("BMActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "aiDbId=" + aiDbId);
+		
+		// Log
+		Log.d("BMActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "tableName=" + tableName);
+		
+		/***************************************
+		 * Build an AI instance
+		 ***************************************/
+		CONS.BMActv.ai = DBUtils.find_AI_ById(this, aiDbId, tableName);
+//		AI ai = Methods..get_data_ai(this, aiDbId, tableName);
+		
+		/******************************
+			validate
+		 ******************************/
+		if (CONS.BMActv.ai == null) {
+			
+			return false;
+			
+		} else {
+			
+			return true;
+
+		}
+		
+	}//private boolean _onCreate_GetAI()
+	
 
 	@Override
 	protected void onDestroy() {

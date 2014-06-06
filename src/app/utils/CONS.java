@@ -87,6 +87,7 @@ public class CONS {
 		public static String iKey_BMActv_TableName = "bmactv_key_table_name";
 		
 		public static String bmactv_key_position = "bmactv_key_position";
+//		public static String bmactv_key_position = "bmactv_key_position";
 		
 		/***************************************
 		 * Request codes
@@ -297,6 +298,12 @@ public class CONS {
 		
 	}
 
+	public static class BMActv {
+		
+		public static AI ai;
+		
+	}
+	
 	public static class ALActv {
 		
 		public static String currentPath;
