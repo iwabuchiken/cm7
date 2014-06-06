@@ -1149,7 +1149,7 @@ public class DBUtils extends SQLiteOpenHelper{
 	}//public int getNumOfEntries_BM(Activity actv, String table_name, long aiDbId)
 
 	
-	public boolean deleteData_bm(Activity actv, long dbId) {
+	public boolean deleteData_BM(Activity actv, long dbId) {
 		/*----------------------------
 		 * Steps
 		 * 1. Item exists in db?

@@ -55,7 +55,7 @@ LOI_LCL implements OnItemLongClickListener {
 
 			BM bm = (BM) parent.getItemAtPosition(position);
 			
-			case_actv_bm_lv(bm);
+			case_BMActv_lv(bm);
 			
 			break;// case actv_bm_lv
 			
@@ -68,7 +68,7 @@ LOI_LCL implements OnItemLongClickListener {
 		
 	}//onItemLongClick (AdapterView<?> parent, View v, int position, long id)
 
-	private void case_actv_bm_lv(BM bm) {
+	private void case_BMActv_lv(BM bm) {
 		/***************************************
 		 * Show dialog
 		 ***************************************/

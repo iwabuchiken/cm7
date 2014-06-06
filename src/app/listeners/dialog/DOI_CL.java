@@ -19,6 +19,7 @@ import android.widget.Toast;
 import app.items.BM;
 import app.utils.CONS;
 import app.utils.Methods;
+import app.utils.Methods_dlg;
 import app.utils.Tags;
 
 public class DOI_CL implements OnItemClickListener {
@@ -92,13 +93,22 @@ public class DOI_CL implements OnItemClickListener {
 			
 			break;// case dlg_add_memos_gv
 
+		case dlg_bmactv_list_long_click://----------------------------------------------
+			
+			item = (String) parent.getItemAtPosition(position);
+			
+			case_Dlg_BMActv_LongClick(item);
+			
+			break;// case dlg_bmactv_list_long_click
+			
 		default:
 			break;
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
 
-	private void case_Dlg_Db_Admin_lv(String item) {
+	private void
+	case_Dlg_Db_Admin_lv(String item) {
 		// TODO Auto-generated method stub
 		////////////////////////////////
 
@@ -157,7 +167,30 @@ public class DOI_CL implements OnItemClickListener {
 		
 		dlg1.dismiss();
 		
+	}//case_Dlg_Db_Admin_lv(String item)
+
+	private void
+//		case_dlg_bmactv_list_long_click(String item) {
+	case_Dlg_BMActv_LongClick(String item) {
+		// TODO Auto-generated method stub
+		if (item.equals(actv.getString(R.string.generic_tv_edit))) {	// Edit
+			
+//			// debug
+//			Toast.makeText(actv, "Edit", Toast.LENGTH_LONG).show();
+			
+//			bmactv_editItem(bm);
+			
+		} else if (item.equals(actv.getString(R.string.generic_tv_delete))) {
+	
+			Methods_dlg.conf_DeleteBM(actv, dlg1, bm);
+//			bmactv_deleteItem(bm);
+//			CONS.BMActv.bmList.remove(bm);
+//			
+//			CONS.BMActv.adpBML.notifyDataSetChanged();
+			
+		}//if (item.equals(actv.getString(R.string.generic_tv_edit)))
 		
-	}
+		
+	}//case_Dlg_BMActv_LongClick(String item)
 
 }//public class DialogOnItemClickListener implements OnItemClickListener

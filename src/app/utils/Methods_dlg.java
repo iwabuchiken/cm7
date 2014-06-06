@@ -26,6 +26,7 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import app.items.BM;
 import app.listeners.dialog.DB_OCL;
 import app.listeners.dialog.DB_OTL;
 import app.listeners.dialog.DOI_CL;
@@ -152,6 +153,80 @@ public class Methods_dlg {
 		return dlg;
 	
 	}//public static Dialog dlg_template_okCancel()
+
+	public static void
+	conf_DeleteBM(Activity actv, Dialog dlg1, BM bm) {
+		// TODO Auto-generated method stub
+//		Dialog dlg = Methods_dlg.dlg_Template_Cancel(
+//				actv, R.layout.dlg_tmpl_list_cancel, 
+//				R.string.dlg_db_admin_title, 
+//				R.id.dlg_tmpl_list_cancel_bt_cancel, 
+////				R.id.dlg_db_admin_bt_cancel, 
+//				Tags.DialogTags.dlg_generic_dismiss);
+		
+		Dialog dlg2 = new Dialog(actv);
+		
+		//
+		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple);
+//		dlg2.setContentView(R.layout.dlg_confirm_remove_folder);
+		
+		// Title
+		dlg2.setTitle(R.string.generic_tv_confirm);
+
+		////////////////////////////////
+
+		// Set: Message
+
+		////////////////////////////////
+		TextView tv_Message = (TextView) dlg2.findViewById(
+							R.id.dlg_tmpl_confirm_simple_tv_message);
+		
+		tv_Message.setText(actv.getString(R.string.dlg_conf_delete_bm_tv_message));
+
+		////////////////////////////////
+
+		// Set: BM position
+
+		////////////////////////////////
+		TextView tv_BM_Position = (TextView) dlg2.findViewById(
+							R.id.dlg_tmpl_confirm_simple_tv_item_name);
+
+		tv_BM_Position.setText(bm.getPosition());
+
+		////////////////////////////////
+
+		// Add listeners => OnTouch
+
+		////////////////////////////////
+		Button btn_ok = (Button) dlg2.findViewById(
+								R.id.dlg_tmpl_confirm_simple_btn_ok);
+		
+		Button btn_cancel = (Button) dlg2.findViewById(
+								R.id.dlg_tmpl_confirm_simple_btn_cancel);
+		
+		//
+		btn_ok.setTag(Tags.DialogTags.dlg_conf_delete_BM_ok);
+		btn_cancel.setTag(Tags.DialogTags.dlg_generic_dismiss_second_dialog);
+		
+		//
+		btn_ok.setOnTouchListener(new DB_OTL(actv, dlg2));
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg2));
+		
+		/****************************
+		 * 4. Add listeners => OnClick
+			****************************/
+		//
+		btn_ok.setOnClickListener(new DB_OCL(actv, dlg1, dlg2, bm));
+		btn_cancel.setOnClickListener(new DB_OCL(actv, dlg1, dlg2));
+		
+		/****************************
+		 * 5. Show dialog
+			****************************/
+		dlg2.show();
+		
+		
+		
+	}//conf_DeleteBM(Activity actv, Dialog dlg1, BM bm)
 
 	
 }//public class Methods_dialog

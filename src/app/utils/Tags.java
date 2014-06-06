@@ -4,7 +4,8 @@ public class Tags {
 
 	public static enum DialogTags {
 		// Generics
-		dlg_generic_dismiss, dlg_generic_dismiss_second_dialog, dlg_generic_dismiss_third_dialog,
+		dlg_generic_dismiss, dlg_generic_dismiss_second_dialog,
+		dlg_generic_dismiss_third_dialog,
 		
 		
 		// dlg_create_folder.xml
@@ -67,6 +68,8 @@ public class Tags {
 		// dlg_edit_item.xml
 		dlg_edit_item_bt_ok,
 		
+		// dlg: confirm delete BM
+		dlg_conf_delete_BM_ok,
 		
 	}//public static enum DialogTags
 	

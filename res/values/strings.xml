@@ -58,5 +58,8 @@
 
     <!-- dlg_bmactv_list_long_click -->
   		<string name="dlg_bmactv_list_long_click_title">Bookmark</string>
-  								
+
+  	<!-- dialog: delete BM -->
+		<string name="dlg_conf_delete_bm_tv_message">Delete BM?</string>
+		
 </resources>
