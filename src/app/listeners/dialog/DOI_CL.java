@@ -127,6 +127,16 @@ public class DOI_CL implements OnItemClickListener {
 			
 			Methods.drop_Table(actv, CONS.DB.tname_RefreshHistory);
 			
+		} else if (item.equals(actv.getString(		// Create table: refresh_history
+				R.string.dlg_db_admin_item_create_table_bm))) {
+			
+			Methods.create_Table(actv, CONS.DB.tname_BM);
+			
+		} else if (item.equals(actv.getString(		// Drop table: refresh_history
+				R.string.dlg_db_admin_item_drop_table_bm))) {
+			
+			Methods.drop_Table(actv, CONS.DB.tname_BM);
+			
 		} else {
 
 		}

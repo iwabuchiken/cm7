@@ -36,6 +36,12 @@
    	    									Drop table: refresh_history</string>
    	<string name="dlg_db_admin_item_create_table_refresh_history">
    	    									Create table: refresh_history</string>
+   	    									
+   	<string name="dlg_db_admin_item_drop_table_bm">
+   	    									Drop table: bm</string>
+   	<string name="dlg_db_admin_item_create_table_bm">
+   	    									Create table: bm</string>
+   	    									
     <!-- ALActv.java -->
     	<string name="al_actv_menu_move_mode">Move mode</string>
     	<string name="al_actv_menu_move_files">Move</string>

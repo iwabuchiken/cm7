@@ -60,6 +60,9 @@ public class Methods_dlg {
 				actv.getString(R.string.dlg_db_admin_item_create_table_cm7),
 				actv.getString(R.string.dlg_db_admin_item_drop_table_refresh_history),
 				actv.getString(R.string.dlg_db_admin_item_create_table_refresh_history),
+				
+				actv.getString(R.string.dlg_db_admin_item_drop_table_bm),
+				actv.getString(R.string.dlg_db_admin_item_create_table_bm),
 //					actv.getString(R.string.dlg_db_admin_item_refresh_db)
 					};
 		

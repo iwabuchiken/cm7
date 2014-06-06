@@ -347,6 +347,18 @@ public class PlayActv extends Activity {
 		
 		////////////////////////////////
 
+		// "Add bookmark"
+
+		////////////////////////////////
+		Button btAddBM = (Button) findViewById(R.id.actv_play_bt_add_bm);
+		
+		btAddBM.setTag(Tags.ButtonTags.actv_play_bt_add_bm);
+		
+		btAddBM.setOnTouchListener(new BO_TL(this));
+		btAddBM.setOnClickListener(new BO_CL(this, CONS.PlayActv.ai));
+		
+		////////////////////////////////
+
 		// SeekBar
 
 		////////////////////////////////

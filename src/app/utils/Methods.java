@@ -1178,6 +1178,28 @@ public class Methods {
 				
 			}
 			
+		} else if (tname.equals(CONS.DB.tname_BM)) {
+			
+			res = dbu.createTable(actv, 
+					CONS.DB.tname_BM, CONS.DB.col_names_BM, 
+					CONS.DB.col_types_BM);
+			
+			if (res == true) {
+				
+				// debug
+				String msg_Toast = "Table => created: " + CONS.DB.tname_BM;
+				Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+				
+				
+			} else {
+				
+				// debug
+				String msg_Toast = "Table => can't create: " 
+						+ CONS.DB.tname_BM;
+				Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+				
+			}
+			
 		} else {
 			
 

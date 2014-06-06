@@ -175,18 +175,21 @@ public class CONS {
 		////////////////////////////////
 		public static final String tname_BM = "bm";
 
-		public static final String[] cols_bm = {
-			"ai_id", "position", "title", "memo", "aiTableName"
+		public static final String[] col_names_BM = {
+			"ai_id", "position", 			// 0,1
+			"title", "memo", "aiTableName"	// 2,3,4
 		};
 		
-		public static final String[] cols_bm_full = {
-			android.provider.BaseColumns._ID,
-			"created_at", "modified_at",
-			"ai_id", "position", "title", "memo", "aiTableName"
+		public static final String[] col_names_BM_full = {
+			android.provider.BaseColumns._ID,		// 0
+			"created_at", "modified_at",			// 1,2
+			"ai_id", "position",					// 3,4
+			"title", "memo", "aiTableName"			// 5,6,7
 		};
 
-		public static final String[] col_types_bm = {
-			"INTEGER", "INTEGER", "TEXT", "TEXT", "TEXT"
+		public static final String[] col_types_BM = {
+			"INTEGER", "INTEGER",			// 0,1
+			"TEXT", "TEXT", "TEXT"			// 2,3,4
 		};
 
 		////////////////////////////////

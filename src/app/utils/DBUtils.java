@@ -26,6 +26,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.items.AI;
+import app.items.BM;
 import app.items.Refresh;
 
 /****************************************
@@ -1130,7 +1131,7 @@ public class DBUtils extends SQLiteOpenHelper{
 			
 		} catch (Exception e) {
 			// Log
-			Log.d("Methods.java" + "["
+			Log.e("Methods.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "Exception => " + e.toString());
 			
@@ -1195,7 +1196,7 @@ public class DBUtils extends SQLiteOpenHelper{
 		String sql = 
 						"DELETE FROM " + CONS.DB.tname_BM
 						+ " WHERE "
-						+ CONS.DB.cols_bm_full[0] + " = '"
+						+ CONS.DB.col_names_BM_full[0] + " = '"
 						+ String.valueOf(dbId) + "'";
 		
 		try {
@@ -1234,7 +1235,7 @@ public class DBUtils extends SQLiteOpenHelper{
 		String sql = "SELECT COUNT(*) FROM "
 					+ CONS.DB.tname_BM
 					+ " WHERE "
-					+ CONS.DB.cols_bm_full[0] + " = '"
+					+ CONS.DB.col_names_BM_full[0] + " = '"
 					+ String.valueOf(dbId) + "'";
 
 //		long result = DatabaseUtils.longForQuery(db, sql, null);
@@ -1845,6 +1846,82 @@ public class DBUtils extends SQLiteOpenHelper{
 		return ai;
 		
 	}//find_AI
+
+	public boolean insertData_BM(Activity actv, BM bm) {
+		// TODO Auto-generated method stub
+		SQLiteDatabase wdb = this.getWritableDatabase();
+		
+		try {
+			// Start transaction
+			wdb.beginTransaction();
+			
+			// ContentValues
+			ContentValues val = new ContentValues();
+
+//			"ai_id", "position", "title", "memo", "aiTableName"
+//			val.put(android.provider.BaseColumns._ID, ai.getDb_id());
+			
+			val.put("created_at", 
+					Methods.conv_MillSec_to_TimeLabel(
+							Methods.getMillSeconds_now()));
+			
+			val.put("modified_at", 
+					Methods.conv_MillSec_to_TimeLabel(
+							Methods.getMillSeconds_now()));
+//			val.put("created_at", Methods.getMillSeconds_now());
+//			val.put("modified_at", Methods.getMillSeconds_now());
+			
+			val.put("ai_id", bm.getAiId());
+			val.put("position", bm.getPosition());
+			
+			val.put("title", bm.getTitle());
+			val.put("memo", bm.getMemo());
+			
+			val.put("aiTableName", bm.getAiTableName());
+			
+			// Insert data
+			long res = wdb.insert(CONS.DB.tname_BM, null, val);
+			
+			// Set as successful
+			if (res != -1) {
+				
+				wdb.setTransactionSuccessful();
+				
+			} else {
+
+				// Log
+				String msg_Log = "Insertion => failed: getAiId() = "
+								+ bm.getAiId();
+				Log.d("DBUtils.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+			}
+			
+			// End transaction
+			wdb.endTransaction();
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]",
+				"BM inserted: AiID = "
+				+ bm.getAiId());
+			
+			return true;
+			
+		} catch (Exception e) {
+			// Log
+			Log.e("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", "Exception! => " + e.toString());
+			
+			return false;
+			
+		}//try
+		
+	}//public boolean insertData_bm(Activity actv, BM bm)
 
 }//public class DBUtils
 

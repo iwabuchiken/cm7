@@ -104,20 +104,22 @@ public final class R {
         public static final int menu_main=0x7f070002;
     }
     public static final class string {
-        public static final int actv_play_bt_add_bm=0x7f05001c;
+        public static final int actv_play_bt_add_bm=0x7f05001e;
         /**  actv_play.xml 
          */
-        public static final int actv_play_bt_play=0x7f05001a;
-        public static final int actv_play_bt_see_bm=0x7f05001d;
-        public static final int actv_play_bt_stop=0x7f05001b;
-        public static final int al_actv_menu_move_files=0x7f050019;
+        public static final int actv_play_bt_play=0x7f05001c;
+        public static final int actv_play_bt_see_bm=0x7f05001f;
+        public static final int actv_play_bt_stop=0x7f05001d;
+        public static final int al_actv_menu_move_files=0x7f05001b;
         /**  ALActv.java 
          */
-        public static final int al_actv_menu_move_mode=0x7f050018;
+        public static final int al_actv_menu_move_mode=0x7f05001a;
         public static final int app_name=0x7f050000;
         public static final int dlg_db_admin_item_backup_db=0x7f050010;
+        public static final int dlg_db_admin_item_create_table_bm=0x7f050019;
         public static final int dlg_db_admin_item_create_table_cm7=0x7f050015;
         public static final int dlg_db_admin_item_create_table_refresh_history=0x7f050017;
+        public static final int dlg_db_admin_item_drop_table_bm=0x7f050018;
         public static final int dlg_db_admin_item_drop_table_cm7=0x7f050014;
         public static final int dlg_db_admin_item_drop_table_refresh_history=0x7f050016;
         public static final int dlg_db_admin_item_exec_sql=0x7f050012;
@@ -145,7 +147,7 @@ public final class R {
         public static final int main_tv_dir_path=0x7f05000d;
         /**  menu_actv_play.xml 
          */
-        public static final int menu_actv_play_register_pattern=0x7f05001e;
+        public static final int menu_actv_play_register_pattern=0x7f050020;
         /**  menu_main.xml 
          */
         public static final int opt_menu_main_db=0x7f05000e;
