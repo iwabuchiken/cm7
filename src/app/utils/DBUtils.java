@@ -1927,5 +1927,120 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//public boolean insertData_bm(Activity actv, BM bm)
 
+	public List<BM> get_BMList(Activity actv, long aiDbId) {
+		
+		SQLiteDatabase rdb = this.getReadableDatabase();
+
+		Cursor c = null;
+		
+//		col_names_BM_full
+//		android.provider.BaseColumns._ID,		// 0
+//		"created_at", "modified_at",			// 1,2
+//		"ai_id", "position",					// 3,4
+//		"title", "memo", "aiTableName"			// 5,6,7
+		
+		try {
+			
+			c = rdb.query(
+							CONS.DB.tname_BM,
+//							CONS.DBAdmin.col_purchaseSchedule,
+//							CONS.DB.cols_bm,
+							CONS.DB.col_names_BM_full,
+//							CONS.DB.cols_bm_full,
+//							CONS.DB.cols_bm[0], new String[]{String.valueOf(aiDbId)},
+							CONS.DB.col_names_BM_full[3] + " = ?", 
+//							CONS.DB.col_names_BM_full[0] + " = ?", 
+							new String[]{String.valueOf(aiDbId)},
+							null, null, null);
+			
+		} catch (Exception e) {
+
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", e.toString());
+			
+			rdb.close();
+			
+			return null;
+			
+		}//try
+		
+		/***************************************
+		 * Validate
+		 * 	Cursor => Null?
+		 * 	Entry => 0?
+		 ***************************************/
+		if (c == null) {
+			
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "Query failed");
+			
+			rdb.close();
+			
+			return null;
+			
+		} else if (c.getCount() < 1) {//if (c == null)
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "No entry in the table");
+			
+			rdb.close();
+			
+			return null;
+			
+		}//if (c == null)
+		
+		/***************************************
+		 * Build list
+		 ***************************************/
+		c.moveToFirst();
+		
+		List<BM> bmList = new ArrayList<BM>();
+		
+//		col_names_BM_full
+//		android.provider.BaseColumns._ID,		// 0
+//		"created_at", "modified_at",			// 1,2
+//		"ai_id", "position",					// 3,4
+//		"title", "memo", "aiTableName"			// 5,6,7
+		
+		for (int i = 0; i < c.getCount(); i++) {
+//			"ai_id", "position", "title", "memo", "aiTableName"
+			BM bm = new BM.Builder()
+				.setPosition(c.getString(c.getColumnIndex("position")))
+				.setTitle(c.getString(c.getColumnIndex("title")))
+				.setMemo(c.getString(c.getColumnIndex("memo")))
+				.setAiId(c.getLong(c.getColumnIndex("ai_id")))
+				.setAiTableName(c.getString(c.getColumnIndex("aiTableName")))
+				
+				.setDbId(c.getLong(c.getColumnIndex(
+									android.provider.BaseColumns._ID)))
+//				.setDbId(c.getLong(c.getColumnIndex(CONS.DB.cols_bm_full[0])))
+				.build();
+
+			bmList.add(bm);
+			
+			c.moveToNext();
+			
+		}//for (int i = 0; i < c.getCount(); i++)
+		
+		
+		rdb.close();
+		
+		return bmList;
+		
+	}//public List<BM> getBMList(Activity actv)
+
+	
 }//public class DBUtils
 

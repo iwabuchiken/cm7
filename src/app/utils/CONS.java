@@ -12,8 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import app.adapters.Adp_AIList;
+import app.adapters.Adp_BMList;
 import app.adapters.Adp_MainList;
 import app.items.AI;
+import app.items.BM;
 
 public class CONS {
 
@@ -302,6 +304,15 @@ public class CONS {
 		
 		public static AI ai;
 		
+		public static List<BM> bmList;
+		
+		public static enum SortOrder {
+			
+			POSITION,
+			
+		}
+		
+		public static Adp_BMList aAdapter;
 	}
 	
 	public static class ALActv {
@@ -415,7 +426,7 @@ public class CONS {
 		
 		public static enum SortType {
 			
-			FileName,
+			FileName, Position,
 			
 		}
 

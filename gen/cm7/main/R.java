@@ -72,22 +72,25 @@ public final class R {
         public static final int actv_play_tv_length=0x7f080013;
         public static final int actv_play_tv_memo=0x7f08000e;
         public static final int actv_play_tv_title=0x7f08000c;
-        public static final int al_actv_menu_move_files=0x7f080026;
-        public static final int al_actv_menu_move_mode=0x7f080025;
+        public static final int al_actv_menu_move_files=0x7f080029;
+        public static final int al_actv_menu_move_mode=0x7f080028;
         public static final int dlg_tmpl_list_cancel_bt_cancel=0x7f080018;
         public static final int dlg_tmpl_list_cancel_lv=0x7f080017;
         public static final int list_row_ai_list_tv_file_length=0x7f08001b;
         public static final int list_row_ai_list_tv_file_name=0x7f08001a;
         public static final int list_row_ai_list_tv_title=0x7f08001c;
         public static final int list_row_slimple_1_tv=0x7f08001d;
-        public static final int main_LL_buttons=0x7f080020;
-        public static final int main_bt_back=0x7f080021;
-        public static final int main_bt_forward=0x7f080023;
-        public static final int main_bt_up=0x7f080022;
-        public static final int main_sv_dir_path=0x7f08001e;
-        public static final int main_tv_dir_path=0x7f08001f;
-        public static final int menu_actv_play_register_pattern=0x7f080024;
-        public static final int opt_menu_main_db=0x7f080027;
+        public static final int listrow_actv_bm_tv_memo=0x7f080020;
+        public static final int listrow_actv_bm_tv_point=0x7f08001e;
+        public static final int listrow_actv_bm_tv_title=0x7f08001f;
+        public static final int main_LL_buttons=0x7f080023;
+        public static final int main_bt_back=0x7f080024;
+        public static final int main_bt_forward=0x7f080026;
+        public static final int main_bt_up=0x7f080025;
+        public static final int main_sv_dir_path=0x7f080021;
+        public static final int main_tv_dir_path=0x7f080022;
+        public static final int menu_actv_play_register_pattern=0x7f080027;
+        public static final int opt_menu_main_db=0x7f08002a;
     }
     public static final class layout {
         public static final int actv_al=0x7f030000;
@@ -96,7 +99,8 @@ public final class R {
         public static final int dlg_tmpl_list_cancel=0x7f030003;
         public static final int list_row_ai_list=0x7f030004;
         public static final int list_row_simple_1=0x7f030005;
-        public static final int main=0x7f030006;
+        public static final int listrow_actv_bm=0x7f030006;
+        public static final int main=0x7f030007;
     }
     public static final class menu {
         public static final int menu_actv_play=0x7f070000;

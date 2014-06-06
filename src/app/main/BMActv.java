@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import app.adapters.Adp_BMList;
 import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
@@ -54,7 +55,86 @@ public class BMActv extends ListActivity {
 		////////////////////////////////
 		_onCreate_Setup_Textviews();
 
+		////////////////////////////////
+
+		// BM list
+
+		////////////////////////////////
+		_onCreate_Set_BMList();
+		
 	}//protected void onCreate(Bundle savedInstanceState)
+
+	private boolean _onCreate_Set_BMList() {
+		// TODO Auto-generated method stub
+		DBUtils dbu = new DBUtils(this, CONS.DB.dbName);
+		
+//		List<BM> bmList = dbu.getBMList(this, ai.getDb_id());
+		CONS.BMActv.bmList = dbu.get_BMList(this, CONS.BMActv.ai.getDb_id());
+		
+		// Log
+		Log.d("BMActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "bmList=" + CONS.BMActv.bmList);
+
+		/******************************
+			validate
+		 ******************************/
+		if (CONS.BMActv.bmList == null) {
+			
+			// Log
+			String msg_Log = "CONS.BMActv.bmList => null";
+			Log.e("BMActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return false;
+			
+		}
+		
+		Methods.sort_List_BM_List(
+						CONS.BMActv.bmList, 
+						CONS.Enums.SortType.Position,
+						CONS.Enums.SortOrder.ASC);
+		
+		// Log
+		String msg_Log = "bmList.size() => " + CONS.BMActv.bmList.size();
+		Log.d("BMActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+
+		////////////////////////////////
+
+		// Set the list to adapter
+
+		////////////////////////////////
+		if (CONS.BMActv.bmList != null) {
+			
+			CONS.BMActv.aAdapter = new Adp_BMList(
+					this,
+					R.layout.listrow_actv_bm,
+	//				R.layout.actv_al,
+					CONS.BMActv.bmList
+					);
+	
+			setListAdapter(CONS.BMActv.aAdapter);
+
+		} else {//if (bmList != null)
+
+			// Log
+			Log.d("BMActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "bmList => null");
+			
+		}//if (bmList != null)
+
+		
+		return true;
+		
+	}//private void _onCreate_Set_BMList()
 
 	private void _onCreate_Setup_Textviews() {
 		// TODO Auto-generated method stub

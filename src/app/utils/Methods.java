@@ -61,6 +61,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.os.AsyncTask;
 import app.items.AI;
+import app.items.BM;
 import app.items.Refresh;
 import app.listeners.MP_OCmpL;
 import app.listeners.dialog.DL;
@@ -1404,6 +1405,17 @@ public class Methods {
 		
 		Collections.sort(ai_List, aiComp);
 
+	}//sort_List_ai_List
+	
+	public static void sort_List_BM_List
+	(List<BM> bm_List, 
+			final CONS.Enums.SortType sortType, 
+			final CONS.Enums.SortOrder sortOrder) {
+		
+		Comp_BM bmComp = new Comp_BM(bm_List, sortType, sortOrder);
+		
+		Collections.sort(bm_List, bmComp);
+		
 	}//sort_List_ai_List
 
 	public static void
