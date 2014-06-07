@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import app.items.AI;
 import app.items.BM;
@@ -156,11 +157,86 @@ public class DB_OCL implements OnClickListener {
 			
 			break;
 			
+		case DLG_PLAYACTV_EDIT_TITLE_BT_OK://------------------------------------------------
+			
+			CONS.Admin.vib.vibrate(CONS.Admin.vibLength_click);
+			
+			dlg_PlayActv_Edit_AI_Title_Ok();
+			
+			break;
+			
 			
 		default: // ----------------------------------------------------
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void dlg_PlayActv_Edit_AI_Title_Ok() {
+		// TODO Auto-generated method stub
+		// - Update: TextView
+		// - Update: DB entry
+		////////////////////////////////
+
+		// TextView
+
+		////////////////////////////////
+		TextView tv_Title = (TextView) actv.findViewById(R.id.actv_play_tv_title);
+
+		EditText et_Title = (EditText) dlg1.findViewById(
+					R.id.dlg_edit_ai_title_et_content);
+		
+		tv_Title.setText(et_Title.getText().toString());
+		
+		// Log
+		String msg_Log = "New text => set";
+		Log.d("DB_OCL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+
+		// DB
+
+		////////////////////////////////
+		ai.setTitle(tv_Title.getText().toString());
+		
+//		col_names_CM7
+//		"file_name", "file_path",	// 0, 1
+//		"title", "memo",			// 2, 3
+//		"last_played_at",			// 4
+//		"table_name",				// 5
+//		"length",					// 6
+//		"audio_created_at"			// 7
+		
+		boolean res = DBUtils.update_Data_AI(actv, 
+								CONS.DB.dbName, 
+								ai.getTable_name(), 
+								ai.getDb_id(), 
+								CONS.DB.col_names_CM7[2], 
+								ai.getTitle());
+		
+		if (res == true) {
+			
+			// debug
+			String msg_Toast = "Title => updated";
+			Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+			
+			////////////////////////////////
+			
+			// Dialog
+			
+			////////////////////////////////
+			dlg1.dismiss();
+			
+		} else {
+			
+			// debug
+			String msg_Toast = "Title => can't be updated";
+			Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+
+		}
+		
+	}//private void dlg_PlayActv_Edit_AI_Title_Ok()
 
 	private void dlg_Edit_BM_Ok() {
 		// TODO Auto-generated method stub

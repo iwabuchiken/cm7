@@ -881,9 +881,11 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//public boolean insert_data_refresh_history
 
-	
+	/******************************
+		@return true => update successful
+	 ******************************/
 	public static boolean
-	update_data_ai
+	update_Data_AI
 	(Activity actv, String dbName, String tableName,
 			long db_id, String col_name, String value) {
 		/*********************************

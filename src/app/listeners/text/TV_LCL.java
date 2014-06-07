@@ -77,7 +77,7 @@ public class TV_LCL implements OnLongClickListener {
 		
 		String currentTitle = tv_Title.getText().toString();
 		
-		Methods_dlg.dlg_EditTitle(actv, ai, currentTitle);
+		Methods_dlg.dlg_PlayActv_EditTitle(actv, ai, currentTitle);
 		
 //		// Log
 //		String msg_Log = "currentTitle" + currentTitle;

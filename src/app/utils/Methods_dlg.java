@@ -405,7 +405,7 @@ public class Methods_dlg {
 	}//public static Dialog dlg_template_okCancel_SecondDialog()
 
 	public static void
-	dlg_EditTitle
+	dlg_PlayActv_EditTitle
 	(Activity actv, AI ai, String currentTitle) {
 		// TODO Auto-generated method stub
 		
