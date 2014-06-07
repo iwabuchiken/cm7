@@ -25,6 +25,8 @@ import app.items.AI;
 import app.listeners.SBL;
 import app.listeners.button.BO_CL;
 import app.listeners.button.BO_TL;
+import app.listeners.text.TV_LCL;
+import app.listeners.text.TV_TL;
 import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
@@ -379,6 +381,20 @@ public class PlayActv extends Activity {
 		
 		CONS.PlayActv.sb.setOnSeekBarChangeListener(
 							new SBL(this, CONS.PlayActv.sb));
+		
+		////////////////////////////////
+
+		// TV: title
+
+		////////////////////////////////
+		TextView tv_Title = (TextView) findViewById(R.id.actv_play_tv_title);
+		
+		tv_Title.setTag(Tags.TVTags.PLAYACTV_TITLE);
+//		tv_Title.setTag(Tags.ButtonTags.actv_play_tv_title);
+		
+		tv_Title.setOnTouchListener(new TV_TL(this));
+		tv_Title.setOnLongClickListener(new TV_LCL(this, CONS.PlayActv.ai));
+		
 		
 	}//private void _onCreate_SetListeners()
 

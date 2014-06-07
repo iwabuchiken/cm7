@@ -185,5 +185,9 @@ public class Tags {
 		
 	}//public static enum ListTags
 
-
+	public static enum TVTags {
+		
+		// PlayActv
+		PLAYACTV_TITLE,
+	}
 }//public class Tags
