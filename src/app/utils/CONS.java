@@ -428,7 +428,7 @@ public class CONS {
 		
 		public static enum SortType {
 			
-			FileName, Position,
+			FileName, POSITION,
 			
 		}
 

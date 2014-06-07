@@ -2041,6 +2041,67 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//public List<BM> getBMList(Activity actv)
 
+	public static boolean
+	updateData_BM_TitleAndMemo
+	(Activity actv, long dbId, BM bm) {
+		// TODO Auto-generated method stub
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		SQLiteDatabase wdb = dbu.getWritableDatabase();
+		
+//		col_names_BM_full
+//		android.provider.BaseColumns._ID,		// 0
+//		"created_at", "modified_at",			// 1,2
+//		"ai_id", "position",					// 3,4
+//		"title", "memo", "aiTableName"			// 5,6,7
+		
+		String sql =
+				"UPDATE " + CONS.DB.tname_BM + " SET " + 
+				
+				CONS.DB.col_names_BM_full[5] + "='" + bm.getTitle() + "', " + 
+				CONS.DB.col_names_BM_full[6] + "='" + bm.getMemo() + "' " +
+				
+				" WHERE " + CONS.DB.col_names_BM_full[0] + " = '"
+				+ String.valueOf(bm.getDbId()) + "'";
+		
+		// Log
+		String msg_Log = "sql = " + sql;
+		Log.d("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		/***************************************
+		 * Exec: Query
+		 ***************************************/
+		try {
+			
+			wdb.execSQL(sql);
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "sql => Done: " + sql);
+			
+		//	Methods.toastAndLog(actv, "Data updated", 2000);
+
+			wdb.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception => " + e.toString() + " / " + "sql: " + sql);
+			
+			wdb.close();
+			
+			return false;
+			
+		}//try
+		
+	}//updateData_BM_TitleAndMemo
 	
 }//public class DBUtils
 

@@ -145,7 +145,7 @@ public class BMActv extends ListActivity {
 		
 		Methods.sort_List_BM_List(
 						CONS.BMActv.bmList, 
-						CONS.Enums.SortType.Position,
+						CONS.Enums.SortType.POSITION,
 						CONS.Enums.SortOrder.ASC);
 		
 		// Log

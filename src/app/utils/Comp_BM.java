@@ -35,7 +35,7 @@ public class Comp_BM implements Comparator<BM> {
 		
 		switch(sortType) {
 		
-		case Position:
+		case POSITION:
 			
 			res = _compare_Position(b1, b2);
 			

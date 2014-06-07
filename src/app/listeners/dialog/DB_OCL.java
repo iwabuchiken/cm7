@@ -1,5 +1,6 @@
 package app.listeners.dialog;
 
+import cm7.main.R;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Vibrator;
@@ -134,11 +135,89 @@ public class DB_OCL implements OnClickListener {
 			
 			break;
 			
+		case DLG_EDIT_ITEM_BT_OK://------------------------------------------------
+			
+			CONS.Admin.vib.vibrate(CONS.Admin.vibLength_click);
+			
+			dlg_Edit_BM_Ok();
+			
+			break;
+			
 			
 		default: // ----------------------------------------------------
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void dlg_Edit_BM_Ok() {
+		// TODO Auto-generated method stub
+		/***************************************
+		 * Get data
+		 ***************************************/
+		EditText etTitle = (EditText) dlg2.findViewById(R.id.dlg_edit_item_et_title);
+		EditText etMemo = (EditText) dlg2.findViewById(R.id.dlg_edit_item_et_memo);
+
+		/***************************************
+		 * Set: New data to bm instance
+		 ***************************************/
+		bm.setTitle(etTitle.getText().toString());
+		bm.setMemo(etMemo.getText().toString());
+		
+		////////////////////////////////
+
+		// Store data to db
+
+		////////////////////////////////
+//		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+////		boolean res = dbu.deleteData_bm(actv, bm.getDbId());
+		boolean res = DBUtils.updateData_BM_TitleAndMemo(
+							actv,
+							bm.getDbId(),
+							bm);
+		
+		/***************************************
+		 * Update: bmList
+		 * 1. Remove the original bm element, using bm.getDbId()
+		 * 2. Add to the list the new bm element
+		 ***************************************/
+		/***************************************
+		 * 1. Remove the original bm element, using bm.getDbId()
+		 ***************************************/
+		for (int i = 0; i < CONS.BMActv.bmList.size(); i++) {
+			
+			BM b = CONS.BMActv.bmList.get(i);
+			
+			if (b.getDbId() == bm.getDbId()) {
+				
+				CONS.BMActv.bmList.remove(b);
+				
+				CONS.BMActv.bmList.add(bm);
+
+//				Methods.sortList_BM(
+				Methods.sort_List_BM_List(
+								CONS.BMActv.bmList, 
+								CONS.Enums.SortType.POSITION,
+								CONS.Enums.SortOrder.ASC);
+//							CONS.BMActv.bmList, 
+//							CONS.BMActv.SortOrder.POSITION);
+				
+				break;
+				
+			}//if (b.getDbId() == bm.getDbId())
+			
+		}//for (int i = 0; i < CONS.BMActv.bmList.size(); i++)
+		
+		CONS.BMActv.aAdapter.notifyDataSetChanged();
+//		CONS.BMActv.adpBML.notifyDataSetChanged();
+		
+		/***************************************
+		 * If successful, close dialog
+		 ***************************************/
+		dlg2.dismiss();
+		dlg1.dismiss();
+		
+	}//private void dlg_Edit_BM_Ok()
 
 	private void dlg_Conf_Delete_BM_Ok() {
 		// TODO Auto-generated method stub
