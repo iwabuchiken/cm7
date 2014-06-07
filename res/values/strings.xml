@@ -62,4 +62,9 @@
   	<!-- dialog: delete BM -->
 		<string name="dlg_conf_delete_bm_tv_message">Delete BM?</string>
 		
+   	<!-- dlg_edit_item.xml -->
+   		<string name="dlg_edit_item_title">Edit bookmark</string>
+   		<string name="dlg_edit_item_bm_title">Title</string>
+   		<string name="dlg_edit_item_memo">Memo</string>
+				
 </resources>

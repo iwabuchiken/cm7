@@ -87,13 +87,15 @@ public class DOI_CL implements OnItemClickListener {
 			----------------------------*/
 		switch (tag) {
 		
-		case dlg_db_admin_lv://----------------------------------------------
+//		case dlg_db_admin_lv://----------------------------------------------
+		case DLG_DB_ADMIN_LV://----------------------------------------------
 			
 			case_Dlg_Db_Admin_lv(item);
 			
 			break;// case dlg_add_memos_gv
 
-		case dlg_bmactv_list_long_click://----------------------------------------------
+//		case dlg_bmactv_list_long_click://----------------------------------------------
+		case DLG_BMACTV_LIST_LONGCLICK://----------------------------------------------
 			
 			item = (String) parent.getItemAtPosition(position);
 			
@@ -177,7 +179,7 @@ public class DOI_CL implements OnItemClickListener {
 			
 //			// debug
 //			Toast.makeText(actv, "Edit", Toast.LENGTH_LONG).show();
-			
+			Methods_dlg.edit_BM(actv, dlg1, bm);
 //			bmactv_editItem(bm);
 			
 		} else if (item.equals(actv.getString(R.string.generic_tv_delete))) {

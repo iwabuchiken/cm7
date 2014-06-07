@@ -4,7 +4,7 @@ public class Tags {
 
 	public static enum DialogTags {
 		// Generics
-		dlg_generic_dismiss, dlg_generic_dismiss_second_dialog,
+		DLG_GENERIC_DISMISS, dlg_generic_dismiss_second_dialog,
 		dlg_generic_dismiss_third_dialog,
 		
 		
@@ -66,7 +66,7 @@ public class Tags {
 		dlg_confirm_move_files_search_ok,
 		
 		// dlg_edit_item.xml
-		dlg_edit_item_bt_ok,
+		DLG_EDIT_ITEM_BT_OK,
 		
 		// dlg: confirm delete BM
 		dlg_conf_delete_BM_ok,
@@ -81,7 +81,7 @@ public class Tags {
 		dlg_add_memos_gv,
 
 		// dlg_db_admin.xml
-		dlg_db_admin_lv,
+		DLG_DB_ADMIN_LV,
 
 		// dlg_admin_patterns.xml
 		dlg_admin_patterns_lv,
@@ -96,7 +96,7 @@ public class Tags {
 		main_opt_menu_admin,
 		
 		// dlg_bmactv_list_long_click
-		dlg_bmactv_list_long_click,
+		DLG_BMACTV_LIST_LONGCLICK,
 		
 	}//public static enum DialogItemTags
 	

@@ -78,7 +78,7 @@ LOI_LCL implements OnItemLongClickListener {
 								R.string.dlg_bmactv_list_long_click_title,
 								
 								R.id.dlg_tmpl_cancel_lv_bt_cancel,
-								Tags.DialogTags.dlg_generic_dismiss);
+								Tags.DialogTags.DLG_GENERIC_DISMISS);
 		
 		/****************************
 		 * 2. Prep => List
@@ -117,7 +117,7 @@ LOI_LCL implements OnItemLongClickListener {
 		/****************************
 		 * 5. Set listener to list
 			****************************/
-		lv.setTag(Tags.DialogItemTags.dlg_bmactv_list_long_click);
+		lv.setTag(Tags.DialogItemTags.DLG_BMACTV_LIST_LONGCLICK);
 		
 		lv.setOnItemClickListener(new DOI_CL(actv, dlg, bm));
 

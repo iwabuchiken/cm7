@@ -37,7 +37,7 @@ public class DB_OTL implements OnTouchListener {
 		case MotionEvent.ACTION_DOWN:
 				switch (tag_name) {
 				
-				case dlg_generic_dismiss:
+				case DLG_GENERIC_DISMISS:
 				case dlg_generic_dismiss_third_dialog:
 				case dlg_generic_dismiss_second_dialog:
 					
@@ -63,7 +63,7 @@ public class DB_OTL implements OnTouchListener {
 					
 				case dlg_edit_title_bt_ok:
 					
-				case dlg_edit_item_bt_ok:
+				case DLG_EDIT_ITEM_BT_OK:
 					
 				case dlg_conf_delete_BM_ok:
 					
@@ -78,7 +78,7 @@ public class DB_OTL implements OnTouchListener {
 		case MotionEvent.ACTION_UP:
 			switch (tag_name) {
 
-			case dlg_generic_dismiss:
+			case DLG_GENERIC_DISMISS:
 			case dlg_generic_dismiss_second_dialog:
 			case dlg_generic_dismiss_third_dialog:
 
@@ -104,7 +104,7 @@ public class DB_OTL implements OnTouchListener {
 				
 			case dlg_edit_title_bt_ok:
 				
-			case dlg_edit_item_bt_ok:
+			case DLG_EDIT_ITEM_BT_OK:
 				
 			case dlg_conf_delete_BM_ok:
 				

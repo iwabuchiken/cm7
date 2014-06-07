@@ -102,7 +102,7 @@ public class DB_OCL implements OnClickListener {
 		//
 		switch (tag_name) {
 		
-		case dlg_generic_dismiss://------------------------------------------------
+		case DLG_GENERIC_DISMISS://------------------------------------------------
 			
 			CONS.Admin.vib.vibrate(CONS.Admin.vibLength_click);
 			
