@@ -924,6 +924,8 @@ public class DBUtils extends SQLiteOpenHelper{
 			
 			//Methods.toastAndLog(actv, "Data updated", 2000);
 			
+			wdb.close();
+			
 			return true;
 			
 			
@@ -932,6 +934,8 @@ public class DBUtils extends SQLiteOpenHelper{
 			Log.e("DBUtils.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "Exception => " + e.toString() + " / " + "sql: " + sql);
+			
+			wdb.close();
 			
 			return false;
 		}

@@ -195,6 +195,26 @@ public class DB_OCL implements OnClickListener {
 		
 		////////////////////////////////
 
+		// ALActv list
+
+		////////////////////////////////
+		if (CONS.ALActv.list_AI != null
+				&& CONS.ALActv.adp_AIList != null) {
+			
+			CONS.ALActv.adp_AIList.notifyDataSetChanged();
+			
+			// Log
+			msg_Log = "CONS.ALActv.adp_AIList => notified";
+			Log.d("DB_OCL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}
+		
+		
+		
+		////////////////////////////////
+
 		// DB
 
 		////////////////////////////////

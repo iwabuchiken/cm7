@@ -73,84 +73,86 @@ public class ALActv extends ListActivity {
 			****************************/
 		this.setTitle(this.getClass().getName());
 		
-		////////////////////////////////
-
-		// Get: Current path
-
-		////////////////////////////////
-		_onCreate_Get_CurrentPath();
+//		_onCreate_Setup();
 		
-		/******************************
-			validate: current path => obtained?
-		 ******************************/
-		if (CONS.ALActv.currentPath == null) {
-			
-			// Log
-			String msg_Log = "CONS.ALActv.currentPath => null";
-			Log.e("ALActv.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", msg_Log);
-			
-			// debug
-			Toast.makeText(this, msg_Log, Toast.LENGTH_SHORT).show();
-			
-			return;
-			
-		}
-
-		////////////////////////////////
-
-		// Get: AI list
-
-		////////////////////////////////
-		boolean res = _onCreate_Get_AIList();
-		
-		/******************************
-			validate
-		 ******************************/
-		if (res == false) {
-			
-			return;
-			
-		}
-		
-		// Log
-		String msg_Log = "CONS.ALActv.list_AI.size() = "
-						+ CONS.ALActv.list_AI.size();
-		Log.d("ALActv.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
-		
-		// Sort list
-		Methods.sort_List_ai_List(
-				CONS.ALActv.list_AI,
-				CONS.Enums.SortType.FileName, 
-				CONS.Enums.SortOrder.DEC);
-		
-		////////////////////////////////
-
-		// Adapter
-
-		////////////////////////////////
-		CONS.ALActv.adp_AIList = new Adp_AIList(
-				this,
-				R.layout.list_row_ai_list,
-				CONS.ALActv.list_AI
-				);
-		
-		////////////////////////////////
-
-		// Set adapter
-
-		////////////////////////////////
-		this.setListAdapter(CONS.ALActv.adp_AIList);
-
-		////////////////////////////////
-
-		// Set: list position
-
-		////////////////////////////////
-		_onCreate_SetSelection();
+//		////////////////////////////////
+//
+//		// Get: Current path
+//
+//		////////////////////////////////
+//		_onCreate_Get_CurrentPath();
+//		
+//		/******************************
+//			validate: current path => obtained?
+//		 ******************************/
+//		if (CONS.ALActv.currentPath == null) {
+//			
+//			// Log
+//			String msg_Log = "CONS.ALActv.currentPath => null";
+//			Log.e("ALActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
+//			
+//			// debug
+//			Toast.makeText(this, msg_Log, Toast.LENGTH_SHORT).show();
+//			
+//			return;
+//			
+//		}
+//
+//		////////////////////////////////
+//
+//		// Get: AI list
+//
+//		////////////////////////////////
+//		boolean res = _onCreate_Get_AIList();
+//		
+//		/******************************
+//			validate
+//		 ******************************/
+//		if (res == false) {
+//			
+//			return;
+//			
+//		}
+//		
+//		// Log
+//		String msg_Log = "CONS.ALActv.list_AI.size() = "
+//						+ CONS.ALActv.list_AI.size();
+//		Log.d("ALActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+//		
+//		// Sort list
+//		Methods.sort_List_ai_List(
+//				CONS.ALActv.list_AI,
+//				CONS.Enums.SortType.FileName, 
+//				CONS.Enums.SortOrder.DEC);
+//		
+//		////////////////////////////////
+//
+//		// Adapter
+//
+//		////////////////////////////////
+//		CONS.ALActv.adp_AIList = new Adp_AIList(
+//				this,
+//				R.layout.list_row_ai_list,
+//				CONS.ALActv.list_AI
+//				);
+//		
+//		////////////////////////////////
+//
+//		// Set adapter
+//
+//		////////////////////////////////
+//		this.setListAdapter(CONS.ALActv.adp_AIList);
+//
+//		////////////////////////////////
+//
+//		// Set: list position
+//
+//		////////////////////////////////
+//		_onCreate_SetSelection();
 //		int pref_CurrentPosition = 
 //    			Methods.get_Pref_Int(
 //    					this, 
@@ -222,6 +224,89 @@ public class ALActv extends ListActivity {
 
 		
 	}//public void onCreate(Bundle savedInstanceState)
+
+
+	private void _onCreate_Setup() {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+		
+		// Get: Current path
+		
+		////////////////////////////////
+		_onCreate_Get_CurrentPath();
+		
+		/******************************
+		validate: current path => obtained?
+		******************************/
+		if (CONS.ALActv.currentPath == null) {
+		
+		// Log
+		String msg_Log = "CONS.ALActv.currentPath => null";
+		Log.e("ALActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		// debug
+		Toast.makeText(this, msg_Log, Toast.LENGTH_SHORT).show();
+		
+		return;
+		
+		}
+		
+		////////////////////////////////
+		
+		// Get: AI list
+		
+		////////////////////////////////
+		boolean res = _onCreate_Get_AIList();
+		
+		/******************************
+		validate
+		******************************/
+		if (res == false) {
+		
+		return;
+		
+		}
+		
+		// Log
+		String msg_Log = "CONS.ALActv.list_AI.size() = "
+			+ CONS.ALActv.list_AI.size();
+		Log.d("ALActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+		
+		// Sort list
+		Methods.sort_List_ai_List(
+		CONS.ALActv.list_AI,
+		CONS.Enums.SortType.FileName, 
+		CONS.Enums.SortOrder.DEC);
+		
+		////////////////////////////////
+		
+		// Adapter
+		
+		////////////////////////////////
+		CONS.ALActv.adp_AIList = new Adp_AIList(
+					this,
+					R.layout.list_row_ai_list,
+					CONS.ALActv.list_AI
+		);
+		
+		////////////////////////////////
+		
+		// Set adapter
+		
+		////////////////////////////////
+		this.setListAdapter(CONS.ALActv.adp_AIList);
+		
+		////////////////////////////////
+		
+		// Set: list position
+		
+		////////////////////////////////
+		_onCreate_SetSelection();
+	}
 
 
 	private void
@@ -425,9 +510,12 @@ public class ALActv extends ListActivity {
 		CONS.Admin.vib = 
 				(Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
 		
-		/****************************
-		 * 2. Set up
-			****************************/
+		////////////////////////////////
+
+		// Set up
+
+		////////////////////////////////
+		_onCreate_Setup();
 
 	}//protected void onStart()
 
