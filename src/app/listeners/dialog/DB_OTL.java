@@ -61,7 +61,7 @@ public class DB_OTL implements OnTouchListener {
 
 				case dlg_confirm_delete_patterns_ok:
 					
-				case dlg_edit_title_bt_ok:
+				case DLG_PLAYACTV_EDIT_TITLE_BT_OK:
 					
 				case DLG_EDIT_ITEM_BT_OK:
 					
@@ -102,7 +102,7 @@ public class DB_OTL implements OnTouchListener {
 				
 			case dlg_confirm_delete_patterns_ok:
 				
-			case dlg_edit_title_bt_ok:
+			case DLG_PLAYACTV_EDIT_TITLE_BT_OK:
 				
 			case DLG_EDIT_ITEM_BT_OK:
 				
@@ -117,7 +117,9 @@ public class DB_OTL implements OnTouchListener {
 			break;//case MotionEvent.ACTION_UP:
 		
 		}//switch (event.getActionMasked())
+		
 		return false;
-	}
+		
+	}//public boolean onTouch(View v, MotionEvent event)
 
-}
+}//public class DB_OTL implements OnTouchListener

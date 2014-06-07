@@ -57,7 +57,7 @@ public class Tags {
 		dlg_confirm_delete_patterns_ok,
 		
 		// dlg_edit_title.xml
-		dlg_edit_title_bt_ok,
+		DLG_PLAYACTV_EDIT_TITLE_BT_OK,
 		
 		// dlg_edit_title.xml(Dialog: egit memo)
 		dlg_edit_memo_bt_ok,

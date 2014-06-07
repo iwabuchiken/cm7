@@ -42,6 +42,11 @@
    	<string name="dlg_db_admin_item_create_table_bm">
    	    									Create table: bm</string>
    	    									
+   	<string name="dlg_db_admin_item_drop_table_memo_patterns">
+   	    									Drop table: memo_patterns</string>
+   	<string name="dlg_db_admin_item_create_table_memo_patterns">
+   	    									Create table: memo_patterns</string>
+   	    									
     <!-- ALActv.java -->
     	<string name="al_actv_menu_move_mode">Move mode</string>
     	<string name="al_actv_menu_move_files">Move</string>
@@ -66,5 +71,10 @@
    		<string name="dlg_edit_item_title">Edit bookmark</string>
    		<string name="dlg_edit_item_bm_title">Title</string>
    		<string name="dlg_edit_item_memo">Memo</string>
-				
+
+    <!-- dlg_edit_title.xml -->
+    	<string name="dlg_playactv_edit_ai_title_title">Edit title</string>
+    	<string name="dlg_playactv_edit_ai_memo_title">Edit memo</string>
+    	<string name="dlg_playactv_edit_ai_add_patterns">Patterns</string>
+   								
 </resources>

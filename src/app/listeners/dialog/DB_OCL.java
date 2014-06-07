@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Toast;
+import app.items.AI;
 import app.items.BM;
 import app.utils.CONS;
 import app.utils.DBUtils;
@@ -33,6 +34,8 @@ public class DB_OCL implements OnClickListener {
 	String tableName;
 	
 	BM bm;	// used in: dlg_Conf_Delete_BM_Ok
+	
+	AI ai;
 	
 	public DB_OCL(Activity actv, Dialog dlg1) {
 		//
@@ -88,6 +91,16 @@ public class DB_OCL implements OnClickListener {
 		this.dlg2 = dlg2;
 		
 		this.bm		= bm;
+		
+	}
+
+	public DB_OCL(Activity actv, Dialog dlg, AI ai) {
+		// TODO Auto-generated constructor stub
+		this.actv	= actv;
+		
+		this.dlg1	= dlg;
+		
+		this.ai		= ai;
 		
 	}
 

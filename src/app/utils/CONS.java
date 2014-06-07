@@ -217,7 +217,30 @@ public class CONS {
 			"TEXT", 			"INTEGER"
 //			"INTEGER", 			"INTEGER"
 		};
+
+		////////////////////////////////
 		
+		// Table: memo_patterns
+		
+		////////////////////////////////
+		public static String tname_MemoPatterns = "memo_patterns";
+		
+		public static String[] col_names_MemoPatterns = {
+			"word"
+		};
+		
+		public static String[] col_names_MemoPatterns_full = {
+			android.provider.BaseColumns._ID,		// 0
+			"created_at", "modified_at",			// 1,2
+			"word"									// 3
+		};
+		
+		public static String[] col_types_MemoPatterns = {
+			"TEXT"
+//			"INTEGER", 			"INTEGER"
+		};
+		
+
 		////////////////////////////////
 
 		// Others

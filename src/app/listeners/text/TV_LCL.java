@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.widget.TextView;
 import app.items.AI;
+import app.utils.Methods_dlg;
 import app.utils.Tags;
 import app.utils.Tags.ItemTags;
 import app.utils.Tags.TVTags;
@@ -68,19 +69,22 @@ public class TV_LCL implements OnLongClickListener {
 		return true;
 	}//public boolean onLongClick(View arg0)
 
-	private void case_PlayActv_Title(View v) {
+	private void
+	case_PlayActv_Title(View v) {
 		// TODO Auto-generated method stub
 		
 		TextView tv_Title = (TextView) v;
 		
 		String currentTitle = tv_Title.getText().toString();
 		
-		// Log
-		String msg_Log = "currentTitle" + currentTitle;
-		Log.d("TV_LCL.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
+		Methods_dlg.dlg_EditTitle(actv, ai, currentTitle);
 		
-	}
+//		// Log
+//		String msg_Log = "currentTitle" + currentTitle;
+//		Log.d("TV_LCL.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+		
+	}//case_PlayActv_Title(View v)
 
 }

@@ -103,6 +103,14 @@ public class DOI_CL implements OnItemClickListener {
 			
 			break;// case dlg_bmactv_list_long_click
 			
+		case dlg_add_memos_gv://----------------------------------------------
+			
+			String word = (String) parent.getItemAtPosition(position);
+			
+//			Methods.add_pattern_to_text(dlg1, position, word);
+			
+			break;
+			
 		default:
 			break;
 		}//switch (tag)
@@ -161,6 +169,16 @@ public class DOI_CL implements OnItemClickListener {
 				R.string.dlg_db_admin_item_drop_table_bm))) {
 			
 			Methods.drop_Table(actv, CONS.DB.tname_BM);
+			
+		} else if (item.equals(actv.getString(		// Create table: refresh_history
+				R.string.dlg_db_admin_item_create_table_memo_patterns))) {
+			
+			Methods.create_Table(actv, CONS.DB.tname_MemoPatterns);
+			
+		} else if (item.equals(actv.getString(		// Drop table: refresh_history
+				R.string.dlg_db_admin_item_drop_table_memo_patterns))) {
+			
+			Methods.drop_Table(actv, CONS.DB.tname_MemoPatterns);
 			
 		} else {
 

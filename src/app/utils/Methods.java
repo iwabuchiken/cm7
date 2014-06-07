@@ -1201,6 +1201,28 @@ public class Methods {
 				
 			}
 			
+		} else if (tname.equals(CONS.DB.tname_MemoPatterns)) {
+			
+			res = dbu.createTable(actv, 
+					CONS.DB.tname_MemoPatterns, CONS.DB.col_names_MemoPatterns, 
+					CONS.DB.col_types_MemoPatterns);
+			
+			if (res == true) {
+				
+				// debug
+				String msg_Toast = "Table => created: " + CONS.DB.tname_MemoPatterns;
+				Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+				
+				
+			} else {
+				
+				// debug
+				String msg_Toast = "Table => can't create: " 
+						+ CONS.DB.tname_MemoPatterns;
+				Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+				
+			}
+			
 		} else {
 			
 

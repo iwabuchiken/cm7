@@ -29,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import app.items.AI;
 import app.items.BM;
 import app.listeners.dialog.DB_OCL;
 import app.listeners.dialog.DB_OTL;
@@ -58,15 +59,22 @@ public class Methods_dlg {
 			****************************/
 		String[] choices = {
 				actv.getString(R.string.dlg_db_admin_item_exec_sql),
+				
 				actv.getString(R.string.dlg_db_admin_item_backup_db),
 				actv.getString(R.string.dlg_db_admin_item_refresh_db),
+				
 				actv.getString(R.string.dlg_db_admin_item_drop_table_cm7),
 				actv.getString(R.string.dlg_db_admin_item_create_table_cm7),
+				
 				actv.getString(R.string.dlg_db_admin_item_drop_table_refresh_history),
-				actv.getString(R.string.dlg_db_admin_item_create_table_refresh_history),
+				actv.getString(
+						R.string.dlg_db_admin_item_create_table_refresh_history),
 				
 				actv.getString(R.string.dlg_db_admin_item_drop_table_bm),
 				actv.getString(R.string.dlg_db_admin_item_create_table_bm),
+				
+				actv.getString(R.string.dlg_db_admin_item_drop_table_memo_patterns),
+				actv.getString(R.string.dlg_db_admin_item_create_table_memo_patterns),
 //					actv.getString(R.string.dlg_db_admin_item_refresh_db)
 					};
 		
@@ -395,5 +403,200 @@ public class Methods_dlg {
 		return dlg2;
 		
 	}//public static Dialog dlg_template_okCancel_SecondDialog()
+
+	public static void
+	dlg_EditTitle
+	(Activity actv, AI ai, String currentTitle) {
+		// TODO Auto-generated method stub
+		
+		Dialog dlg = new Dialog(actv);
+		
+		//
+		dlg.setContentView(R.layout.dlg_edit_ai_title);
+		
+		// Title
+//		dlg.setTitle(R.string.dlg_edit_title_title);
+		dlg.setTitle(R.string.dlg_playactv_edit_ai_title_title);
+
+		////////////////////////////////
+
+		// Set: current data
+
+		////////////////////////////////
+		TextView tv_Title = 
+				(TextView) dlg.findViewById(R.id.dlg_edit_ai_title_et_content);
+		
+		tv_Title.setText(currentTitle);
+		
+		////////////////////////////////
+
+		// Listeners
+
+		////////////////////////////////
+		/******************************
+			OnTouch
+		 ******************************/
+		Button btn_Ok = (Button) dlg.findViewById(
+									R.id.dlg_edit_ai_title_bt_add);
+		
+		Button btn_Cancel = (Button) dlg.findViewById(
+									R.id.dlg_edit_ai_title_bt_cancel);
+		
+		//
+//		btn_Ok.setTag(Tags.DialogTags.dlg_edit_title_bt_ok);
+		btn_Ok.setTag(Tags.DialogTags.DLG_PLAYACTV_EDIT_TITLE_BT_OK);
+		btn_Cancel.setTag(Tags.DialogTags.DLG_GENERIC_DISMISS);
+		
+		//
+		btn_Ok.setOnTouchListener(new DB_OTL(actv, dlg));
+		btn_Cancel.setOnTouchListener(new DB_OTL(actv, dlg));
+
+		/******************************
+			OnClick
+		 ******************************/
+		btn_Ok.setOnClickListener(new DB_OCL(actv, dlg, ai));
+		btn_Cancel.setOnClickListener(new DB_OCL(actv, dlg));
+
+		////////////////////////////////
+
+		// GridView
+
+		////////////////////////////////
+		dlg = Methods_dlg.dlg_EditTitle_GridView(actv, dlg, ai);
+		
+		
+		dlg.show();
+		
+	}//dlg_EditTitle
+
+	private static Dialog
+	dlg_EditTitle_GridView
+	(Activity actv, Dialog dlg, AI ai) {
+		// TODO Auto-generated method stub
+		
+		GridView gv = (GridView) dlg.findViewById(R.id.dlg_edit_ai_title_gv);
+//		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		SQLiteDatabase rdb = dbu.getReadableDatabase();
+		
+		////////////////////////////////
+
+		// Table: exists?
+
+		////////////////////////////////
+		String tableName = CONS.DB.tname_MemoPatterns;
+
+		boolean res = dbu.tableExists(rdb, tableName);
+		
+		if (res == false) {
+			
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Table doesn't exists: " + tableName);
+			
+			rdb.close();
+			
+			return dlg;
+			
+		}//if (res == false)
+
+		////////////////////////////////
+
+		// Get: patterns
+
+		////////////////////////////////
+		rdb = dbu.getReadableDatabase();
+		
+		String sql = "SELECT * FROM " + tableName + " ORDER BY word ASC";
+		
+		Cursor c = rdb.rawQuery(sql, null);
+
+		////////////////////////////////
+
+		// Entries?
+
+		////////////////////////////////
+		if (c.getCount() < 1) {
+			
+			// Log
+			String msg_Log = "patterns => no entry";
+			Log.e("Methods_dlg.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			rdb.close();
+			
+			return dlg;
+			
+		}
+		
+		////////////////////////////////
+
+		// Get: entries
+
+		////////////////////////////////
+//		actv.startManagingCursor(c);
+		
+		c.moveToFirst();
+		
+		List<String> patternList = new ArrayList<String>();
+		
+		if (c.getCount() > 0) {
+			
+			for (int i = 0; i < c.getCount(); i++) {
+				
+				patternList.add(c.getString(3));	// "word"
+				
+				c.moveToNext();
+				
+			}//for (int i = 0; i < patternList.size(); i++)
+			
+		} else {//if (c.getCount() > 0)
+			
+			// Log
+			Log.e("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "!c.getCount() > 0");
+			
+		}//if (c.getCount() > 0)
+		
+		
+		Collections.sort(patternList);
+
+		////////////////////////////////
+
+		// Build: adapter
+
+		////////////////////////////////
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+										actv,
+										R.layout.add_memo_grid_view,
+										patternList
+										);
+		
+		gv.setAdapter(adapter);
+
+		gv.setTag(Tags.DialogItemTags.dlg_add_memos_gv);
+		
+		gv.setOnItemClickListener(new DOI_CL(actv, dlg));
+		
+		// Log
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", "GridView setup => Done");
+
+		////////////////////////////////
+
+		// Closing
+
+		////////////////////////////////
+		
+		rdb.close();
+		
+		return dlg;
+		
+	}//dlg_EditTitle_GridView
 	
 }//public class Methods_dialog

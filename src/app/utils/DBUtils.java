@@ -515,6 +515,10 @@ public class DBUtils extends SQLiteOpenHelper{
 			Log.e("DBUtils.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "Table doesn't exist: " + tableName);
+			
+			// debug
+			String msg_Toast = "Table doesn't exist: " + tableName;
+			Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
 
 			return false;
 		}//if (tempBool == true)
