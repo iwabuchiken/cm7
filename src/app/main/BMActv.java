@@ -175,12 +175,12 @@ public class BMActv extends ListActivity {
 //		List<BM> bmList = dbu.getBMList(this, ai.getDb_id());
 		CONS.BMActv.bmList = dbu.get_BMList(this, CONS.BMActv.ai.getDb_id());
 		
-		// Log
-		Log.d("BMActv.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ ":"
-				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-				+ "]", "bmList=" + CONS.BMActv.bmList);
+//		// Log
+//		Log.d("BMActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ ":"
+//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//				+ "]", "bmList=" + CONS.BMActv.bmList);
 
 		/******************************
 			validate
@@ -342,10 +342,52 @@ public class BMActv extends ListActivity {
 		 * Get: Item
 		 ***************************************/
 		BM bm = (BM) l.getItemAtPosition(position);
+
+		////////////////////////////////
+
+		// Set: pref
+
+		////////////////////////////////
+		boolean res = Methods.set_Pref_Int(this, 
+									CONS.Pref.pname_BMActv, 
+									CONS.Pref.pkey_CurrentPosition_BMActv, 
+									position);
+		if (res == true) {
+			
+			// Log
+			String msg_Log = String.format(
+								"Pref => set: %s = %d", 
+								CONS.Pref.pkey_CurrentPosition_BMActv, 
+								position);
+			
+			Log.d("BMActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		} else {
+			
+			// Log
+			String msg_Log = "Pref => can't be set: " 
+							+ CONS.Pref.pkey_CurrentPosition_BMActv;
+			
+			Log.d("BMActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}
 		
-		/***************************************
-		 * Set: Result
-		 ***************************************/
+		////////////////////////////////
+
+		// notify
+
+		////////////////////////////////
+		CONS.BMActv.aAdapter.notifyDataSetChanged();
+		
+		////////////////////////////////
+
+		// Set: Result
+
+		////////////////////////////////
 		Intent i = new Intent();
 		
 		i.putExtra(CONS.Intent.iKey_BMActv_Position, bm.getPosition());

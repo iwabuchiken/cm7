@@ -271,6 +271,8 @@ public class CONS {
 		////////////////////////////////
 		public static long dflt_LongExtra_value = -1;
 		
+		public static int dflt_IntExtra_value = -1;
+		
 		////////////////////////////////
 
 		// PlayActv.java
@@ -310,6 +312,18 @@ public class CONS {
 		
 		public static String pkey_CurrentPosition_ALActv
 									= "pkey_CurrentPosition_ALActv";
+		
+		////////////////////////////////
+		
+		// BMActv
+		
+		////////////////////////////////
+		public static SharedPreferences prefs_BMActv;
+		
+		public static String pname_BMActv = "al_activity";
+		
+		public static String pkey_CurrentPosition_BMActv
+		= "pkey_CurrentPosition_BMActv";
 		
 	}
 

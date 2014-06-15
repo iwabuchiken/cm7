@@ -3,6 +3,7 @@ package app.adapters;
 import java.util.List;
 
 import cm7.main.R;
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import app.items.BM;
+import app.utils.CONS;
 import app.utils.Methods;
 
 public class Adp_BMList extends ArrayAdapter<BM> {
@@ -68,9 +70,9 @@ public class Adp_BMList extends ArrayAdapter<BM> {
     	/***************************************
 		 * Set: Position
 		 ***************************************/
-    	TextView tvPosition = (TextView) v.findViewById(R.id.listrow_actv_bm_tv_point);
+    	TextView tv_Position = (TextView) v.findViewById(R.id.listrow_actv_bm_tv_point);
     	
-    	tvPosition.setText(bm.getPosition());//
+    	tv_Position.setText(bm.getPosition());//
 //    	Methods.convert_intSec2Digits_lessThanHour((int) (bm.getPosition() / 1000)));//
 
     	/***************************************
@@ -87,7 +89,29 @@ public class Adp_BMList extends ArrayAdapter<BM> {
     	
     	tvMemo.setText(bm.getMemo());//
     	
+    	////////////////////////////////
+
+		// Background
+
+		////////////////////////////////
+		int pref_Position = Methods.get_Pref_Int(
+								(Activity) con, 
+								CONS.Pref.pname_BMActv, 
+								CONS.Pref.pkey_CurrentPosition_BMActv, 
+								CONS.Pref.dflt_IntExtra_value);
     	
+		if (pref_Position == position) {
+			
+			tv_Position.setBackgroundColor(
+						((Activity)con).getResources().getColor(R.color.gold2));
+			
+		} else {
+
+			tv_Position.setBackgroundColor(
+					((Activity)con).getResources().getColor(R.color.white));
+			
+		}
+		
 		return v;
 		
     }//public View getView(int position, View convertView, ViewGroup parent)

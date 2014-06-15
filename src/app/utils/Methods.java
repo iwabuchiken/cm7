@@ -496,7 +496,7 @@ public class Methods {
 
 	}//public static boolean set_pref(String pref_name, String value)
 
-	public static int getPref_Int
+	public static int get_Pref_Int
 	(Activity actv, String pref_name, String pref_key, int defValue) {
 		
 		SharedPreferences prefs = 
