@@ -198,9 +198,9 @@ public class BMActv extends ListActivity {
 		/***************************************
 		 * Set: Memo
 		 ***************************************/
-		TextView tvTitle = (TextView) findViewById(R.id.actv_bm_tv_title);
-		
-		tvTitle.setText(CONS.BMActv.ai.getTitle());
+//		TextView tvTitle = (TextView) findViewById(R.id.actv_bm_tv_title);
+//		
+//		tvTitle.setText(CONS.BMActv.ai.getTitle());
 		
 	}
 

@@ -1550,7 +1550,7 @@ public class Methods {
 		/*********************************
 		 * 3. Set data source
 		 *********************************/
-//		CONS.PlayActv.mp.reset();
+		CONS.PlayActv.mp.reset();
 		
 		// Log
 		String msg_Log = "mp => reset()";
