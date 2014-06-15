@@ -38,12 +38,12 @@
         android:orientation="horizontal" >
 
         <ImageButton
-            android:id="@+id/actv_bm_ib_toTop"
+            android:id="@+id/actv_bm_ib_top"
             style="@style/v1_ib"
             android:src="@drawable/ifm8_thumb_top_50x50" />
 
         <ImageButton
-            android:id="@+id/actv_bm_ib_prev_page"
+            android:id="@+id/actv_bm_ib_up"
             style="@style/v1_ib"
             android:src="@drawable/ifm8_thumb_up_50x50" />
 
@@ -53,12 +53,12 @@
             android:src="@drawable/ifm8_thumb_back_50x50" />
 
         <ImageButton
-            android:id="@+id/actv_bm_ib_next_page"
+            android:id="@+id/actv_bm_ib_down"
             style="@style/v1_ib"
             android:src="@drawable/ifm8_thumb_down_50x50" />
 
         <ImageButton
-            android:id="@+id/actv_bm_ib_toBottom"
+            android:id="@+id/actv_bm_ib_bottom"
             style="@style/v1_ib"
             android:src="@drawable/ifm8_thumb_bottom_50x50" />
         
@@ -70,7 +70,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
-        android:background="@color/green4"
+        android:background="@color/black"
         android:gravity="center" >
 
         <Button

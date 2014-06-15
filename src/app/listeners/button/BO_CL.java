@@ -2,8 +2,7 @@ package app.listeners.button;
 
 import java.io.File;
 
-
-
+import android.app.ListActivity;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -26,6 +25,8 @@ import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
 import app.utils.Tags;
+
+
 
 public class BO_CL implements OnClickListener {
 	/*----------------------------
@@ -131,9 +132,191 @@ public class BO_CL implements OnClickListener {
 			
 			break;
 			
+		case actv_bm_ib_bottom:
+			
+			case_BMActv_Ib_Bottom();
+			
+			break;
+			
+		case actv_bm_ib_top:
+			
+			case_BMActv_Ib_Top();
+			
+			break;
+			
+		case actv_bm_ib_down:
+			
+			case_BMActv_Ib_Down();
+			
+			break;
+			
+		case actv_bm_ib_up:
+			
+			case_BMActv_Ib_Up();
+			
+			break;
+			
 		}//switch (tag)
 		
 	}//public void onClick(View v)
+
+	private void case_BMActv_Ib_Up() {
+		// TODO Auto-generated method stub
+		/******************************
+			validate: list
+		 ******************************/
+		if (CONS.BMActv.bmList == null) {
+			
+			DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+			
+			CONS.BMActv.bmList = dbu.get_BMList(actv, CONS.BMActv.ai.getDb_id());
+		}
+		
+//		ListView lv = ((ListActivity) actv);
+		ListView lv = ((ListActivity) actv).getListView();
+		
+		int lastPos = lv.getLastVisiblePosition();
+		
+		int childCount = lv.getChildCount();
+		
+		int new_Position;
+		
+		if (lastPos - (childCount * 2) + 2 > 0) {
+			
+			new_Position = lastPos - (childCount * 2) + 2;
+			
+		} else {
+			
+			new_Position = 0;
+
+		}
+		
+		lv.setSelection(new_Position);
+		
+//		int new_Position = lv.getLastVisiblePosition();
+//		
+//		if((new_Position + lv.getChildCount()) > CONS.BMActv.bmList.size()) {
+//			
+//			new_Position = CONS.BMActv.bmList.size() - lv.getChildCount();
+//			
+//		}
+//		
+//		lv.setSelection(new_Position);
+//		
+//		// Log
+//		String msg_Log = String.format(
+//				"lv.getLastVisiblePosition() => %d", 
+//				lv.getLastVisiblePosition());
+//		
+//		Log.d("BO_CL.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+//		
+		
+	}
+	
+	private void case_BMActv_Ib_Down() {
+		// TODO Auto-generated method stub
+		/******************************
+			validate: list
+		 ******************************/
+		if (CONS.BMActv.bmList == null) {
+			
+			DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+			
+			CONS.BMActv.bmList = dbu.get_BMList(actv, CONS.BMActv.ai.getDb_id());
+		}
+		
+//		ListView lv = ((ListActivity) actv);
+		ListView lv = ((ListActivity) actv).getListView();
+		
+		int new_Position = lv.getLastVisiblePosition();
+		
+		if((new_Position + lv.getChildCount()) > CONS.BMActv.bmList.size()) {
+			
+			new_Position = CONS.BMActv.bmList.size() - lv.getChildCount();
+			
+		}
+		
+		lv.setSelection(new_Position);
+		
+		// Log
+		String msg_Log = String.format(
+				"lv.getLastVisiblePosition() => %d", 
+				lv.getLastVisiblePosition());
+		
+		Log.d("BO_CL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		
+//		int curretBottomPosition = lv.getLastVisiblePosition();
+//		
+//		// Log
+//		String msg_Log = String.format(
+//						"curretBottomPosition => %d",
+//						curretBottomPosition);
+//		
+//		Log.d("BO_CL.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+		
+		
+//		int numOfGroups = CONS.BMActv.bmList.size() / lv.getChildCount();
+//		
+//		int indexOfLastChild = lv.getChildCount() * numOfGroups;
+//		
+//		lv.setSelection(indexOfLastChild);
+		
+	}
+	
+	private void case_BMActv_Ib_Bottom() {
+		// TODO Auto-generated method stub
+		/******************************
+			validate: list
+		 ******************************/
+		if (CONS.BMActv.bmList == null) {
+			
+			DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+			
+			CONS.BMActv.bmList = dbu.get_BMList(actv, CONS.BMActv.ai.getDb_id());
+		}
+		
+//		ListView lv = ((ListActivity) actv);
+		ListView lv = ((ListActivity) actv).getListView();
+		
+		int numOfGroups = CONS.BMActv.bmList.size() / lv.getChildCount();
+		
+		int indexOfLastChild = lv.getChildCount() * numOfGroups;
+		
+		lv.setSelection(indexOfLastChild);
+		
+	}
+	
+	private void case_BMActv_Ib_Top() {
+		// TODO Auto-generated method stub
+		/******************************
+			validate: list
+		 ******************************/
+		if (CONS.BMActv.bmList == null) {
+			
+			DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+			
+			CONS.BMActv.bmList = dbu.get_BMList(actv, CONS.BMActv.ai.getDb_id());
+		}
+		
+//		ListView lv = ((ListActivity) actv);
+		ListView lv = ((ListActivity) actv).getListView();
+		
+		lv.setSelection(0);
+
+//		int numOfGroups = CONS.BMActv.bmList.size() / lv.getChildCount();
+//		
+//		int indexOfLastChild = lv.getChildCount() * numOfGroups;
+//		
+//		lv.setSelection(indexOfLastChild);
+		
+	}
 
 	private void case_BMActv_Back() {
 		// TODO Auto-generated method stub

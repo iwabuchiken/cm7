@@ -132,10 +132,15 @@ public class Tags {
 		
 		// actv_bm.xml
 		actv_bm_bt_back,
+		actv_bm_ib_top, actv_bm_ib_bottom,
+		actv_bm_ib_up, actv_bm_ib_down,
+		actv_bm_ib_back,
 		
 		// actv_hist.xml
 		actv_hist_ib_back, actv_hist_ib_bottom, actv_hist_ib_top,
 
+		
+		
 	}//public static enum ButtonTags
 	
 	public static enum ItemTags {

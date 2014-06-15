@@ -34,7 +34,7 @@ public class BO_TL implements OnTouchListener {
 
 //	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		// TODO ?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½ê‚½?¿½?¿½?¿½\?¿½b?¿½h?¿½E?¿½X?¿½^?¿½u
+		// TODO ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê‚½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½\?ï¿½ï¿½b?ï¿½ï¿½h?ï¿½ï¿½E?ï¿½ï¿½X?ï¿½ï¿½^?ï¿½ï¿½u
 		Tags.ButtonTags tag = (Tags.ButtonTags) v.getTag();
 		
 		switch (event.getActionMasked()) {
@@ -63,6 +63,18 @@ public class BO_TL implements OnTouchListener {
 				
 				break;
 
+			case actv_bm_ib_bottom:
+				
+				case_BMActv_Ib_Bottom_Down(v);
+				
+				break;
+				
+			case actv_bm_ib_top:
+				
+				case_BMActv_Ib_Top_Down(v);
+				
+				break;
+				
 			}//switch (tag)
 			
 			break;//case MotionEvent.ACTION_DOWN:
@@ -94,6 +106,18 @@ public class BO_TL implements OnTouchListener {
 //				tv.setTextColor(Color.BLUE);
 				
 				break;
+				
+			case actv_bm_ib_bottom:
+				
+				case_BMActv_Ib_Bottom_Up(v);
+				
+				break;
+				
+			case actv_bm_ib_top:
+				
+				case_BMActv_Ib_Top_Up(v);
+				
+				break;
 
 			}//switch (tag)
 			
@@ -101,6 +125,54 @@ public class BO_TL implements OnTouchListener {
 		}//switch (event.getActionMasked())
 		return false;
 	}
+
+	private void case_BMActv_Ib_Top_Down(View v) {
+		// TODO Auto-generated method stub
+		ImageButton ib = (ImageButton) v;
+		
+		ib.setImageResource(R.drawable.ifm8_thumb_top_50x50_disenabled);
+		
+	}
+
+	private void case_BMActv_Ib_Top_Up(View v) {
+		// TODO Auto-generated method stub
+		ImageButton ib = (ImageButton) v;
+		
+		ib.setImageResource(R.drawable.ifm8_thumb_top_50x50);
+		
+	}
+	
+	private void case_BMActv_Ib_Bottom_Up(View v) {
+		// TODO Auto-generated method stub
+
+//		ImageButton ib = (ImageButton) v;
+		ImageButton ib = (ImageButton) actv.findViewById(R.id.actv_bm_ib_bottom);
+		
+		//REF http://stackoverflow.com/questions/11802893/changing-image-dynamically-in-an-imagebutton answered Aug 3 '12 at 20:39
+		ib.setImageResource(R.drawable.ifm8_thumb_bottom_50x50);
+//		ib.setBackgroundResource(R.drawable.ifm8_thumb_bottom_50x50); // setBackgroundResource => N/W
+		
+//		ib.setBackgroundDrawable(
+//				actv.getResources()
+//				.getDrawable(R.drawable.ifm8_thumb_bottom_50x50));
+
+	}
+
+	private void 
+	case_BMActv_Ib_Bottom_Down(View v) {
+		// TODO Auto-generated method stub
+		
+//		ImageButton ib = (ImageButton) v;
+		ImageButton ib = (ImageButton) actv.findViewById(R.id.actv_bm_ib_bottom);
+		
+		ib.setImageResource(R.drawable.ifm8_thumb_bottom_50x50_disenabled);
+//		ib.setBackgroundResource(R.drawable.ifm8_thumb_bottom_50x50_disenabled);
+		
+//		ib.setBackgroundDrawable(
+//				actv.getResources()
+//				.getDrawable(R.drawable.ifm8_thumb_bottom_50x50_disenabled));
+		
+	}//case_BMActv_Ib_Bottom()
 
 	/******************************
 		private void _onTouch_SetColors()

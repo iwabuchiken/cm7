@@ -69,10 +69,10 @@ public final class R {
         public static final int actv_bm_LL_buttons=0x7f080007;
         public static final int actv_bm_bt_back=0x7f08000d;
         public static final int actv_bm_ib_back=0x7f08000a;
-        public static final int actv_bm_ib_next_page=0x7f08000b;
-        public static final int actv_bm_ib_prev_page=0x7f080009;
-        public static final int actv_bm_ib_toBottom=0x7f08000c;
-        public static final int actv_bm_ib_toTop=0x7f080008;
+        public static final int actv_bm_ib_bottom=0x7f08000c;
+        public static final int actv_bm_ib_down=0x7f08000b;
+        public static final int actv_bm_ib_top=0x7f080008;
+        public static final int actv_bm_ib_up=0x7f080009;
         public static final int actv_bm_tv_file_name=0x7f080006;
         public static final int actv_play_bt_add_bm=0x7f080013;
         public static final int actv_play_bt_back=0x7f08001a;

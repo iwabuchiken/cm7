@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -91,7 +92,8 @@ public class BMActv extends ListActivity {
 		
 	}//protected void onCreate(Bundle savedInstanceState)
 
-	private void _onCreate_SetListeners() {
+	private void 
+	_onCreate_SetListeners() {
 		// TODO Auto-generated method stub
 		/***************************************
 		 * 1. ListView
@@ -112,7 +114,59 @@ public class BMActv extends ListActivity {
 		btBack.setOnTouchListener(new BO_TL(this));
 		btBack.setOnClickListener(new BO_CL(this));
 
-	}
+		////////////////////////////////
+
+		// bottom
+
+		////////////////////////////////
+		ImageButton ib_Bottom = 
+				(ImageButton) this.findViewById(R.id.actv_bm_ib_bottom);
+		
+		ib_Bottom.setTag(Tags.ButtonTags.actv_bm_ib_bottom);
+		
+		ib_Bottom.setOnTouchListener(new BO_TL(this));
+		ib_Bottom.setOnClickListener(new BO_CL(this));
+		
+		////////////////////////////////
+		
+		// top
+		
+		////////////////////////////////
+		ImageButton ib_Top = 
+				(ImageButton) this.findViewById(R.id.actv_bm_ib_top);
+		
+		ib_Top.setTag(Tags.ButtonTags.actv_bm_ib_top);
+		
+		ib_Top.setOnTouchListener(new BO_TL(this));
+		ib_Top.setOnClickListener(new BO_CL(this));
+		
+		////////////////////////////////
+		
+		// down
+		
+		////////////////////////////////
+		ImageButton ib_Down = 
+				(ImageButton) this.findViewById(R.id.actv_bm_ib_down);
+		
+		ib_Down.setTag(Tags.ButtonTags.actv_bm_ib_down);
+		
+//		ib_Down.setOnTouchListener(new BO_TL(this));
+		ib_Down.setOnClickListener(new BO_CL(this));
+		
+		////////////////////////////////
+		
+		// up
+		
+		////////////////////////////////
+		ImageButton ib_Up = 
+				(ImageButton) this.findViewById(R.id.actv_bm_ib_up);
+		
+		ib_Up.setTag(Tags.ButtonTags.actv_bm_ib_up);
+		
+//		ib_Up.setOnTouchListener(new BO_TL(this));
+		ib_Up.setOnClickListener(new BO_CL(this));
+		
+	}//_onCreate_SetListeners()
 
 	private boolean _onCreate_Set_BMList() {
 		// TODO Auto-generated method stub
