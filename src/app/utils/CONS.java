@@ -323,7 +323,10 @@ public class CONS {
 		public static String pname_BMActv = "al_activity";
 		
 		public static String pkey_CurrentPosition_BMActv
-		= "pkey_CurrentPosition_BMActv";
+							= "pkey_CurrentPosition_BMActv";
+		
+		public static String pkey_LastVisiblePosition_BMActv
+							= "pkey_LastVisiblePosition_BMActv";
 		
 	}
 

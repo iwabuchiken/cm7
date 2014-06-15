@@ -235,7 +235,76 @@ public class BMActv extends ListActivity {
 			
 		}//if (bmList != null)
 
+		////////////////////////////////
+
+		// set selection
+
+		////////////////////////////////
+		int last_Position = Methods.get_Pref_Int(
+						this, 
+						CONS.Pref.pname_BMActv, 
+						CONS.Pref.pkey_LastVisiblePosition_BMActv, 
+						CONS.Pref.dflt_IntExtra_value);
 		
+		if (last_Position != CONS.Pref.dflt_IntExtra_value) {
+			
+			ListView lv = this.getListView();
+			
+			int child_Count = this.getListView().getChildCount();
+			
+			if (child_Count == 0) {
+				
+				child_Count = 4;
+				
+			}
+			
+			int new_Position = last_Position - child_Count;
+//			int new_Position = last_Position - lv.getChildCount();
+			
+			if (new_Position < 0) {
+				
+				new_Position = 0;
+				
+			}
+			
+			lv.setSelection(new_Position);
+			
+			// Log
+			msg_Log = "selection => set: " + new_Position;
+			Log.d("BMActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			msg_Log = "new_Position = " + new_Position
+					+ " / "
+					+ "last_Position = " + last_Position
+					+ " / "
+					+ "lv.getChildCount() = " + lv.getChildCount()
+//					+ " / "
+//					+ "child_Count = " + child_Count
+					;
+			Log.d("BMActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			
+			
+		} else {
+			
+			// Log
+			msg_Log = "last_Position => CONS.Pref.dflt_IntExtra_value";
+			
+			Log.d("BMActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}
+		
+		////////////////////////////////
+
+		// return
+
+		////////////////////////////////
 		return true;
 		
 	}//private void _onCreate_Set_BMList()
@@ -345,7 +414,7 @@ public class BMActv extends ListActivity {
 
 		////////////////////////////////
 
-		// Set: pref
+		// Set: pref: current position
 
 		////////////////////////////////
 		boolean res = Methods.set_Pref_Int(this, 
@@ -369,6 +438,42 @@ public class BMActv extends ListActivity {
 			// Log
 			String msg_Log = "Pref => can't be set: " 
 							+ CONS.Pref.pkey_CurrentPosition_BMActv;
+			
+			Log.d("BMActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}
+		
+		////////////////////////////////
+		
+		// Set: pref: LastVisiblePosition
+		
+		////////////////////////////////
+		int lastPosition = this.getListView().getLastVisiblePosition();
+		
+		res = Methods.set_Pref_Int(this, 
+				CONS.Pref.pname_BMActv, 
+				CONS.Pref.pkey_LastVisiblePosition_BMActv, 
+				lastPosition);
+		
+		if (res == true) {
+			
+			// Log
+			String msg_Log = String.format(
+					"Pref => set: %s = %d", 
+					CONS.Pref.pkey_LastVisiblePosition_BMActv, 
+					lastPosition);
+			
+			Log.d("BMActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		} else {
+			
+			// Log
+			String msg_Log = "Pref => can't be set: " 
+					+ CONS.Pref.pkey_LastVisiblePosition_BMActv;
 			
 			Log.d("BMActv.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
@@ -439,40 +544,15 @@ public class BMActv extends ListActivity {
 		// TODO Auto-generated method stub
 		super.onStart();
 		
-//		/***************************************
-//		 * Get: AI db id
-//		 ***************************************/
-//		AI ai = setup__getAI();
-//
-//		/***************************************
-//		 * Set: File name and others to the text views
-//		 ***************************************/
-//		if (ai != null) {
-//			
-//			setup__2_setData2TextViews(ai);
-//			
-//		} else {//if (ai != null)
-//			
-//			// Log
-//			Log.d("BMActv.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ ":"
-//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//					+ "]", "ai == null");
-//			
-//		}//if (ai != null)
-//
-//		/***************************************
-//		 * Set: BM list
-//		 * 1. Build a BM list
-//		 * 2. Set the list to adapter
-//		 ***************************************/
-//		setup__3_setBMList();
-//
-//		/***************************************
-//		 * Set: Listeners
-//		 ***************************************/
-//		setup__4_setListeners();
+//		int child_Count = this.getListView().getChildCount();
+//		
+//		// Log
+//		String msg_Log = "child_Count = " + child_Count;
+//		Log.d("BMActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+		
+		
 		
 	}//protected void onStart()
 
@@ -485,6 +565,16 @@ public class BMActv extends ListActivity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		
+//		//debug
+//		int child_Count = this.getListView().getChildCount();
+//		
+//		// Log
+//		String msg_Log = "child_Count = " + child_Count;
+//		Log.d("BMActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+
+		
 		/***************************************
 		 * Set: Intent
 		 ***************************************/
@@ -495,6 +585,28 @@ public class BMActv extends ListActivity {
 		overridePendingTransition(0, 0);
 		
 		return super.onKeyDown(keyCode, event);
+		
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+//		// Log
+//		String msg_Log = "onResume()";
+//		Log.d("BMActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+//		
+//		
+//		int child_Count = this.getListView().getChildCount();
+//		
+//		// Log
+//		msg_Log = "child_Count = " + child_Count;
+//		Log.d("BMActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
 		
 	}
 

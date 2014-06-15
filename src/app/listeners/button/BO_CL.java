@@ -320,6 +320,48 @@ public class BO_CL implements OnClickListener {
 
 	private void case_BMActv_Back() {
 		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// Set: last position
+
+		////////////////////////////////
+		int lastPosition = ((ListActivity) actv).getListView().getLastVisiblePosition();
+		
+		boolean res = Methods.set_Pref_Int(actv, 
+				CONS.Pref.pname_BMActv, 
+				CONS.Pref.pkey_LastVisiblePosition_BMActv, 
+				lastPosition);
+		
+		if (res == true) {
+			
+			// Log
+			String msg_Log = String.format(
+					"Pref => set: %s = %d", 
+					CONS.Pref.pkey_LastVisiblePosition_BMActv, 
+					lastPosition);
+			
+			Log.d("BMActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		} else {
+			
+			// Log
+			String msg_Log = "Pref => can't be set: " 
+					+ CONS.Pref.pkey_LastVisiblePosition_BMActv;
+			
+			Log.d("BMActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}
+		
+		
+		////////////////////////////////
+
+		// intent
+
+		////////////////////////////////
 		actv.setResult(CONS.Intent.RESULT_CODE_SEE_BOOKMARKS_CANCEL);
 		
 		actv.finish();
