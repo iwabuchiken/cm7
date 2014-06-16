@@ -22,6 +22,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.items.AI;
+import app.items.BM;
 import app.listeners.SBL;
 import app.listeners.button.BO_CL;
 import app.listeners.button.BO_TL;
@@ -503,6 +504,44 @@ public class PlayActv extends Activity {
 			
 		}
 		
+//		////////////////////////////////
+//		
+//		// Set: values: Bookmark
+//		
+//		////////////////////////////////
+//		int bm_Value = Methods.get_Pref_Int(
+//								this, 
+//								CONS.Pref.pname_BMActv, 
+//								CONS.Pref.pkey_CurrentPosition_BMActv, 
+//								CONS.Pref.dflt_IntExtra_value);
+//
+//		if (bm_Value != CONS.Pref.dflt_IntExtra_value
+//				&& CONS.BMActv.bmList != null) {
+//			
+//			BM bm = CONS.BMActv.bmList.get(bm_Value);
+//					
+//			TextView tv_Bm = (TextView) findViewById(R.id.actv_play_tv_bm_lbl);
+//			
+//			tv_Bm.setText(bm.getPosition());
+//		
+//		} else {
+//			
+//			// Log
+//			msg_Log = "bm_Value = " + bm_Value;
+//			Log.d("PlayActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
+//			
+//			msg_Log = "CONS.BMActv.bmList == null => " 
+//						+ (CONS.BMActv.bmList == null);
+//			
+//			Log.d("PlayActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
+//			
+//			
+//		}
+		
 		////////////////////////////////
 
 		// View: Current position
@@ -655,13 +694,13 @@ public class PlayActv extends Activity {
 
 	@Override
 	protected void onPause() {
-		// TODO ?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½ê‚½?¿½?¿½?¿½\?¿½b?¿½h?¿½E?¿½X?¿½^?¿½u
+		// TODO ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê‚½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½\?ï¿½ï¿½b?ï¿½ï¿½h?ï¿½ï¿½E?ï¿½ï¿½X?ï¿½ï¿½^?ï¿½ï¿½u
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO ?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½ê‚½?¿½?¿½?¿½\?¿½b?¿½h?¿½E?¿½X?¿½^?¿½u
+		// TODO ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê‚½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½\?ï¿½ï¿½b?ï¿½ï¿½h?ï¿½ï¿½E?ï¿½ï¿½X?ï¿½ï¿½^?ï¿½ï¿½u
 		super.onResume();
 	}
 
@@ -670,13 +709,51 @@ public class PlayActv extends Activity {
 		/*********************************
 		 * memo
 		 *********************************/
-		
 		super.onStart();
+		
+		////////////////////////////////
+		
+		// Set: values: Bookmark
+		
+		////////////////////////////////
+		int bm_Value = Methods.get_Pref_Int(
+								this, 
+								CONS.Pref.pname_BMActv, 
+								CONS.Pref.pkey_CurrentPosition_BMActv, 
+								CONS.Pref.dflt_IntExtra_value);
+
+		if (bm_Value != CONS.Pref.dflt_IntExtra_value
+				&& CONS.BMActv.bmList != null) {
+			
+			BM bm = CONS.BMActv.bmList.get(bm_Value);
+					
+			TextView tv_Bm = (TextView) findViewById(R.id.actv_play_tv_bm_value);
+			
+			tv_Bm.setText(bm.getPosition());
+		
+		} else {
+			
+			// Log
+			String msg_Log = "bm_Value = " + bm_Value;
+			Log.d("PlayActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			msg_Log = "CONS.BMActv.bmList == null => " 
+						+ (CONS.BMActv.bmList == null);
+			
+			Log.d("PlayActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			
+		}
+		
 	}//protected void onStart()
 
 	@Override
 	protected void onStop() {
-		// TODO ?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½ê‚½?¿½?¿½?¿½\?¿½b?¿½h?¿½E?¿½X?¿½^?¿½u
+		// TODO ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê‚½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½\?ï¿½ï¿½b?ï¿½ï¿½h?ï¿½ï¿½E?ï¿½ï¿½X?ï¿½ï¿½^?ï¿½ï¿½u
 		super.onStop();
 	}
 
