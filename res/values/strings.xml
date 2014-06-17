@@ -16,6 +16,7 @@
    		<string name="generic_bt_quit">終了</string>
    		<string name="generic_message_quit">Quit the app?</string>
     	<string name="generic_notice">注目</string>
+    	<string name="generic_confirm_delete_file">Delete file, too</string>
     
     <!-- main.xml -->
     <string name="main_tv_dir_path">Dir path</string>
@@ -65,8 +66,14 @@
     <!-- dlg_bmactv_list_long_click -->
   		<string name="dlg_bmactv_list_long_click_title">Bookmark</string>
 
+    <!-- dlg_alactv_list_long_click -->
+  		<string name="dlg_alactv_list_long_click_title">AI</string>
+
   	<!-- dialog: delete BM -->
 		<string name="dlg_conf_delete_bm_tv_message">Delete BM?</string>
+		
+  	<!-- dialog: delete AI -->
+		<string name="dlg_conf_delete_ai_tv_message">Delete AI?</string>
 		
    	<!-- dlg_edit_item.xml -->
    		<string name="dlg_edit_item_title">Edit bookmark</string>

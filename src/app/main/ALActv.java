@@ -37,9 +37,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 import app.adapters.Adp_AIList;
 import app.items.AI;
+import app.listeners.LOI_LCL;
 import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
+import app.utils.Tags;
 
 public class ALActv extends ListActivity {
 
@@ -65,163 +67,12 @@ public class ALActv extends ListActivity {
 				+ "]", "onCreate()");
 		
 		//
-//		setContentView(R.layout.thumb_activity);
 		setContentView(R.layout.actv_al);
 		
 		/****************************
 		 * 3. Basics
 			****************************/
 		this.setTitle(this.getClass().getName());
-		
-//		_onCreate_Setup();
-		
-//		////////////////////////////////
-//
-//		// Get: Current path
-//
-//		////////////////////////////////
-//		_onCreate_Get_CurrentPath();
-//		
-//		/******************************
-//			validate: current path => obtained?
-//		 ******************************/
-//		if (CONS.ALActv.currentPath == null) {
-//			
-//			// Log
-//			String msg_Log = "CONS.ALActv.currentPath => null";
-//			Log.e("ALActv.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", msg_Log);
-//			
-//			// debug
-//			Toast.makeText(this, msg_Log, Toast.LENGTH_SHORT).show();
-//			
-//			return;
-//			
-//		}
-//
-//		////////////////////////////////
-//
-//		// Get: AI list
-//
-//		////////////////////////////////
-//		boolean res = _onCreate_Get_AIList();
-//		
-//		/******************************
-//			validate
-//		 ******************************/
-//		if (res == false) {
-//			
-//			return;
-//			
-//		}
-//		
-//		// Log
-//		String msg_Log = "CONS.ALActv.list_AI.size() = "
-//						+ CONS.ALActv.list_AI.size();
-//		Log.d("ALActv.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ "]", msg_Log);
-//		
-//		// Sort list
-//		Methods.sort_List_ai_List(
-//				CONS.ALActv.list_AI,
-//				CONS.Enums.SortType.FileName, 
-//				CONS.Enums.SortOrder.DEC);
-//		
-//		////////////////////////////////
-//
-//		// Adapter
-//
-//		////////////////////////////////
-//		CONS.ALActv.adp_AIList = new Adp_AIList(
-//				this,
-//				R.layout.list_row_ai_list,
-//				CONS.ALActv.list_AI
-//				);
-//		
-//		////////////////////////////////
-//
-//		// Set adapter
-//
-//		////////////////////////////////
-//		this.setListAdapter(CONS.ALActv.adp_AIList);
-//
-//		////////////////////////////////
-//
-//		// Set: list position
-//
-//		////////////////////////////////
-//		_onCreate_SetSelection();
-//		int pref_CurrentPosition = 
-//    			Methods.get_Pref_Int(
-//    					this, 
-//    					CONS.Pref.pname_ALActv, 
-//    					CONS.Pref.pkey_CurrentPosition_ALActv,
-//    					-1);
-//		
-//		// 1. If the current position is non-"-1" and
-//		//	(position - 3) is non-"less than 0"
-//		//	=> set the list selection to the position
-//		// 2. The value -3 is arbitrary;
-//		//	=> Change to your choice if favorable
-//		if (pref_CurrentPosition != -1
-//				&& (pref_CurrentPosition - 3) > 0) {
-////			&& (pref_CurrentPosition - 3) < 0) {
-//			
-//			this.getListView().setSelection(pref_CurrentPosition - 3);
-//			
-//			// Log
-//			msg_Log = "Selection => set";
-//			Log.d("ALActv.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", msg_Log);
-//			
-//		} else {
-//			
-//			// Log
-//			msg_Log = "Selectin => won't be set"
-//							+ " // "
-//							+ "position =" + pref_CurrentPosition;
-//			Log.d("ALActv.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", msg_Log);
-//			
-//		}
-		
-		/****************************
-		 * 5. Initialize vars
-			****************************/
-//		checkedPositions = new ArrayList<Integer>();
-
-		/*********************************
-		 * Current position => Initialize
-		 *********************************/
-//		boolean res = 
-//				Methods.set_pref(
-//							this,
-//							CONS.pname_mainActv,
-//							CONS.pkey_current_image_position,
-//							-1);
-//		
-//		if (res == true) {
-//			// Log
-//			Log.d("ALActv.java"
-//					+ "["
-//					+ Thread.currentThread().getStackTrace()[2]
-//							.getLineNumber() + "]",
-//					"Pref set: " + CONS.pkey_current_image_position);
-//			
-//		} else {//if (result == true)
-//			// Log
-//			Log.d("ALActv.java"
-//					+ "["
-//					+ Thread.currentThread().getStackTrace()[2]
-//							.getLineNumber() + "]",
-//					"Set pref => Failed: " + CONS.pkey_current_image_position);
-//			
-//		}//if (result == true)
-
 		
 	}//public void onCreate(Bundle savedInstanceState)
 
@@ -306,6 +157,33 @@ public class ALActv extends ListActivity {
 		
 		////////////////////////////////
 		_onCreate_SetSelection();
+		
+		
+		////////////////////////////////
+
+		// set: listeners: listview
+
+		////////////////////////////////
+		_onCreate_SetListeners();
+		
+		
+	}//_onCreate_Setup
+
+
+	private void _onCreate_SetListeners() {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// listview
+
+		////////////////////////////////
+		ListView lv = this.getListView();
+		
+		lv.setTag(Tags.ListTags.actv_ALActv_lv);
+		
+		lv.setOnItemLongClickListener(new LOI_LCL(this));
+		
+		
 	}
 
 
@@ -480,7 +358,7 @@ public class ALActv extends ListActivity {
 		 * 
 		 * 3. Set selection
 		 *********************************/
-		// TODO ?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½ê‚½?¿½?¿½?¿½\?¿½b?¿½h?¿½E?¿½X?¿½^?¿½u
+		// TODO ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê‚½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½\?ï¿½ï¿½b?ï¿½ï¿½h?ï¿½ï¿½E?ï¿½ï¿½X?ï¿½ï¿½^?ï¿½ï¿½u
 		super.onResume();
 		
 		// Log
@@ -521,7 +399,7 @@ public class ALActv extends ListActivity {
 
 	@Override
 	protected void onStop() {
-		// TODO ?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½ê‚½?¿½?¿½?¿½\?¿½b?¿½h?¿½E?¿½X?¿½^?¿½u
+		// TODO ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê‚½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½\?ï¿½ï¿½b?ï¿½ï¿½h?ï¿½ï¿½E?ï¿½ï¿½X?ï¿½ï¿½^?ï¿½ï¿½u
 		super.onStop();
 		
 		// Log

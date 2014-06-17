@@ -71,6 +71,10 @@ public class Tags {
 		// dlg: confirm delete BM
 		dlg_conf_delete_BM_ok,
 		
+		// dlg: confirm delete AI
+//		dlg_conf_delete_BM_ok,
+		DLG_CONF_DELETE_AI_OK,
+		
 	}//public static enum DialogTags
 	
 	public static enum DialogItemTags {
@@ -97,6 +101,9 @@ public class Tags {
 		
 		// dlg_bmactv_list_long_click
 		DLG_BMACTV_LIST_LONGCLICK,
+		
+		// dlg_alactv_list_long_click
+		DLG_ALACTV_LIST_LONGCLICK,
 		
 	}//public static enum DialogItemTags
 	
@@ -187,6 +194,9 @@ public class Tags {
 		
 		// BMActv.java
 		actv_bm_lv,
+		
+		// ALActv.java
+		actv_ALActv_lv,
 		
 	}//public static enum ListTags
 

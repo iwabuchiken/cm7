@@ -34,6 +34,7 @@ import app.items.BM;
 import app.listeners.dialog.DB_OCL;
 import app.listeners.dialog.DB_OTL;
 import app.listeners.dialog.DOI_CL;
+import app.utils.Tags.DialogTags;
 
 public class Methods_dlg {
 
@@ -598,5 +599,115 @@ public class Methods_dlg {
 		return dlg;
 		
 	}//dlg_EditTitle_GridView
+
+	public static Dialog 
+	dlg_Template_Cancel
+	(Activity actv,
+			int layoutId, String title, 
+			int cancelButtonId, DialogTags cancelTag) {
+		// TODO Auto-generated method stub
+		
+		Dialog dlg = new Dialog(actv);
+		
+		//
+		dlg.setContentView(layoutId);
+		
+		// Title
+		dlg.setTitle(title);
+		
+		/****************************
+		* 2. Add listeners => OnTouch
+		****************************/
+		//
+		Button btn_cancel = (Button) dlg.findViewById(cancelButtonId);
+		
+		//
+		btn_cancel.setTag(cancelTag);
+		
+		//
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg));
+		
+		/****************************
+		* 3. Add listeners => OnClick
+		****************************/
+		//
+		btn_cancel.setOnClickListener(new DB_OCL(actv, dlg));
+		
+		//
+		//dlg.show();
+		
+		return dlg;		
+	}//dlg_Template_Cancel
+
+	
+	public static void 
+	conf_DeleteAL
+	(Activity actv, Dialog dlg1, AI ai, int alList_Position) {
+		// TODO Auto-generated method stub
+
+		Dialog dlg2 = new Dialog(actv);
+
+		// layout
+//		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple);
+		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple_checkbox);
+		
+		// Title
+		dlg2.setTitle(R.string.generic_tv_confirm);
+
+		////////////////////////////////
+
+		// Set: Message
+
+		////////////////////////////////
+		TextView tv_Message = (TextView) dlg2.findViewById(
+//							R.id.dlg_tmpl_confirm_simple_tv_message);
+							R.id.dlg_tmpl_confirm_simple_cb_tv_message);
+		
+//		tv_Message.setText(actv.getString(R.string.dlg_conf_delete_bm_tv_message));
+		tv_Message.setText(actv.getString(R.string.dlg_conf_delete_ai_tv_message));
+
+		////////////////////////////////
+
+		// Set: BM position
+
+		////////////////////////////////
+		TextView tv_ItemName = (TextView) dlg2.findViewById(
+							R.id.dlg_tmpl_confirm_simple_cb_tv_item_name);
+
+		tv_ItemName.setText(ai.getFile_name());
+
+		////////////////////////////////
+
+		// Add listeners => OnTouch
+
+		////////////////////////////////
+		Button btn_ok = (Button) dlg2.findViewById(
+								R.id.dlg_tmpl_confirm_simple_cb_btn_ok);
+		
+		Button btn_cancel = (Button) dlg2.findViewById(
+								R.id.dlg_tmpl_confirm_simple_cb_btn_cancel);
+		
+		//
+//		btn_ok.setTag(Tags.DialogTags.dlg_conf_delete_BM_ok);
+		btn_ok.setTag(Tags.DialogTags.DLG_CONF_DELETE_AI_OK);
+		btn_cancel.setTag(Tags.DialogTags.dlg_generic_dismiss_second_dialog);
+		
+		//
+		btn_ok.setOnTouchListener(new DB_OTL(actv, dlg2));
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg2));
+		
+		/****************************
+		 * 4. Add listeners => OnClick
+			****************************/
+		//
+		btn_ok.setOnClickListener(new DB_OCL(actv, dlg1, dlg2, ai, alList_Position));
+		btn_cancel.setOnClickListener(new DB_OCL(actv, dlg1, dlg2));
+		
+		/****************************
+		 * 5. Show dialog
+			****************************/
+		dlg2.show();
+		
+	}//conf_DeleteAL
 	
 }//public class Methods_dialog

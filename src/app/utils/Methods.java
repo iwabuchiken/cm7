@@ -1862,5 +1862,82 @@ public class Methods {
 
 	}
 
+	public static void 
+	delete_AI
+	(Activity actv, Dialog dlg1, Dialog dlg2, AI ai, int alList_Position) {
+		// TODO Auto-generated method stub
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		boolean res = dbu.deleteData_AI(actv, ai.getDb_id());
+		
+		////////////////////////////////
+
+		// Delete: from BM list
+
+		////////////////////////////////
+		if (res == true) {
+			
+//			CONS.BMActv.bmList.remove(bm);
+			CONS.ALActv.list_AI.remove(ai);
+			
+			CONS.ALActv.adp_AIList.notifyDataSetChanged();
+			
+		} else {
+
+			dlg2.dismiss();
+			
+			// debug
+			String msg_Toast = "Can't remove AI from DB: " + ai.getFile_name();
+			Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+			
+			return;
+
+		}
+
+		////////////////////////////////
+
+		// Delete: pref position
+
+		////////////////////////////////
+		int pref_Position = Methods.get_Pref_Int(
+						actv, 
+						CONS.Pref.pname_ALActv, 
+						CONS.Pref.pkey_CurrentPosition_ALActv, 
+						CONS.Pref.dflt_IntExtra_value);
+		
+		if (alList_Position == pref_Position) {
+			
+			res = Methods.set_Pref_Int(
+					actv, 
+					CONS.Pref.pname_ALActv, 
+					CONS.Pref.pkey_CurrentPosition_ALActv, 
+					CONS.Pref.dflt_IntExtra_value);
+			
+			// Log
+			String msg_Log = "Pref: current position => set to default: "
+							+ CONS.Pref.dflt_IntExtra_value;
+			
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}
+		
+		////////////////////////////////
+
+		// Close dialog
+
+		////////////////////////////////
+		dlg2.dismiss();
+		
+		dlg1.dismiss();
+		
+		// debug
+		String msg_Toast = "AI => deleted: " + ai.getFile_name();
+		Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();		
+		
+	}//delete_AI
+
 }//public class Methods
 

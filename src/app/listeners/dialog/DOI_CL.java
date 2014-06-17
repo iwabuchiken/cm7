@@ -16,6 +16,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import app.items.AI;
 import app.items.BM;
 import app.utils.CONS;
 import app.utils.Methods;
@@ -34,13 +35,19 @@ public class DOI_CL implements OnItemClickListener {
 	
 	BM bm;
 	
+	AI ai;
+	int alList_Position;
+	
 	//
 //	Methods.DialogTags dlgTag = null;
 
-	public DOI_CL(Activity actv, Dialog dlg) {
+	public DOI_CL(Activity actv, Dialog dlg, AI ai, int alList_Position) {
 		// 
 		this.actv = actv;
 		this.dlg1 = dlg;
+		
+		this.ai		= ai;
+		this.alList_Position = alList_Position;
 		
 		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 		
@@ -62,6 +69,27 @@ public class DOI_CL implements OnItemClickListener {
 		this.actv	= actv;
 		this.dlg1	= dlg;
 		this.bm		= bm;
+		
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+
+	}
+
+	public DOI_CL(Activity actv, Dialog dlg1, AI ai) {
+		// TODO Auto-generated constructor stub
+		
+		this.actv	= actv;
+		this.dlg1	= dlg1;
+		this.ai		= ai;
+		
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+
+	}
+
+	public DOI_CL(Activity actv, Dialog dlg1) {
+		// TODO Auto-generated constructor stub
+		
+		this.actv	= actv;
+		this.dlg1	= dlg1;
 		
 		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -103,6 +131,14 @@ public class DOI_CL implements OnItemClickListener {
 			
 			break;// case dlg_bmactv_list_long_click
 			
+		case DLG_ALACTV_LIST_LONGCLICK://----------------------------------------------
+			
+			item = (String) parent.getItemAtPosition(position);
+			
+			case_Dlg_ALActv_LongClick(item);
+			
+			break;// case dlg_bmactv_list_long_click
+			
 		case dlg_add_memos_gv://----------------------------------------------
 			
 			String word = (String) parent.getItemAtPosition(position);
@@ -116,6 +152,21 @@ public class DOI_CL implements OnItemClickListener {
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+
+	private void 
+	case_Dlg_ALActv_LongClick(String item) {
+		// TODO Auto-generated method stub
+		if (item.equals(actv.getString(R.string.generic_tv_edit))) {	// Edit
+			
+//			Methods_dlg.edit_BM(actv, dlg1, bm);
+			
+		} else if (item.equals(actv.getString(R.string.generic_tv_delete))) {
+	
+			Methods_dlg.conf_DeleteAL(actv, dlg1, ai, alList_Position);
+			
+		}//if (item.equals(actv.getString(R.string.generic_tv_edit)))
+		
+	}//case_Dlg_ALActv_LongClick(String item)
 
 	private void
 	case_Dlg_Db_Admin_lv(String item) {

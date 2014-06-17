@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemLongClickListener;
+import app.items.AI;
 import app.items.BM;
 import app.listeners.dialog.DOI_CL;
 import app.utils.CONS;
@@ -59,6 +60,15 @@ LOI_LCL implements OnItemLongClickListener {
 			
 			break;// case actv_bm_lv
 			
+		case actv_ALActv_lv://----------------------------------------------------
+			
+//			BM bm = (BM) parent.getItemAtPosition(position);
+			AI ai = (AI) parent.getItemAtPosition(position);
+			
+			case_ALActv_lv(ai, position);
+			
+			break;// case actv_bm_lv
+			
 		default:
 			break;
 		
@@ -67,6 +77,112 @@ LOI_LCL implements OnItemLongClickListener {
 		return true;
 		
 	}//onItemLongClick (AdapterView<?> parent, View v, int position, long id)
+
+	private void 
+	case_ALActv_lv(AI ai, int alList_Position) {
+		// TODO Auto-generated method stub
+		
+		int title_Length = 12;
+		
+		int len;
+		
+		if (ai.getFile_name().length() > title_Length) {
+			
+			len = ai.getFile_name().length();
+			
+		} else {
+			
+			len = title_Length;
+
+		}
+		
+		String title = actv.getString(
+							R.string.dlg_alactv_list_long_click_title)
+						+ ": "
+						+ ai.getFile_name().substring(0, title_Length)
+						;
+		
+		Dialog dlg1 = Methods_dlg.dlg_Template_Cancel(
+				actv,
+				R.layout.dlg_tmpl_cancel_lv,
+				title,
+				
+				R.id.dlg_tmpl_cancel_lv_bt_cancel,
+				Tags.DialogTags.DLG_GENERIC_DISMISS);
+
+		/****************************
+		* 2. Prep => List
+		****************************/
+		String[] choices = {
+					actv.getString(R.string.generic_tv_delete),
+					actv.getString(R.string.generic_tv_edit)
+					};
+		
+		List<String> list = new ArrayList<String>();
+		
+		for (String item : choices) {
+		
+		list.add(item);
+		
+		}
+		
+		/****************************
+		* 3. Adapter
+		****************************/
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+		actv,
+		//R.layout.dlg_db_admin,
+		R.layout.list_row_simple_1,
+		//android.R.layout.simple_list_item_1,
+		list
+		);
+		
+		/****************************
+		* 4. Set adapter
+		****************************/
+		ListView lv = (ListView) dlg1.findViewById(R.id.dlg_tmpl_cancel_lv_lv);
+		
+		lv.setAdapter(adapter);
+		
+		/****************************
+		* 5. Set listener to list
+		****************************/
+		lv.setTag(Tags.DialogItemTags.DLG_ALACTV_LIST_LONGCLICK);
+		
+		lv.setOnItemClickListener(new DOI_CL(actv, dlg1, ai, alList_Position));
+		
+		/***************************************
+		* Modify the list view height
+		***************************************/
+		lv.setLayoutParams(
+				new LinearLayout.LayoutParams(
+						300,	//	Width
+						LayoutParams.WRAP_CONTENT	//	Height
+				));
+		
+		/***************************************
+		* Modify: Button layout
+		***************************************/
+		LinearLayout llButton =
+		(LinearLayout) dlg1.findViewById(R.id.dlg_tmpl_cancel_lv_ll_button_cancel);
+		
+		LinearLayout.LayoutParams params =
+				new LinearLayout.LayoutParams(
+								LayoutParams.WRAP_CONTENT,
+								LayoutParams.WRAP_CONTENT);
+		
+		params.gravity = Gravity.CENTER_HORIZONTAL;
+		
+		llButton.setLayoutParams(params);
+		
+		
+		/****************************
+		* 6. Show dialog
+		****************************/
+		dlg1.show();
+		
+		
+	}//case_BMActv_lv(AI ai)
 
 	private void case_BMActv_lv(BM bm) {
 		/***************************************

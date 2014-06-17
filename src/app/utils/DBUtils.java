@@ -335,7 +335,7 @@ public class DBUtils extends SQLiteOpenHelper{
 			return true;
 			
 		} catch (SQLException e) {
-			// TODO ?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½ê‚½ catch ?¿½u?¿½?¿½?¿½b?¿½N
+			// TODO ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê‚½ catch ?ï¿½ï¿½u?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½b?ï¿½ï¿½N
 			// Log
 			Log.e("DBUtils.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
@@ -403,7 +403,7 @@ public class DBUtils extends SQLiteOpenHelper{
 			return true;
 			
 		} catch (SQLException e) {
-			// TODO ?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½ê‚½ catch ?¿½u?¿½?¿½?¿½b?¿½N
+			// TODO ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê‚½ catch ?ï¿½ï¿½u?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½b?ï¿½ï¿½N
 			// Log
 			Log.e("DBUtils.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
@@ -553,7 +553,7 @@ public class DBUtils extends SQLiteOpenHelper{
 			return true;
 			
 		} catch (SQLException e) {
-			// TODO ?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½ê‚½ catch ?¿½u?¿½?¿½?¿½b?¿½N
+			// TODO ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê‚½ catch ?ï¿½ï¿½u?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½b?ï¿½ï¿½N
 			// Log
 			Log.e("DBUtils.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
@@ -2112,6 +2112,111 @@ public class DBUtils extends SQLiteOpenHelper{
 		}//try
 		
 	}//updateData_BM_TitleAndMemo
+
+	public boolean
+	deleteData_AI(Activity actv, long db_id) {
+		// TODO Auto-generated method stub
+		SQLiteDatabase wdb = this.getWritableDatabase();
+		
+//		boolean result = DBUtils.isInDB_long_ai(db, tableName, db_id);
+		boolean result = this.isInDB_AI(wdb, db_id);
+		
+		if (result == false) {		// Result is false ==> Meaning the target data doesn't exist
+											//							in db; Hence, not executing delete op
+			
+			// debug
+			Toast.makeText(actv, 
+					"Data doesn't exist in db: " + String.valueOf(db_id), 
+					Toast.LENGTH_LONG).show();
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", 
+					"Data doesn't exist in db => " + String.valueOf(db_id));
+			
+			return false;
+			
+		} else {//if (result == false)
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", 
+					"Data exists in db" + String.valueOf(db_id) + ")");
+			
+		}//if (result == false)
+		
+
+		/***************************************
+		 * Delete data
+		 ***************************************/
+		String sql = 
+						"DELETE FROM " + CONS.DB.tname_CM7
+						+ " WHERE "
+//						+ CONS.DB.col_names_BM_full[0] + " = '"
+						+ CONS.DB.col_names_CM7_full[0] + " = '"
+						+ String.valueOf(db_id) + "'";
+		
+		try {
+			wdb.execSQL(sql);
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Sql executed: " + sql);
+
+			wdb.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception => " + e.toString());
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "sql=" + sql);
+			
+			wdb.close();
+			
+			return false;
+			
+		}//try
+		
+	}//deleteData_AI(Activity actv, long db_id)
+
+	private boolean 
+	isInDB_AI(SQLiteDatabase wdb, long db_id) {
+		// TODO Auto-generated method stub
+		String sql = "SELECT COUNT(*) FROM "
+				+ CONS.DB.tname_CM7
+				+ " WHERE "
+				+ CONS.DB.col_names_CM7_full[0] + " = '"
+				+ String.valueOf(db_id) + "'";
+
+	//	long result = DatabaseUtils.longForQuery(db, sql, null);
+		long result = DatabaseUtils.longForQuery(wdb, sql, null);
+		
+		// Log
+		Log.d("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", "result => " + String.valueOf(result));
+		
+		if (result > 0) {
+		
+			return true;
+			
+		} else {//if (result > 0)
+			
+			return false;
+			
+		}//if (result > 0)
+	
+	}//isInDB_AI(SQLiteDatabase wdb, long db_id)
 	
 }//public class DBUtils
 

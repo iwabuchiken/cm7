@@ -37,6 +37,7 @@ public class DB_OCL implements OnClickListener {
 	BM bm;	// used in: dlg_Conf_Delete_BM_Ok
 	
 	AI ai;
+	int alList_Position;
 	
 	public DB_OCL(Activity actv, Dialog dlg1) {
 		//
@@ -105,6 +106,19 @@ public class DB_OCL implements OnClickListener {
 		
 	}
 
+	public DB_OCL
+	(Activity actv, Dialog dlg1, Dialog dlg2, AI ai, int alList_Position) {
+		// TODO Auto-generated constructor stub
+		this.actv = actv;
+		
+		this.dlg1 = dlg1;
+		this.dlg2 = dlg2;
+		
+		this.ai		= ai;
+		this.alList_Position	= alList_Position;
+
+	}
+
 	public void onClick(View v) {
 		//
 		Tags.DialogTags tag_name = (Tags.DialogTags) v.getTag();
@@ -165,11 +179,26 @@ public class DB_OCL implements OnClickListener {
 			
 			break;
 			
+		case DLG_CONF_DELETE_AI_OK://------------------------------------------------
+			
+			CONS.Admin.vib.vibrate(CONS.Admin.vibLength_click);
+			
+			dlg_ALActv_Delete_AI_Ok();
+			
+			break;
+			
 			
 		default: // ----------------------------------------------------
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void dlg_ALActv_Delete_AI_Ok() {
+		// TODO Auto-generated method stub
+		
+		Methods.delete_AI(actv, dlg1, dlg2, ai, alList_Position);
+		
+	}
 
 	private void dlg_PlayActv_Edit_AI_Title_Ok() {
 		// TODO Auto-generated method stub
