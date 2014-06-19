@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dlg_edit_ai_ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/dlg_edit_ai_ll_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/dlg_edit_ai_lbl_file_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="0.2"
+                    android:padding="3dp"
+                    android:text="@string/dlg_edit_ai_tv_file_name"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/dlg_edit_ai_et_file_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="1.0"
+                    android:ems="10"
+                    android:gravity="top|left"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:textSize="25sp" >
+
+                    <requestFocus />
+                </EditText>
+
+                <TextView
+                    android:id="@+id/dlg_edit_ai_lbl_file_path"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="0.2"
+                    android:padding="3dp"
+                    android:text="@string/dlg_edit_ai_tv_file_path"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/dlg_edit_ai_et_file_path"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="1.0"
+                    android:ems="10"
+                    android:gravity="top|left"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/dlg_edit_ai_lbl_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="0.2"
+                    android:padding="3dp"
+                    android:text="@string/dlg_edit_ai_tv_title"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/dlg_edit_ai_et_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="1.0"
+                    android:ems="10"
+                    android:gravity="top|left"
+                    android:inputType="textMultiLine"
+                    android:lines="2"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/dlg_edit_ai_lbl_memo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="0.2"
+                    android:padding="3dp"
+                    android:text="@string/dlg_edit_ai_tv_memo"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/dlg_edit_ai_et_memo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="1.0"
+                    android:ems="10"
+                    android:gravity="top|left"
+                    android:inputType="textMultiLine"
+                    android:lines="2"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        android:layout_weight="0.2" >
+
+        <Button
+            android:id="@+id/dlg_edit_ai_bt_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:padding="3dp"
+            android:text="@string/generic_bt_ok"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/dlg_edit_ai_bt_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:padding="3dp"
+            android:text="@string/generic_bt_cancel"
+            android:textColor="@color/red"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+</LinearLayout>

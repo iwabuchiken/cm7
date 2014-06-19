@@ -3,6 +3,7 @@ package app.listeners.dialog;
 import cm7.main.R;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
@@ -45,7 +46,7 @@ public class DB_OCL implements OnClickListener {
 		this.dlg1 = dlg1;
 		
 		//
-		vib = (Vibrator) actv.getSystemService(actv.VIBRATOR_SERVICE);
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 	}
 
 	public DB_OCL(Activity actv, Dialog dlg1,
@@ -56,7 +57,7 @@ public class DB_OCL implements OnClickListener {
 		this.dlg2 = dlg2;
 		
 		//
-		vib = (Vibrator) actv.getSystemService(actv.VIBRATOR_SERVICE);
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 	}
 
 	public DB_OCL(Activity actv, Dialog dlg1,
@@ -68,7 +69,7 @@ public class DB_OCL implements OnClickListener {
 		this.dlg3 = dlg3;
 		
 		//
-		vib = (Vibrator) actv.getSystemService(actv.VIBRATOR_SERVICE);
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 	}
 
 	public DB_OCL(Activity actv, Dialog dlg1, long file_id, String tableName) {
@@ -80,7 +81,7 @@ public class DB_OCL implements OnClickListener {
 		
 		this.file_id = file_id;
 		
-		vib = (Vibrator) actv.getSystemService(actv.VIBRATOR_SERVICE);
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 		
 	}//public DialogButtonOnClickListener(Activity actv, Dialog dlg1, long file_id, String tableName)
 
@@ -94,6 +95,8 @@ public class DB_OCL implements OnClickListener {
 		
 		this.bm		= bm;
 		
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		
 	}
 
 	public DB_OCL(Activity actv, Dialog dlg, AI ai) {
@@ -103,6 +106,8 @@ public class DB_OCL implements OnClickListener {
 		this.dlg1	= dlg;
 		
 		this.ai		= ai;
+		
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 		
 	}
 
@@ -116,6 +121,22 @@ public class DB_OCL implements OnClickListener {
 		
 		this.ai		= ai;
 		this.alList_Position	= alList_Position;
+		
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+
+	}
+
+	public DB_OCL
+	(Activity actv, Dialog dlg1, Dialog dlg2, AI ai) {
+		// TODO Auto-generated constructor stub
+		this.actv = actv;
+		
+		this.dlg1 = dlg1;
+		this.dlg2 = dlg2;
+		
+		this.ai		= ai;
+		
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 
 	}
 
@@ -187,11 +208,27 @@ public class DB_OCL implements OnClickListener {
 			
 			break;
 			
+		case DLG_EDIT_AI_BT_OK://------------------------------------------------
+			
+			CONS.Admin.vib.vibrate(CONS.Admin.vibLength_click);
+			
+			dlg_ALActv_edit_AI_Ok();
+			
+			break;
+			
 			
 		default: // ----------------------------------------------------
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void 
+	dlg_ALActv_edit_AI_Ok() {
+		
+		Methods.edit_AI_Ok(actv, dlg1, dlg2, ai);
+		// TODO Auto-generated method stub
+
+	}//dlg_ALActv_edit_AI_Ok()
 
 	private void dlg_ALActv_Delete_AI_Ok() {
 		// TODO Auto-generated method stub
@@ -308,11 +345,10 @@ public class DB_OCL implements OnClickListener {
 		////////////////////////////////
 //		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
 		
-////		boolean res = dbu.deleteData_bm(actv, bm.getDbId());
-		boolean res = DBUtils.updateData_BM_TitleAndMemo(
-							actv,
-							bm.getDbId(),
-							bm);
+		DBUtils.updateData_BM_TitleAndMemo(
+									actv,
+									bm.getDbId(),
+									bm);
 		
 		/***************************************
 		 * Update: bmList

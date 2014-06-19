@@ -727,7 +727,7 @@ public class PlayActv extends Activity {
 			
 			BM bm = CONS.BMActv.bmList.get(bm_Value);
 					
-			TextView tv_Bm = (TextView) findViewById(R.id.actv_play_tv_bm_value);
+			TextView tv_Bm = (TextView) findViewById(R.id.dlg_edit_ai_lbl_file_path);
 			
 			tv_Bm.setText(bm.getPosition());
 		

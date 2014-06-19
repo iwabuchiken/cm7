@@ -1939,5 +1939,94 @@ public class Methods {
 		
 	}//delete_AI
 
+	public static void 
+	edit_AI_Ok
+	(Activity actv, Dialog dlg1, Dialog dlg2, AI ai) {
+		// TODO Auto-generated method stub
+		/***************************************
+		 * Get data
+		 ***************************************/
+		EditText et_FileName = 
+				(EditText) dlg2.findViewById(R.id.dlg_edit_ai_et_file_name);
+		EditText et_FilePath = 
+				(EditText) dlg2.findViewById(R.id.dlg_edit_ai_et_file_path);
+		
+		EditText et_Title = 
+				(EditText) dlg2.findViewById(R.id.dlg_edit_ai_et_title);
+		EditText et_Memo = 
+				(EditText) dlg2.findViewById(R.id.dlg_edit_ai_et_memo);
+		
+		////////////////////////////////
+
+		// set: data
+
+		////////////////////////////////
+		ai.setFile_name(et_FileName.getText().toString());
+		ai.setFile_path(et_FilePath.getText().toString());
+		
+		ai.setTitle(et_Title.getText().toString());
+		ai.setMemo(et_Memo.getText().toString());
+		
+		////////////////////////////////
+
+		// Store data to db
+
+		////////////////////////////////
+//		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+//		DBUtils.updateData_AI_All(actv,
+//									ai.getDb_id(),
+//									ai);
+		
+		////////////////////////////////
+
+		// update: list
+
+		////////////////////////////////
+		CONS.ALActv.adp_AIList.notifyDataSetChanged();
+		
+//		/***************************************
+//		 * Update: bmList
+//		 * 1. Remove the original bm element, using bm.getDbId()
+//		 * 2. Add to the list the new bm element
+//		 ***************************************/
+//		/***************************************
+//		 * 1. Remove the original bm element, using bm.getDbId()
+//		 ***************************************/
+//		for (int i = 0; i < CONS.BMActv.bmList.size(); i++) {
+//			
+//			BM b = CONS.BMActv.bmList.get(i);
+//			
+//			if (b.getDbId() == bm.getDbId()) {
+//				
+//				CONS.BMActv.bmList.remove(b);
+//				
+//				CONS.BMActv.bmList.add(bm);
+//
+////				Methods.sortList_BM(
+//				Methods.sort_List_BM_List(
+//								CONS.BMActv.bmList, 
+//								CONS.Enums.SortType.POSITION,
+//								CONS.Enums.SortOrder.ASC);
+////							CONS.BMActv.bmList, 
+////							CONS.BMActv.SortOrder.POSITION);
+//				
+//				break;
+//				
+//			}//if (b.getDbId() == bm.getDbId())
+//			
+//		}//for (int i = 0; i < CONS.BMActv.bmList.size(); i++)
+//		
+//		CONS.BMActv.aAdapter.notifyDataSetChanged();
+//		CONS.BMActv.adpBML.notifyDataSetChanged();
+		
+		/***************************************
+		 * If successful, close dialog
+		 ***************************************/
+		dlg2.dismiss();
+		dlg1.dismiss();
+
+	}//edit_AI_Ok
+
 }//public class Methods
 

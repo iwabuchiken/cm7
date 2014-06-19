@@ -75,6 +75,10 @@ public class Tags {
 //		dlg_conf_delete_BM_ok,
 		DLG_CONF_DELETE_AI_OK,
 		
+		// dlg_edit_item.xml
+		DLG_EDIT_AI_BT_OK,
+		
+		
 	}//public static enum DialogTags
 	
 	public static enum DialogItemTags {

@@ -80,6 +80,13 @@
    		<string name="dlg_edit_item_bm_title">Title</string>
    		<string name="dlg_edit_item_memo">Memo</string>
 
+   	<!-- dlg_edit_ai.xml -->
+   		<string name="dlg_edit_ai_title">Edit AI</string>
+   		<string name="dlg_edit_ai_tv_file_name">File name</string>
+   		<string name="dlg_edit_ai_tv_file_path">File path</string>
+   		<string name="dlg_edit_ai_tv_title">Title</string>
+   		<string name="dlg_edit_ai_tv_memo">Memo</string>
+
     <!-- dlg_edit_title.xml -->
     	<string name="dlg_playactv_edit_ai_title_title">Edit title</string>
     	<string name="dlg_playactv_edit_ai_memo_title">Edit memo</string>

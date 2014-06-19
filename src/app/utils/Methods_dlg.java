@@ -271,7 +271,7 @@ public class Methods_dlg {
 		int w = (int) (disp.getWidth() * CONS.Admin.DLG_WIDTH_RATIO);
 		
 		// Log
-		Log.d("DialogOnItemClickListener.java" + "["
+		Log.d("Methods_dlg.java" + "["
 			+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 			+ ":"
 			+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -709,5 +709,125 @@ public class Methods_dlg {
 		dlg2.show();
 		
 	}//conf_DeleteAL
+
+	public static void 
+	edit_AI
+	(Activity actv, 
+			Dialog dlg1, AI ai,
+			int aiList_Position) {
+		// TODO Auto-generated method stub
+		Dialog dlg2 = Methods_dlg.dlg_template_okCancel_SecondDialog(
+				actv,
+				R.layout.dlg_edit_ai,
+				actv.getString(R.string.dlg_edit_ai_title)
+				+ " : " 
+				+ ai.getFile_name(),
+//				R.string.dlg_edit_item_title,
+				
+				R.id.dlg_edit_ai_bt_ok, R.id.dlg_edit_ai_bt_cancel,
+				
+//				Tags.DialogTags.dlg_edit_item_bt_ok,
+				Tags.DialogTags.DLG_EDIT_AI_BT_OK,
+//				Tags.DialogTags.dlg_generic_dismiss,
+				Tags.DialogTags.DLG_GENERIC_DISMISS,
+				
+				dlg1, ai);
+
+		/***************************************
+		* Set: Layout params
+		***************************************/
+		//LinearLayout llRoot = (LinearLayout) dlg.findViewById(R.id.dlg_edit_item_ll_root);
+		LinearLayout llData = 
+				(LinearLayout) dlg2.findViewById(R.id.dlg_edit_ai_ll_data);
+		
+		Display disp = actv.getWindowManager().getDefaultDisplay();
+		
+		int w = (int) (disp.getWidth() * CONS.Admin.DLG_WIDTH_RATIO);
+		
+		// Log
+		Log.d("Methods_dlg.java" + "["
+			+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+			+ ":"
+			+ Thread.currentThread().getStackTrace()[2].getMethodName()
+			+ "]", "w=" + w);
+		
+		LinearLayout.LayoutParams params =
+			new LinearLayout.LayoutParams(
+							w,
+							LayoutParams.WRAP_CONTENT);
+		
+		llData.setLayoutParams(params);
+		
+		/***************************************
+		* Get data from the AI instance, then set the data
+		***************************************/
+		EditText et_FileName = 
+				(EditText) dlg2.findViewById(R.id.dlg_edit_ai_et_file_name);
+		EditText et_FilePath = 
+				(EditText) dlg2.findViewById(R.id.dlg_edit_ai_et_file_path);
+		
+		EditText et_Title = 
+				(EditText) dlg2.findViewById(R.id.dlg_edit_ai_et_title);
+		EditText et_Memo = 
+				(EditText) dlg2.findViewById(R.id.dlg_edit_ai_et_memo);
+		
+		et_FileName.setText(ai.getFile_name());
+		et_FilePath.setText(ai.getFile_path());
+		
+		et_Title.setText(ai.getTitle());
+		et_Memo.setText(ai.getMemo());
+		
+		/***************************************
+		* Show dialog
+		***************************************/
+		dlg2.show();		
+		
+	}//edit_AI
+
+	private static Dialog 
+	dlg_template_okCancel_SecondDialog
+	(Activity actv,
+			int layoutId, String title, 
+			int okButtonId, int cancelButtonId, 
+			DialogTags okTag, DialogTags cancelTag, 
+			Dialog dlg1, AI ai) {
+		// TODO Auto-generated method stub
+		Dialog dlg2 = new Dialog(actv);
+		
+		//
+		dlg2.setContentView(layoutId);
+		
+		// Title
+		dlg2.setTitle(title);
+//		dlg2.setTitle(titleStringId);
+		
+		/****************************
+		 * 2. Add listeners => OnTouch
+		 ****************************/
+		//
+		Button btn_ok = (Button) dlg2.findViewById(okButtonId);
+		Button btn_cancel = (Button) dlg2.findViewById(cancelButtonId);
+		
+		//
+		btn_ok.setTag(okTag);
+		btn_cancel.setTag(cancelTag);
+		
+		//
+		btn_ok.setOnTouchListener(new DB_OTL(actv, dlg2));
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg2));
+		
+		/****************************
+		 * 3. Add listeners => OnClick
+		 ****************************/
+		//
+		btn_ok.setOnClickListener(new DB_OCL(actv, dlg1, dlg2, ai));
+		btn_cancel.setOnClickListener(new DB_OCL(actv, dlg2));
+		
+		//
+		//dlg2.show();
+		
+		return dlg2;
+		
+	}//dlg_template_okCancel_SecondDialog
 	
 }//public class Methods_dialog

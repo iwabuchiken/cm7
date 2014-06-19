@@ -36,7 +36,7 @@ public class DOI_CL implements OnItemClickListener {
 	BM bm;
 	
 	AI ai;
-	int alList_Position;
+	int aiList_Position;
 	
 	//
 //	Methods.DialogTags dlgTag = null;
@@ -47,7 +47,7 @@ public class DOI_CL implements OnItemClickListener {
 		this.dlg1 = dlg;
 		
 		this.ai		= ai;
-		this.alList_Position = alList_Position;
+		this.aiList_Position = alList_Position;
 		
 		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 		
@@ -158,11 +158,11 @@ public class DOI_CL implements OnItemClickListener {
 		// TODO Auto-generated method stub
 		if (item.equals(actv.getString(R.string.generic_tv_edit))) {	// Edit
 			
-//			Methods_dlg.edit_BM(actv, dlg1, bm);
+			Methods_dlg.edit_AI(actv, dlg1, ai, aiList_Position);
 			
 		} else if (item.equals(actv.getString(R.string.generic_tv_delete))) {
 	
-			Methods_dlg.conf_DeleteAL(actv, dlg1, ai, alList_Position);
+			Methods_dlg.conf_DeleteAL(actv, dlg1, ai, aiList_Position);
 			
 		}//if (item.equals(actv.getString(R.string.generic_tv_edit)))
 		
