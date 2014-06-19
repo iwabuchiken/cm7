@@ -229,7 +229,20 @@ public class Adp_AIList extends ArrayAdapter<AI> implements OnTouchListener {
 		// Set: file name
 
 		////////////////////////////////
-		tv_FileName.setText(ai.getFile_name());
+    	String fileName = ai.getFile_name();
+    	
+    	int file_MaxLength = 20;
+    	
+    	if (fileName.length() > file_MaxLength) {
+			
+    		fileName = fileName.substring(0, file_MaxLength)
+    					+ "...";
+    		
+		}
+    	
+    	
+		tv_FileName.setText(fileName);
+//		tv_FileName.setText(ai.getFile_name());
     	
 //		// Log
 //		String msg_Log = "tv_FileName => set";

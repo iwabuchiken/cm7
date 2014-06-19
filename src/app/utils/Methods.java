@@ -1974,9 +1974,9 @@ public class Methods {
 		////////////////////////////////
 //		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
 		
-//		DBUtils.updateData_AI_All(actv,
-//									ai.getDb_id(),
-//									ai);
+		DBUtils.updateData_AI_All(actv,
+									ai.getDb_id(),
+									ai);
 		
 		////////////////////////////////
 

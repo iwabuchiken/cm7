@@ -2217,6 +2217,114 @@ public class DBUtils extends SQLiteOpenHelper{
 		}//if (result > 0)
 	
 	}//isInDB_AI(SQLiteDatabase wdb, long db_id)
+
+	public static boolean 
+	updateData_AI_All
+	(Activity actv, long db_id, AI ai) {
+		// TODO Auto-generated method stub
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		//
+		SQLiteDatabase wdb = dbu.getWritableDatabase();
+
+		String sql = DBUtils._updateData_AI_All__GetSql(actv, db_id, ai);
+		
+		// Log
+		String msg_Log = "sql => " + sql;
+		Log.d("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		try {
+			
+			wdb.execSQL(sql);
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "sql => Done");
+			
+			//Methods.toastAndLog(actv, "Data updated", 2000);
+			
+			wdb.close();
+			
+			return true;
+			
+			
+		} catch (SQLException e) {
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception => " + e.toString() + " / " + "sql: " + sql);
+			
+			wdb.close();
+			
+			return false;
+		}		
+		
+	}//updateData_AI_All
+
+	private static String 
+	_updateData_AI_All__GetSql
+	(Activity actv, long db_id, AI ai) {
+		// TODO Auto-generated method stub
+//		android.provider.BaseColumns._ID,	// 0
+//		"created_at", "modified_at",		// 1, 2
+//		"file_name", "file_path",			// 3, 4
+//		"title", "memo",					// 5, 6
+//		"last_played_at",					// 7
+//		"table_name",						// 8
+//		"length",							// 9
+//		"audio_created_at"					// 10
+
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("UPDATE " + CONS.DB.tname_CM7 + " SET ");
+		
+		// modified_at
+		sb.append(CONS.DB.col_names_CM7_full[2] 
+					+ "='" + Methods.conv_MillSec_to_TimeLabel(
+								Methods.getMillSeconds_now())
+					+ "'");
+		
+		sb.append(", ");
+		
+		// file_name
+		sb.append(CONS.DB.col_names_CM7_full[3] 
+					+ "='" + ai.getFile_name()
+					+ "'");
+		
+		sb.append(", ");
+		
+		// file_path
+		sb.append(CONS.DB.col_names_CM7_full[4] 
+				+ "='" + ai.getFile_path()
+				+ "'");
+		
+		sb.append(", ");
+		
+		// title
+		sb.append(CONS.DB.col_names_CM7_full[5] 
+				+ "='" + ai.getTitle()
+				+ "'");
+		
+		sb.append(", ");
+		
+		// memo
+		sb.append(CONS.DB.col_names_CM7_full[6] 
+				+ "='" + ai.getMemo()
+				+ "'");
+		
+		sb.append(" WHERE " 
+					+ android.provider.BaseColumns._ID
+					+ "='" + db_id + "'");
+		
+		return sb.toString();
+
+//		return sql;
+		
+	}//_updateData_AI_All__GetSql
 	
 }//public class DBUtils
 
