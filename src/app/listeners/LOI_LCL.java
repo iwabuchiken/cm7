@@ -82,24 +82,26 @@ LOI_LCL implements OnItemLongClickListener {
 	case_ALActv_lv(AI ai, int alList_Position) {
 		// TODO Auto-generated method stub
 		
-		int title_Length = 12;
+//		int title_Length = 12;
+//		int title_Length = 12;
 		
 		int len;
 		
-		if (ai.getFile_name().length() > title_Length) {
+		if (ai.getFile_name().length() > CONS.ALActv.TITLE_MAX_LENGTH) {
 			
 			len = ai.getFile_name().length();
 			
 		} else {
 			
-			len = title_Length;
+			len = CONS.ALActv.TITLE_MAX_LENGTH;
 
 		}
 		
 		String title = actv.getString(
 							R.string.dlg_alactv_list_long_click_title)
 						+ ": "
-						+ ai.getFile_name().substring(0, title_Length)
+						+ ai.getFile_name().substring(
+								0, CONS.ALActv.TITLE_MAX_LENGTH)
 						;
 		
 		Dialog dlg1 = Methods_dlg.dlg_Template_Cancel(

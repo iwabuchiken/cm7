@@ -1873,7 +1873,7 @@ public class Methods {
 		
 		////////////////////////////////
 
-		// Delete: from BM list
+		// Delete: from AI list
 
 		////////////////////////////////
 		if (res == true) {
@@ -1926,6 +1926,20 @@ public class Methods {
 		
 		////////////////////////////////
 
+		// delete: BM
+
+		////////////////////////////////
+		CheckBox cb = (CheckBox) dlg2.findViewById(
+									R.id.dlg_tmpl_confirm_simple_cb_cb);
+		
+		if (cb.isChecked()) {
+			
+			_delete_AI__Delete_BM(actv, ai);
+			
+		}
+		
+		////////////////////////////////
+
 		// Close dialog
 
 		////////////////////////////////
@@ -1938,6 +1952,79 @@ public class Methods {
 		Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();		
 		
 	}//delete_AI
+
+	private static void 
+	_delete_AI__Delete_BM
+	(Activity actv, AI ai) {
+		// TODO Auto-generated method stub
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		////////////////////////////////
+
+		// get: BM list
+
+		////////////////////////////////
+		List<BM> bm_List = dbu.get_BMList(actv, ai.getDb_id());
+
+		/******************************
+			validate
+		 ******************************/
+		if (bm_List == null) {
+			
+			// Log
+			String msg_Log = "BM list => null";
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return;
+			
+		}
+		
+		// any entry?
+		if (bm_List.size() < 1) {
+			
+			// Log
+			String msg_Log = "BM list => no entry";
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return;
+			
+		}
+		
+		////////////////////////////////
+
+		// delete
+
+		////////////////////////////////
+		int count = 0;
+		
+		for (BM bm : bm_List) {
+			
+			boolean res = dbu.deleteData_BM(actv, bm.getDbId());
+			
+			if (res == true) {
+				
+				count ++;
+				
+			}
+			
+		}
+		
+		// Log
+		String msg_Log = "BM list size = " + bm_List.size()
+						+ " / "
+						+ "deleted = " + count;
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		return;
+		
+	}//_delete_AI__Delete_BM
 
 	public static void 
 	edit_AI_Ok

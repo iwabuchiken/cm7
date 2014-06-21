@@ -44,9 +44,9 @@ public class CONS {
 		// commons
 
 		////////////////////////////////
-		public static long dflt_LongExtra_value = -1;
+		public final static long dflt_LongExtra_value = -1;
 		
-		public static int dflt_IntExtra_value = -1;
+		public final static int dflt_IntExtra_value = -1;
 		
 		
 		////////////////////////////////
@@ -365,6 +365,8 @@ public class CONS {
 		
 		public static int display_TopPosition_Current = -1;
 		public static int display_TopPosition_Previous = -1;
+		
+		public final static int TITLE_MAX_LENGTH	= 12;
 		
 	}
 
