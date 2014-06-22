@@ -840,6 +840,16 @@ public class Methods {
 		
 		////////////////////////////////
 
+		// report
+
+		////////////////////////////////
+		// debug
+		String msg_Toast = "New items => " + numOfItemsAdded;
+		Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+		
+		
+		////////////////////////////////
+
 		// refresh history
 
 		////////////////////////////////

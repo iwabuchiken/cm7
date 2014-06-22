@@ -200,7 +200,7 @@ public class DOI_CL implements OnItemClickListener {
 //				R.string.dlg_db_admin_item_drop_table_cm7))) {
 //			
 //			Methods.drop_Table(actv, CONS.DB.tname_CM7);
-			
+//			
 //		} else if (item.equals(actv.getString(		// Create table: refresh_history
 //				R.string.dlg_db_admin_item_create_table_refresh_history))) {
 //			
@@ -230,7 +230,7 @@ public class DOI_CL implements OnItemClickListener {
 //				R.string.dlg_db_admin_item_drop_table_memo_patterns))) {
 //			
 //			Methods.drop_Table(actv, CONS.DB.tname_MemoPatterns);
-//			
+
 		} else {
 
 		}
