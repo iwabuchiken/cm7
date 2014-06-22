@@ -23,6 +23,7 @@
 
     <!-- menu_main.xml -->
     <string name="opt_menu_main_db">DB</string>
+    <string name="opt_menu_main_create_dir">Create dir</string>
 
     <!-- dlg_db_admin.xml -->
    	<string name="dlg_db_admin_title">DB Admin</string>

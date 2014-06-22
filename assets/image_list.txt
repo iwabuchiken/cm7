@@ -2,3 +2,4 @@
 2	proj_icon.png	1401427810_Streamline-48.png	https://www.iconfinder.com/search/?q=music&price=free
 3	proj_icon_2.png	1401427938_black_7_music_nodes.png	https://www.iconfinder.com/search/?q=music&price=free
 4	proj_icon_3.png	1401428049_music.png	https://www.iconfinder.com/search/?q=music&price=free
+5	opt_menu_main_create_dir.png	1403496493_FEZ-04.png	https://www.iconfinder.com/icons/196912/fez_gear_preferences_settings_icon#size=32

@@ -34,6 +34,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -2119,41 +2120,6 @@ public class Methods {
 		////////////////////////////////
 		CONS.ALActv.adp_AIList.notifyDataSetChanged();
 		
-//		/***************************************
-//		 * Update: bmList
-//		 * 1. Remove the original bm element, using bm.getDbId()
-//		 * 2. Add to the list the new bm element
-//		 ***************************************/
-//		/***************************************
-//		 * 1. Remove the original bm element, using bm.getDbId()
-//		 ***************************************/
-//		for (int i = 0; i < CONS.BMActv.bmList.size(); i++) {
-//			
-//			BM b = CONS.BMActv.bmList.get(i);
-//			
-//			if (b.getDbId() == bm.getDbId()) {
-//				
-//				CONS.BMActv.bmList.remove(b);
-//				
-//				CONS.BMActv.bmList.add(bm);
-//
-////				Methods.sortList_BM(
-//				Methods.sort_List_BM_List(
-//								CONS.BMActv.bmList, 
-//								CONS.Enums.SortType.POSITION,
-//								CONS.Enums.SortOrder.ASC);
-////							CONS.BMActv.bmList, 
-////							CONS.BMActv.SortOrder.POSITION);
-//				
-//				break;
-//				
-//			}//if (b.getDbId() == bm.getDbId())
-//			
-//		}//for (int i = 0; i < CONS.BMActv.bmList.size(); i++)
-//		
-//		CONS.BMActv.aAdapter.notifyDataSetChanged();
-//		CONS.BMActv.adpBML.notifyDataSetChanged();
-		
 		/***************************************
 		 * If successful, close dialog
 		 ***************************************/
@@ -2161,6 +2127,72 @@ public class Methods {
 		dlg1.dismiss();
 
 	}//edit_AI_Ok
+
+	public static void 
+	create_Dir(final Activity actv) {
+		// TODO Auto-generated method stub
+		
+//		int numOfItemsAdded = 0;
+		
+		final ProgressDialog ringProgressDialog = 
+						ProgressDialog.show(
+//								MainActivity.this,
+								actv,
+								"Please wait ...", 
+								"Downloading Image ...", 
+								true);
+
+		ringProgressDialog.setCancelable(true);
+
+		new Thread(new Runnable() {
+
+			@Override
+
+			public void run() {
+
+				int numOfItemsAdded = 0;
+				
+				try {
+	
+					// Here you should write your time consuming task...
+		
+					// Let the progress ring for 10 seconds...
+		
+//					CONS.MainActv.numOfItemsAdded = Methods.refresh_MainDB(actv);
+					numOfItemsAdded = Methods.refresh_MainDB(actv);
+					
+					Thread.sleep(3000);
+	//				Thread.sleep(10000);
+	
+				} catch (Exception e) {
+	
+				}//try
+	
+				ringProgressDialog.dismiss();
+
+				////////////////////////////////
+
+				// report
+
+				////////////////////////////////
+				if (numOfItemsAdded > 0) {
+					
+					// debug
+					String msg_Toast = "New items => " + numOfItemsAdded;
+					Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+					
+				} else if (numOfItemsAdded == CONS.Retval.NoNewFiles){
+
+					String msg_log = "New files => none";
+					Toast.makeText(actv, msg_log, Toast.LENGTH_SHORT).show();
+					
+				}
+				
+			}//public void run()
+
+		}).start();//new Thread(new Runnable() {
+
+	}//create_Dir(Activity actv)
 
 }//public class Methods
 

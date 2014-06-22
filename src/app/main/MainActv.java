@@ -947,6 +947,12 @@ public class MainActv extends ListActivity {
 			
 			break;// case R.id.main_opt_menu_create_folder
 			
+		case R.id.opt_menu_main_create_dir://----------------------------------
+			
+			Methods.create_Dir(this);
+			
+			break;// case R.id.main_opt_menu_create_folder
+			
 		}//switch (item.getItemId())
 		
 		return super.onOptionsItemSelected(item);

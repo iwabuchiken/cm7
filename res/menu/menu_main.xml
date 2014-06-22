@@ -5,4 +5,8 @@
 		android:title="@string/opt_menu_main_db"
 		android:icon="@drawable/opt_menu_main_db"></item>
 		
+    <item android:id="@+id/opt_menu_main_create_dir"
+		android:title="@string/opt_menu_main_create_dir"
+		android:icon="@drawable/opt_menu_main_create_dir"></item>
+		
 </menu>
