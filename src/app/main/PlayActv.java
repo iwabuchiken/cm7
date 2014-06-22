@@ -722,6 +722,13 @@ public class PlayActv extends Activity {
 								CONS.Pref.pkey_CurrentPosition_BMActv, 
 								CONS.Pref.dflt_IntExtra_value);
 
+		// Log
+		String msg_Log = "bm_Value => " + bm_Value;
+		Log.d("PlayActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		
 		if (bm_Value != CONS.Pref.dflt_IntExtra_value
 				&& CONS.BMActv.bmList != null) {
 			
@@ -734,7 +741,7 @@ public class PlayActv extends Activity {
 		} else {
 			
 			// Log
-			String msg_Log = "bm_Value = " + bm_Value;
+			msg_Log = "bm_Value = " + bm_Value;
 			Log.d("PlayActv.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", msg_Log);

@@ -2,6 +2,7 @@ package app.utils;
 
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -2325,6 +2326,67 @@ public class DBUtils extends SQLiteOpenHelper{
 //		return sql;
 		
 	}//_updateData_AI_All__GetSql
+
+	/******************************
+		@return false => 1. File doesn't exist
+	 ******************************/
+	public static boolean
+	delete_AudioFile
+	(Activity actv, AI ai) {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// get: file
+
+		////////////////////////////////
+		File audio_File = new File(ai.getFile_path(), ai.getFile_name());
+		
+		/******************************
+			validate
+		 ******************************/
+		if (!audio_File.exists()) {
+			
+			// Log
+			String msg_Log = "File doesn't exist: " + audio_File.getAbsolutePath();
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return false;
+			
+			
+		}
+		
+		////////////////////////////////
+
+		// delete
+
+		////////////////////////////////
+		//REF http://stackoverflow.com/questions/1248292/how-to-delete-a-file-from-sd-card answered Aug 10 '09 at 9:14
+		boolean res = audio_File.delete();
+		
+		if (res == true) {
+			
+			// Log
+			String msg_Log = "File => deleted: " + audio_File.getAbsolutePath();
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		} else {
+
+			// Log
+			String msg_Log = "File => can't be deleted: " 
+							+ audio_File.getAbsolutePath();
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}
+		
+		return res;
+		
+	}//delete_AudioFile
 	
 }//public class DBUtils
 

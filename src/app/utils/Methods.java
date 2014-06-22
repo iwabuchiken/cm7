@@ -1929,14 +1929,23 @@ public class Methods {
 		// delete: BM
 
 		////////////////////////////////
+		_delete_AI__Delete_BM(actv, ai);
+		
+		////////////////////////////////
+
+		// delete: audio file
+
+		////////////////////////////////
 		CheckBox cb = (CheckBox) dlg2.findViewById(
-									R.id.dlg_tmpl_confirm_simple_cb_cb);
+				R.id.dlg_tmpl_confirm_simple_cb_cb);
 		
 		if (cb.isChecked()) {
 			
-			_delete_AI__Delete_BM(actv, ai);
+			_delete_AI__Delete_File(actv, ai);
 			
 		}
+		
+		
 		
 		////////////////////////////////
 
@@ -1952,6 +1961,34 @@ public class Methods {
 		Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();		
 		
 	}//delete_AI
+
+	private static void 
+	_delete_AI__Delete_File
+	(Activity actv, AI ai) {
+		// TODO Auto-generated method stub
+		
+		boolean res = DBUtils.delete_AudioFile(actv, ai);
+		
+		////////////////////////////////
+
+		// report
+
+		////////////////////////////////
+		if (res == true) {
+			
+			// debug
+			String msg_Toast = "File => deleted";
+			Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+			
+		} else {
+
+			// debug
+			String msg_Toast = "File => can't be deleted";
+			Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+			
+		}
+		
+	}//_delete_AI__Delete_File
 
 	private static void 
 	_delete_AI__Delete_BM
