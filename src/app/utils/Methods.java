@@ -743,127 +743,127 @@ public class Methods {
 		
 	}//conv_CurrentPath_to_TableName(String currentPath)
 
-	public static int refresh_MainDB(Activity actv)
-	{
-		// TODO Auto-generated method stub
-		/****************************
-		 * Steps
-		 * 1. Set up DB(writable)
-		 * 2. Table exists?
-		 * 2-1. If no, then create one
-		 * 3. Execute query for image files
-
-		 * 4. Insert data into db
-		 * 5. Update table "refresh_log"
-		 * 
-		 * 9. Close db
-		 * 10. Return
-			****************************/
-		/****************************
-		 * 1. Set up DB(writable)
-			****************************/
-		//
-		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
-		
-		//
-		SQLiteDatabase wdb = dbu.getWritableDatabase();
-
-		/****************************
-		 * 2. Table exists?
-		 * 2-1. If no, then create one
-		 * 		1. baseDirName
-		 * 		2. backupTableName
-			****************************/
-		boolean res = _refresh_MainDB__Setup_Table(actv, wdb, dbu);
-//		boolean res = refreshMainDB_1_set_up_table(wdb, dbu);
-		
-		if (res == false) {
-			
-			// Log
-			Log.e("Methods.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", "Can't  create table");
-			
-			wdb.close();
-			
-			return CONS.Retval.CantCreateTable;
-			
-		}//if (res == false)
-		
-		////////////////////////////////
-
-		// Execute query for image files
-
-		////////////////////////////////
-		File[] audioFile_list_Filtered = _refresh_MainDB__GetFiles(actv, wdb, dbu);
-//		Cursor c = refreshMainDB_2_exec_query(actv, wdb, dbu);
-
-		
-		/******************************
-			Validate: Any new files?
-		 ******************************/
-		if (audioFile_list_Filtered.length < 1) {
-			
-			wdb.close();
-			
-//			// Log
-//			String msg_log = "New files => none";
-//			Log.d("Methods.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", msg_log);
+//	public static int refresh_MainDB(Activity actv)
+//	{
+//		// TODO Auto-generated method stub
+//		/****************************
+//		 * Steps
+//		 * 1. Set up DB(writable)
+//		 * 2. Table exists?
+//		 * 2-1. If no, then create one
+//		 * 3. Execute query for image files
+//
+//		 * 4. Insert data into db
+//		 * 5. Update table "refresh_log"
+//		 * 
+//		 * 9. Close db
+//		 * 10. Return
+//			****************************/
+//		/****************************
+//		 * 1. Set up DB(writable)
+//			****************************/
+//		//
+//		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+//		
+//		//
+//		SQLiteDatabase wdb = dbu.getWritableDatabase();
+//
+//		/****************************
+//		 * 2. Table exists?
+//		 * 2-1. If no, then create one
+//		 * 		1. baseDirName
+//		 * 		2. backupTableName
+//			****************************/
+//		boolean res = _refresh_MainDB__Setup_Table(actv, wdb, dbu);
+////		boolean res = refreshMainDB_1_set_up_table(wdb, dbu);
+//		
+//		if (res == false) {
 //			
-//			// debug
-//			Toast.makeText(actv, msg_log, Toast.LENGTH_SHORT).show();
-			
-			return CONS.Retval.NoNewFiles;
-			
-		}
-		
-		////////////////////////////////
-
-		// Insert data into db
-
-		////////////////////////////////
-		int numOfItemsAdded = _refresh_MainDB__InsertData(
-						actv, wdb, dbu, audioFile_list_Filtered);
-//		int numOfItemsAdded = refreshMainDB_3_insert_data(actv, wdb, dbu, c);
-		
-		// Log
-		String msg_Log = "numOfItemsAdded = " + numOfItemsAdded;
-		Log.i("Methods.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
-		
-		/****************************
-		 * 9. Close db
-			****************************/
-		wdb.close();
-		
-		////////////////////////////////
-
-		// report
-
-		////////////////////////////////
-//		// debug
-//		String msg_Toast = "New items => " + numOfItemsAdded;
-//		Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
-		
-		
-		////////////////////////////////
-
-		// refresh history
-
-		////////////////////////////////
-		_refresh_MainDB__RefreshHistory(actv, numOfItemsAdded);
-		
-		/****************************
-		 * 10. Return
-			****************************/
-		return numOfItemsAdded;
-		
-//		return -1;
-				
-	}//public static void refresh_MainDB(Activity actv)
+//			// Log
+//			Log.e("Methods.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", "Can't  create table");
+//			
+//			wdb.close();
+//			
+//			return CONS.Retval.CantCreateTable;
+//			
+//		}//if (res == false)
+//		
+//		////////////////////////////////
+//
+//		// Execute query for image files
+//
+//		////////////////////////////////
+//		File[] audioFile_list_Filtered = _refresh_MainDB__GetFiles(actv, wdb, dbu);
+////		Cursor c = refreshMainDB_2_exec_query(actv, wdb, dbu);
+//
+//		
+//		/******************************
+//			Validate: Any new files?
+//		 ******************************/
+//		if (audioFile_list_Filtered.length < 1) {
+//			
+//			wdb.close();
+//			
+////			// Log
+////			String msg_log = "New files => none";
+////			Log.d("Methods.java" + "["
+////					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+////					+ "]", msg_log);
+////			
+////			// debug
+////			Toast.makeText(actv, msg_log, Toast.LENGTH_SHORT).show();
+//			
+//			return CONS.Retval.NoNewFiles;
+//			
+//		}
+//		
+//		////////////////////////////////
+//
+//		// Insert data into db
+//
+//		////////////////////////////////
+//		int numOfItemsAdded = _refresh_MainDB__InsertData(
+//						actv, wdb, dbu, audioFile_list_Filtered);
+////		int numOfItemsAdded = refreshMainDB_3_insert_data(actv, wdb, dbu, c);
+//		
+//		// Log
+//		String msg_Log = "numOfItemsAdded = " + numOfItemsAdded;
+//		Log.i("Methods.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+//		
+//		/****************************
+//		 * 9. Close db
+//			****************************/
+//		wdb.close();
+//		
+//		////////////////////////////////
+//
+//		// report
+//
+//		////////////////////////////////
+////		// debug
+////		String msg_Toast = "New items => " + numOfItemsAdded;
+////		Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+//		
+//		
+//		////////////////////////////////
+//
+//		// refresh history
+//
+//		////////////////////////////////
+//		_refresh_MainDB__RefreshHistory(actv, numOfItemsAdded);
+//		
+//		/****************************
+//		 * 10. Return
+//			****************************/
+//		return numOfItemsAdded;
+//		
+////		return -1;
+//				
+//	}//public static void refresh_MainDB(Activity actv)
 
 	private static void
 	_refresh_MainDB__RefreshHistory
@@ -1793,7 +1793,7 @@ public class Methods {
 	}//public static boolean setPref_long(Activity actv, String pref_name, String pref_key, long value)
 
 
-	private static long get_AudioLength(String fileFullPath) {
+	static long get_AudioLength(String fileFullPath) {
 		
 		// Log
 		Log.d("Methods.java" + "["
@@ -2162,7 +2162,8 @@ public class Methods {
 					// Let the progress ring for 10 seconds...
 		
 //					CONS.MainActv.numOfItemsAdded = Methods.refresh_MainDB(actv);
-					numOfItemsAdded = Methods.refresh_MainDB(actv);
+					numOfItemsAdded = Ops.refresh_MainDB(actv);
+//					numOfItemsAdded = Methods.refresh_MainDB(actv);
 					
 					Thread.sleep(3000);
 	//				Thread.sleep(10000);

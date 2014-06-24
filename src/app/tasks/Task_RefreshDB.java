@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 import app.utils.CONS;
 import app.utils.Methods;
+import app.utils.Ops;
 
 public class Task_RefreshDB extends AsyncTask<String, Integer, String> {
 
@@ -40,7 +41,8 @@ public class Task_RefreshDB extends AsyncTask<String, Integer, String> {
 	protected String doInBackground(String... params) {
 		// TODO �����������ꂽ���\�b�h�E�X�^�u
 		
-		int result = Methods.refresh_MainDB(actv);
+		int result = Ops.refresh_MainDB(actv);
+//		int result = Methods.refresh_MainDB(actv);
 		
 		// Log
 		Log.d("RefreshDBTask.java" + "["
