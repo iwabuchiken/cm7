@@ -142,7 +142,7 @@ LOI_LCL implements OnItemLongClickListener {
 		/****************************
 		* 4. Set adapter
 		****************************/
-		ListView lv = (ListView) dlg1.findViewById(R.id.dlg_tmpl_cancel_lv_lv);
+		ListView lv = (ListView) dlg1.findViewById(R.id.actv_imp_lv);
 		
 		lv.setAdapter(adapter);
 		
@@ -166,7 +166,7 @@ LOI_LCL implements OnItemLongClickListener {
 		* Modify: Button layout
 		***************************************/
 		LinearLayout llButton =
-		(LinearLayout) dlg1.findViewById(R.id.dlg_tmpl_cancel_lv_ll_button_cancel);
+		(LinearLayout) dlg1.findViewById(R.id.actv_imp_ll_filepath);
 		
 		LinearLayout.LayoutParams params =
 				new LinearLayout.LayoutParams(
@@ -228,7 +228,7 @@ LOI_LCL implements OnItemLongClickListener {
 		/****************************
 		 * 4. Set adapter
 			****************************/
-		ListView lv = (ListView) dlg.findViewById(R.id.dlg_tmpl_cancel_lv_lv);
+		ListView lv = (ListView) dlg.findViewById(R.id.actv_imp_lv);
 		
 		lv.setAdapter(adapter);
 		
@@ -251,7 +251,7 @@ LOI_LCL implements OnItemLongClickListener {
 		 * Modify: Button layout
 		 ***************************************/
 		LinearLayout llButton =
-				(LinearLayout) dlg.findViewById(R.id.dlg_tmpl_cancel_lv_ll_button_cancel);
+				(LinearLayout) dlg.findViewById(R.id.actv_imp_ll_filepath);
 		
 		LinearLayout.LayoutParams params =
 						new LinearLayout.LayoutParams(

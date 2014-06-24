@@ -178,7 +178,11 @@ public class DOI_CL implements OnItemClickListener {
 				R.string.dlg_db_admin_item_refresh_db))) {
 			
 			case_DLG_DB_ADMIN_LV__RefreshDB(actv);
-//			Methods.refresh_MainDB(actv);
+			
+		} else if (item.equals(actv.getString(		// Refresh DB
+				R.string.dlg_db_admin_item_impfile))) {
+			
+			case_DLG_DB_ADMIN_LV__ImpFile(actv);
 			
 //		} else if (item.equals(actv.getString(		// Create table: cm7
 //				R.string.dlg_db_admin_item_create_table_cm7))) {
@@ -228,6 +232,16 @@ public class DOI_CL implements OnItemClickListener {
 		dlg1.dismiss();
 		
 	}//case_Dlg_Db_Admin_lv(String item)
+
+	private void 
+	case_DLG_DB_ADMIN_LV__ImpFile
+	(Activity actv) {
+		// TODO Auto-generated method stub
+		
+		Methods.start_Activity_ImpActv(actv);
+		
+		
+	}//case_DLG_DB_ADMIN_LV__ImpFile
 
 	private void case_DLG_DB_ADMIN_LV__RefreshDB(Activity actv) {
 		// TODO Auto-generated method stub

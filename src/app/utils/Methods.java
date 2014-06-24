@@ -67,6 +67,7 @@ import app.items.Refresh;
 import app.listeners.MP_OCmpL;
 import app.listeners.dialog.DL;
 import app.main.ALActv;
+import app.main.ImpActv;
 import app.main.PlayActv;
 import app.services.Service_ShowProgress;
 
@@ -2197,6 +2198,20 @@ public class Methods {
 		}).start();//new Thread(new Runnable() {
 
 	}//create_Dir(Activity actv)
+
+	public static void 
+	start_Activity_ImpActv
+	(Activity actv) {
+		// TODO Auto-generated method stub
+		Intent i = new Intent();
+		
+		i.setClass(actv, ImpActv.class);
+		
+		i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		
+		actv.startActivity(i);
+		
+	}//start_Activity_ImpActv
 
 }//public class Methods
 

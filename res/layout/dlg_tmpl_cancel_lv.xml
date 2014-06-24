@@ -6,13 +6,13 @@
     android:orientation="vertical" >
 
     <ListView
-        android:id="@+id/dlg_tmpl_cancel_lv_lv"
+        android:id="@+id/actv_imp_lv"
         android:layout_width="match_parent"
         android:layout_height="300dp" >
     </ListView>
 
     <LinearLayout
-        android:id="@+id/dlg_tmpl_cancel_lv_ll_button_cancel"
+        android:id="@+id/actv_imp_ll_filepath"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
