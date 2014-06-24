@@ -5,19 +5,13 @@ import cm7.main.R;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Vibrator;
-import android.util.Log;
-import android.view.Display;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 import app.items.AI;
 import app.items.BM;
+import app.tasks.Task_RefreshDB;
 import app.utils.CONS;
 import app.utils.Methods;
 import app.utils.Methods_dlg;
@@ -118,7 +112,7 @@ public class DOI_CL implements OnItemClickListener {
 //		case dlg_db_admin_lv://----------------------------------------------
 		case DLG_DB_ADMIN_LV://----------------------------------------------
 			
-			case_Dlg_Db_Admin_lv(item);
+			case_DLG_DB_ADMIN_LV(item);
 			
 			break;// case dlg_add_memos_gv
 
@@ -139,13 +133,6 @@ public class DOI_CL implements OnItemClickListener {
 			
 			break;// case dlg_bmactv_list_long_click
 			
-		case dlg_add_memos_gv://----------------------------------------------
-			
-			String word = (String) parent.getItemAtPosition(position);
-			
-//			Methods.add_pattern_to_text(dlg1, position, word);
-			
-			break;
 			
 		default:
 			break;
@@ -169,7 +156,8 @@ public class DOI_CL implements OnItemClickListener {
 	}//case_Dlg_ALActv_LongClick(String item)
 
 	private void
-	case_Dlg_Db_Admin_lv(String item) {
+//	case_Dlg_Db_Admin_lv(String item) {
+	case_DLG_DB_ADMIN_LV(String item) {
 		// TODO Auto-generated method stub
 		////////////////////////////////
 
@@ -189,7 +177,8 @@ public class DOI_CL implements OnItemClickListener {
 		} else if (item.equals(actv.getString(		// Refresh DB
 				R.string.dlg_db_admin_item_refresh_db))) {
 			
-			Methods.refresh_MainDB(actv);
+			case_DLG_DB_ADMIN_LV__RefreshDB(actv);
+//			Methods.refresh_MainDB(actv);
 			
 //		} else if (item.equals(actv.getString(		// Create table: cm7
 //				R.string.dlg_db_admin_item_create_table_cm7))) {
@@ -239,6 +228,14 @@ public class DOI_CL implements OnItemClickListener {
 		dlg1.dismiss();
 		
 	}//case_Dlg_Db_Admin_lv(String item)
+
+	private void case_DLG_DB_ADMIN_LV__RefreshDB(Activity actv) {
+		// TODO Auto-generated method stub
+		Task_RefreshDB task = new Task_RefreshDB(actv);
+		
+		task.execute("Start");
+		
+	}
 
 	private void
 //		case_dlg_bmactv_list_long_click(String item) {

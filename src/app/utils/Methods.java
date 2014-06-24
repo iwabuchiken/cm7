@@ -776,7 +776,7 @@ public class Methods {
 			****************************/
 		boolean res = _refresh_MainDB__Setup_Table(actv, wdb, dbu);
 //		boolean res = refreshMainDB_1_set_up_table(wdb, dbu);
-
+		
 		if (res == false) {
 			
 			// Log
@@ -806,14 +806,14 @@ public class Methods {
 			
 			wdb.close();
 			
-			// Log
-			String msg_log = "New files => none";
-			Log.d("Methods.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", msg_log);
-			
-			// debug
-			Toast.makeText(actv, msg_log, Toast.LENGTH_SHORT).show();
+//			// Log
+//			String msg_log = "New files => none";
+//			Log.d("Methods.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_log);
+//			
+//			// debug
+//			Toast.makeText(actv, msg_log, Toast.LENGTH_SHORT).show();
 			
 			return CONS.Retval.NoNewFiles;
 			
@@ -844,9 +844,9 @@ public class Methods {
 		// report
 
 		////////////////////////////////
-		// debug
-		String msg_Toast = "New items => " + numOfItemsAdded;
-		Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+//		// debug
+//		String msg_Toast = "New items => " + numOfItemsAdded;
+//		Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
 		
 		
 		////////////////////////////////
@@ -1081,6 +1081,9 @@ public class Methods {
 		
 	}//_refresh_MainDB__Exec_Query
 
+	/******************************
+		Setup a table for audio items
+	 ******************************/
 	private static boolean
 	_refresh_MainDB__Setup_Table
 	(Activity actv, SQLiteDatabase wdb, app.utils.DBUtils dbu)

@@ -46,7 +46,7 @@ public class DB_OCL implements OnClickListener {
 		this.dlg1 = dlg1;
 		
 		//
-		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 	}
 
 	public DB_OCL(Activity actv, Dialog dlg1,
@@ -57,7 +57,7 @@ public class DB_OCL implements OnClickListener {
 		this.dlg2 = dlg2;
 		
 		//
-		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 	}
 
 	public DB_OCL(Activity actv, Dialog dlg1,
@@ -69,7 +69,7 @@ public class DB_OCL implements OnClickListener {
 		this.dlg3 = dlg3;
 		
 		//
-		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 	}
 
 	public DB_OCL(Activity actv, Dialog dlg1, long file_id, String tableName) {
@@ -81,7 +81,7 @@ public class DB_OCL implements OnClickListener {
 		
 		this.file_id = file_id;
 		
-		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 		
 	}//public DialogButtonOnClickListener(Activity actv, Dialog dlg1, long file_id, String tableName)
 
@@ -95,7 +95,7 @@ public class DB_OCL implements OnClickListener {
 		
 		this.bm		= bm;
 		
-		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 		
 	}
 
@@ -107,7 +107,7 @@ public class DB_OCL implements OnClickListener {
 		
 		this.ai		= ai;
 		
-		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 		
 	}
 
@@ -122,7 +122,7 @@ public class DB_OCL implements OnClickListener {
 		this.ai		= ai;
 		this.alList_Position	= alList_Position;
 		
-		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 
 	}
 
@@ -136,7 +136,7 @@ public class DB_OCL implements OnClickListener {
 		
 		this.ai		= ai;
 		
-		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 
 	}
 
@@ -149,12 +149,15 @@ public class DB_OCL implements OnClickListener {
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", "tag_name.name()=" + tag_name.name());
 		
+//		CONS.Admin.vib = 
+//					(Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		
+		CONS.Admin.vib.vibrate(CONS.Admin.vibLength_click);
+		
 		//
 		switch (tag_name) {
 		
 		case DLG_GENERIC_DISMISS://------------------------------------------------
-			
-			CONS.Admin.vib.vibrate(CONS.Admin.vibLength_click);
 			
 			dlg1.dismiss();
 			
@@ -162,15 +165,11 @@ public class DB_OCL implements OnClickListener {
 
 		case dlg_generic_dismiss_second_dialog: // ----------------------------------------------------
 			
-			CONS.Admin.vib.vibrate(CONS.Admin.vibLength_click);
-			
 			dlg2.dismiss();
 			
 			break;// case dlg_generic_dismiss_second_dialog
 
 		case dlg_generic_dismiss_third_dialog://------------------------------------------------
-			
-			CONS.Admin.vib.vibrate(CONS.Admin.vibLength_click);
 			
 			dlg3.dismiss();
 			
@@ -178,15 +177,11 @@ public class DB_OCL implements OnClickListener {
 
 		case dlg_conf_delete_BM_ok://------------------------------------------------
 			
-			CONS.Admin.vib.vibrate(CONS.Admin.vibLength_click);
-
 			dlg_Conf_Delete_BM_Ok();
 			
 			break;
 			
 		case DLG_EDIT_ITEM_BT_OK://------------------------------------------------
-			
-			CONS.Admin.vib.vibrate(CONS.Admin.vibLength_click);
 			
 			dlg_Edit_BM_Ok();
 			
@@ -194,23 +189,17 @@ public class DB_OCL implements OnClickListener {
 			
 		case DLG_PLAYACTV_EDIT_TITLE_BT_OK://------------------------------------------------
 			
-			CONS.Admin.vib.vibrate(CONS.Admin.vibLength_click);
-			
 			dlg_PlayActv_Edit_AI_Title_Ok();
 			
 			break;
 			
 		case DLG_CONF_DELETE_AI_OK://------------------------------------------------
 			
-			CONS.Admin.vib.vibrate(CONS.Admin.vibLength_click);
-			
 			dlg_ALActv_Delete_AI_Ok();
 			
 			break;
 			
 		case DLG_EDIT_AI_BT_OK://------------------------------------------------
-			
-			CONS.Admin.vib.vibrate(CONS.Admin.vibLength_click);
 			
 			dlg_ALActv_edit_AI_Ok();
 			
