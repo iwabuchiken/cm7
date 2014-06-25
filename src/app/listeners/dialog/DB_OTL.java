@@ -41,7 +41,7 @@ public class DB_OTL implements OnTouchListener {
 				case dlg_generic_dismiss_third_dialog:
 				case dlg_generic_dismiss_second_dialog:
 					
-				case dlg_create_folder_ok:
+				case DLG_CREATE_FOLDER_OK:
 				case dlg_create_folder_cancel:
 				
 				case dlg_input_empty_cancel:
@@ -84,7 +84,7 @@ public class DB_OTL implements OnTouchListener {
 			case dlg_generic_dismiss_second_dialog:
 			case dlg_generic_dismiss_third_dialog:
 
-			case dlg_create_folder_ok:
+			case DLG_CREATE_FOLDER_OK:
 			case dlg_create_folder_cancel:
 
 			case dlg_input_empty_cancel:

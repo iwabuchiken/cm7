@@ -2136,66 +2136,68 @@ public class Methods {
 	create_Dir(final Activity actv) {
 		// TODO Auto-generated method stub
 		
+		
+		
 //		int numOfItemsAdded = 0;
 		
-		final ProgressDialog ringProgressDialog = 
-						ProgressDialog.show(
-//								MainActivity.this,
-								actv,
-								"Please wait ...", 
-								"Downloading Image ...", 
-								true);
-
-		ringProgressDialog.setCancelable(true);
-
-		new Thread(new Runnable() {
-
-			@Override
-
-			public void run() {
-
-				int numOfItemsAdded = 0;
-				
-				try {
-	
-					// Here you should write your time consuming task...
-		
-					// Let the progress ring for 10 seconds...
-		
-//					CONS.MainActv.numOfItemsAdded = Methods.refresh_MainDB(actv);
-					numOfItemsAdded = Ops.refresh_MainDB(actv);
-//					numOfItemsAdded = Methods.refresh_MainDB(actv);
-					
-					Thread.sleep(3000);
-	//				Thread.sleep(10000);
-	
-				} catch (Exception e) {
-	
-				}//try
-	
-				ringProgressDialog.dismiss();
-
-				////////////////////////////////
-
-				// report
-
-				////////////////////////////////
-				if (numOfItemsAdded > 0) {
-					
-					// debug
-					String msg_Toast = "New items => " + numOfItemsAdded;
-					Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
-					
-				} else if (numOfItemsAdded == CONS.Retval.NoNewFiles){
-
-					String msg_log = "New files => none";
-					Toast.makeText(actv, msg_log, Toast.LENGTH_SHORT).show();
-					
-				}
-				
-			}//public void run()
-
-		}).start();//new Thread(new Runnable() {
+//		final ProgressDialog ringProgressDialog = 
+//						ProgressDialog.show(
+////								MainActivity.this,
+//								actv,
+//								"Please wait ...", 
+//								"Downloading Image ...", 
+//								true);
+//
+//		ringProgressDialog.setCancelable(true);
+//
+//		new Thread(new Runnable() {
+//
+//			@Override
+//
+//			public void run() {
+//
+//				int numOfItemsAdded = 0;
+//				
+//				try {
+//	
+//					// Here you should write your time consuming task...
+//		
+//					// Let the progress ring for 10 seconds...
+//		
+////					CONS.MainActv.numOfItemsAdded = Methods.refresh_MainDB(actv);
+//					numOfItemsAdded = Ops.refresh_MainDB(actv);
+////					numOfItemsAdded = Methods.refresh_MainDB(actv);
+//					
+//					Thread.sleep(3000);
+//	//				Thread.sleep(10000);
+//	
+//				} catch (Exception e) {
+//	
+//				}//try
+//	
+//				ringProgressDialog.dismiss();
+//
+//				////////////////////////////////
+//
+//				// report
+//
+//				////////////////////////////////
+//				if (numOfItemsAdded > 0) {
+//					
+//					// debug
+//					String msg_Toast = "New items => " + numOfItemsAdded;
+//					Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+//					
+//				} else if (numOfItemsAdded == CONS.Retval.NoNewFiles){
+//
+//					String msg_log = "New files => none";
+//					Toast.makeText(actv, msg_log, Toast.LENGTH_SHORT).show();
+//					
+//				}
+//				
+//			}//public void run()
+//
+//		}).start();//new Thread(new Runnable() {
 
 	}//create_Dir(Activity actv)
 

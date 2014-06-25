@@ -94,5 +94,11 @@
     	<string name="dlg_playactv_edit_ai_title_title">Edit title</string>
     	<string name="dlg_playactv_edit_ai_memo_title">Edit memo</string>
     	<string name="dlg_playactv_edit_ai_add_patterns">Patterns</string>
-   								
+
+    <!-- dlg_create_folder.xml -->
+	    <string name="dlg_create_folder_title">Create folder</string>
+	    <string name="dlg_create_folder_tv_message">Folder name</string>
+    		
+    	
+    									
 </resources>

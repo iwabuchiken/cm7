@@ -9,7 +9,7 @@ public class Tags {
 		
 		
 		// dlg_create_folder.xml
-		dlg_create_folder_ok, dlg_create_folder_cancel,
+		DLG_CREATE_FOLDER_OK, dlg_create_folder_cancel,
 
 		// dlg_input_empty.xml
 		dlg_input_empty_reenter, dlg_input_empty_cancel,

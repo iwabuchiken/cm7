@@ -830,5 +830,46 @@ public class Methods_dlg {
 		return dlg2;
 		
 	}//dlg_template_okCancel_SecondDialog
+
+	public static void 
+	dlg_CreateDir(Activity actv) {
+		// TODO Auto-generated method stub
+		Dialog dlg = new Dialog(actv);
+		
+		//
+		dlg.setContentView(R.layout.dlg_create_folder);
+		
+		// Title
+		dlg.setTitle(R.string.dlg_create_folder_title);
+
+		Button btn_ok = (Button) dlg.findViewById(R.id.dlg_create_folder_bt_ok);
+		Button btn_cancel = (Button) dlg.findViewById(R.id.dlg_create_folder_cancel);
+		
+		//
+//		btn_ok.setTag(DialogTags.dlg_create_folder_ok);
+		btn_ok.setTag(DialogTags.DLG_CREATE_FOLDER_OK);
+//		btn_cancel.setTag(DialogTags.dlg_create_folder_cancel);
+		btn_cancel.setTag(DialogTags.DLG_GENERIC_DISMISS);
+		
+		//
+		btn_ok.setOnTouchListener(new DB_OTL(actv, dlg));
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg));
+		
+		/*----------------------------
+		 * 3. Add listeners => OnClick
+			----------------------------*/
+		//
+		btn_ok.setOnClickListener(new DB_OCL(actv, dlg));
+		btn_cancel.setOnClickListener(new DB_OCL(actv, dlg));
+		
+		/*----------------------------
+		 * 4. CheckBox
+			----------------------------*/
+//		CheckBox cb = (CheckBox) dlg.findViewById(R.id.dlg_create_folder_cb_folder_set);
+		
+		//
+		dlg.show();		
+		
+	}//dlg_CreateDir(Activity actv)
 	
 }//public class Methods_dialog
