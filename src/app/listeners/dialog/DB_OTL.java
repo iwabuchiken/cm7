@@ -39,7 +39,7 @@ public class DB_OTL implements OnTouchListener {
 				
 				case DLG_GENERIC_DISMISS:
 				case dlg_generic_dismiss_third_dialog:
-				case dlg_generic_dismiss_second_dialog:
+				case DLG_GENERIC_DISMISS_SECOND_DIALOG:
 					
 				case DLG_CREATE_FOLDER_OK:
 				case dlg_create_folder_cancel:
@@ -47,8 +47,8 @@ public class DB_OTL implements OnTouchListener {
 				case dlg_input_empty_cancel:
 				case dlg_input_empty_reenter:
 
-				case dlg_confirm_create_folder_ok:
-				case dlg_confirm_create_folder_cancel:
+				case DLG_CONFIRM_CREATE_FOLDER_OK:
+				case DLG_CONFIRM_CREATE_FOLDER_CANCEL:
 					
 				case dlg_confirm_remove_folder_cancel:
 				case dlg_confirm_remove_folder_ok:
@@ -81,7 +81,7 @@ public class DB_OTL implements OnTouchListener {
 			switch (tag_name) {
 
 			case DLG_GENERIC_DISMISS:
-			case dlg_generic_dismiss_second_dialog:
+			case DLG_GENERIC_DISMISS_SECOND_DIALOG:
 			case dlg_generic_dismiss_third_dialog:
 
 			case DLG_CREATE_FOLDER_OK:
@@ -90,8 +90,8 @@ public class DB_OTL implements OnTouchListener {
 			case dlg_input_empty_cancel:
 			case dlg_input_empty_reenter:
 
-			case dlg_confirm_create_folder_ok:
-			case dlg_confirm_create_folder_cancel:
+			case DLG_CONFIRM_CREATE_FOLDER_OK:
+			case DLG_CONFIRM_CREATE_FOLDER_CANCEL:
 
 			case dlg_confirm_remove_folder_cancel:
 			case dlg_confirm_remove_folder_ok:

@@ -2133,7 +2133,8 @@ public class Methods {
 	}//edit_AI_Ok
 
 	public static void 
-	create_Dir(final Activity actv) {
+	create_Dir
+	(Activity actv, Dialog dlg1, Dialog dlg2) {
 		// TODO Auto-generated method stub
 		
 		

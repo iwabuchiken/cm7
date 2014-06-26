@@ -4,7 +4,7 @@ public class Tags {
 
 	public static enum DialogTags {
 		// Generics
-		DLG_GENERIC_DISMISS, dlg_generic_dismiss_second_dialog,
+		DLG_GENERIC_DISMISS, DLG_GENERIC_DISMISS_SECOND_DIALOG,
 		dlg_generic_dismiss_third_dialog,
 		
 		
@@ -15,7 +15,7 @@ public class Tags {
 		dlg_input_empty_reenter, dlg_input_empty_cancel,
 		
 		// dlg_confirm_create_folder.xml
-		dlg_confirm_create_folder_ok, dlg_confirm_create_folder_cancel,
+		DLG_CONFIRM_CREATE_FOLDER_OK, DLG_CONFIRM_CREATE_FOLDER_CANCEL,
 
 		// dlg_confirm_remove_folder.xml
 		dlg_confirm_remove_folder_ok, dlg_confirm_remove_folder_cancel,

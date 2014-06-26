@@ -15,7 +15,7 @@
    		<string name="generic_tv_no_data">No data</string>
    		<string name="generic_bt_quit">終了</string>
    		<string name="generic_message_quit">Quit the app?</string>
-    	<string name="generic_notice">注目</string>
+    	<string name="generic_notice">Notice</string>
     	<string name="generic_confirm_delete_file">Delete file, too</string>
     
     <!-- main.xml -->
@@ -99,6 +99,12 @@
 	    <string name="dlg_create_folder_title">Create folder</string>
 	    <string name="dlg_create_folder_tv_message">Folder name</string>
     		
-    	
+    <!-- dlg_input_empty.xml -->
+	    <string name="dlg_input_empty_message">No input</string>
+	
+	<!-- dlg_confirm_create_folder.xml -->
+    	<string name="dlg_confirm_create_folder_tv_message">
+    	    						Create dir?</string>
+	    
     									
 </resources>

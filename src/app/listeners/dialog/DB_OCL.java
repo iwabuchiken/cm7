@@ -16,6 +16,7 @@ import app.items.BM;
 import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
+import app.utils.Methods_dlg;
 import app.utils.Tags;
 
 public class DB_OCL implements OnClickListener {
@@ -163,7 +164,7 @@ public class DB_OCL implements OnClickListener {
 			
 			break;
 
-		case dlg_generic_dismiss_second_dialog: // ----------------------------------------------------
+		case DLG_GENERIC_DISMISS_SECOND_DIALOG: // ----------------------------------------------------
 			
 			dlg2.dismiss();
 			
@@ -199,9 +200,21 @@ public class DB_OCL implements OnClickListener {
 			
 			break;
 			
+		case DLG_CREATE_FOLDER_OK://------------------------------------------------
+			
+			dlg_DLG_CREATE_FOLDER_OK();
+			
+			break;
+			
 		case DLG_EDIT_AI_BT_OK://------------------------------------------------
 			
 			dlg_ALActv_edit_AI_Ok();
+			
+			break;
+			
+		case DLG_CONFIRM_CREATE_FOLDER_OK://------------------------------------------------
+			
+			dlg_CONFIRM_CREATE_FOLDER_OK();
 			
 			break;
 			
@@ -210,6 +223,22 @@ public class DB_OCL implements OnClickListener {
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void 
+	dlg_CONFIRM_CREATE_FOLDER_OK() {
+		// TODO Auto-generated method stub
+		
+//		Methods.create_Dir(actv, dlg1, dlg2);
+		Methods.create_Dir(actv, dlg1, dlg2);
+		
+	}//dlg_CONFIRM_CREATE_FOLDER_OK
+
+	private void dlg_DLG_CREATE_FOLDER_OK() {
+		// TODO Auto-generated method stub
+		
+		Methods_dlg.dlg_IsEmpty(actv, dlg1);
+		
+	}
 
 	private void 
 	dlg_ALActv_edit_AI_Ok() {
