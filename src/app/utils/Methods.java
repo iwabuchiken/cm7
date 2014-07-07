@@ -360,6 +360,82 @@ public class Methods {
 		return list_Dir;
 		
 	}//public static List<String> get_file_list(File dpath)
+	
+	public static List<String> 
+	get_FileList_Sorted(File dpath) {
+		/*********************************
+		 * 1. Directory exists?
+		 * 2. Build list
+		 * 2-1. Sort list
+		 * 
+		 * 3. Return
+		 *********************************/
+		////////////////////////////////
+		
+		// Directory exists?
+		
+		////////////////////////////////
+		
+		if (!dpath.exists()) {
+			
+			// Log
+			Log.e("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Dir doesn't exist");
+			
+			return null;
+			
+		} else {//if (!dpath.exists() == condition)
+			
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Dir exists: " + dpath.getAbsolutePath());
+			
+		}//if (!dpath.exists() == condition)
+		
+		////////////////////////////////
+		
+		// Get: File list
+		
+		////////////////////////////////
+		
+		List<String> list_Dir = new ArrayList<String>();
+		
+		File[] files_list = dpath.listFiles();
+		
+		if (files_list == null) {
+			
+			// Log
+			String msg_log = "listFiles() => returned null";
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_log);
+			
+			return null;
+			
+		}
+		
+		////////////////////////////////
+		
+		// Sort list
+		
+		////////////////////////////////
+		
+		Methods.sort_list_files(files_list);
+		
+		for (File f : files_list) {
+			
+			list_Dir.add(f.getName());
+			
+		}//for (File f : files_list)
+		
+		/*********************************
+		 * 3. Return
+		 *********************************/
+		return list_Dir;
+		
+	}//public static List<String> get_file_list(File dpath)
 
 	public static String convert_intSec2Digits(int t) {
 		
@@ -2137,7 +2213,187 @@ public class Methods {
 	(Activity actv, Dialog dlg1, Dialog dlg2) {
 		// TODO Auto-generated method stub
 		
+		/******************************
+			1. Create dir	=> Dir exists?
+			2. Create a table	=> table exists?
+			3. Re-build the listview
+			4. Notify the adapter
+		 ******************************/
+		////////////////////////////////
+
+		// get: dir name
+
+		////////////////////////////////
+		TextView tv = (TextView) dlg2.findViewById(
+							R.id.dlg_confirm_create_folder_tv_table_name);
 		
+		String dname_New = tv.getText().toString();
+		
+		////////////////////////////////
+
+		// validate: pref
+
+		////////////////////////////////
+		if (CONS.MainActv.prefval_CurrentPath == null) {
+			
+			String path = StringUtils.join(
+								new String[]{
+										CONS.Paths.dpath_Storage_Sdcard, 
+										CONS.Paths.dname_Base
+								},
+								File.separator);
+			
+			Methods.setPref_String(
+					actv, 
+					CONS.Pref.pname_MainActv, 
+					CONS.Pref.pkey_CurrentPath, 
+					path);
+			
+			CONS.MainActv.prefval_CurrentPath = path;
+			
+		}
+
+		////////////////////////////////
+		
+		// build: file path
+		
+		////////////////////////////////
+		File newDir = new File(CONS.MainActv.prefval_CurrentPath, dname_New);
+		
+		// Log
+		String msg_Log = "new dir path => " + newDir.getAbsolutePath();
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+
+		////////////////////////////////
+
+		// new dir: exists?
+
+		////////////////////////////////
+		boolean dirExists = newDir.exists();
+
+		if (dirExists == false) {
+			
+			boolean tmp_b = newDir.mkdir();
+			
+			if (tmp_b == true) {
+				
+				// Log
+				msg_Log = "new dir created: " + newDir.getAbsolutePath();
+				Log.d("Methods.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+			} else {
+				
+				dlg2.dismiss();
+				
+				Dialog dlg3 = Methods_dlg.dlg_Template_Cancel(
+									actv, 
+									R.layout.dlg_tmpl_message_simple, 
+									R.string.generic_notice, 
+									R.id.dlg_tmpl_message_simple_btn_ok, 
+									Tags.DialogTags.DLG_GENERIC_DISMISS);
+				
+				TextView tv_Message = (TextView) dlg3.findViewById(
+								R.id.dlg_tmpl_message_simple_tv_message);
+				
+				tv_Message.setText("Can't create dir: " + newDir.getName());
+				
+				dlg3.show();
+				
+				return;
+
+			}
+			
+		} else {
+			
+			// Log
+			msg_Log = "Dir exists => " + newDir.getAbsolutePath();
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+//			dlg2.dismiss();
+//			
+//			return;
+			
+		}
+
+		////////////////////////////////
+
+		// created: list.txt
+
+		////////////////////////////////
+		File listFile = new File(
+							newDir.getAbsolutePath(), 
+							CONS.Admin.fname_List);
+
+		boolean fileExists = listFile.exists();
+		
+		if (fileExists == true) {
+			
+			// Log
+			msg_Log = "list.txt => exists";
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		} else {
+			
+			try {
+				
+				listFile.createNewFile();
+				
+				// Log
+				msg_Log = "list.txt => Created";
+				Log.d("Methods.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				dlg2.dismiss();
+				
+				Dialog dlg3 = Methods_dlg.dlg_Template_Cancel(
+									actv, 
+									R.layout.dlg_tmpl_message_simple, 
+									R.string.generic_notice, 
+									R.id.dlg_tmpl_message_simple_btn_ok, 
+									Tags.DialogTags.DLG_GENERIC_DISMISS);
+				
+				TextView tv_Message = (TextView) dlg3.findViewById(
+								R.id.dlg_tmpl_message_simple_tv_message);
+				
+				tv_Message.setText("Can't create list.txt");
+				
+				dlg3.show();
+				
+				return;
+//				e.printStackTrace();
+				
+			}//try
+
+		}//if (fileExists == true)
+		
+		////////////////////////////////
+
+		// rebuild: listview
+
+		////////////////////////////////
+		File currentDir = new File(CONS.MainActv.prefval_CurrentPath);
+		CONS.MainActv.list_RootDir.clear();
+		
+		List<String> tmp_List = Methods.get_FileList(currentDir);
+//		Collections.sort(tmp_List);
+		
+		CONS.MainActv.list_RootDir.addAll(tmp_List);
+		
+		CONS.MainActv.aAdapter.notifyDataSetChanged();
 		
 //		int numOfItemsAdded = 0;
 		
@@ -2216,5 +2472,6 @@ public class Methods {
 		
 	}//start_Activity_ImpActv
 
+	
 }//public class Methods
 

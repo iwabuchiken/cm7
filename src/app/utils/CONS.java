@@ -273,6 +273,9 @@ public class CONS {
 		
 		public static int dflt_IntExtra_value = -1;
 		
+//		public static final String pkey_CurrentPath =
+//							"pkey_CurrentPath";
+		
 		////////////////////////////////
 
 		// PlayActv.java
@@ -297,9 +300,10 @@ public class CONS {
 		public static String pname_MainActv = "main_activity";
 //		public static String pname_CurrentPath = "current_path";
 		
-		public static String pkey_CurrentPath = "pkey_CurrentPath";
+		public static final String pkey_CurrentPath = "pkey_CurrentPath";
 		
-		public static String pkey_CurrentPosition = "pkey_CurrentPosition";
+		public static String pkey_CurrentPosition_MainActv = 
+									"pkey_CurrentPosition_MainActv";
 		
 		////////////////////////////////
 
@@ -337,6 +341,8 @@ public class CONS {
 		public static ArrayAdapter<String> adp_dir_list = null;
 		
 		public static Adp_MainList aAdapter;
+		
+		public static String prefval_CurrentPath;
 		
 	}
 

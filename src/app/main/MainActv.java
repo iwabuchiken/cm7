@@ -863,11 +863,11 @@ public class MainActv extends ListActivity {
 		Methods.set_Pref_Int(
 				this,
 				CONS.Pref.pname_MainActv,
-				CONS.Pref.pkey_CurrentPosition,
+				CONS.Pref.pkey_CurrentPosition_MainActv,
 				position);
 		
 		// Log
-		String msg_log = "Pref: " + CONS.Pref.pkey_CurrentPosition
+		String msg_log = "Pref: " + CONS.Pref.pkey_CurrentPosition_MainActv
 						+ " => "
 						+ "Set to: " + position;
 		
@@ -1016,30 +1016,50 @@ public class MainActv extends ListActivity {
 
 	@Override
 	protected void onStart() {
-		/*----------------------------
-		 * 1. Refresh DB
-			----------------------------*/
-//		refresh_db();
-//		SharedPreferences prefs_main =
-//							this.getSharedPreferences(this.getString(R.string.prefs_shared_prefs_name), 0);
-//		
-////		// Log
-////		Log.d("MainActv.java" + "["
-////				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-////				+ "]", "prefs_main: db_refresh => " + prefs_main.getBoolean(this.getString(R.string.prefs_db_refresh_key), false));
-//		
-//		if(prefs_main.getBoolean(this.getString(R.string.prefs_db_refresh_key), false)) {
-//			
-//			Methods.start_refreshDB(this);
-//			
-//		} else {//if(prefs_main.getBoolean(this.getString(R.string.prefs_db_refresh_key), false))
-//			
-////			// Log
-////			Log.d("MainActv.java" + "["
-////					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-////					+ "]", "Prefs: db_refresh => " + false);
-//			
-//		}//if(prefs_main.getBoolean(this.getString(R.string.prefs_db_refresh_key), false))
+
+		////////////////////////////////
+
+		// Set pref: Current path
+//			1. Get pref value of "current path"
+//			2. If the return value is null, then
+//			3. Set the root dir as the value
+//
+		////////////////////////////////
+		CONS.MainActv.prefval_CurrentPath = 
+					Methods.get_Pref_String(
+							this, 
+							CONS.Pref.pname_MainActv, 
+							CONS.Pref.pkey_CurrentPath, 
+							null);
+		
+		
+		if (CONS.MainActv.prefval_CurrentPath == null) {
+			
+			String path = StringUtils.join(
+								new String[]{
+										CONS.Paths.dpath_Storage_Sdcard, 
+										CONS.Paths.dname_Base
+								},
+								File.separator);
+			
+			Methods.setPref_String(
+					this, 
+					CONS.Pref.pname_MainActv, 
+					CONS.Pref.pkey_CurrentPath, 
+					path);
+			
+			CONS.MainActv.prefval_CurrentPath = path;
+			
+		}
+		
+		// Log
+		String msg_Log = "CONS.MainActv.prefval_CurrentPath = "
+						+ CONS.MainActv.prefval_CurrentPath;
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		
 		
 		super.onStart();
 	}//protected void onStart()
