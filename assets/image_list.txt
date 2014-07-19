@@ -3,3 +3,5 @@
 3	proj_icon_2.png	1401427938_black_7_music_nodes.png	https://www.iconfinder.com/search/?q=music&price=free
 4	proj_icon_3.png	1401428049_music.png	https://www.iconfinder.com/search/?q=music&price=free
 5	opt_menu_main_create_dir.png	1403496493_FEZ-04.png	https://www.iconfinder.com/icons/196912/fez_gear_preferences_settings_icon#size=32
+6	dir.png	1405754380_Macromedia Director MX_32x32.png	https://www.iconfinder.com/search/?q=directory&price=free
+7	file.png	1405754490_editor_document_file.png	https://www.iconfinder.com/icons/284127/document_editor_file_icon#size=32

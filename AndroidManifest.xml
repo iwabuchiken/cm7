@@ -25,10 +25,10 @@
             </intent-filter>
         </activity>
         <activity android:name="app.main.ALActv"></activity>
-        <activity android:name="app.main.PlayActv"></activity>
-        <activity android:name="app.main.BMActv"></activity>
+        <activity android:name="app.main.PlayActv" android:screenOrientation="portrait"></activity>
+        <activity android:name="app.main.BMActv" android:screenOrientation="portrait"></activity>
         <service android:name="app.services.Service_ShowProgress"></service>
-        <activity android:name="app.main.ImpActv"></activity>
+        <activity android:name="app.main.ImpActv" android:screenOrientation="portrait"></activity>
         
         
         
