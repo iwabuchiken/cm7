@@ -13,6 +13,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import app.adapters.Adp_AIList;
 import app.adapters.Adp_BMList;
+import app.adapters.Adp_ImpList;
 import app.adapters.Adp_MainList;
 import app.items.AI;
 import app.items.BM;
@@ -324,15 +325,25 @@ public class CONS {
 		////////////////////////////////
 		public static SharedPreferences prefs_BMActv;
 		
-		public static String pname_BMActv = "al_activity";
+		public static String pname_BMActv = "bm_activity";
 		
 		public static String pkey_CurrentPosition_BMActv
 							= "pkey_CurrentPosition_BMActv";
 		
 		public static String pkey_LastVisiblePosition_BMActv
 							= "pkey_LastVisiblePosition_BMActv";
+
+		////////////////////////////////
 		
-	}
+		// ImpActv
+		
+		////////////////////////////////
+		public static String pname_ImpActv = "pname_ImpActv";
+		
+		public static String pkey_ImpActv_CurrentPath
+										= "pkey_ImpActv_CurrentPath";
+
+	}//public static class Pref
 
 	public static class MainActv {
 		
@@ -359,6 +370,21 @@ public class CONS {
 		}
 		
 		public static Adp_BMList aAdapter;
+	}
+	
+	public static class ImpActv {
+		
+		public static final String top_ImpDir = 
+							CONS.Paths.dpath_Storage_Sdcard;
+	
+		public static Adp_ImpList adp_Imp;
+		
+		public static String currentPath;
+		
+		public final static String upDir = "..";
+		
+		public static List<String> dir_List;
+		
 	}
 	
 	public static class ALActv {

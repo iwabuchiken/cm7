@@ -1042,7 +1042,7 @@ public class MainActv extends ListActivity {
 								},
 								File.separator);
 			
-			Methods.setPref_String(
+			Methods.set_Pref_String(
 					this, 
 					CONS.Pref.pname_MainActv, 
 					CONS.Pref.pkey_CurrentPath, 

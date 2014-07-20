@@ -162,7 +162,7 @@ public class PlayActv extends Activity {
 				|| !tmp.equals(CONS.PlayActv.ai.getFile_name())) {
 			// Pref current file name => not set yet
 			//	=> then, set the passed file name into the pref
-			boolean res = Methods.setPref_String(this, 
+			boolean res = Methods.set_Pref_String(this, 
 								CONS.Pref.pname_PlayActv, 
 								CONS.Pref.pkey_PlayActv_CurrentFileName, 
 								CONS.PlayActv.ai.getFile_name());
