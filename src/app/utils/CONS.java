@@ -377,6 +377,8 @@ public class CONS {
 		
 		public final static String upDir = "..";
 		
+		public static List<String> dir_List;
+		
 	}
 	
 	public static class ALActv {

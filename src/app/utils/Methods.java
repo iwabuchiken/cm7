@@ -1758,7 +1758,7 @@ public class Methods {
 	}//public static boolean setPref_long(Activity actv, String pref_name, String pref_key, long value)
 	
 	public static boolean
-	setPref_String
+	set_Pref_String
 	(Activity actv, String pName, String pKey, String value) {
 		
 		SharedPreferences prefs = 
