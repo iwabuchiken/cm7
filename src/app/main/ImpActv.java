@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ListView;
 import app.adapters.Adp_ImpList;
 import app.adapters.Adp_MainList;
+import app.listeners.LV_OTL;
 import app.utils.CONS;
 import app.utils.Methods;
 import app.utils.Methods_dlg;
@@ -101,15 +102,62 @@ public class ImpActv extends ListActivity {
 		// TODO Auto-generated method stub
 		////////////////////////////////
 
+		// general
+
+		////////////////////////////////
+		_Setup_General();
+		
+		
+		////////////////////////////////
+
 		// setup: dir list
 
 		////////////////////////////////
 		_Setup_DirList();
 		
-		
+		////////////////////////////////
+
+		// listeners
+
+		////////////////////////////////
+		_Setup_SetListeners();
 		
 		super.onStart();
 	}
+
+	private void _Setup_General() {
+		// TODO Auto-generated method stub
+		
+		CONS.ImpActv.currentPath = Methods.get_Pref_String(
+						this, 
+						CONS.Pref.pname_ImpActv, 
+						CONS.Pref.pkey_ImpActv_CurrentPath, 
+						null);
+		
+		if (CONS.ImpActv.currentPath == null) {
+					
+			CONS.ImpActv.currentPath = CONS.ImpActv.top_ImpDir;
+					
+			Methods.setPref_String(
+					this, 
+					CONS.Pref.pname_ImpActv, 
+					CONS.Pref.pkey_ImpActv_CurrentPath, 
+					CONS.ImpActv.top_ImpDir);
+					
+		}
+		
+	}//private void _Setup_General()
+
+	private void 
+	_Setup_SetListeners() {
+		// TODO Auto-generated method stub
+	
+//		ListView lv = this.getListView();
+//		
+//		lv.setOnTouchListener(new LV_OTL(this));
+		
+	}//_Setup_SetListeners
+	
 
 	private void 
 	_Setup_DirList() {
@@ -128,6 +176,12 @@ public class ImpActv extends ListActivity {
 		if (current_Path == null) {
 			
 			current_Path = CONS.ImpActv.top_ImpDir;
+			
+			Methods.setPref_String(
+					this, 
+					CONS.Pref.pname_ImpActv, 
+					CONS.Pref.pkey_ImpActv_CurrentPath, 
+					CONS.ImpActv.top_ImpDir);
 			
 		}
 		
@@ -156,6 +210,8 @@ public class ImpActv extends ListActivity {
 		String[] fnames = cur_Dir.list();
 		
 		List<String> dir_List = new ArrayList<String>();
+		
+		dir_List.add(CONS.ImpActv.upDir);
 		
 		for (String name : fnames) {
 			

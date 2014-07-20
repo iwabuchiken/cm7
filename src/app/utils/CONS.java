@@ -339,7 +339,7 @@ public class CONS {
 		public static String pkey_ImpActv_CurrentPath
 										= "pkey_ImpActv_CurrentPath";
 
-	}
+	}//public static class Pref
 
 	public static class MainActv {
 		
@@ -372,6 +372,10 @@ public class CONS {
 							CONS.Paths.dpath_Storage_Sdcard;
 	
 		public static Adp_ImpList adp_Imp;
+		
+		public static String currentPath;
+		
+		public final static String upDir = "..";
 		
 	}
 	

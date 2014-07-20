@@ -1,7 +1,10 @@
 package app.adapters;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 
 
@@ -88,6 +91,14 @@ public class Adp_ImpList extends ArrayAdapter<String>
     	String item = (String) getItem(position);
     	
     	_getView_SetVals(v, item);
+    	
+    	////////////////////////////////
+
+		// File or folder
+
+		////////////////////////////////
+    	_getView_SetIcon(v, item);
+    	
 //		////////////////////////////////
 //
 //		// Get: view
@@ -146,6 +157,48 @@ public class Adp_ImpList extends ArrayAdapter<String>
     }//public View getView(int position, View convertView, ViewGroup parent)
 
     private void 
+    _getView_SetIcon(View v, String item) {
+		// TODO Auto-generated method stub
+    	////////////////////////////////
+
+		// view: icon
+
+		////////////////////////////////
+		ImageView iv = (ImageView) v.findViewById(R.id.list_row_actv_imp_iv);
+    	
+    	////////////////////////////////
+
+		// File
+
+		////////////////////////////////
+		File f = new File(CONS.ImpActv.currentPath, item);
+		
+		////////////////////////////////
+
+		// set icon
+
+		////////////////////////////////
+		if (f.exists() && f.isFile()) {
+			
+			iv.setBackgroundDrawable(
+					((Activity)con).getResources().getDrawable(R.drawable.file_48x48));
+//			((Activity)con).getResources().getDrawable(R.drawable.file));
+			
+		} else if (f.exists() && f.isDirectory()) {
+
+			iv.setBackgroundDrawable(
+					((Activity)con).getResources().getDrawable(R.drawable.dir));
+			
+		} else {
+
+			iv.setBackgroundDrawable(
+				((Activity)con).getResources().getDrawable(R.drawable.ic_launcher));
+
+		}
+		
+	}
+
+	private void 
     _getView_SetVals(View v, String item) {
 		// TODO Auto-generated method stub
 		////////////////////////////////
@@ -212,6 +265,9 @@ public class Adp_ImpList extends ArrayAdapter<String>
 					+ "]", msg_log);
 //            mLastX = currentX;
 //            Log.v(TAG, String.format("onTouch: ACTION_DOWN for %s", tv.getText().toString()));
+			
+			v.setBackgroundColor(Color.BLUE);
+			
             break;
             
         case MotionEvent.ACTION_OUTSIDE:
@@ -249,12 +305,14 @@ public class Adp_ImpList extends ArrayAdapter<String>
 			
 //			return false;
 			
+			v.setBackgroundColor(Color.BLACK);
+			
             break;
             
         }
         
-        return false;
-//        return true;
+//        return false;
+        return true;
         
     }//public boolean onTouch(View v, MotionEvent event)
     
