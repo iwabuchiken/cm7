@@ -15,6 +15,7 @@ import app.tasks.Task_RefreshDB;
 import app.utils.CONS;
 import app.utils.Methods;
 import app.utils.Methods_dlg;
+import app.utils.Ops;
 import app.utils.Tags;
 
 public class DOI_CL implements OnItemClickListener {
@@ -31,6 +32,8 @@ public class DOI_CL implements OnItemClickListener {
 	
 	AI ai;
 	int aiList_Position;
+
+	String file_Name;	// ImpActv list
 	
 	//
 //	Methods.DialogTags dlgTag = null;
@@ -89,6 +92,16 @@ public class DOI_CL implements OnItemClickListener {
 
 	}
 
+	public DOI_CL(Activity actv, Dialog dlg, String file_Name) {
+		// TODO Auto-generated constructor stub
+		this.actv	= actv;
+		this.dlg1	= dlg;
+		this.file_Name	= file_Name;
+		
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		
+	}
+
 	//	@Override
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 		/*----------------------------
@@ -133,12 +146,44 @@ public class DOI_CL implements OnItemClickListener {
 			
 			break;// case dlg_bmactv_list_long_click
 			
+		case DLG_IMPACTV_LIST://----------------------------------------------
+			
+			item = (String) parent.getItemAtPosition(position);
+			
+			case_DLG_IMPACTV_LIST(item);
+			
+			break;// case dlg_bmactv_list_long_click
+			
 			
 		default:
 			break;
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+
+	private void 
+	case_DLG_IMPACTV_LIST(String item) {
+		// TODO Auto-generated method stub
+
+		if (item.equals(actv.getString(
+					R.string.dlg_impactv_list_item_import))) {	// Edit
+			
+			boolean res = Ops.insert_FileToTable(
+					actv, CONS.ImpActv.currentPath, file_Name);
+			
+			if (res == true) {
+				
+				dlg1.dismiss();
+				
+			}
+			
+		} else {//if (item.equals(actv.getString(R.string.generic_tv_edit)))
+			
+			
+		}
+		
+		
+	}//case_DLG_IMPACTV_LIST(String item)
 
 	private void 
 	case_Dlg_ALActv_LongClick(String item) {

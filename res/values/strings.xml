@@ -94,6 +94,7 @@
     	<string name="dlg_playactv_edit_ai_title_title">Edit title</string>
     	<string name="dlg_playactv_edit_ai_memo_title">Edit memo</string>
     	<string name="dlg_playactv_edit_ai_add_patterns">Patterns</string>
+<<<<<<< HEAD
 
     <!-- dlg_create_folder.xml -->
 	    <string name="dlg_create_folder_title">Create folder</string>
@@ -107,4 +108,15 @@
     	    						Create dir?</string>
 	    
     									
+=======
+   								
+    <!-- dlg_ImpActv -->
+    	<string name="dlg_impactv_list_title">ImpActv</string>
+    	<string name="dlg_impactv_list_item_import">Import file</string>
+    	
+    	
+    	
+    	
+>>>>>>> D-18_import-files
 </resources>
+

@@ -1329,8 +1329,14 @@ public class DBUtils extends SQLiteOpenHelper{
 //			"length",							// 9
 //			"audio_created_at"					// 10
 			
-			val.put(CONS.DB.col_names_CM7_full[1], 
-					Methods.conv_MillSec_to_TimeLabel(Methods.getMillSeconds_now()));
+			if(ai.getCreated_at() == null
+				|| ai.getCreated_at() == "") {
+				
+				val.put(CONS.DB.col_names_CM7_full[1], 
+						Methods.conv_MillSec_to_TimeLabel(Methods.getMillSeconds_now()));
+			
+			}
+			
 			val.put(CONS.DB.col_names_CM7_full[2], 
 					Methods.conv_MillSec_to_TimeLabel(Methods.getMillSeconds_now()));
 			
