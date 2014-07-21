@@ -122,7 +122,8 @@ public class MainActv extends ListActivity {
 
     private void do_debug() {
     	
-    	_do_debug_Get_LastEntry_Refresh();
+    	_do_debug_Prefs();
+//    	_do_debug_Get_LastEntry_Refresh();
 //    	_do_debug_MillSec_to_ClockLabel();
 //    	_do_debug_MillSec_to_TimeLabel();
     	
@@ -146,6 +147,24 @@ public class MainActv extends ListActivity {
 //		Log.d("MainActv.java" + "["
 //				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //				+ "]", msg_log);
+		
+	}
+
+	private void _do_debug_Prefs() {
+		// TODO Auto-generated method stub
+		boolean res = Methods.get_Pref_Boolean(
+				this, 
+				CONS.Pref.pname_MainActv, 
+				this.getString(R.string.prefactv_key_resume_position), 
+				false);
+		
+		// Log
+		String msg_Log = "prefactv_key_resume_position => "
+						+ res;
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
 		
 	}
 
@@ -955,6 +974,12 @@ public class MainActv extends ListActivity {
 			
 			break;// case R.id.main_opt_menu_create_folder
 			
+		case R.id.opt_menu_main_settings://----------------------------------
+			
+			Methods.start_Activity_PrefActv(this);
+			
+			break;// case R.id.main_opt_menu_create_folder
+			
 		}//switch (item.getItemId())
 		
 		return super.onOptionsItemSelected(item);
@@ -1066,6 +1091,13 @@ public class MainActv extends ListActivity {
 //			
 //		}//if(prefs_main.getBoolean(this.getString(R.string.prefs_db_refresh_key), false))
 		
+        ////////////////////////////////
+
+		// debug
+
+		////////////////////////////////
+		this.do_debug();
+        
 		super.onStart();
 	}//protected void onStart()
 

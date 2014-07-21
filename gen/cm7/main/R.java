@@ -11,21 +11,21 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
-        public static final int black=0x7f040001;
-        public static final int blue1=0x7f040002;
-        public static final int darkgreen=0x7f040003;
-        public static final int darkolivegreen4=0x7f040005;
-        public static final int gold2=0x7f040007;
-        public static final int gray1=0x7f04000a;
-        public static final int gray_pale=0x7f04000b;
-        public static final int green4=0x7f040004;
-        public static final int purple4=0x7f040006;
-        public static final int red=0x7f040008;
+        public static final int black=0x7f050001;
+        public static final int blue1=0x7f050002;
+        public static final int darkgreen=0x7f050003;
+        public static final int darkolivegreen4=0x7f050005;
+        public static final int gold2=0x7f050007;
+        public static final int gray1=0x7f05000a;
+        public static final int gray_pale=0x7f05000b;
+        public static final int green4=0x7f050004;
+        public static final int purple4=0x7f050006;
+        public static final int red=0x7f050008;
         /**  Source=http://www.somacon.com/p142.php 
  main.xml 
          */
-        public static final int white=0x7f040000;
-        public static final int yello=0x7f040009;
+        public static final int white=0x7f050000;
+        public static final int yello=0x7f050009;
     }
     public static final class drawable {
         public static final int actv_al_back_50x50_disenabled=0x7f020000;
@@ -61,113 +61,115 @@ public final class R {
         public static final int proj_icon_2=0x7f02001e;
         public static final int proj_icon_3=0x7f02001f;
         public static final int project_icon=0x7f020020;
+        public static final int settings=0x7f020021;
     }
     public static final class id {
-        public static final int LL_main=0x7f080054;
-        public static final int actv_al_LL_buttons=0x7f080000;
-        public static final int actv_al_ib_back=0x7f080003;
-        public static final int actv_al_ib_next_page=0x7f080004;
-        public static final int actv_al_ib_prev_page=0x7f080002;
-        public static final int actv_al_ib_toBottom=0x7f080005;
-        public static final int actv_al_ib_toTop=0x7f080001;
-        public static final int actv_bm_LL_buttons=0x7f080007;
-        public static final int actv_bm_bt_back=0x7f08000d;
-        public static final int actv_bm_ib_back=0x7f08000a;
-        public static final int actv_bm_ib_bottom=0x7f08000c;
-        public static final int actv_bm_ib_down=0x7f08000b;
-        public static final int actv_bm_ib_top=0x7f080008;
-        public static final int actv_bm_ib_up=0x7f080009;
-        public static final int actv_bm_tv_file_name=0x7f080006;
-        public static final int actv_imp_ll_filepath=0x7f08000e;
-        public static final int actv_imp_lv=0x7f080042;
-        public static final int actv_imp_tv_filepath=0x7f08000f;
-        public static final int actv_play_bt_add_bm=0x7f080017;
-        public static final int actv_play_bt_back=0x7f08001e;
-        public static final int actv_play_bt_play=0x7f08001c;
-        public static final int actv_play_bt_see_bm=0x7f080018;
-        public static final int actv_play_bt_stop=0x7f08001d;
-        public static final int actv_play_sb=0x7f080019;
-        public static final int actv_play_sv_memo=0x7f080013;
-        public static final int actv_play_sv_title=0x7f080011;
-        public static final int actv_play_tv_current_position=0x7f08001a;
-        public static final int actv_play_tv_file_name=0x7f080010;
-        public static final int actv_play_tv_lbl_file_name=0x7f080015;
-        public static final int actv_play_tv_length=0x7f08001b;
-        public static final int actv_play_tv_memo=0x7f080014;
-        public static final int actv_play_tv_title=0x7f080012;
-        public static final int al_actv_menu_move_files=0x7f080066;
-        public static final int al_actv_menu_move_mode=0x7f080065;
-        public static final int dlg_confirm_create_folder_btn_cancel=0x7f080022;
-        public static final int dlg_confirm_create_folder_btn_ok=0x7f080021;
-        public static final int dlg_confirm_create_folder_tv_message=0x7f08001f;
-        public static final int dlg_confirm_create_folder_tv_table_name=0x7f080020;
-        public static final int dlg_create_folder_bt_ok=0x7f080025;
-        public static final int dlg_create_folder_cancel=0x7f080026;
-        public static final int dlg_create_folder_et=0x7f080024;
-        public static final int dlg_create_folder_tv_message=0x7f080023;
-        public static final int dlg_edit_ai_bt_cancel=0x7f080032;
-        public static final int dlg_edit_ai_bt_ok=0x7f080031;
-        public static final int dlg_edit_ai_et_file_name=0x7f08002b;
-        public static final int dlg_edit_ai_et_file_path=0x7f08002c;
-        public static final int dlg_edit_ai_et_memo=0x7f080030;
-        public static final int dlg_edit_ai_et_title=0x7f08002e;
-        public static final int dlg_edit_ai_lbl_file_name=0x7f08002a;
-        public static final int dlg_edit_ai_lbl_file_path=0x7f080016;
-        public static final int dlg_edit_ai_lbl_memo=0x7f08002f;
-        public static final int dlg_edit_ai_lbl_title=0x7f08002d;
-        public static final int dlg_edit_ai_ll_data=0x7f080029;
-        public static final int dlg_edit_ai_ll_root=0x7f080027;
-        public static final int dlg_edit_ai_title_bt_add=0x7f080035;
-        public static final int dlg_edit_ai_title_bt_cancel=0x7f080036;
-        public static final int dlg_edit_ai_title_et_content=0x7f080033;
-        public static final int dlg_edit_ai_title_gv=0x7f080034;
-        public static final int dlg_edit_item_bt_cancel=0x7f08003c;
-        public static final int dlg_edit_item_bt_ok=0x7f08003b;
-        public static final int dlg_edit_item_et_memo=0x7f08003a;
-        public static final int dlg_edit_item_et_title=0x7f080039;
-        public static final int dlg_edit_item_ll_data=0x7f080038;
-        public static final int dlg_edit_item_ll_root=0x7f080037;
-        public static final int dlg_input_empty_LL_buttons=0x7f080040;
-        public static final int dlg_input_empty_LL_message=0x7f08003e;
-        public static final int dlg_input_empty_LL_root=0x7f08003d;
-        public static final int dlg_input_empty_btn_reenter=0x7f080041;
-        public static final int dlg_input_empty_tv=0x7f08003f;
-        public static final int dlg_tmpl_cancel_lv_bt_cancel=0x7f080043;
-        public static final int dlg_tmpl_confirm_simple_btn_cancel=0x7f080047;
-        public static final int dlg_tmpl_confirm_simple_btn_ok=0x7f080046;
-        public static final int dlg_tmpl_confirm_simple_cb_btn_cancel=0x7f08004c;
-        public static final int dlg_tmpl_confirm_simple_cb_btn_ok=0x7f08004b;
-        public static final int dlg_tmpl_confirm_simple_cb_cb=0x7f08004a;
-        public static final int dlg_tmpl_confirm_simple_cb_tv_item_name=0x7f080049;
-        public static final int dlg_tmpl_confirm_simple_cb_tv_message=0x7f080048;
-        public static final int dlg_tmpl_confirm_simple_tv_item_name=0x7f080045;
-        public static final int dlg_tmpl_confirm_simple_tv_message=0x7f080044;
-        public static final int dlg_tmpl_list_cancel_bt_cancel=0x7f08004e;
-        public static final int dlg_tmpl_list_cancel_lv=0x7f08004d;
-        public static final int dlg_tmpl_message_simple_btn_ok=0x7f080050;
-        public static final int dlg_tmpl_message_simple_tv_message=0x7f08004f;
-        public static final int dlg_tmpl_toast_duration_tv_message=0x7f080051;
-        public static final int dlg_tmpl_toast_ok_bt_cancel=0x7f080053;
-        public static final int dlg_tmpl_toast_ok_tv_message=0x7f080052;
-        public static final int list_row_actv_imp_iv=0x7f080055;
-        public static final int list_row_actv_imp_tv=0x7f080056;
-        public static final int list_row_ai_list_tv_file_length=0x7f080058;
-        public static final int list_row_ai_list_tv_file_name=0x7f080057;
-        public static final int list_row_ai_list_tv_title=0x7f080059;
-        public static final int list_row_slimple_1_tv=0x7f08005a;
-        public static final int listrow_actv_bm_tv_memo=0x7f08005d;
-        public static final int listrow_actv_bm_tv_point=0x7f08005b;
-        public static final int listrow_actv_bm_tv_title=0x7f08005c;
-        public static final int main_LL_buttons=0x7f080060;
-        public static final int main_bt_back=0x7f080061;
-        public static final int main_bt_forward=0x7f080063;
-        public static final int main_bt_up=0x7f080062;
-        public static final int main_sv_dir_path=0x7f08005e;
-        public static final int main_tv_dir_path=0x7f08005f;
-        public static final int menu_actv_play_register_pattern=0x7f080064;
-        public static final int opt_menu_main_create_dir=0x7f080068;
-        public static final int opt_menu_main_db=0x7f080067;
-        public static final int scrollView1=0x7f080028;
+        public static final int LL_main=0x7f090054;
+        public static final int actv_al_LL_buttons=0x7f090000;
+        public static final int actv_al_ib_back=0x7f090003;
+        public static final int actv_al_ib_next_page=0x7f090004;
+        public static final int actv_al_ib_prev_page=0x7f090002;
+        public static final int actv_al_ib_toBottom=0x7f090005;
+        public static final int actv_al_ib_toTop=0x7f090001;
+        public static final int actv_bm_LL_buttons=0x7f090007;
+        public static final int actv_bm_bt_back=0x7f09000d;
+        public static final int actv_bm_ib_back=0x7f09000a;
+        public static final int actv_bm_ib_bottom=0x7f09000c;
+        public static final int actv_bm_ib_down=0x7f09000b;
+        public static final int actv_bm_ib_top=0x7f090008;
+        public static final int actv_bm_ib_up=0x7f090009;
+        public static final int actv_bm_tv_file_name=0x7f090006;
+        public static final int actv_imp_ll_filepath=0x7f09000e;
+        public static final int actv_imp_lv=0x7f090042;
+        public static final int actv_imp_tv_filepath=0x7f09000f;
+        public static final int actv_play_bt_add_bm=0x7f090017;
+        public static final int actv_play_bt_back=0x7f09001e;
+        public static final int actv_play_bt_play=0x7f09001c;
+        public static final int actv_play_bt_see_bm=0x7f090018;
+        public static final int actv_play_bt_stop=0x7f09001d;
+        public static final int actv_play_sb=0x7f090019;
+        public static final int actv_play_sv_memo=0x7f090013;
+        public static final int actv_play_sv_title=0x7f090011;
+        public static final int actv_play_tv_current_position=0x7f09001a;
+        public static final int actv_play_tv_file_name=0x7f090010;
+        public static final int actv_play_tv_lbl_file_name=0x7f090015;
+        public static final int actv_play_tv_length=0x7f09001b;
+        public static final int actv_play_tv_memo=0x7f090014;
+        public static final int actv_play_tv_title=0x7f090012;
+        public static final int al_actv_menu_move_files=0x7f090066;
+        public static final int al_actv_menu_move_mode=0x7f090065;
+        public static final int dlg_confirm_create_folder_btn_cancel=0x7f090022;
+        public static final int dlg_confirm_create_folder_btn_ok=0x7f090021;
+        public static final int dlg_confirm_create_folder_tv_message=0x7f09001f;
+        public static final int dlg_confirm_create_folder_tv_table_name=0x7f090020;
+        public static final int dlg_create_folder_bt_ok=0x7f090025;
+        public static final int dlg_create_folder_cancel=0x7f090026;
+        public static final int dlg_create_folder_et=0x7f090024;
+        public static final int dlg_create_folder_tv_message=0x7f090023;
+        public static final int dlg_edit_ai_bt_cancel=0x7f090032;
+        public static final int dlg_edit_ai_bt_ok=0x7f090031;
+        public static final int dlg_edit_ai_et_file_name=0x7f09002b;
+        public static final int dlg_edit_ai_et_file_path=0x7f09002c;
+        public static final int dlg_edit_ai_et_memo=0x7f090030;
+        public static final int dlg_edit_ai_et_title=0x7f09002e;
+        public static final int dlg_edit_ai_lbl_file_name=0x7f09002a;
+        public static final int dlg_edit_ai_lbl_file_path=0x7f090016;
+        public static final int dlg_edit_ai_lbl_memo=0x7f09002f;
+        public static final int dlg_edit_ai_lbl_title=0x7f09002d;
+        public static final int dlg_edit_ai_ll_data=0x7f090029;
+        public static final int dlg_edit_ai_ll_root=0x7f090027;
+        public static final int dlg_edit_ai_title_bt_add=0x7f090035;
+        public static final int dlg_edit_ai_title_bt_cancel=0x7f090036;
+        public static final int dlg_edit_ai_title_et_content=0x7f090033;
+        public static final int dlg_edit_ai_title_gv=0x7f090034;
+        public static final int dlg_edit_item_bt_cancel=0x7f09003c;
+        public static final int dlg_edit_item_bt_ok=0x7f09003b;
+        public static final int dlg_edit_item_et_memo=0x7f09003a;
+        public static final int dlg_edit_item_et_title=0x7f090039;
+        public static final int dlg_edit_item_ll_data=0x7f090038;
+        public static final int dlg_edit_item_ll_root=0x7f090037;
+        public static final int dlg_input_empty_LL_buttons=0x7f090040;
+        public static final int dlg_input_empty_LL_message=0x7f09003e;
+        public static final int dlg_input_empty_LL_root=0x7f09003d;
+        public static final int dlg_input_empty_btn_reenter=0x7f090041;
+        public static final int dlg_input_empty_tv=0x7f09003f;
+        public static final int dlg_tmpl_cancel_lv_bt_cancel=0x7f090043;
+        public static final int dlg_tmpl_confirm_simple_btn_cancel=0x7f090047;
+        public static final int dlg_tmpl_confirm_simple_btn_ok=0x7f090046;
+        public static final int dlg_tmpl_confirm_simple_cb_btn_cancel=0x7f09004c;
+        public static final int dlg_tmpl_confirm_simple_cb_btn_ok=0x7f09004b;
+        public static final int dlg_tmpl_confirm_simple_cb_cb=0x7f09004a;
+        public static final int dlg_tmpl_confirm_simple_cb_tv_item_name=0x7f090049;
+        public static final int dlg_tmpl_confirm_simple_cb_tv_message=0x7f090048;
+        public static final int dlg_tmpl_confirm_simple_tv_item_name=0x7f090045;
+        public static final int dlg_tmpl_confirm_simple_tv_message=0x7f090044;
+        public static final int dlg_tmpl_list_cancel_bt_cancel=0x7f09004e;
+        public static final int dlg_tmpl_list_cancel_lv=0x7f09004d;
+        public static final int dlg_tmpl_message_simple_btn_ok=0x7f090050;
+        public static final int dlg_tmpl_message_simple_tv_message=0x7f09004f;
+        public static final int dlg_tmpl_toast_duration_tv_message=0x7f090051;
+        public static final int dlg_tmpl_toast_ok_bt_cancel=0x7f090053;
+        public static final int dlg_tmpl_toast_ok_tv_message=0x7f090052;
+        public static final int list_row_actv_imp_iv=0x7f090055;
+        public static final int list_row_actv_imp_tv=0x7f090056;
+        public static final int list_row_ai_list_tv_file_length=0x7f090058;
+        public static final int list_row_ai_list_tv_file_name=0x7f090057;
+        public static final int list_row_ai_list_tv_title=0x7f090059;
+        public static final int list_row_slimple_1_tv=0x7f09005a;
+        public static final int listrow_actv_bm_tv_memo=0x7f09005d;
+        public static final int listrow_actv_bm_tv_point=0x7f09005b;
+        public static final int listrow_actv_bm_tv_title=0x7f09005c;
+        public static final int main_LL_buttons=0x7f090060;
+        public static final int main_bt_back=0x7f090061;
+        public static final int main_bt_forward=0x7f090063;
+        public static final int main_bt_up=0x7f090062;
+        public static final int main_sv_dir_path=0x7f09005e;
+        public static final int main_tv_dir_path=0x7f09005f;
+        public static final int menu_actv_play_register_pattern=0x7f090064;
+        public static final int opt_menu_main_create_dir=0x7f090068;
+        public static final int opt_menu_main_db=0x7f090067;
+        public static final int opt_menu_main_settings=0x7f090069;
+        public static final int scrollView1=0x7f090028;
     }
     public static final class layout {
         public static final int actv_al=0x7f030000;
@@ -193,109 +195,119 @@ public final class R {
         public static final int list_row_simple_1=0x7f030014;
         public static final int listrow_actv_bm=0x7f030015;
         public static final int main=0x7f030016;
+        public static final int main_pref=0x7f030017;
     }
     public static final class menu {
-        public static final int menu_actv_play=0x7f070000;
-        public static final int menu_al_actv=0x7f070001;
-        public static final int menu_main=0x7f070002;
+        public static final int menu_actv_play=0x7f080000;
+        public static final int menu_al_actv=0x7f080001;
+        public static final int menu_main=0x7f080002;
     }
     public static final class string {
-        public static final int actv_play_bt_add_bm=0x7f050023;
+        public static final int actv_play_bt_add_bm=0x7f060024;
         /**  actv_play.xml 
          */
-        public static final int actv_play_bt_play=0x7f050021;
-        public static final int actv_play_bt_see_bm=0x7f050024;
-        public static final int actv_play_bt_stop=0x7f050022;
-        public static final int actv_play_tv_bm_label=0x7f050025;
-        public static final int al_actv_menu_move_files=0x7f050020;
+        public static final int actv_play_bt_play=0x7f060022;
+        public static final int actv_play_bt_see_bm=0x7f060025;
+        public static final int actv_play_bt_stop=0x7f060023;
+        public static final int actv_play_tv_bm_label=0x7f060026;
+        public static final int al_actv_menu_move_files=0x7f060021;
         /**  ALActv.java 
          */
-        public static final int al_actv_menu_move_mode=0x7f05001f;
-        public static final int app_name=0x7f050000;
+        public static final int al_actv_menu_move_mode=0x7f060020;
+        public static final int app_name=0x7f060000;
         /**  dlg_alactv_list_long_click 
          */
-        public static final int dlg_alactv_list_long_click_title=0x7f050028;
+        public static final int dlg_alactv_list_long_click_title=0x7f060029;
         /**  dlg_bmactv_list_long_click 
          */
-        public static final int dlg_bmactv_list_long_click_title=0x7f050027;
+        public static final int dlg_bmactv_list_long_click_title=0x7f060028;
         /**  dialog: delete AI 
          */
-        public static final int dlg_conf_delete_ai_tv_message=0x7f05002a;
+        public static final int dlg_conf_delete_ai_tv_message=0x7f06002b;
         /**  dialog: delete BM 
          */
-        public static final int dlg_conf_delete_bm_tv_message=0x7f050029;
+        public static final int dlg_conf_delete_bm_tv_message=0x7f06002a;
         /**  dlg_confirm_create_folder.xml 
          */
-        public static final int dlg_confirm_create_folder_tv_message=0x7f050039;
+        public static final int dlg_confirm_create_folder_tv_message=0x7f06003a;
         /**  dlg_create_folder.xml 
          */
-        public static final int dlg_create_folder_title=0x7f050036;
-        public static final int dlg_create_folder_tv_message=0x7f050037;
-        public static final int dlg_db_admin_item_backup_db=0x7f050012;
-        public static final int dlg_db_admin_item_create_table_bm=0x7f05001c;
-        public static final int dlg_db_admin_item_create_table_cm7=0x7f050018;
-        public static final int dlg_db_admin_item_create_table_memo_patterns=0x7f05001e;
-        public static final int dlg_db_admin_item_create_table_refresh_history=0x7f05001a;
-        public static final int dlg_db_admin_item_drop_table_bm=0x7f05001b;
-        public static final int dlg_db_admin_item_drop_table_cm7=0x7f050017;
-        public static final int dlg_db_admin_item_drop_table_memo_patterns=0x7f05001d;
-        public static final int dlg_db_admin_item_drop_table_refresh_history=0x7f050019;
-        public static final int dlg_db_admin_item_exec_sql=0x7f050014;
-        public static final int dlg_db_admin_item_impfile=0x7f050016;
-        public static final int dlg_db_admin_item_refresh_db=0x7f050013;
-        public static final int dlg_db_admin_item_restore_db=0x7f050015;
+        public static final int dlg_create_folder_title=0x7f060037;
+        public static final int dlg_create_folder_tv_message=0x7f060038;
+        public static final int dlg_db_admin_item_backup_db=0x7f060013;
+        public static final int dlg_db_admin_item_create_table_bm=0x7f06001d;
+        public static final int dlg_db_admin_item_create_table_cm7=0x7f060019;
+        public static final int dlg_db_admin_item_create_table_memo_patterns=0x7f06001f;
+        public static final int dlg_db_admin_item_create_table_refresh_history=0x7f06001b;
+        public static final int dlg_db_admin_item_drop_table_bm=0x7f06001c;
+        public static final int dlg_db_admin_item_drop_table_cm7=0x7f060018;
+        public static final int dlg_db_admin_item_drop_table_memo_patterns=0x7f06001e;
+        public static final int dlg_db_admin_item_drop_table_refresh_history=0x7f06001a;
+        public static final int dlg_db_admin_item_exec_sql=0x7f060015;
+        public static final int dlg_db_admin_item_impfile=0x7f060017;
+        public static final int dlg_db_admin_item_refresh_db=0x7f060014;
+        public static final int dlg_db_admin_item_restore_db=0x7f060016;
         /**  dlg_db_admin.xml 
          */
-        public static final int dlg_db_admin_title=0x7f050011;
+        public static final int dlg_db_admin_title=0x7f060012;
         /**  dlg_edit_ai.xml 
          */
-        public static final int dlg_edit_ai_title=0x7f05002e;
-        public static final int dlg_edit_ai_tv_file_name=0x7f05002f;
-        public static final int dlg_edit_ai_tv_file_path=0x7f050030;
-        public static final int dlg_edit_ai_tv_memo=0x7f050032;
-        public static final int dlg_edit_ai_tv_title=0x7f050031;
-        public static final int dlg_edit_item_bm_title=0x7f05002c;
-        public static final int dlg_edit_item_memo=0x7f05002d;
+        public static final int dlg_edit_ai_title=0x7f06002f;
+        public static final int dlg_edit_ai_tv_file_name=0x7f060030;
+        public static final int dlg_edit_ai_tv_file_path=0x7f060031;
+        public static final int dlg_edit_ai_tv_memo=0x7f060033;
+        public static final int dlg_edit_ai_tv_title=0x7f060032;
+        public static final int dlg_edit_item_bm_title=0x7f06002d;
+        public static final int dlg_edit_item_memo=0x7f06002e;
         /**  dlg_edit_item.xml 
          */
-        public static final int dlg_edit_item_title=0x7f05002b;
-        public static final int dlg_impactv_list_item_import=0x7f05003b;
+        public static final int dlg_edit_item_title=0x7f06002c;
+        public static final int dlg_impactv_list_item_import=0x7f06003c;
         /**  dlg_ImpActv 
          */
-        public static final int dlg_impactv_list_title=0x7f05003a;
+        public static final int dlg_impactv_list_title=0x7f06003b;
         /**  dlg_input_empty.xml 
          */
-        public static final int dlg_input_empty_message=0x7f050038;
-        public static final int dlg_playactv_edit_ai_add_patterns=0x7f050035;
-        public static final int dlg_playactv_edit_ai_memo_title=0x7f050034;
+        public static final int dlg_input_empty_message=0x7f060039;
+        public static final int dlg_playactv_edit_ai_add_patterns=0x7f060036;
+        public static final int dlg_playactv_edit_ai_memo_title=0x7f060035;
         /**  dlg_edit_title.xml 
          */
-        public static final int dlg_playactv_edit_ai_title_title=0x7f050033;
-        public static final int generic_bt_back=0x7f050003;
-        public static final int generic_bt_cancel=0x7f050002;
+        public static final int dlg_playactv_edit_ai_title_title=0x7f060034;
+        public static final int generic_bt_back=0x7f060003;
+        public static final int generic_bt_cancel=0x7f060002;
         /**  Generic items 
          */
-        public static final int generic_bt_ok=0x7f050001;
-        public static final int generic_bt_quit=0x7f05000a;
-        public static final int generic_confirm_delete_file=0x7f05000d;
-        public static final int generic_message_quit=0x7f05000b;
-        public static final int generic_notice=0x7f05000c;
-        public static final int generic_tv_confirm=0x7f050004;
-        public static final int generic_tv_delete=0x7f050008;
-        public static final int generic_tv_edit=0x7f050007;
-        public static final int generic_tv_menu=0x7f050005;
-        public static final int generic_tv_no_data=0x7f050009;
-        public static final int generic_tv_register=0x7f050006;
+        public static final int generic_bt_ok=0x7f060001;
+        public static final int generic_bt_quit=0x7f06000a;
+        public static final int generic_confirm_delete_file=0x7f06000d;
+        public static final int generic_message_quit=0x7f06000b;
+        public static final int generic_notice=0x7f06000c;
+        public static final int generic_tv_confirm=0x7f060004;
+        public static final int generic_tv_delete=0x7f060008;
+        public static final int generic_tv_edit=0x7f060007;
+        public static final int generic_tv_menu=0x7f060005;
+        public static final int generic_tv_no_data=0x7f060009;
+        public static final int generic_tv_register=0x7f060006;
         /**  main.xml 
          */
-        public static final int main_tv_dir_path=0x7f05000e;
+        public static final int main_tv_dir_path=0x7f06000e;
         /**  menu_actv_play.xml 
          */
-        public static final int menu_actv_play_register_pattern=0x7f050026;
-        public static final int opt_menu_main_create_dir=0x7f050010;
+        public static final int menu_actv_play_register_pattern=0x7f060027;
+        public static final int opt_menu_main_create_dir=0x7f060010;
         /**  menu_main.xml 
          */
-        public static final int opt_menu_main_db=0x7f05000f;
+        public static final int opt_menu_main_db=0x7f06000f;
+        public static final int opt_menu_main_settings=0x7f060011;
+        public static final int prefactv_key_bgm=0x7f06003e;
+        public static final int prefactv_key_resume_position=0x7f060041;
+        public static final int prefactv_summary_bgm=0x7f06003f;
+        public static final int prefactv_summary_resume_position=0x7f060042;
+        /**  PrefActv 
+         */
+        public static final int prefactv_title_bgm=0x7f06003d;
+        public static final int prefactv_title_resume_position=0x7f060040;
     }
     public static final class style {
         /** 
@@ -308,17 +320,24 @@ public final class R {
             backward-compatibility can go here.
         
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f070001;
+        /**  image_activity.xml 
+ REF http://stackoverflow.com/questions/3551169/change-background-color-of-preference answered May 11 '11 at 14:05 
+         */
+        public static final int PrefTheme=0x7f070004;
         /**  <style name="v1_ib"> 
  image_activity.xml 
          */
-        public static final int image_activity_ib=0x7f060003;
+        public static final int image_activity_ib=0x7f070003;
         /**  v1_ib 
          */
-        public static final int v1_ib=0x7f060002;
+        public static final int v1_ib=0x7f070002;
+    }
+    public static final class xml {
+        public static final int preferences=0x7f040000;
     }
 }

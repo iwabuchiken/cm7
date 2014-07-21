@@ -6,3 +6,4 @@
 6	dir.png	1405754380_Macromedia Director MX_32x32.png	https://www.iconfinder.com/search/?q=directory&price=free
 7	file.png	1405754490_editor_document_file.png	https://www.iconfinder.com/icons/284127/document_editor_file_icon#size=32
 8	file_48x48.png	1405832354_file-empty.png	https://www.iconfinder.com/icons/285688/empty_file_icon#size=48
+9	settings.png	1406003022_Slow.png	https://www.iconfinder.com/icons/132105/escargot_mail_slow_slowly_snail_speed_icon#size=48

@@ -9,4 +9,8 @@
 		android:title="@string/opt_menu_main_create_dir"
 		android:icon="@drawable/opt_menu_main_create_dir"></item>
 		
+    <item android:id="@+id/opt_menu_main_settings"
+		android:title="@string/opt_menu_main_settings"
+		android:icon="@drawable/settings"></item>
+		
 </menu>

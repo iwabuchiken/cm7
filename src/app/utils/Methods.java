@@ -69,6 +69,7 @@ import app.listeners.dialog.DL;
 import app.main.ALActv;
 import app.main.ImpActv;
 import app.main.PlayActv;
+import app.main.PrefActv;
 import app.services.Service_ShowProgress;
 
 // Apache
@@ -573,6 +574,43 @@ public class Methods {
 		}
 
 	}//public static boolean set_pref(String pref_name, String value)
+	
+	/******************************
+		@return true => pref set
+	 ******************************/
+	public static boolean 
+	set_Pref_Boolean
+	(Activity actv, 
+		String pref_name, String pref_key, boolean value) {
+		SharedPreferences prefs = 
+				actv.getSharedPreferences(pref_name, Context.MODE_PRIVATE);
+		
+		/****************************
+		 * 2. Get editor
+		 ****************************/
+		SharedPreferences.Editor editor = prefs.edit();
+		
+		/****************************
+		 * 3. Set value
+		 ****************************/
+		editor.putBoolean(pref_key, value);
+		
+		try {
+			editor.commit();
+			
+			return true;
+			
+		} catch (Exception e) {
+			
+			// Log
+			Log.e("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Excption: " + e.toString());
+			
+			return false;
+		}
+		
+	}//set_Pref_Boolean
 
 	public static int get_Pref_Int
 	(Activity actv, String pref_name, String pref_key, int defValue) {
@@ -586,6 +624,21 @@ public class Methods {
 		return prefs.getInt(pref_key, defValue);
 
 	}//public static boolean set_pref(String pref_name, String value)
+	
+	public static boolean
+	get_Pref_Boolean
+	(Activity actv, 
+		String pref_name, String pref_key, boolean defValue) {
+		
+		SharedPreferences prefs = 
+				actv.getSharedPreferences(pref_name, Context.MODE_PRIVATE);
+		
+		/****************************
+		 * Return
+		 ****************************/
+		return prefs.getBoolean(pref_key, defValue);
+		
+	}//get_Pref_Boolean
 	
 	public static long getPref_Long
 	(Activity actv, String pref_name, String pref_key, long defValue) {
@@ -2465,6 +2518,20 @@ public class Methods {
 		Intent i = new Intent();
 		
 		i.setClass(actv, ImpActv.class);
+		
+		i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		
+		actv.startActivity(i);
+		
+	}//start_Activity_ImpActv
+	
+	public static void 
+	start_Activity_PrefActv
+	(Activity actv) {
+		// TODO Auto-generated method stub
+		Intent i = new Intent();
+		
+		i.setClass(actv, PrefActv.class);
 		
 		i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 		

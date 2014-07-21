@@ -29,6 +29,7 @@
         <activity android:name="app.main.BMActv" android:screenOrientation="portrait"></activity>
         <service android:name="app.services.Service_ShowProgress"></service>
         <activity android:name="app.main.ImpActv" android:screenOrientation="portrait"></activity>
+        <activity android:name="app.main.PrefActv" android:screenOrientation="portrait" android:theme="@style/PrefTheme"></activity>
         
         
         

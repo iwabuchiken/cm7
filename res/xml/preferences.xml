@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    
+    <CheckBoxPreference
+        android:title="@string/prefactv_title_bgm"
+        android:summary="@string/prefactv_summary_bgm"
+        android:key="@string/prefactv_key_bgm"
+        android:defaultValue="false"
+        
+        />
+    
+    <CheckBoxPreference
+        android:title="@string/prefactv_title_resume_position"
+        android:summary="@string/prefactv_summary_resume_position"
+        android:key="@string/prefactv_key_resume_position"
+        android:defaultValue="false"
+        
+        />
+    
+        
+</PreferenceScreen>
