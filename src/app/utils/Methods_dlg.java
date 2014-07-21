@@ -1032,4 +1032,63 @@ public class Methods_dlg {
 		
 	}//dlg_IsEmpty
 
+	private static void 
+	dlg_CreateDir_Confirm
+	(Activity actv, Dialog dlg1) {
+		// TODO Auto-generated method stub
+		
+		Dialog dlg2 = new Dialog(actv);
+		
+		//
+		dlg2.setContentView(R.layout.dlg_confirm_create_folder);
+		
+		// Title
+		dlg2.setTitle(R.string.generic_tv_confirm);
+		
+		/*----------------------------
+		 * 2. Set folder name to text view
+			----------------------------*/
+		EditText et = (EditText) dlg1.findViewById(R.id.dlg_create_folder_et);
+		
+		TextView tv = (TextView) dlg2.findViewById(
+							R.id.dlg_confirm_create_folder_tv_table_name);
+		
+		tv.setText(et.getText().toString());
+		
+		/*----------------------------
+		 * 3. Add listeners => OnTouch
+			----------------------------*/
+		//
+		Button btn_ok = (Button) dlg2.findViewById(
+							R.id.dlg_confirm_create_folder_btn_ok);
+		
+		Button btn_cancel = (Button) dlg2.findViewById(
+							R.id.dlg_confirm_create_folder_btn_cancel);
+		
+		//
+//		btn_ok.setTag(DialogTags.dlg_confirm_create_folder_ok);
+		btn_ok.setTag(DialogTags.DLG_CONFIRM_CREATE_FOLDER_OK);
+//		btn_cancel.setTag(DialogTags.dlg_confirm_create_folder_cancel);
+//		btn_cancel.setTag(DialogTags.DLG_CONFIRM_CREATE_FOLDER_CANCEL);
+//		btn_cancel.setTag(DialogTags.dlg_generic_dismiss_second_dialog);
+		btn_cancel.setTag(DialogTags.DLG_GENERIC_DISMISS_SECOND_DIALOG);
+		
+		//
+		btn_ok.setOnTouchListener(new DB_OTL(actv, dlg2));
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg2));
+		
+		/*----------------------------
+		 * 4. Add listeners => OnClick
+			----------------------------*/
+		//
+		btn_ok.setOnClickListener(new DB_OCL(actv, dlg1, dlg2));
+		btn_cancel.setOnClickListener(new DB_OCL(actv, dlg1, dlg2));
+		
+		/*----------------------------
+		 * 5. Show dialog
+			----------------------------*/
+		dlg2.show();
+		
+	}//dlg_CreateDir_Confirmed
+
 }//public class Methods_dialog
