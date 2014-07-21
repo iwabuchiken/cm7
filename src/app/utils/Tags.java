@@ -109,6 +109,9 @@ public class Tags {
 		// dlg_alactv_list_long_click
 		DLG_ALACTV_LIST_LONGCLICK,
 		
+		// dlg_ImpActv
+		DLG_IMPACTV_LIST,
+		
 	}//public static enum DialogItemTags
 	
 	

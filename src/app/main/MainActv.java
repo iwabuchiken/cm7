@@ -81,27 +81,27 @@ public class MainActv extends ListActivity {
         
         vib = (Vibrator) this.getSystemService(this.VIBRATOR_SERVICE);
 
-        ////////////////////////////////
-
-		// Set dir list
-
-		////////////////////////////////
-        boolean res_b = set_DirList();
-		
-        if (res_b == false) {
-			
-        	// debug
-        	String msg_log = "Dir list => Can't be set";
-			Toast.makeText(this, msg_log, Toast.LENGTH_SHORT).show();
-        	
-        	// Log
-			Log.e("MainActv.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", msg_log);
-			
-			return;
-        	
-		}
+//        ////////////////////////////////
+//
+//		// Set dir list
+//
+//		////////////////////////////////
+//        boolean res_b = set_DirList();
+//		
+//        if (res_b == false) {
+//			
+//        	// debug
+//        	String msg_log = "Dir list => Can't be set";
+//			Toast.makeText(this, msg_log, Toast.LENGTH_SHORT).show();
+//        	
+//        	// Log
+//			Log.e("MainActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_log);
+//			
+//			return;
+//        	
+//		}
         
         ////////////////////////////////
 
@@ -1015,6 +1015,30 @@ public class MainActv extends ListActivity {
 
 	@Override
 	protected void onStart() {
+		
+        ////////////////////////////////
+
+		// Set dir list
+
+		////////////////////////////////
+        boolean res_b = set_DirList();
+		
+        if (res_b == false) {
+			
+        	// debug
+        	String msg_log = "Dir list => Can't be set";
+			Toast.makeText(this, msg_log, Toast.LENGTH_SHORT).show();
+        	
+        	// Log
+			Log.e("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_log);
+			
+			return;
+        	
+		}
+
+		
 		/*----------------------------
 		 * 1. Refresh DB
 			----------------------------*/

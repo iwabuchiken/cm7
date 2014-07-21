@@ -71,7 +71,9 @@ public class ImpActv extends ListActivity {
 	}
 
 	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
+	protected void 
+	onListItemClick
+	(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		////////////////////////////////
 
@@ -94,9 +96,11 @@ public class ImpActv extends ListActivity {
 		////////////////////////////////
 		if (dpath_Current.exists() && dpath_Current.isFile()) {
 
-			// debug
-			String msg_Toast = "File";
-			Toast.makeText(this, msg_Toast, Toast.LENGTH_SHORT).show();
+			Methods_dlg.impActv_OpList(this, item);
+			
+//			// debug
+//			String msg_Toast = "File";
+//			Toast.makeText(this, msg_Toast, Toast.LENGTH_SHORT).show();
 			
 		} else if (dpath_Current.exists() && dpath_Current.isDirectory()) {
 
@@ -111,7 +115,8 @@ public class ImpActv extends ListActivity {
 		
 		
 		super.onListItemClick(l, v, position, id);
-	}
+		
+	}//onListItemClick
 
 	private void 
 	_onListItemClick__IsDir

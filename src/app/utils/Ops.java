@@ -51,7 +51,7 @@ public class Ops {
 		if (res == false) {
 			
 			// Log
-			Log.e("Methods.java" + "["
+			Log.e("Ops.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "Can't  create table");
 			
@@ -79,7 +79,7 @@ public class Ops {
 			
 //			// Log
 //			String msg_log = "New files => none";
-//			Log.d("Methods.java" + "["
+//			Log.d("Ops.java" + "["
 //					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //					+ "]", msg_log);
 //			
@@ -101,7 +101,7 @@ public class Ops {
 		
 		// Log
 		String msg_Log = "numOfItemsAdded = " + numOfItemsAdded;
-		Log.i("Methods.java" + "["
+		Log.i("Ops.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		
@@ -197,13 +197,13 @@ public class Ops {
 						+ " // "
 						+ "setAudio_created_at = "
 						+ Methods.conv_MillSec_to_TimeLabel(file.lastModified());
-			Log.d("Methods.java" + "["
+			Log.d("Ops.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", msg_Log);
 			
 			// Log
 			msg_Log = "ai.getAudio_created_at() = " + ai.getAudio_created_at();
-			Log.d("Methods.java" + "["
+			Log.d("Ops.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", msg_Log);
 			
@@ -222,7 +222,7 @@ public class Ops {
 		
 		// Log
 		String msg_Log = "ai_List.size() = " + ai_List.size();
-		Log.d("Methods.java" + "["
+		Log.d("Ops.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		
@@ -238,7 +238,7 @@ public class Ops {
 //		updateRefreshLog(actv, wdb, dbu, lastItemDate, numOfItemsAdded);
 //		
 //		// Log
-//		Log.d("Methods.java" + "["
+//		Log.d("Ops.java" + "["
 //				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //				+ "]", "c.getLong(3) => " + c.getLong(3));
 		
@@ -320,7 +320,7 @@ public class Ops {
 			
 			// Log
 			String msg_log = "Filtering => can't be done";
-			Log.d("Methods.java" + "["
+			Log.d("Ops.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", msg_log);
 			
@@ -334,7 +334,7 @@ public class Ops {
 						+ "audioFile_list_Filtered => "
 						+ audioFile_list_Filtered.length;
 		
-		Log.d("Methods.java" + "["
+		Log.d("Ops.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_log);
 		
@@ -342,7 +342,7 @@ public class Ops {
 //			
 //			// Log
 //			msg_log = "file = " + file.getAbsolutePath();
-//			Log.d("Methods.java" + "["
+//			Log.d("Ops.java" + "["
 //					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //					+ "]", msg_log);
 //			
@@ -369,7 +369,7 @@ public class Ops {
 		// If the table doesn't exist, create one
 		if (result == false) {
 
-			Log.e("Methods.java" + "["
+			Log.e("Ops.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "Table doesn't exist: " + tableName);
 			
@@ -380,7 +380,7 @@ public class Ops {
 			
 			if (result == false) {
 
-				Log.e("Methods.java"
+				Log.e("Ops.java"
 						+ "["
 						+ Thread.currentThread().getStackTrace()[2]
 								.getLineNumber() + "]", "Can't create a table: "+ tableName);
@@ -389,7 +389,7 @@ public class Ops {
 				
 			} else {//if (result == false)
 				
-				Log.i("Methods.java"
+				Log.i("Ops.java"
 						+ "["
 						+ Thread.currentThread().getStackTrace()[2]
 								.getLineNumber() + "]", "Table created: "+ tableName);
@@ -400,7 +400,7 @@ public class Ops {
 
 		} else {//if (result == false)
 			
-			Log.i("Methods.java" + "["
+			Log.i("Ops.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "Table exists: "+ tableName);
 
@@ -409,5 +409,129 @@ public class Ops {
 		}//if (result == false)
 		
 	}//_refresh_MainDB__Setup_Table
+
+	public static boolean
+	insert_FileToTable
+	(Activity actv, 
+		String currentPath, String file_Name) {
+		// TODO Auto-generated method stub
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		//
+		SQLiteDatabase wdb = dbu.getWritableDatabase();
+
+		////////////////////////////////
+
+		// Table exists?
+
+		////////////////////////////////
+		boolean res = _refresh_MainDB__Setup_Table(actv, wdb, dbu);
+//		boolean res = refreshMainDB_1_set_up_table(wdb, dbu);
+		
+		if (res == false) {
+			
+			// Log
+			Log.e("Ops.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Can't  create table");
+			
+			wdb.close();
+			
+			return false;
+			
+		}//if (res == false)		
+
+		////////////////////////////////
+
+		// prep
+
+		////////////////////////////////
+		File file = new File(currentPath, file_Name);
+		
+		long audioLength = Methods.get_AudioLength(file.getAbsolutePath());
+		
+		////////////////////////////////
+
+		// Build: AI
+
+		////////////////////////////////
+		AI ai = new AI.Builder()
+				.setFile_name(file.getName())
+				
+				//REF http://www.xinotes.net/notes/note/774/
+				.setFile_path(file.getParent())
+//				.setFile_path(file.getPath())
+				
+				.setTable_name(CONS.DB.tname_CM7)
+				.setLength(Methods.conv_MillSec_to_ClockLabel(audioLength))
+//				.setLength(Methods.conv_MillSec_to_ClockLabel(file.length()))
+//				.setLength(file.length())
+				.setAudio_created_at(
+						Methods.conv_MillSec_to_TimeLabel(file.lastModified()))
+				.build();
+		
+		//debug
+		
+		res = DBUtils.insertData_AI(actv, ai);
+		
+		if (res == true) {
+			
+			// Log
+			String msg_Log = "data => inserted";
+			Log.d("Ops.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+//			numOfItemsAdded ++;
+			
+		} else {
+			
+			// Log
+			String msg_Log = "data => not inserted";
+			Log.d("Ops.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}
+//		ai_List.add(ai);
+		
+		//debug
+		wdb.close();
+		
+//		// Log
+//		String msg_Log = "insert => done";
+//		Log.d("Ops.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+
+		////////////////////////////////
+
+		// report
+
+		////////////////////////////////
+		if (res == true) {
+			
+			String msg = "Data => Inserted: " + ai.getFile_name();
+			Methods_dlg.dlg_ShowMessage(actv, msg);
+			
+		} else {
+			
+			String msg = "Data => Not inserted: " + ai.getFile_name();
+			Methods_dlg.dlg_ShowMessage(actv, msg);
+
+		}
+
+		// null
+		ai = null;
+		
+		////////////////////////////////
+
+		// return
+
+		////////////////////////////////
+		return res;
+		
+	}//insert_FileToTable
 
 }

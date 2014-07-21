@@ -95,4 +95,12 @@
     	<string name="dlg_playactv_edit_ai_memo_title">Edit memo</string>
     	<string name="dlg_playactv_edit_ai_add_patterns">Patterns</string>
    								
+    <!-- dlg_ImpActv -->
+    	<string name="dlg_impactv_list_title">ImpActv</string>
+    	<string name="dlg_impactv_list_item_import">Import file</string>
+    	
+    	
+    	
+    	
 </resources>
+

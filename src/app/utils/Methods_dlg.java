@@ -901,4 +901,80 @@ public class Methods_dlg {
 		
 	}
 
+	public static void 
+	impActv_OpList
+	(Activity actv, String item_Name) {
+		// TODO Auto-generated method stub
+		
+		String title = null;
+		
+		int title_Length = 20;
+		
+		if (item_Name.length() > title_Length) {
+			
+			title = item_Name.substring(0, title_Length)
+					+ "...";
+			
+		} else {
+			
+			title = item_Name;
+
+		}
+		
+		Dialog dlg = Methods_dlg.dlg_Template_Cancel(
+						actv, R.layout.dlg_tmpl_list_cancel, 
+						title, 
+//						R.string.dlg_impactv_list_title, 
+						R.id.dlg_tmpl_list_cancel_bt_cancel, 
+		//				R.id.dlg_db_admin_bt_cancel, 
+						Tags.DialogTags.DLG_GENERIC_DISMISS);
+		
+		/****************************
+		* 2. Prep => List
+		****************************/
+		String[] choices = {
+				
+				actv.getString(R.string.dlg_impactv_list_item_import),
+		
+		};
+		
+		List<String> list = new ArrayList<String>();
+		
+		for (String item : choices) {
+		
+			list.add(item);
+		
+		}
+		
+		/****************************
+		* 3. Adapter
+		****************************/
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+							actv,
+							R.layout.list_row_simple_1,
+							list
+		);
+		
+		/****************************
+		* 4. Set adapter
+		****************************/
+		ListView lv = (ListView) dlg.findViewById(R.id.dlg_tmpl_list_cancel_lv);
+		
+		lv.setAdapter(adapter);
+		
+		/****************************
+		* 5. Set listener to list
+		****************************/
+		lv.setTag(Tags.DialogItemTags.DLG_IMPACTV_LIST);
+		
+		lv.setOnItemClickListener(new DOI_CL(actv, dlg, item_Name));
+		
+		/****************************
+		* 6. Show dialog
+		****************************/
+		dlg.show();
+		
+		
+	}//impActv_OpList
+
 }//public class Methods_dialog

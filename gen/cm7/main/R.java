@@ -233,6 +233,10 @@ public final class R {
         /**  dlg_edit_item.xml 
          */
         public static final int dlg_edit_item_title=0x7f05002b;
+        public static final int dlg_impactv_list_item_import=0x7f050037;
+        /**  dlg_ImpActv 
+         */
+        public static final int dlg_impactv_list_title=0x7f050036;
         public static final int dlg_playactv_edit_ai_add_patterns=0x7f050035;
         public static final int dlg_playactv_edit_ai_memo_title=0x7f050034;
         /**  dlg_edit_title.xml 
