@@ -1625,6 +1625,8 @@ public class Methods {
 		// TODO Auto-generated method stub
 		if (CONS.PlayActv.mp != null && CONS.PlayActv.mp.isPlaying()) {
 
+			int player_Pos = CONS.PlayActv.mp.getCurrentPosition();
+			
 			CONS.PlayActv.mp.stop();
 			
 			// Log
@@ -1650,6 +1652,51 @@ public class Methods {
 			//
 //			actv.startService(i);
 			actv.stopService(i);
+
+			////////////////////////////////
+
+			// pref: stop position
+
+			////////////////////////////////
+			boolean res = Methods.get_Pref_Boolean(
+					actv, 
+					CONS.Pref.pname_MainActv, 
+					actv.getString(R.string.prefactv_key_resume_position), 
+					false);
+			
+			if (res == true) {
+				
+				res = Methods.setPref_Long(
+							actv,
+							CONS.Pref.pname_PlayActv,
+	//						CONS.Pref.pkey_PlayActv_position,
+							CONS.Pref.pkey_PlayActv_CurrentPosition,
+	//						CONS.Pref.pkey_CurrentPosition,
+							player_Pos);
+				
+				if (res == true) {
+					
+					// Log
+					String msg_Log = "Position => set: " 
+								+ Methods.conv_MillSec_to_ClockLabel(player_Pos);
+					Log.d("Methods.java"
+							+ "["
+							+ Thread.currentThread().getStackTrace()[2]
+									.getLineNumber() + "]", msg_Log);
+					
+				} else {
+
+					// Log
+					String msg_Log = "Position => not set: " 
+								+ Methods.conv_MillSec_to_ClockLabel(player_Pos);
+					Log.d("Methods.java"
+							+ "["
+							+ Thread.currentThread().getStackTrace()[2]
+									.getLineNumber() + "]", msg_Log);
+					
+				}//if (res == true)
+				
+			}//if (res == true)
 
 			
 		} else if (CONS.PlayActv.mp == null) {//if (mp.isPlaying())
