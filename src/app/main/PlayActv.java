@@ -18,12 +18,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.items.AI;
 import app.items.BM;
 import app.listeners.SBL;
+import app.listeners.STL;
 import app.listeners.button.BO_CL;
 import app.listeners.button.BO_TL;
 import app.listeners.text.TV_LCL;
@@ -396,6 +398,18 @@ public class PlayActv extends Activity {
 		tv_Title.setOnTouchListener(new TV_TL(this));
 		tv_Title.setOnLongClickListener(new TV_LCL(this, CONS.PlayActv.ai));
 		
+		////////////////////////////////
+
+		// Linear layout: controls
+
+		////////////////////////////////
+		LinearLayout ll_Control = 
+				(LinearLayout) findViewById(R.id.actv_play_ll_controls);
+		
+		ll_Control.setTag(Tags.SwipeTags.ACTV_PLAY);
+		
+		ll_Control.setOnTouchListener(new STL(this, CONS.PlayActv.ai));
+//		ll_Control.setOnTouchListener(new STL(this));
 		
 	}//private void _onCreate_SetListeners()
 
@@ -694,13 +708,13 @@ public class PlayActv extends Activity {
 
 	@Override
 	protected void onPause() {
-		// TODO ?��?��?��?��?��?��?��?��?��?��?��ꂽ?��?��?��\?��b?��h?��E?��X?��^?��u
+		// TODO ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ黷ｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ\?�ｿｽ�ｿｽb?�ｿｽ�ｿｽh?�ｿｽ�ｿｽE?�ｿｽ�ｿｽX?�ｿｽ�ｿｽ^?�ｿｽ�ｿｽu
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO ?��?��?��?��?��?��?��?��?��?��?��ꂽ?��?��?��\?��b?��h?��E?��X?��^?��u
+		// TODO ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ黷ｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ\?�ｿｽ�ｿｽb?�ｿｽ�ｿｽh?�ｿｽ�ｿｽE?�ｿｽ�ｿｽX?�ｿｽ�ｿｽ^?�ｿｽ�ｿｽu
 		super.onResume();
 	}
 
@@ -760,7 +774,7 @@ public class PlayActv extends Activity {
 
 	@Override
 	protected void onStop() {
-		// TODO ?��?��?��?��?��?��?��?��?��?��?��ꂽ?��?��?��\?��b?��h?��E?��X?��^?��u
+		// TODO ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ黷ｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ\?�ｿｽ�ｿｽb?�ｿｽ�ｿｽh?�ｿｽ�ｿｽE?�ｿｽ�ｿｽX?�ｿｽ�ｿｽ^?�ｿｽ�ｿｽu
 		super.onStop();
 	}
 

@@ -212,4 +212,13 @@ public class Tags {
 		// PlayActv
 		PLAYACTV_TITLE,
 	}
+
+	public static enum SwipeTags {
+		
+		ACTV_SHOWLIST, ACTV_BM,
+		
+		ACTV_PLAY,
+		
+	}
+	
 }//public class Tags

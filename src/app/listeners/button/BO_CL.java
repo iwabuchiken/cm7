@@ -325,7 +325,9 @@ public class BO_CL implements OnClickListener {
 		// Set: last position
 
 		////////////////////////////////
-		int lastPosition = ((ListActivity) actv).getListView().getLastVisiblePosition();
+		int lastPosition = 
+				((ListActivity) actv).getListView()
+								.getLastVisiblePosition();
 		
 		boolean res = Methods.set_Pref_Int(actv, 
 				CONS.Pref.pname_BMActv, 

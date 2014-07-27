@@ -15,12 +15,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.adapters.Adp_BMList;
 import app.items.BM;
 import app.listeners.LOI_LCL;
+import app.listeners.STL;
 import app.listeners.button.BO_CL;
 import app.listeners.button.BO_TL;
 import app.utils.CONS;
@@ -165,6 +167,19 @@ public class BMActv extends ListActivity {
 		
 //		ib_Up.setOnTouchListener(new BO_TL(this));
 		ib_Up.setOnClickListener(new BO_CL(this));
+		
+		////////////////////////////////
+
+		// Linear layout: back
+
+		////////////////////////////////
+		LinearLayout ll_Back = 
+				(LinearLayout) findViewById(R.id.actv_bm_ll_back);
+		
+		ll_Back.setTag(Tags.SwipeTags.ACTV_BM);
+		
+		ll_Back.setOnTouchListener(new STL(this));
+
 		
 	}//_onCreate_SetListeners()
 
