@@ -51,11 +51,11 @@ public class Methods_dlg {
 		 * 6. Show dialog
 			****************************/
 		Dialog dlg = Methods_dlg.dlg_Template_Cancel(
-									actv, R.layout.dlg_tmpl_list_cancel, 
-									R.string.dlg_db_admin_title, 
-									R.id.dlg_tmpl_list_cancel_bt_cancel, 
+							actv, R.layout.dlg_tmpl_list_cancel, 
+							R.string.dlg_db_admin_title, 
+							R.id.dlg_tmpl_list_cancel_bt_cancel, 
 //									R.id.dlg_db_admin_bt_cancel, 
-									Tags.DialogTags.DLG_GENERIC_DISMISS);
+							Tags.DialogTags.DLG_GENERIC_DISMISS);
 		
 		/****************************
 		 * 2. Prep => List
@@ -66,6 +66,7 @@ public class Methods_dlg {
 				actv.getString(R.string.dlg_db_admin_item_backup_db),
 				actv.getString(R.string.dlg_db_admin_item_refresh_db),
 				actv.getString(R.string.dlg_db_admin_item_impfile),
+				actv.getString(R.string.dlg_db_admin_item_restore_db),
 				
 //				actv.getString(R.string.dlg_db_admin_item_drop_table_cm7),
 //				actv.getString(R.string.dlg_db_admin_item_create_table_cm7),

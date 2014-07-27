@@ -229,54 +229,43 @@ public class DOI_CL implements OnItemClickListener {
 			
 			case_DLG_DB_ADMIN_LV__ImpFile(actv);
 			
-//		} else if (item.equals(actv.getString(		// Create table: cm7
-//				R.string.dlg_db_admin_item_create_table_cm7))) {
-//			
-			Methods.create_Table(actv, CONS.DB.tname_CM7);
-//			
-//		} else if (item.equals(actv.getString(		// Drop table: cm7
-//				R.string.dlg_db_admin_item_drop_table_cm7))) {
-//			
-//			Methods.drop_Table(actv, CONS.DB.tname_CM7);
-//			
-//		} else if (item.equals(actv.getString(		// Create table: refresh_history
-//				R.string.dlg_db_admin_item_create_table_refresh_history))) {
-//			
-//			Methods.create_Table(actv, CONS.DB.tname_RefreshHistory);
-//			
-//		} else if (item.equals(actv.getString(		// Drop table: refresh_history
-//				R.string.dlg_db_admin_item_drop_table_refresh_history))) {
-//			
-//			Methods.drop_Table(actv, CONS.DB.tname_RefreshHistory);
-//			
-//		} else if (item.equals(actv.getString(		// Create table: refresh_history
-//				R.string.dlg_db_admin_item_create_table_bm))) {
-//			
-//			Methods.create_Table(actv, CONS.DB.tname_BM);
-//			
-//		} else if (item.equals(actv.getString(		// Drop table: refresh_history
-//				R.string.dlg_db_admin_item_drop_table_bm))) {
-//			
-//			Methods.drop_Table(actv, CONS.DB.tname_BM);
-//			
-//		} else if (item.equals(actv.getString(		// Create table: refresh_history
-//				R.string.dlg_db_admin_item_create_table_memo_patterns))) {
-//			
-//			Methods.create_Table(actv, CONS.DB.tname_MemoPatterns);
-//			
-//		} else if (item.equals(actv.getString(		// Drop table: refresh_history
-//				R.string.dlg_db_admin_item_drop_table_memo_patterns))) {
-//			
-//			Methods.drop_Table(actv, CONS.DB.tname_MemoPatterns);
+		} else if (item.equals(actv.getString(		// Refresh DB
+				R.string.dlg_db_admin_item_restore_db))) {
+			
+			case_DLG_DB_ADMIN_LV__RestoreDB(actv);
+			
+//			Methods.create_Table(actv, CONS.DB.tname_CM7);
 
 		} else {
 
 		}
 	
-		
 		dlg1.dismiss();
 		
 	}//case_Dlg_Db_Admin_lv(String item)
+
+	private void 
+	case_DLG_DB_ADMIN_LV__RestoreDB
+	(Activity actv) {
+		// TODO Auto-generated method stub
+		
+		boolean res = Methods.restore_DB(actv);
+		
+		if (res == true) {
+			
+			dlg1.dismiss();
+			
+			String msg = "DB => Restored";
+			Methods_dlg.dlg_ShowMessage(actv, msg);
+			
+		} else {
+			
+			String msg = "DB => Can't be restored";
+			Methods_dlg.dlg_ShowMessage(actv, msg);
+
+		}
+		
+	}//case_DLG_DB_ADMIN_LV__RestoreDB
 
 	private void 
 	case_DLG_DB_ADMIN_LV__ImpFile

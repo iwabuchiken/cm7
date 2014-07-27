@@ -122,7 +122,9 @@ public class MainActv extends ListActivity {
 
     private void do_debug() {
     	
-    	_do_debug_Prefs();
+//    	_do_debug_DB();
+    	
+//    	_do_debug_Prefs();
 //    	_do_debug_Get_LastEntry_Refresh();
 //    	_do_debug_MillSec_to_ClockLabel();
 //    	_do_debug_MillSec_to_TimeLabel();
@@ -147,6 +149,38 @@ public class MainActv extends ListActivity {
 //		Log.d("MainActv.java" + "["
 //				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //				+ "]", msg_log);
+		
+	}
+
+	private void _do_debug_DB() {
+		// TODO Auto-generated method stub
+		
+		File f = new File(this.getFilesDir().getPath());
+		
+		String[] fnames = f.list();
+		
+		// Log
+		String msg_Log = "dir => " + f.getAbsolutePath();
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+
+		for (String name : fnames) {
+			
+			// Log
+			msg_Log = "name = " + name;
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+		}
+		
+		String dbPath = this.getDatabasePath(CONS.DB.dbName).getPath();
+		
+		// Log
+		msg_Log = "dbPath = " + dbPath;
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
 		
 	}
 

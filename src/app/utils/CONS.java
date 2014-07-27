@@ -118,8 +118,11 @@ public class CONS {
 		
 		public static String dPath_dbFile;
 //		public static String dPath_dbFile = "/data/data/cm7.main/databases";
+		//		Do not hardcode "/data/"; use Context.getFilesDir().getPath() instead
 		
-		public static String dPath_dbFile_backup = "/mnt/sdcard-ext/cm7_backup";
+
+		public static String dPath_dbFile_backup 
+								= "/mnt/sdcard-ext/cm7_backup";
 		
 //		public static String dPath_dbFile = 
 //							Methods.get_DirPath(new MainActv().getFilesDir().getPath());
@@ -128,7 +131,8 @@ public class CONS {
 		
 		public static String fname_DB_Backup_ext = ".bk";
 		
-		public static String dname_TapeATalk_Sdcard = "tapeatalk_records";
+		public static String dname_TapeATalk_Sdcard
+								= "tapeatalk_records";
 		
 		////////////////////////////////
 		
