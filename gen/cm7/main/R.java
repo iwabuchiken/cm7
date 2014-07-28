@@ -98,8 +98,8 @@ public final class R {
         public static final int actv_play_tv_length=0x7f09001c;
         public static final int actv_play_tv_memo=0x7f090015;
         public static final int actv_play_tv_title=0x7f090013;
-        public static final int al_actv_menu_move_files=0x7f090068;
-        public static final int al_actv_menu_move_mode=0x7f090067;
+        public static final int al_actv_menu_move_files=0x7f090069;
+        public static final int al_actv_menu_move_mode=0x7f090068;
         public static final int dlg_confirm_create_folder_btn_cancel=0x7f090024;
         public static final int dlg_confirm_create_folder_btn_ok=0x7f090023;
         public static final int dlg_confirm_create_folder_tv_message=0x7f090021;
@@ -168,9 +168,9 @@ public final class R {
         public static final int main_sv_dir_path=0x7f090060;
         public static final int main_tv_dir_path=0x7f090061;
         public static final int menu_actv_play_register_pattern=0x7f090066;
-        public static final int opt_menu_main_create_dir=0x7f09006a;
-        public static final int opt_menu_main_db=0x7f090069;
-        public static final int opt_menu_main_settings=0x7f09006b;
+        public static final int opt_menu_main_create_dir=0x7f09006b;
+        public static final int opt_menu_main_db=0x7f09006a;
+        public static final int opt_menu_main_settings=0x7f090067;
         public static final int scrollView1=0x7f09002a;
     }
     public static final class layout {

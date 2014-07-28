@@ -5,4 +5,8 @@
 		android:title="@string/menu_actv_play_register_pattern"
 		android:icon="@drawable/actv_play_opt_menu_add_pattern_30x30"></item>
 	
+    <item android:id="@+id/opt_menu_main_settings"
+		android:title="@string/opt_menu_main_settings"
+		android:icon="@drawable/settings"></item>
+    
 </menu>

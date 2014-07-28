@@ -2,6 +2,8 @@ package app.listeners.button;
 
 import java.io.File;
 
+import cm7.main.R;
+
 import android.app.ListActivity;
 import android.app.Activity;
 import android.app.Dialog;
@@ -13,6 +15,7 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -382,14 +385,49 @@ public class BO_CL implements OnClickListener {
 
 	}
 
-	private void case_ActvPlay_BtStop() {
+	private void 
+	case_ActvPlay_BtStop() {
 		// TODO Auto-generated method stub
 
 		Methods.stop_Player(actv);
 		
-	}
+		////////////////////////////////
 
-	private void case_ActvPlay_BtPlay() {
+		// change: button
+
+		////////////////////////////////
+		Button bt_Stop = 
+				(Button) actv.findViewById(R.id.actv_play_bt_stop);
+		
+		bt_Stop.setVisibility(View.GONE);
+		
+		Button bt_Play = 
+				(Button) actv.findViewById(R.id.actv_play_bt_play);
+		
+		bt_Play.setVisibility(View.VISIBLE);
+
+		
+//		Button bt_Stop = 
+//				(Button) actv.findViewById(R.id.actv_play_bt_stop);
+////		(Button) actv.findViewById(R.id.actv_play_bt_play);
+//		
+//		bt_Stop.setTag(Tags.ButtonTags.actv_play_bt_play);
+////		bt_play.setTag(Tags.ButtonTags.actv_play_bt_play);
+//		
+//		bt_Stop.setText(actv.getString(R.string.actv_play_bt_play));
+////		bt_Stop.setText(actv.getString(R.string.actv_play_bt_stop));
+//		
+//		bt_Stop.setTextColor(
+//						actv.getResources().getColor(R.color.blue1));
+//		
+//		bt_Stop.setOnTouchListener(new BO_TL(actv));
+////		bt_play.setOnClickListener(new ButtonOnClickListener(this));
+//		bt_Stop.setOnClickListener(new BO_CL(actv, CONS.PlayActv.ai));
+		
+	}//case_ActvPlay_BtStop()
+
+	private void 
+	case_ActvPlay_BtPlay() {
 		// TODO Auto-generated method stub
 		// Log
 		String msg_Log = "Play";
@@ -400,7 +438,36 @@ public class BO_CL implements OnClickListener {
 
 		Methods.play_File(actv, ai);
 		
-	}
+		////////////////////////////////
+
+		// change: button
+
+		////////////////////////////////
+		Button bt_Stop = 
+				(Button) actv.findViewById(R.id.actv_play_bt_stop);
+		
+		bt_Stop.setVisibility(View.VISIBLE);
+		
+		Button bt_Play = 
+				(Button) actv.findViewById(R.id.actv_play_bt_play);
+		
+		bt_Play.setVisibility(View.GONE);
+		
+//		Button bt_Play = 
+//				(Button) actv.findViewById(R.id.actv_play_bt_play);
+//		
+//		bt_Play.setTag(Tags.ButtonTags.actv_play_bt_stop);
+////		bt_play.setTag(Tags.ButtonTags.actv_play_bt_play);
+//		
+//		bt_Play.setText(actv.getString(R.string.actv_play_bt_stop));
+//		
+//		bt_Play.setTextColor(actv.getResources().getColor(R.color.red));
+//		
+//		bt_Play.setOnTouchListener(new BO_TL(actv));
+////		bt_play.setOnClickListener(new ButtonOnClickListener(this));
+//		bt_Play.setOnClickListener(new BO_CL(actv, CONS.PlayActv.ai));
+		
+	}//case_ActvPlay_BtPlay()
 
 	private void case_PlayActv_See_BM() {
 		// TODO Auto-generated method stub

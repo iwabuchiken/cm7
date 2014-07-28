@@ -700,6 +700,12 @@ public class PlayActv extends Activity {
 			
 			break;// case R.id.menu_actv_play_create_folder
 			
+		case R.id.opt_menu_main_settings://------------------------------------
+
+			Methods.start_Activity_PrefActv(this);
+			
+			break;// case R.id.menu_actv_play_create_folder
+			
 		}//switch (item.getItemId())
 
 		
