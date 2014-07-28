@@ -426,6 +426,10 @@ public class CONS {
 		
 		public static long playActv_InitialPosition = 0; 
 		
+		// Step value => file length / value
+		//		=> forward length per click
+		public static int stepValue	= 60;
+		
 		/******************************
 			Intent value receiver
 		 ******************************/

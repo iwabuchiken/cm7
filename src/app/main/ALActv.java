@@ -358,7 +358,7 @@ public class ALActv extends ListActivity {
 		 * 
 		 * 3. Set selection
 		 *********************************/
-		// TODO ?��?��?��?��?��?��?��?��?��?��?��ꂽ?��?��?��\?��b?��h?��E?��X?��^?��u
+		// TODO ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ黷ｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ\?�ｿｽ�ｿｽb?�ｿｽ�ｿｽh?�ｿｽ�ｿｽE?�ｿｽ�ｿｽX?�ｿｽ�ｿｽ^?�ｿｽ�ｿｽu
 		super.onResume();
 		
 		// Log
@@ -399,7 +399,7 @@ public class ALActv extends ListActivity {
 
 	@Override
 	protected void onStop() {
-		// TODO ?��?��?��?��?��?��?��?��?��?��?��ꂽ?��?��?��\?��b?��h?��E?��X?��^?��u
+		// TODO ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ黷ｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ\?�ｿｽ�ｿｽb?�ｿｽ�ｿｽh?�ｿｽ�ｿｽE?�ｿｽ�ｿｽX?�ｿｽ�ｿｽ^?�ｿｽ�ｿｽu
 		super.onStop();
 		
 		// Log
@@ -515,21 +515,21 @@ public class ALActv extends ListActivity {
 		// TODO Auto-generated method stub
 		AI ai = (AI) lv.getItemAtPosition(position);
 		
-		if (ai != null) {
-			
-			// Log
-			Log.d("ALActv.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", "ai =" + ai.getFile_name());
-			
-		} else {//if (item_)
-			
-			// Log
-			Log.d("ALActv.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", "ai => null");
-			
-		}//if (item_)
+//		if (ai != null) {
+//			
+//			// Log
+//			Log.d("ALActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", "ai =" + ai.getFile_name());
+//			
+//		} else {//if (item_)
+//			
+//			// Log
+//			Log.d("ALActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", "ai => null");
+//			
+//		}//if (item_)
 
 		return ai;
 		

@@ -93,21 +93,21 @@ public class SBL implements OnSeekBarChangeListener {
 //		}//if (CONS.PlayActv.tvCurrentPosition == null)
 //		CONS.PlayActv.tvCurrentPosition = (TextView) this.findViewById(R.id.actv_play_tv_current_position);
 		
-		// Log
-		msg_Log = "seekedPosition = " + seekedPosition
-						+ " // "
-						+ "Methods.conv_MillSec_to_ClockLabel(seekedPosition) = "
-						+ Methods.conv_MillSec_to_ClockLabel(seekedPosition);
-		Log.d("SBL.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
+//		// Log
+//		msg_Log = "seekedPosition = " + seekedPosition
+//						+ " // "
+//						+ "Methods.conv_MillSec_to_ClockLabel(seekedPosition) = "
+//						+ Methods.conv_MillSec_to_ClockLabel(seekedPosition);
+//		Log.d("SBL.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
 		
-		// Log
-		msg_Log = "CONS.PlayActv.tvCurrentPosition.getClass().getName() = "
-					+ CONS.PlayActv.tvCurrentPosition.getClass().getName();
-		Log.d("SBL.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
+//		// Log
+//		msg_Log = "CONS.PlayActv.tvCurrentPosition.getClass().getName() = "
+//					+ CONS.PlayActv.tvCurrentPosition.getClass().getName();
+//		Log.d("SBL.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
 		
 		//test
 		// mill second value => round up

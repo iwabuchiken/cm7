@@ -351,6 +351,28 @@ public class PlayActv extends Activity {
 		bt_back.setOnTouchListener(new BO_TL(this));
 		bt_back.setOnClickListener(new BO_CL(this));
 		
+		/*********************************
+		 * 3. Button => Backward
+		 *********************************/
+		Button bt_Backward = 
+				(Button) findViewById(R.id.actv_play_bt_backward);
+		
+		bt_Backward.setTag(Tags.ButtonTags.ACTV_PLAY_BT_BACKWARD);
+		
+		bt_Backward.setOnTouchListener(new BO_TL(this));
+		bt_Backward.setOnClickListener(new BO_CL(this));
+		
+		/*********************************
+		 * 3. Button => Forward
+		 *********************************/
+		Button bt_Forward = 
+				(Button) findViewById(R.id.actv_play_bt_forward);
+		
+		bt_Forward.setTag(Tags.ButtonTags.ACTV_PLAY_BT_FORWARD);
+		
+		bt_Forward.setOnTouchListener(new BO_TL(this));
+		bt_Forward.setOnClickListener(new BO_CL(this));
+		
 		////////////////////////////////
 
 		// "See bookmarks"
@@ -436,11 +458,11 @@ public class PlayActv extends Activity {
 			
 		}
 		
-		// Log
-		String msg_Log = "ai.getFile_name() = " + CONS.PlayActv.ai.getFile_name();
-		Log.d("PlayActv.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
+//		// Log
+//		String msg_Log = "ai.getFile_name() = " + CONS.PlayActv.ai.getFile_name();
+//		Log.d("PlayActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
 		
 		////////////////////////////////
 
@@ -571,11 +593,11 @@ public class PlayActv extends Activity {
 
 	private boolean _onCreate_Get_IntentValues() {
 		
-		// Log
-		String msg_Log = "_onCreate_Get_IntentValues";
-		Log.d("PlayActv.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
+//		// Log
+//		String msg_Log = "_onCreate_Get_IntentValues";
+//		Log.d("PlayActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
 		
 		// TODO Auto-generated method stub
 		Intent i = this.getIntent();
@@ -598,7 +620,7 @@ public class PlayActv extends Activity {
 		if (CONS.PlayActv.ai_FilePath_Full == null) {
 			
 			// Log
-			msg_Log = "CONS.PlayActv.ai_FilePath_Full => null";
+			String msg_Log = "CONS.PlayActv.ai_FilePath_Full => null";
 			Log.e("PlayActv.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", msg_Log);
@@ -609,7 +631,7 @@ public class PlayActv extends Activity {
 						CONS.Intent.dflt_LongExtra_value) {
 			
 			// Log
-			msg_Log = "CONS.PlayActv.ai_Db_Id => "
+			String msg_Log = "CONS.PlayActv.ai_Db_Id => "
 						+ CONS.Intent.dflt_LongExtra_value;
 			
 			Log.d("PlayActv.java" + "["
@@ -621,7 +643,7 @@ public class PlayActv extends Activity {
 		} else if (CONS.PlayActv.ai_TableName == null) {
 			
 			// Log
-			msg_Log = "CONS.PlayActv.ai_TableName => null";
+			String msg_Log = "CONS.PlayActv.ai_TableName => null";
 			
 			Log.d("PlayActv.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
@@ -742,11 +764,11 @@ public class PlayActv extends Activity {
 								CONS.Pref.pkey_CurrentPosition_BMActv, 
 								CONS.Pref.dflt_IntExtra_value);
 
-		// Log
-		String msg_Log = "bm_Value => " + bm_Value;
-		Log.d("PlayActv.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
+//		// Log
+//		String msg_Log = "bm_Value => " + bm_Value;
+//		Log.d("PlayActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
 		
 		
 		if (bm_Value != CONS.Pref.dflt_IntExtra_value
@@ -760,18 +782,18 @@ public class PlayActv extends Activity {
 		
 		} else {
 			
-			// Log
-			msg_Log = "bm_Value = " + bm_Value;
-			Log.d("PlayActv.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", msg_Log);
+//			// Log
+//			msg_Log = "bm_Value = " + bm_Value;
+//			Log.d("PlayActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
 			
-			msg_Log = "CONS.BMActv.bmList == null => " 
-						+ (CONS.BMActv.bmList == null);
-			
-			Log.d("PlayActv.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", msg_Log);
+//			msg_Log = "CONS.BMActv.bmList == null => " 
+//						+ (CONS.BMActv.bmList == null);
+//			
+//			Log.d("PlayActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
 			
 			
 		}

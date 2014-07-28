@@ -60,6 +60,9 @@
     <!-- actv_play.xml -->
     	<string name="actv_play_bt_play">Play</string>
     	<string name="actv_play_bt_stop">Stop</string>
+    	<string name="actv_play_bt_backward">&lt;&lt;</string>
+    	<string name="actv_play_bt_forward">&gt;&gt;</string>
+    	
 		<string name="actv_play_bt_add_bm">Add bookmark</string>
    		<string name="actv_play_bt_see_bm">See bookmarks</string>
    		<string name="actv_play_tv_bm_label">Bookmark</string>

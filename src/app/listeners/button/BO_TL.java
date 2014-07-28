@@ -34,7 +34,7 @@ public class BO_TL implements OnTouchListener {
 
 //	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		// TODO ?��?��?��?��?��?��?��?��?��?��?��ꂽ?��?��?��\?��b?��h?��E?��X?��^?��u
+		// TODO ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ黷ｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ\?�ｿｽ�ｿｽb?�ｿｽ�ｿｽh?�ｿｽ�ｿｽE?�ｿｽ�ｿｽX?�ｿｽ�ｿｽ^?�ｿｽ�ｿｽu
 		Tags.ButtonTags tag = (Tags.ButtonTags) v.getTag();
 		
 		switch (event.getActionMasked()) {
@@ -47,6 +47,8 @@ public class BO_TL implements OnTouchListener {
 			case actv_play_bt_back:
 			case actv_play_bt_see_bm:
 			case actv_play_bt_add_bm:
+			case ACTV_PLAY_BT_FORWARD:
+			case ACTV_PLAY_BT_BACKWARD:
 				
 				v.setBackgroundColor(Color.GRAY);
 				break;
@@ -88,6 +90,8 @@ public class BO_TL implements OnTouchListener {
 			case actv_play_bt_back:
 			case actv_play_bt_see_bm:
 			case actv_play_bt_add_bm:
+			case ACTV_PLAY_BT_FORWARD:
+			case ACTV_PLAY_BT_BACKWARD:
 				
 				v.setBackgroundColor(Color.WHITE);
 				break;

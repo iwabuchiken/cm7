@@ -454,16 +454,16 @@ public class MainActv extends ListActivity {
 			
 		}//if (this.CONS.MainActv.list_RootDir == null)
 
-//		for (List<String> CONS.MainActv.list_RootDir : item) {
-		for (String item : CONS.MainActv.list_RootDir) {
-			
-			// Log
-			String msg_log = "list_RootDir item = " + item;
-			Log.d("MainActv.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", msg_log);
-			
-		}
+////		for (List<String> CONS.MainActv.list_RootDir : item) {
+//		for (String item : CONS.MainActv.list_RootDir) {
+//			
+//			// Log
+//			String msg_log = "list_RootDir item = " + item;
+//			Log.d("MainActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_log);
+//			
+//		}
 		
 		////////////////////////////////
 
@@ -651,10 +651,10 @@ public class MainActv extends ListActivity {
 						CONS.Paths.dpath_Storage_Sdcard, CONS.Paths.dname_Base},
 				File.separator);
 
-		// Log
-		Log.d("MainActv.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", "dpath_base=" + dpath_base);
+//		// Log
+//		Log.d("MainActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", "dpath_base=" + dpath_base);
 		
 		File file = new File(dpath_base);
 		

@@ -135,6 +135,7 @@ public class Tags {
 		// actv_play.xml
 		actv_play_bt_play, actv_play_bt_stop, actv_play_bt_back,
 		actv_play_tv_title, actv_play_tv_memo,
+		ACTV_PLAY_BT_BACKWARD, ACTV_PLAY_BT_FORWARD,
 		
 		actv_play_bt_see_bm, actv_play_bt_add_bm,
 		

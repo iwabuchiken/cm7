@@ -838,11 +838,11 @@ public class Methods {
 		// Split: target
 
 		////////////////////////////////
-		// Log
-		String msg_log = "File.separator = " + File.separator;
-		Log.d("Methods.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_log);
+//		// Log
+//		String msg_log = "File.separator = " + File.separator;
+//		Log.d("Methods.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_log);
 		
 		String[] tokens = target.split(File.separator);
 		
@@ -854,7 +854,7 @@ public class Methods {
 		if (tokens == null) {
 			
 			// Log
-			msg_log = "Split => returned null";
+			String msg_log = "Split => returned null";
 			Log.e("Methods.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", msg_log);
