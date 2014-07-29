@@ -7,6 +7,7 @@ import java.util.List;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Vibrator;
+import android.preference.EditTextPreference;
 import android.provider.MediaStore;
 import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
@@ -526,4 +527,11 @@ public class CONS {
 		};
 
 	}
+
+	public static class PrefActv {
+		
+		public static EditTextPreference prefEditText;
+		
+	}
+	
 }//public class CONS

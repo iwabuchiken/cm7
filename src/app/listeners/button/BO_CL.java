@@ -176,10 +176,151 @@ public class BO_CL implements OnClickListener {
 		
 	}//public void onClick(View v)
 
-	private void case_ACTV_PLAY_BT_BACKWARD() {
-		// TODO Auto-generated method stub
+	private void 
+	case_ACTV_PLAY_BT_BACKWARD() {
+		/******************************
+			validate
+		 ******************************/
+		if (CONS.PlayActv.ai == null) {
+			
+			String msg = "CONS.PlayActv.ai => null";
+			Methods_dlg.dlg_ShowMessage(actv, msg);
+			
+			return;
+			
+		}
 		
-	}
+		////////////////////////////////
+	
+		// get: data
+	
+		////////////////////////////////
+		long cur_Position_long = 
+				Methods.getPref_Long(
+					actv,
+					CONS.Pref.pname_PlayActv,
+					CONS.Pref.pkey_PlayActv_CurrentPosition,
+					CONS.Pref.dflt_LongExtra_value);
+	
+		long length =
+				Methods.conv_ClockLabel_to_MillSec(
+								CONS.PlayActv.ai.getLength());
+		
+		int seekPosition = (int)
+				(((float)cur_Position_long / length)
+						* CONS.PlayActv.sb.getMax());
+		
+		// Log
+		String msg_Log = "seek position, before => "
+						+ seekPosition;
+		Log.d("BO_CL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+		
+		// Backward
+		
+		////////////////////////////////
+		// Pref
+		String pref_StepLength = Methods.get_Pref_String(
+				actv, 
+				CONS.Pref.pname_MainActv, 
+				actv.getString(R.string.pkey_prefactv_step_length), 
+				null);
+		
+//		// Log
+//		msg_Log = "pref_StepLength => " + pref_StepLength;
+//		Log.d("BO_CL.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+		
+		if (pref_StepLength != null) {
+			
+			// Converting from minutes to mill seconds
+			CONS.PlayActv.stepValue = 
+					Integer.parseInt(pref_StepLength) * (1000 * 60);
+			
+		} else {
+	
+			// Defalut value => 60000 mill seconds
+			CONS.PlayActv.stepValue = CONS.PlayActv.dflt_StepValue;
+			
+		}
+		
+		cur_Position_long -= CONS.PlayActv.stepValue;
+//		cur_Position_long += CONS.PlayActv.stepValue;
+	
+		/******************************
+			validate
+		 ******************************/
+		if (cur_Position_long < 0) {
+//			if (cur_Position_long >= length) {
+			
+			// Log
+			msg_Log = "No more backwarding possible";
+			Log.d("BO_CL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return;
+			
+		}
+		
+		/******************************
+			set: pref
+		 ******************************/
+		boolean res = Methods.setPref_Long(
+					actv,
+					CONS.Pref.pname_PlayActv,
+	//				CONS.Pref.pkey_PlayActv_position,
+					CONS.Pref.pkey_PlayActv_CurrentPosition,
+	//				CONS.Pref.pkey_CurrentPosition,
+					cur_Position_long);
+		
+		/******************************
+			validate: pref set?
+		 ******************************/
+		if (res == false) {
+			
+			String msg = "Can't set pref: current position";
+			// Log
+			Log.d("BO_CL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg);
+			
+			return;
+			
+		}
+		
+		// Log
+		msg_Log = "pref position set => " 
+						+ cur_Position_long;
+		Log.d("BO_CL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+	
+		// set: seek bar
+	
+		////////////////////////////////
+		
+	//	int seekPosition = (int)
+		seekPosition = (int)
+	//			((currentPosition / length)
+				(((float)cur_Position_long / length)
+						* CONS.PlayActv.sb.getMax());
+		
+		CONS.PlayActv.sb.setProgress(seekPosition);
+		
+		// Log
+		msg_Log = "seekPosition set => " + seekPosition;
+		Log.d("BO_CL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+	}//case_ACTV_PLAY_BT_BACKWARD()
 
 	private void 
 	case_ACTV_PLAY_BT_FORWARD() {
@@ -245,10 +386,13 @@ public class BO_CL implements OnClickListener {
 		
 		if (pref_StepLength != null) {
 			
-			CONS.PlayActv.stepValue = Integer.parseInt(pref_StepLength);
+			// Converting from minutes to mill seconds
+			CONS.PlayActv.stepValue = 
+					Integer.parseInt(pref_StepLength) * (1000 * 60);
 			
 		} else {
 
+			// Defalut value => 60000 mill seconds
 			CONS.PlayActv.stepValue = CONS.PlayActv.dflt_StepValue;
 			
 		}
