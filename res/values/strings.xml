@@ -126,6 +126,12 @@
     	    						prefactv_key_resume_position</string>
     	<string name="prefactv_summary_resume_position">
     	    						Play from where stopped</string>
+    	    						
+    	<string name="prefactv_title_step_length">Step length</string>
+    	<string name="pkey_prefactv_step_length">
+    	    						pkey_prefactv_step_length</string>
+    	<string name="prefactv_summary_step_length">
+    	    						Forward/Backward(minutes)</string>
     	
 </resources>
 

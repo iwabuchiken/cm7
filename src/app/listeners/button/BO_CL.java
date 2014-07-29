@@ -230,7 +230,31 @@ public class BO_CL implements OnClickListener {
 		// forward
 		
 		////////////////////////////////
-		cur_Position_long += length / CONS.PlayActv.stepValue;
+		// Pref
+		String pref_StepLength = Methods.get_Pref_String(
+				actv, 
+				CONS.Pref.pname_MainActv, 
+				actv.getString(R.string.pkey_prefactv_step_length), 
+				null);
+		
+		// Log
+		msg_Log = "pref_StepLength => " + pref_StepLength;
+		Log.d("BO_CL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		if (pref_StepLength != null) {
+			
+			CONS.PlayActv.stepValue = Integer.parseInt(pref_StepLength);
+			
+		} else {
+
+			CONS.PlayActv.stepValue = CONS.PlayActv.dflt_StepValue;
+			
+		}
+		
+		cur_Position_long += CONS.PlayActv.stepValue;
+//		cur_Position_long += length / CONS.PlayActv.stepValue;
 //		cur_Position_long += 60000;
 //		cur_Position_long += 15000;
 

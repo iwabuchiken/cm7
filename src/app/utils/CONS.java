@@ -428,7 +428,12 @@ public class CONS {
 		
 		// Step value => file length / value
 		//		=> forward length per click
-		public static int stepValue	= 60;
+		public static int stepValue;
+//		public static int stepValue	= 60;
+		
+		// Default step value for forward/backward
+		//	=> unit = mill seconds
+		public static int dflt_StepValue = 60000;	// 1 minute
 		
 		/******************************
 			Intent value receiver

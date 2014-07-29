@@ -306,14 +306,17 @@ public final class R {
          */
         public static final int opt_menu_main_db=0x7f06000f;
         public static final int opt_menu_main_settings=0x7f060011;
+        public static final int pkey_prefactv_step_length=0x7f060046;
         public static final int prefactv_key_bgm=0x7f060040;
         public static final int prefactv_key_resume_position=0x7f060043;
         public static final int prefactv_summary_bgm=0x7f060041;
         public static final int prefactv_summary_resume_position=0x7f060044;
+        public static final int prefactv_summary_step_length=0x7f060047;
         /**  PrefActv 
          */
         public static final int prefactv_title_bgm=0x7f06003f;
         public static final int prefactv_title_resume_position=0x7f060042;
+        public static final int prefactv_title_step_length=0x7f060045;
     }
     public static final class style {
         /** 

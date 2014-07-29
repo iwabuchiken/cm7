@@ -4,7 +4,9 @@ import cm7.main.R;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.PreferenceActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,31 +46,40 @@ public class PrefActv extends PreferenceActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO �ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ黷ｽ�ｿｽ�ｿｽ�ｿｽ\�ｿｽb�ｿｽh�ｿｽE�ｿｽX�ｿｽ^�ｿｽu
 		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO �ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ黷ｽ�ｿｽ�ｿｽ�ｿｽ\�ｿｽb�ｿｽh�ｿｽE�ｿｽX�ｿｽ^�ｿｽu
 		return super.onOptionsItemSelected(item);
 	}
 
 	@Override
 	protected void onPause() {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO �ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ黷ｽ�ｿｽ�ｿｽ�ｿｽ\�ｿｽb�ｿｽh�ｿｽE�ｿｽX�ｿｽ^�ｿｽu
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO �ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ黷ｽ�ｿｽ�ｿｽ�ｿｽ\�ｿｽb�ｿｽh�ｿｽE�ｿｽX�ｿｽ^�ｿｽu
 		super.onResume();
 	}
 
 	@Override
 	protected void onStart() {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		
+		EditTextPreference prefEditText = 
+				(EditTextPreference) findPreference(
+						this.getString(R.string.pkey_prefactv_step_length));
+//		this.getString(R.string.prefs_history_size_key));
+		
+		prefEditText.getEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
+
+		
+		// TODO �ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ黷ｽ�ｿｽ�ｿｽ�ｿｽ\�ｿｽb�ｿｽh�ｿｽE�ｿｽX�ｿｽ^�ｿｽu
 //		EditTextPreference prefEditText = 
 //				(EditTextPreference) findPreference(
 //						this.getString(R.string.prefs_key_distbuff));
@@ -82,13 +93,13 @@ public class PrefActv extends PreferenceActivity {
 
 	@Override
 	protected void onStop() {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO �ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ黷ｽ�ｿｽ�ｿｽ�ｿｽ\�ｿｽb�ｿｽh�ｿｽE�ｿｽX�ｿｽ^�ｿｽu
 		super.onStop();
 	}
 
 	@Override
 	protected void onDestroy() {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO �ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ黷ｽ�ｿｽ�ｿｽ�ｿｽ\�ｿｽb�ｿｽh�ｿｽE�ｿｽX�ｿｽ^�ｿｽu
 		super.onDestroy();
 	}
 
