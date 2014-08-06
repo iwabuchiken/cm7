@@ -221,6 +221,10 @@ public final class R {
          */
         public static final int al_actv_menu_move_mode=0x7f060020;
         public static final int app_name=0x7f060000;
+        /**  dlg: ACTVMAIN_LV 
+         */
+        public static final int dlg_actvmain_lv_delete=0x7f060048;
+        public static final int dlg_actvmain_lv_delete_confirm_message=0x7f060049;
         /**  dlg_alactv_list_long_click 
          */
         public static final int dlg_alactv_list_long_click_title=0x7f06002b;

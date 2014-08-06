@@ -17,6 +17,7 @@ import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
 import app.utils.Methods_dlg;
+import app.utils.Ops;
 import app.utils.Tags;
 
 public class DB_OCL implements OnClickListener {
@@ -40,6 +41,8 @@ public class DB_OCL implements OnClickListener {
 	
 	AI ai;
 	int alList_Position;
+	
+	String folderName;	// MainActv, long click, delete folder, conf OK
 	
 	public DB_OCL(Activity actv, Dialog dlg1) {
 		//
@@ -141,6 +144,22 @@ public class DB_OCL implements OnClickListener {
 
 	}
 
+	public 
+	DB_OCL
+	(Activity actv, Dialog dlg1, Dialog dlg2, String folderName) {
+		// TODO Auto-generated constructor stub
+		
+		this.actv = actv;
+		
+		this.dlg1 = dlg1;
+		this.dlg2 = dlg2;
+
+		this.folderName	= folderName;
+		
+		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+
+	}
+
 	public void onClick(View v) {
 		//
 		Tags.DialogTags tag_name = (Tags.DialogTags) v.getTag();
@@ -218,11 +237,24 @@ public class DB_OCL implements OnClickListener {
 			
 			break;
 			
+		case DLG_DELETE_FOLDER_CONF_OK://------------------------------------------------
+			
+			dlg_DLG_DELETE_FOLDER_CONF_OK();
+			
+			break;
+			
 			
 		default: // ----------------------------------------------------
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void dlg_DLG_DELETE_FOLDER_CONF_OK() {
+		// TODO Auto-generated method stub
+
+		Ops.del_Folder(actv, dlg1, dlg2, folderName);
+		
+	}
 
 	private void 
 	dlg_CONFIRM_CREATE_FOLDER_OK() {

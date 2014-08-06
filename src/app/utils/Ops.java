@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import app.items.AI;
@@ -533,5 +534,25 @@ public class Ops {
 		return res;
 		
 	}//insert_FileToTable
+
+	public static void 
+	del_Folder
+	(Activity actv, Dialog dlg1, Dialog dlg2,
+			String folderName) {
+		// TODO Auto-generated method stub
+		
+		String currentPath = Methods.get_Pref_String(
+									actv, 
+									CONS.Pref.pname_MainActv, 
+									CONS.Pref.pkey_CurrentPath, 
+									null);
+		
+		// Log
+		String msg_Log = "currentPath => " + currentPath;
+		Log.d("Ops.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+	}//del_Folders
 
 }

@@ -78,6 +78,8 @@ public class Tags {
 		// dlg_edit_item.xml
 		DLG_EDIT_AI_BT_OK,
 		
+		// dlg: delete folder
+		DLG_DELETE_FOLDER_CONF_OK,
 		
 	}//public static enum DialogTags
 	
@@ -111,6 +113,9 @@ public class Tags {
 		
 		// dlg_ImpActv
 		DLG_IMPACTV_LIST,
+		
+		// dlg: MainActv, long click
+		DLG_ACTVMAIN_LONGCLICK,
 		
 	}//public static enum DialogItemTags
 	
@@ -198,7 +203,7 @@ public class Tags {
 
 	public static enum ListTags {
 		// MainActivity.java
-		actv_main_lv,
+		ACTV_MAIN_LV,
 		
 		// BMActv.java
 		actv_bm_lv,

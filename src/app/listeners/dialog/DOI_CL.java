@@ -9,6 +9,7 @@ import android.os.Vibrator;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 import app.items.AI;
 import app.items.BM;
 import app.tasks.Task_RefreshDB;
@@ -154,12 +155,37 @@ public class DOI_CL implements OnItemClickListener {
 			
 			break;// case dlg_bmactv_list_long_click
 			
+		case DLG_ACTVMAIN_LONGCLICK://----------------------------------------------
+			
+			String choice = (String) parent.getItemAtPosition(position);
+			
+			case_DLG_ACTVMAIN_LONGCLICK(choice);
+			
+			break;// case dlg_bmactv_list_long_click
+			
 			
 		default:
 			break;
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+
+	private void 
+	case_DLG_ACTVMAIN_LONGCLICK
+	(String choice) {
+		// TODO Auto-generated method stub
+
+		if (choice.equals(actv.getString(
+				R.string.dlg_actvmain_lv_delete))) {	// Edit
+
+			Methods_dlg.conf_DeleteFolder(actv, dlg1, file_Name, choice);
+			
+		} else {//if (item.equals(actv.getString(R.string.generic_tv_edit)))
+			
+			
+		}
+		
+	}//case_DLG_ACTVMAIN_LONGCLICK
 
 	private void 
 	case_DLG_IMPACTV_LIST(String item) {

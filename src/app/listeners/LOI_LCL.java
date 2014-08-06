@@ -69,6 +69,14 @@ LOI_LCL implements OnItemLongClickListener {
 			
 			break;// case actv_bm_lv
 			
+		case ACTV_MAIN_LV://----------------------------------------------------
+
+			String item = (String) parent.getItemAtPosition(position);
+			
+			case_ACTV_MAIN_LV(item);
+			
+			break;// case actv_bm_lv
+			
 		default:
 			break;
 		
@@ -77,6 +85,14 @@ LOI_LCL implements OnItemLongClickListener {
 		return true;
 		
 	}//onItemLongClick (AdapterView<?> parent, View v, int position, long id)
+
+	private void 
+	case_ACTV_MAIN_LV(String item) {
+		// TODO Auto-generated method stub
+		
+		Methods_dlg.dlg_ACTV_MAIN_LV(actv, item);
+		
+	}
 
 	private void 
 	case_ALActv_lv(AI ai, int alList_Position) {

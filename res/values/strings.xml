@@ -132,6 +132,12 @@
     	    						pkey_prefactv_step_length</string>
     	<string name="prefactv_summary_step_length">
     	    						Forward/Backward(minutes)</string>
+
+   	<!-- dlg: ACTVMAIN_LV -->
+   		<string name="dlg_actvmain_lv_delete">Delete folder</string>
+   		<string name="dlg_actvmain_lv_delete_confirm_message">
+   		    						Delete folder?</string>
     	
+    		
 </resources>
 

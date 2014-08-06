@@ -30,6 +30,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import app.adapters.Adp_MainList;
 import app.items.Refresh;
+import app.listeners.LOI_LCL;
 import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
@@ -361,14 +362,18 @@ public class MainActv extends ListActivity {
 	}
 
 	private void set_Listeners() {
-		// TODO Auto-generated method stub
-//    	ListView lv = this.getListView();
-//		
-////		lv.setTag(Methods.ItemTags.dir_list);
-//		lv.setTag(Tags.ListTags.actv_main_lv);
-//		
-//		lv.seto
-//		lv.setOnItemLongClickListener(new CustomOnItemLongClickListener(this));
+		////////////////////////////////
+
+		// listview => long click
+
+		////////////////////////////////
+    	ListView lv = this.getListView();
+		
+//    	lv.setTag(Tags.ListTags.actv_main_lv);
+		lv.setTag(Tags.ListTags.ACTV_MAIN_LV);
+		
+		lv.setOnItemLongClickListener(new LOI_LCL(this));
+		
 	}
 
 	/******************************
