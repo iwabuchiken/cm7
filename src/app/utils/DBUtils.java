@@ -336,7 +336,7 @@ public class DBUtils extends SQLiteOpenHelper{
 			return true;
 			
 		} catch (SQLException e) {
-			// TODO ?��?��?��?��?��?��?��?��?��?��?��ꂽ catch ?��u?��?��?��b?��N
+			// TODO ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ黷ｽ catch ?�ｽ�ｽu?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽb?�ｽ�ｽN
 			// Log
 			Log.e("DBUtils.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
@@ -404,7 +404,7 @@ public class DBUtils extends SQLiteOpenHelper{
 			return true;
 			
 		} catch (SQLException e) {
-			// TODO ?��?��?��?��?��?��?��?��?��?��?��ꂽ catch ?��u?��?��?��b?��N
+			// TODO ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ黷ｽ catch ?�ｽ�ｽu?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽb?�ｽ�ｽN
 			// Log
 			Log.e("DBUtils.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
@@ -554,7 +554,7 @@ public class DBUtils extends SQLiteOpenHelper{
 			return true;
 			
 		} catch (SQLException e) {
-			// TODO ?��?��?��?��?��?��?��?��?��?��?��ꂽ catch ?��u?��?��?��b?��N
+			// TODO ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ黷ｽ catch ?�ｽ�ｽu?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽb?�ｽ�ｽN
 			// Log
 			Log.e("DBUtils.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
@@ -1634,17 +1634,54 @@ public class DBUtils extends SQLiteOpenHelper{
 	public static List<AI>
 	find_All_AI(Activity actv, String tableName) {
 		
+		////////////////////////////////
+
+		// validate: DB file exists?
+
+		////////////////////////////////
+		File dpath_DBFile = actv.getDatabasePath(CONS.DB.dbName);
+
+		if (!dpath_DBFile.exists()) {
+			
+			String msg = "No DB file: " + CONS.DB.dbName;
+			Methods_dlg.dlg_ShowMessage(actv, msg);
+			
+			return null;
+			
+		}
+		
+		////////////////////////////////
+
+		// DB
+
+		////////////////////////////////
 		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
 		
 		SQLiteDatabase rdb = dbu.getReadableDatabase();
-
-		Cursor c = null;
 		
 		////////////////////////////////
+		
+		// validate: table exists?
+		
+		////////////////////////////////
+		boolean res = dbu.tableExists(rdb, tableName);
 
-		// Query
+		if (res == false) {
+			
+			String msg = "No such table: " + tableName;
+			Methods_dlg.dlg_ShowMessage(actv, msg);
+			
+			return null;
+			
+		}
 
 		////////////////////////////////
+		
+		// Query
+		
+		////////////////////////////////
+		Cursor c = null;
+		
 		try {
 			
 			c = rdb.query(

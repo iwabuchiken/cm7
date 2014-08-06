@@ -1,1 +1,8 @@
-C:\WORKS\shortcuts\and_lm1\start_sql_browser.bat
+@ECHO OFF
+
+pushd C:\WORKS\Programs\SqliteBrowser3\bin
+start sqlitebrowser.exe
+
+popd
+
+REM exit

@@ -7,4 +7,4 @@
 bin/
 bin/*
 *.ja
-libs/*
+#libs/*
