@@ -404,6 +404,12 @@ public class CONS {
 		public static int display_TopPosition_Previous = -1;
 		
 		public final static int TITLE_MAX_LENGTH	= 12;
+
+		// ALActv, long click, move files
+		public static ArrayAdapter<String> adp_DirList;
+		
+		// ALActv, long click, move files
+		public static List<String> dir_List;
 		
 	}
 
@@ -450,10 +456,16 @@ public class CONS {
 	
 	
 	public static class Admin {
-		
+		////////////////////////////////
+
+		// commons
+
+		////////////////////////////////
 		public static final float DLG_WIDTH_RATIO = 0.8f;
 		
 		public static final String dName_backup = "cm5_backup";
+		
+		public static final String dirString_UpperDir	= "..";
 		
 		////////////////////////////////
 

@@ -133,7 +133,8 @@ LOI_LCL implements OnItemLongClickListener {
 		****************************/
 		String[] choices = {
 					actv.getString(R.string.generic_tv_delete),
-					actv.getString(R.string.generic_tv_edit)
+					actv.getString(R.string.generic_tv_edit),
+					actv.getString(R.string.dlg_alactv_list_long_click_item_move),
 					};
 		
 		List<String> list = new ArrayList<String>();
@@ -158,7 +159,7 @@ LOI_LCL implements OnItemLongClickListener {
 		/****************************
 		* 4. Set adapter
 		****************************/
-		ListView lv = (ListView) dlg1.findViewById(R.id.actv_imp_lv);
+		ListView lv = (ListView) dlg1.findViewById(R.id.dlg_tmpl_cancel_lv_lv);
 		
 		lv.setAdapter(adapter);
 		
@@ -182,7 +183,8 @@ LOI_LCL implements OnItemLongClickListener {
 		* Modify: Button layout
 		***************************************/
 		LinearLayout llButton =
-		(LinearLayout) dlg1.findViewById(R.id.actv_imp_ll_filepath);
+		(LinearLayout) dlg1.findViewById(R.id.dlg_tmpl_cancel_lv_ll_filepath);
+//		(LinearLayout) dlg1.findViewById(R.id.actv_imp_ll_filepath);
 		
 		LinearLayout.LayoutParams params =
 				new LinearLayout.LayoutParams(
@@ -244,7 +246,7 @@ LOI_LCL implements OnItemLongClickListener {
 		/****************************
 		 * 4. Set adapter
 			****************************/
-		ListView lv = (ListView) dlg.findViewById(R.id.actv_imp_lv);
+		ListView lv = (ListView) dlg.findViewById(R.id.dlg_tmpl_cancel_lv_lv);
 		
 		lv.setAdapter(adapter);
 		

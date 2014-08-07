@@ -222,6 +222,11 @@ public class DOI_CL implements OnItemClickListener {
 	
 			Methods_dlg.conf_DeleteAL(actv, dlg1, ai, aiList_Position);
 			
+		} else if (item.equals(actv.getString(
+						R.string.dlg_alactv_list_long_click_item_move))) {
+			
+			Methods_dlg.dlg_Move_AI(actv, dlg1, ai, aiList_Position);
+			
 		}//if (item.equals(actv.getString(R.string.generic_tv_edit)))
 		
 	}//case_Dlg_ALActv_LongClick(String item)

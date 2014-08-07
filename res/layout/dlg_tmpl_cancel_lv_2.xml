@@ -6,19 +6,18 @@
     android:orientation="vertical" >
 
     <ListView
-        android:id="@+id/dlg_tmpl_cancel_lv_lv"
+        android:id="@+id/dlg_tmpl_cancel_lv_2_lv"
         android:layout_width="match_parent"
         android:layout_height="300dp" >
     </ListView>
 
     <LinearLayout
-        android:id="@+id/dlg_tmpl_cancel_lv_ll_filepath"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <Button
-            android:id="@+id/dlg_tmpl_cancel_lv_bt_cancel"
+            android:id="@+id/dlg_tmpl_cancel_lv_2_bt_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"

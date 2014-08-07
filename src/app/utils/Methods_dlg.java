@@ -32,6 +32,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import app.adapters.Adp_AIList;
 import app.items.AI;
 import app.items.BM;
 import app.listeners.dialog.DB_OCL;
@@ -169,6 +170,52 @@ public class Methods_dlg {
 		
 		return dlg;
 	
+	}//public static Dialog dlg_template_okCancel()
+	
+	public static
+	Dialog dlg_Template_Cancel_SecondDialog
+	(Activity actv, Dialog dlg1,
+		int layoutId, int titleStringId,
+		int cancelButtonId, Tags.DialogTags cancelTag) {
+		/****************************
+		 * Steps
+		 * 1. Set up
+		 * 2. Add listeners => OnTouch
+		 * 3. Add listeners => OnClick
+		 ****************************/
+		
+		// 
+		Dialog dlg2 = new Dialog(actv);
+		
+		//
+		dlg2.setContentView(layoutId);
+		
+		// Title
+		dlg2.setTitle(titleStringId);
+		
+		/****************************
+		 * 2. Add listeners => OnTouch
+		 ****************************/
+		//
+		Button btn_cancel = (Button) dlg2.findViewById(cancelButtonId);
+		
+		//
+		btn_cancel.setTag(cancelTag);
+		
+		//
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg2));
+		
+		/****************************
+		 * 3. Add listeners => OnClick
+		 ****************************/
+		//
+		btn_cancel.setOnClickListener(new DB_OCL(actv, dlg1, dlg2));
+		
+		//
+		//dlg.show();
+		
+		return dlg2;
+		
 	}//public static Dialog dlg_template_okCancel()
 
 	public static void
@@ -1143,7 +1190,7 @@ public class Methods_dlg {
 		/****************************
 		* 4. Set adapter
 		****************************/
-		ListView lv = (ListView) dlg1.findViewById(R.id.actv_imp_lv);
+		ListView lv = (ListView) dlg1.findViewById(R.id.dlg_tmpl_cancel_lv_lv);
 		
 		lv.setAdapter(adapter);
 		
@@ -1325,5 +1372,74 @@ public class Methods_dlg {
 		dlg1.show();
 		
 	}//dlg_Create_Folder
+
+	public static void 
+	dlg_Move_AI
+	(Activity actv, Dialog dlg1, AI ai,
+			int aiList_Position) {
+		// TODO Auto-generated method stub
+
+		Dialog dlg2 = Methods_dlg.dlg_Template_Cancel_SecondDialog(
+					actv, dlg1,
+					R.layout.dlg_tmpl_cancel_lv_2, 
+					R.string.dlg_alactv_list_long_click_item_move, 
+					
+					R.id.dlg_tmpl_cancel_lv_2_bt_cancel, 
+					Tags.DialogTags.DLG_GENERIC_DISMISS_SECOND_DIALOG);
+		
+		////////////////////////////////
+
+		// build: dir list
+
+		////////////////////////////////
+		String currentPath = StringUtils.join(
+						new String[]{
+								CONS.Paths.dpath_Storage_Sdcard, 
+								CONS.Paths.dname_Base},
+						File.separator);
+		
+		if (currentPath == null) {
+			
+			String msg = "Can't get the current path: " + currentPath;
+			Methods_dlg.dlg_ShowMessage(actv, msg);
+			
+			return;
+			
+		}
+		
+		CONS.ALActv.dir_List = Methods.get_DirList(currentPath);
+//		List<String> dir_List = Methods.get_DirList(currentPath);
+		
+		CONS.ALActv.dir_List.add(CONS.Admin.dirString_UpperDir);
+		
+		////////////////////////////////
+		
+		// set: adapter
+		
+		////////////////////////////////
+		CONS.ALActv.adp_DirList = new ArrayAdapter<String>(
+						actv,
+						R.layout.list_row_simple_1,
+						CONS.ALActv.dir_List
+		);
+		
+		////////////////////////////////
+		
+		// set: listener
+		
+		////////////////////////////////
+		ListView lv = (ListView) dlg2.findViewById(R.id.dlg_tmpl_cancel_lv_2_lv);
+		
+		lv.setAdapter(CONS.ALActv.adp_DirList);
+		
+		
+		////////////////////////////////
+
+		// show
+
+		////////////////////////////////
+		dlg2.show();
+		
+	}//dlg_Move_AI
 
 }//public class Methods_dialog
