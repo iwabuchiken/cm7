@@ -69,6 +69,8 @@ public class DB_OTL implements OnTouchListener {
 					
 				case DLG_EDIT_AI_BT_OK:
 					
+				case DLG_DELETE_FOLDER_CONF_OK:
+					
 					//
 					v.setBackgroundColor(Color.GRAY);
 					
@@ -112,6 +114,7 @@ public class DB_OTL implements OnTouchListener {
 				
 			case DLG_EDIT_AI_BT_OK:
 				
+			case DLG_DELETE_FOLDER_CONF_OK:
 				//
 					v.setBackgroundColor(Color.WHITE);
 					

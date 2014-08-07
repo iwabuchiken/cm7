@@ -1415,13 +1415,13 @@ public class Methods {
 			
 	}//create_Table_Audio
 
-	public static void drop_Table
+	public static boolean drop_Table
 	(Activity actv, String tname) {
 		// TODO Auto-generated method stub
 
 		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
 		
-		boolean res = dbu.dropTable(actv, tname);
+		return dbu.dropTable(actv, tname);
 		
 	}
 	
@@ -2822,5 +2822,6 @@ public class Methods {
 		
 	}//restore_DB
 
+	
 }//public class Methods
 

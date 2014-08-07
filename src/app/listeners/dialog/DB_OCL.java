@@ -265,6 +265,12 @@ public class DB_OCL implements OnClickListener {
 	private void dlg_DLG_DELETE_FOLDER_CONF_OK() {
 		// TODO Auto-generated method stub
 
+		// Log
+		String msg_Log = "delete folder => confirmed";
+		Log.d("DB_OCL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
 		Ops.del_Folder(actv, dlg1, dlg2, folderName);
 		
 	}

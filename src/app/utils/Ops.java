@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 import app.items.AI;
 import app.items.Refresh;
 
@@ -552,6 +553,92 @@ public class Ops {
 		Log.d("Ops.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
+		
+		File target_Dir = new File(currentPath, folderName);
+		
+		/******************************
+			validate: exists?
+		 ******************************/
+		if (!target_Dir.exists()) {
+			
+			String msg = "Folder doesn't exist: " + folderName;
+			Toast.makeText(actv, msg, Toast.LENGTH_SHORT).show();
+//			Methods_dlg.dlg_ShowMessage(actv, msg);
+			
+			dlg2.dismiss();
+			
+			return;
+			
+		}
+		
+		////////////////////////////////
+
+		// del: folder
+
+		////////////////////////////////
+		boolean res = Methods.deleteDirectory(target_Dir);
+		
+		if (res == false) {
+			
+			String msg = "delete dir => not done";
+			Toast.makeText(actv, msg, Toast.LENGTH_SHORT).show();
+//			Methods_dlg.dlg_ShowMessage(actv, msg);
+			
+			dlg2.dismiss();
+			
+			return;
+			
+		}
+		
+		////////////////////////////////
+
+		// del: table
+
+		////////////////////////////////
+		String tname = Methods.conv_CurrentPath_to_TableName(target_Dir.getAbsolutePath());
+		
+		res = Methods.drop_Table(actv, tname);
+		
+		if (res == false) {
+			
+			String msg = "Table => not dropped: " + tname;
+			Methods_dlg.dlg_ShowMessage(actv, msg);
+			
+		}
+		
+		////////////////////////////////
+
+		// del: list item
+
+		////////////////////////////////
+		CONS.MainActv.list_RootDir.remove(folderName);
+//		CONS.MainActv.list_RootDir.clear();
+//		
+//		CONS.MainActv.list_RootDir.addAll(
+//						Methods.get_FileList(new File(currentPath)));
+		
+		////////////////////////////////
+
+		// notify
+
+		////////////////////////////////
+		CONS.MainActv.aAdapter.notifyDataSetChanged();
+//		CONS.MainActv.adp_dir_list.notifyDataSetChanged();
+		
+		// Log
+		msg_Log = "adapter => notified";
+		Log.d("Ops.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+		
+		// dismiss
+		
+		////////////////////////////////
+		dlg2.dismiss();
+		dlg1.dismiss();
+		
 		
 	}//del_Folders
 
