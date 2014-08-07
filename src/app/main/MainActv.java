@@ -35,6 +35,7 @@ import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
 import app.utils.Methods_dlg;
+import app.utils.Ops;
 import app.utils.Tags;
 
 import java.io.FileInputStream;
@@ -117,11 +118,13 @@ public class MainActv extends ListActivity {
 		/*********************************
 		 * Debugs
 		 *********************************/
-//		do_debug();
+		do_debug();
         
     }//public void onCreate(Bundle savedInstanceState)
 
     private void do_debug() {
+    	
+    	_do_debug_Clear_CurrentPath();
     	
 //    	_do_debug_DB();
     	
@@ -150,6 +153,79 @@ public class MainActv extends ListActivity {
 //		Log.d("MainActv.java" + "["
 //				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //				+ "]", msg_log);
+		
+	}
+
+	private void _do_debug_Clear_CurrentPath() {
+		// TODO Auto-generated method stub
+		
+		CONS.Pref.prefs_MainActv = 
+				this.getSharedPreferences(
+						CONS.Pref.pname_MainActv,
+						MODE_PRIVATE);
+		
+//		////////////////////////////////
+//
+//		// Prefs set already?
+//
+//		////////////////////////////////
+//		String temp = CONS.Pref.prefs_MainActv
+//				.getString(CONS.Pref.pkey_CurrentPath, null);
+//		
+//		if (temp != null) {
+////			if (temp != null && !temp.equals("IFM8")) {
+//			
+//			// Log
+//			String msg_log = "Current path => " + temp;
+//			Log.d("MainActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_log);
+//			
+//			return;
+//			
+//		}//if (temp == null)
+		
+		////////////////////////////////
+
+		// Set: base current path
+
+		////////////////////////////////
+		SharedPreferences.Editor editor = CONS.Pref.prefs_MainActv.edit();
+		
+		// New path
+		String base_path = StringUtils.join(
+				new String[]{
+						CONS.Paths.dpath_Storage_Sdcard, CONS.Paths.dname_Base
+				},
+				File.separator);
+		
+		// Log
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", "base_path=" + base_path);
+
+		// Commit
+		editor.putString(CONS.Pref.pkey_CurrentPath, base_path);
+		
+		editor.commit();
+		
+		// Log
+		String msg_log = "Bae path => Set: " + base_path;
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_log);
+		
+//		boolean res = Methods.set_Pref_String(
+//				this, 
+//				CONS.Pref.pname_MainActv, 
+//				CONS.Pref.pkey_CurrentPath, 
+//				null);
+		
+//		// Log
+//		String msg_Log = "current path => set null";
+//		Log.d("MainActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
 		
 	}
 
@@ -387,14 +463,14 @@ public class MainActv extends ListActivity {
 					2. files list => can't be created<br>
 
 	 ******************************/
-    private boolean set_DirList() {
+    private boolean _Setup_DirList() {
 		// TODO Auto-generated method stub
     	////////////////////////////////
 
 		// 1. Create root dir
 
 		////////////////////////////////
-    	File root_Dir = create_RootDir();
+    	File root_Dir = _create_RootDir();
     	
     	if (root_Dir == null) {
 			Log.e("MainActv.java" + "["
@@ -411,7 +487,7 @@ public class MainActv extends ListActivity {
 
 		////////////////////////////////
 		
-    	boolean res = create_ListFile(root_Dir);
+    	boolean res = _create_ListFile(root_Dir);
 		
 		if (res == false) {
 			Log.e("MainActv.java" + "["
@@ -452,10 +528,45 @@ public class MainActv extends ListActivity {
 			
 		} else {//if (this.CONS.MainActv.list_RootDir == null)
 			
-			// Log
-			Log.d("MainActv.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", "CONS.MainActv.list_RootDir != null");
+			String currentPath = Methods.get_Pref_String(
+					this, 
+					CONS.Pref.pname_MainActv, 
+					CONS.Pref.pkey_CurrentPath, 
+					null);
+			
+			if (currentPath == null) {
+				
+				currentPath = root_Dir.getAbsolutePath();
+				
+				Methods.set_Pref_String(
+						this, 
+						CONS.Pref.pname_MainActv, 
+						CONS.Pref.pkey_CurrentPath, 
+						currentPath);
+				
+			}
+			
+			CONS.MainActv.list_RootDir = Methods.get_FileList(new File(currentPath));
+			
+			if (CONS.MainActv.list_RootDir == null) {
+				
+				// Log
+				String msg_log = "CONS.MainActv.list_RootDir => can't build";
+				Log.d("MainActv.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_log);
+				
+				return false;
+				
+			}
+
+//			// Log
+//			Log.d("MainActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", "CONS.MainActv.list_RootDir != null");
+			
+			
 			
 		}//if (this.CONS.MainActv.list_RootDir == null)
 
@@ -603,7 +714,7 @@ public class MainActv extends ListActivity {
 		
 	}//private void initPrefs_CurrentPath()
 
-	private boolean create_ListFile(File root_Dir) {
+	private boolean _create_ListFile(File root_Dir) {
 		// TODO Auto-generated method stub
 		File list_File = new File(root_Dir, CONS.Admin.fname_List);
 		
@@ -649,7 +760,10 @@ public class MainActv extends ListActivity {
 		
 	}//private boolean create_ListFile(File root_Dir)
 
-	private File create_RootDir() {
+	/******************************
+		@return file => top directory
+	 ******************************/
+	private File _create_RootDir() {
 		// TODO Auto-generated method stub
 		String dpath_base = StringUtils.join(
 				new String[]{
@@ -746,57 +860,46 @@ public class MainActv extends ListActivity {
 		/*********************************
 		 * 1. Get item name
 		 *********************************/
-		String item = _ItemClick_GetItem(lv, position);
+//		String item = _ItemClick_GetItem(lv, position);
 		
-//		String item = (String) lv.getItemAtPosition(position);
-//		
-//		if (item != null) {
-//			
-//			// Log
-//			Log.d("MainActv.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", "item=" + item);
-//			
-//		} else {//if (item_)
-//			
-//			// Log
-//			Log.d("MainActv.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", "item == null");
-//			
-//		}//if (item_)
+		String item = (String) lv.getItemAtPosition(position);
+		
+		if (item != null) {
+			
+			// Log
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "item=" + item);
+			
+		} else {//if (item_)
+			
+			// Log
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "item == null");
+			
+		}//if (item_)
 		
 		/******************************
 			Set pref: Current position
 		 ******************************/
 		_ItemClick_SetPref_CurrentPosition(position);
-//		Methods.set_Pref_Int(
-//				this,
-//				CONS.Pref.pname_MainActv,
-//				CONS.Pref.pkey_CurrentPosition,
-//				position);
-//		
-//		// Log
-//		String msg_log = "Pref: " + CONS.Pref.pkey_CurrentPosition
-//						+ " => "
-//						+ "Set to: " + position;
-//		
-//		Log.d("MainActv.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ "]", msg_log);
-//		
-//		CONS.MainActv.aAdapter.notifyDataSetChanged();
 
 		////////////////////////////////
 
 		// Get file object
 
 		////////////////////////////////
-		SharedPreferences prefs = 
-				this.getSharedPreferences(
-						CONS.Pref.pname_MainActv, MODE_PRIVATE);
-		
-		String currentPath = prefs.getString(CONS.Pref.pkey_CurrentPath, null);
+//		SharedPreferences prefs = 
+//				this.getSharedPreferences(
+//						CONS.Pref.pname_MainActv, MODE_PRIVATE);
+//		
+//		String currentPath = prefs.getString(CONS.Pref.pkey_CurrentPath, null);
+		String currentPath = Methods.get_Pref_String(
+						this, 
+						CONS.Pref.pname_MainActv, 
+						CONS.Pref.pkey_CurrentPath, 
+						null);
 		
 		// Log
 		String msg_Log = "currentPath = " + currentPath;
@@ -836,7 +939,7 @@ public class MainActv extends ListActivity {
 		boolean res = f.exists();
 		
 		/******************************
-			validate
+			validate: file exists?
 		 ******************************/
 		if (res == false) {
 			
@@ -893,11 +996,13 @@ public class MainActv extends ListActivity {
 			
 		} else if (f.isDirectory()) {
 			
-			// Log
-			msg_Log = "File => is a directory";
-			Log.d("MainActv.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", msg_Log);
+			Ops.go_Down_Dir(this, item);
+			
+//			// Log
+//			msg_Log = "File => is a directory";
+//			Log.d("MainActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
 			
 		} else {
 			
@@ -1088,7 +1193,7 @@ public class MainActv extends ListActivity {
 		// Set dir list
 
 		////////////////////////////////
-        boolean res_b = set_DirList();
+        boolean res_b = _Setup_DirList();
 		
         if (res_b == false) {
 			

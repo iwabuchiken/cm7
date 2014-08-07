@@ -6,10 +6,14 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
+import cm7.main.R;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import app.items.AI;
 import app.items.Refresh;
@@ -641,5 +645,90 @@ public class Ops {
 		
 		
 	}//del_Folders
+
+	/******************************
+		@param dirName => The function doesn't validate if the dir exists
+	 ******************************/
+	public static void 
+	go_Down_Dir
+	(Activity actv, String dirName) {
+		// TODO Auto-generated method stub
+
+		////////////////////////////////
+
+		// new file
+
+		////////////////////////////////
+		String currentPath = Methods.get_Pref_String(
+				actv, 
+				CONS.Pref.pname_MainActv, 
+				CONS.Pref.pkey_CurrentPath, 
+				null);
+		
+		File dpath_New = new File(currentPath, dirName);
+		
+		String newPath = dpath_New.getAbsolutePath();
+		
+		// Log
+		String msg_Log = "new path => " + dpath_New.getAbsolutePath();
+		Log.d("Ops.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		String tname_New = 
+				Methods.conv_CurrentPath_to_TableName(dpath_New.getAbsolutePath());
+		
+		msg_Log = "tname_New =>" +
+				" " + tname_New;
+		Log.d("Ops.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+
+		// list_RootDir
+
+		////////////////////////////////
+		CONS.MainActv.list_RootDir.clear();
+		
+		CONS.MainActv.list_RootDir.addAll(
+							Methods.get_FileList(new File(newPath)));
+		
+		////////////////////////////////
+
+		// notify
+
+		////////////////////////////////
+		CONS.MainActv.aAdapter.notifyDataSetChanged();
+		
+		////////////////////////////////
+
+		// pref
+
+		////////////////////////////////
+		boolean res = Methods.set_Pref_String(
+				actv, 
+				CONS.Pref.pname_MainActv, 
+				CONS.Pref.pkey_CurrentPath, 
+				newPath);
+		
+		////////////////////////////////
+
+		// Button: up
+
+		////////////////////////////////
+		ImageButton bt_Up = (ImageButton) actv.findViewById(R.id.main_bt_up);
+		
+		bt_Up.setEnabled(true);
+		
+		bt_Up.setBackgroundResource(R.drawable.main_up);
+		
+		// Log
+		msg_Log = "button => enabled";
+		Log.d("Ops.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+	}//go_Down_Dir
 
 }

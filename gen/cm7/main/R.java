@@ -54,14 +54,15 @@ public final class R {
         public static final int ifm8_thumb_up_50x50_disenabled=0x7f020017;
         public static final int main_back_disenabled=0x7f020018;
         public static final int main_forward_disenabled=0x7f020019;
-        public static final int main_up_disenabled=0x7f02001a;
-        public static final int opt_menu_main_create_dir=0x7f02001b;
-        public static final int opt_menu_main_db=0x7f02001c;
-        public static final int proj_icon=0x7f02001d;
-        public static final int proj_icon_2=0x7f02001e;
-        public static final int proj_icon_3=0x7f02001f;
-        public static final int project_icon=0x7f020020;
-        public static final int settings=0x7f020021;
+        public static final int main_up=0x7f02001a;
+        public static final int main_up_disenabled=0x7f02001b;
+        public static final int opt_menu_main_create_dir=0x7f02001c;
+        public static final int opt_menu_main_db=0x7f02001d;
+        public static final int proj_icon=0x7f02001e;
+        public static final int proj_icon_2=0x7f02001f;
+        public static final int proj_icon_3=0x7f020020;
+        public static final int project_icon=0x7f020021;
+        public static final int settings=0x7f020022;
     }
     public static final class id {
         public static final int LL_main=0x7f09005c;
