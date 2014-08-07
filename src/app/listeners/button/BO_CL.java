@@ -28,6 +28,7 @@ import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
 import app.utils.Methods_dlg;
+import app.utils.Ops;
 import app.utils.Tags;
 
 
@@ -56,7 +57,12 @@ public class BO_CL implements OnClickListener {
 		this.actv = actv;
 		
 		//
-		vib = (Vibrator) actv.getSystemService(actv.VIBRATOR_SERVICE);
+		if (CONS.Admin.vib == null) {
+			
+			CONS.Admin.vib = (Vibrator) actv.getSystemService(actv.VIBRATOR_SERVICE);
+			
+		}
+		
 	}
 
 //	@Override
@@ -66,7 +72,13 @@ public class BO_CL implements OnClickListener {
 		
 		this.ai = ai;
 		
-		vib = (Vibrator) actv.getSystemService(actv.VIBRATOR_SERVICE);
+		if (CONS.Admin.vib == null) {
+			
+			CONS.Admin.vib = (Vibrator) actv.getSystemService(actv.VIBRATOR_SERVICE);
+			
+		}
+
+//		vib = (Vibrator) actv.getSystemService(actv.VIBRATOR_SERVICE);
 		
 	}//public ButtonOnClickListener(Activity actv, AI ai)
 
@@ -172,9 +184,25 @@ public class BO_CL implements OnClickListener {
 			
 			break;
 			
+		case ib_up:
+			
+			case_ACTV_MAIN_IB_UP();
+			
+			break;
+			
 		}//switch (tag)
 		
 	}//public void onClick(View v)
+
+	private void case_ACTV_MAIN_IB_UP() {
+		// TODO Auto-generated method stub
+		
+		Ops.go_Up_Dir(actv);
+		
+//		String msg_Toa = "UP";
+//		Toast.makeText(actv, msg_Toa, Toast.LENGTH_SHORT).show();
+		
+	}
 
 	private void 
 	case_ACTV_PLAY_BT_BACKWARD() {

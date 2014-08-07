@@ -2822,6 +2822,17 @@ public class Methods {
 		
 	}//restore_DB
 
+	public static CharSequence conv_CurrentPath_to_DisplayPath(String path) {
+		// TODO Auto-generated method stub
+		
+		String head = CONS.Paths.dpath_Storage_Sdcard;
+		
+		int len = head.length();
+		
+		return path.substring(len + 1);
+		
+	}
+
 	
 }//public class Methods
 

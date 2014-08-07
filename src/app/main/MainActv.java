@@ -27,10 +27,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import app.adapters.Adp_MainList;
 import app.items.Refresh;
 import app.listeners.LOI_LCL;
+import app.listeners.button.BO_CL;
 import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
@@ -105,26 +107,16 @@ public class MainActv extends ListActivity {
 //        	
 //		}
         
-        ////////////////////////////////
-
-		// Set: listeners
-
-		////////////////////////////////
-		/******************************
-			List
-		 ******************************/
-		set_Listeners();
-        
-		/*********************************
-		 * Debugs
-		 *********************************/
-		do_debug();
+//		/*********************************
+//		 * Debugs
+//		 *********************************/
+//		do_debug();
         
     }//public void onCreate(Bundle savedInstanceState)
 
     private void do_debug() {
     	
-    	_do_debug_Clear_CurrentPath();
+//    	_do_debug_Clear_CurrentPath();
     	
 //    	_do_debug_DB();
     	
@@ -437,7 +429,7 @@ public class MainActv extends ListActivity {
 		
 	}
 
-	private void set_Listeners() {
+	private void _Setup_SetListeners() {
 		////////////////////////////////
 
 		// listview => long click
@@ -449,6 +441,16 @@ public class MainActv extends ListActivity {
 		lv.setTag(Tags.ListTags.ACTV_MAIN_LV);
 		
 		lv.setOnItemLongClickListener(new LOI_LCL(this));
+		
+		////////////////////////////////
+
+		// imagebutton: up
+
+		////////////////////////////////
+		ImageButton bt_Up = (ImageButton) this.findViewById(R.id.main_bt_up);
+		
+		bt_Up.setTag(Tags.ButtonTags.ib_up);
+		bt_Up.setOnClickListener(new BO_CL(this));
 		
 	}
 
@@ -545,6 +547,12 @@ public class MainActv extends ListActivity {
 						currentPath);
 				
 			}
+			
+			// Log
+			String msg_Log = "currentPath => " + currentPath;
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
 			
 			CONS.MainActv.list_RootDir = Methods.get_FileList(new File(currentPath));
 			
@@ -1187,7 +1195,14 @@ public class MainActv extends ListActivity {
 
 	@Override
 	protected void onStart() {
-		
+
+        ////////////////////////////////
+
+		// debug
+
+		////////////////////////////////
+		this.do_debug();
+
         ////////////////////////////////
 
 		// Set dir list
@@ -1210,6 +1225,26 @@ public class MainActv extends ListActivity {
         	
 		}
 
+        ////////////////////////////////
+
+		// Set: listeners
+
+		////////////////////////////////
+		_Setup_SetListeners();
+		
+		////////////////////////////////
+
+		// Display: path
+
+		////////////////////////////////
+		_Setup_DisplayPath();
+		
+		////////////////////////////////
+
+		// UI: Imagebutton: Up
+
+		////////////////////////////////
+		_Setup_UI_IB_Up();
 		
 		/*----------------------------
 		 * 1. Refresh DB
@@ -1236,15 +1271,76 @@ public class MainActv extends ListActivity {
 //			
 //		}//if(prefs_main.getBoolean(this.getString(R.string.prefs_db_refresh_key), false))
 		
-        ////////////////////////////////
-
-		// debug
-
-		////////////////////////////////
-		this.do_debug();
-        
 		super.onStart();
 	}//protected void onStart()
+
+	private void _Setup_UI_IB_Up() {
+		// TODO Auto-generated method stub
+		
+		String root_DirPath = StringUtils.join(
+				new String[]{
+						CONS.Paths.dpath_Storage_Sdcard, 
+						CONS.Paths.dname_Base},
+				File.separator);
+		
+		String currentPath = Methods.get_Pref_String(
+						this, 
+						CONS.Pref.pname_MainActv, 
+						CONS.Pref.pkey_CurrentPath, 
+						null);
+		
+		// If the current path is not the root dir,
+		//		then, enaable the "Up" button
+		if (currentPath != null
+				&& !currentPath.equals(root_DirPath)) {
+			
+			ImageButton bt_Up = (ImageButton) this.findViewById(R.id.main_bt_up);
+			
+			bt_Up.setEnabled(true);
+			
+			bt_Up.setImageDrawable(
+					this.getResources().getDrawable(R.drawable.main_up));
+			
+			// Log
+			String msg_Log = "button => enabled";
+			Log.d("Ops.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}
+		
+	}
+
+	private void _Setup_DisplayPath() {
+		// TODO Auto-generated method stub
+		
+		String currentPath = Methods.get_Pref_String(
+				this, 
+				CONS.Pref.pname_MainActv, 
+				CONS.Pref.pkey_CurrentPath, 
+				null);
+		
+		if (currentPath == null) {
+			
+			currentPath = StringUtils.join(
+							new String[]{
+									CONS.Paths.dpath_Storage_Sdcard, 
+									CONS.Paths.dname_Base},
+							File.separator);
+			
+			Methods.set_Pref_String(
+					this, 
+					CONS.Pref.pname_MainActv, 
+					CONS.Pref.pkey_CurrentPath, 
+					currentPath);
+			
+		}
+		
+		TextView tv_Path = (TextView) this.findViewById(R.id.main_tv_dir_path);
+		
+		tv_Path.setText(Methods.conv_CurrentPath_to_DisplayPath(currentPath));
+		
+	}
 
 	
 
