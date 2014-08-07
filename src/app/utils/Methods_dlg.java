@@ -409,7 +409,7 @@ public class Methods_dlg {
 		return dlg2;
 		
 	}//public static Dialog dlg_template_okCancel_SecondDialog()
-
+	
 	public static void
 	dlg_PlayActv_EditTitle
 	(Activity actv, AI ai, String currentTitle) {
@@ -984,7 +984,8 @@ public class Methods_dlg {
 	dlg_IsEmpty
 	(Activity actv, Dialog dlg1) {
 		// TODO Auto-generated method stub
-		EditText et = (EditText) dlg1.findViewById(R.id.dlg_create_folder_et);
+		EditText et = (EditText) dlg1.findViewById(R.id.dlg_tmpl_edittext_simple_et);
+//		EditText et = (EditText) dlg1.findViewById(R.id.dlg_create_folder_et);
 		String folderName = et.getText().toString();
 		
 		//
@@ -1050,10 +1051,17 @@ public class Methods_dlg {
 		/*----------------------------
 		 * 2. Set folder name to text view
 			----------------------------*/
-		EditText et = (EditText) dlg1.findViewById(R.id.dlg_create_folder_et);
+		EditText et = (EditText) dlg1.findViewById(R.id.dlg_tmpl_edittext_simple_et);
+//		EditText et = (EditText) dlg1.findViewById(R.id.dlg_create_folder_et);
 		
 		TextView tv = (TextView) dlg2.findViewById(
 							R.id.dlg_confirm_create_folder_tv_table_name);
+		
+		// Log
+		String msg_Log = "et => " + et;
+		Log.d("Methods_dlg.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
 		
 		tv.setText(et.getText().toString());
 		
@@ -1251,5 +1259,71 @@ public class Methods_dlg {
 		dlg2.show();
 		
 	}//conf_DeleteFolder
+
+	public static void 
+	dlg_Create_Dir
+	(Activity actv) {
+		// TODO Auto-generated method stub
+		
+//		Dialog dlg1 = Methods_dlg.dlg_temp(
+//				actv,
+//				R.layout.dlg_tmpl_edittext_simple,
+//				item,
+//				
+//				R.id.dlg_tmpl_cancel_lv_bt_cancel,
+//				Tags.DialogTags.DLG_GENERIC_DISMISS);
+
+		Dialog dlg1 = new Dialog(actv);
+		
+		//
+		dlg1.setContentView(R.layout.dlg_tmpl_edittext_simple);
+		
+		// Title
+		dlg1.setTitle(R.string.dlg_create_dir_title);
+//		dlg2.setTitle(titleStringId);
+		
+		////////////////////////////////
+
+		// message
+
+		////////////////////////////////
+		TextView tv_Message = 
+				(TextView) dlg1.findViewById(R.id.dlg_tmpl_edittext_simple_tv_message);
+		
+		tv_Message.setText(actv.getString(R.string.dlg_create_dir_message));
+		
+		/****************************
+		 * 2. Add listeners => OnTouch
+		 ****************************/
+		//
+		Button btn_ok = 
+				(Button) dlg1.findViewById(R.id.dlg_tmpl_edittext_simple_btn_ok);
+		Button btn_cancel = 
+				(Button) dlg1.findViewById(R.id.dlg_tmpl_edittext_simple_btn_cancel);
+		
+		//
+		btn_ok.setTag(Tags.DialogTags.DLG_CREATE_DIR_OK);
+		btn_cancel.setTag(Tags.DialogTags.DLG_GENERIC_DISMISS);
+		
+		//
+		btn_ok.setOnTouchListener(new DB_OTL(actv, dlg1));
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg1));
+		
+		/****************************
+		 * 3. Add listeners => OnClick
+		 ****************************/
+		//
+		btn_ok.setOnClickListener(new DB_OCL(actv, dlg1));
+		btn_cancel.setOnClickListener(new DB_OCL(actv, dlg1));
+		
+		
+		////////////////////////////////
+
+		// show
+
+		////////////////////////////////
+		dlg1.show();
+		
+	}//dlg_Create_Folder
 
 }//public class Methods_dialog

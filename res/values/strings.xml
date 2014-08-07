@@ -137,7 +137,12 @@
    		<string name="dlg_actvmain_lv_delete">Delete folder</string>
    		<string name="dlg_actvmain_lv_delete_confirm_message">
    		    						Delete folder?</string>
-    	
+
+	<!-- dlg: create dir -->
+   		<string name="dlg_create_dir_title">Create dir</string>
+   		<string name="dlg_create_dir_message">
+   		    		Available chars: a-zA-Z_\nNo \"__\"(double underbar)</string>
+   			
     		
 </resources>
 

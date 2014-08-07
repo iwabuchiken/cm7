@@ -1380,6 +1380,40 @@ public class Methods {
 //		CONS.DB.col_types_CM7);
 		
 	}
+	
+	public static void 
+	create_Table_Audio
+	(Activity actv, String tname) {
+		// TODO Auto-generated method stub
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		boolean res;
+		
+		////////////////////////////////
+		
+		// Dispatch
+		
+		////////////////////////////////
+		res = dbu.createTable(actv, 
+				tname, CONS.DB.col_names_CM7, 
+				CONS.DB.col_types_CM7);
+		
+		if (res == true) {
+			
+			// debug
+			String msg_Toast = "Table => created: " + CONS.DB.tname_CM7;
+			Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+			
+			
+		} else {
+			
+			// debug
+			String msg_Toast = "Table => can't create: " + CONS.DB.tname_CM7;
+			Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+			
+		}
+			
+	}//create_Table_Audio
 
 	public static void drop_Table
 	(Activity actv, String tname) {
@@ -2482,6 +2516,23 @@ public class Methods {
 		
 		////////////////////////////////
 
+		// create: table
+
+		////////////////////////////////
+		String tname_New = 
+				Methods.conv_CurrentPath_to_TableName(newDir.getAbsolutePath());
+		
+		// Log
+		msg_Log = "tname_New => " + tname_New;
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		Methods.create_Table_Audio(actv, tname_New);
+//		Methods.create_Table(actv, tname_New);
+		
+		////////////////////////////////
+
 		// rebuild: listview
 
 		////////////////////////////////
@@ -2494,67 +2545,14 @@ public class Methods {
 		CONS.MainActv.list_RootDir.addAll(tmp_List);
 		
 		CONS.MainActv.aAdapter.notifyDataSetChanged();
-		
-//		int numOfItemsAdded = 0;
-		
-//		final ProgressDialog ringProgressDialog = 
-//						ProgressDialog.show(
-////								MainActivity.this,
-//								actv,
-//								"Please wait ...", 
-//								"Downloading Image ...", 
-//								true);
-//
-//		ringProgressDialog.setCancelable(true);
-//
-//		new Thread(new Runnable() {
-//
-//			@Override
-//
-//			public void run() {
-//
-//				int numOfItemsAdded = 0;
-//				
-//				try {
-//	
-//					// Here you should write your time consuming task...
-//		
-//					// Let the progress ring for 10 seconds...
-//		
-////					CONS.MainActv.numOfItemsAdded = Methods.refresh_MainDB(actv);
-//					numOfItemsAdded = Ops.refresh_MainDB(actv);
-////					numOfItemsAdded = Methods.refresh_MainDB(actv);
-//					
-//					Thread.sleep(3000);
-//	//				Thread.sleep(10000);
-//	
-//				} catch (Exception e) {
-//	
-//				}//try
-//	
-//				ringProgressDialog.dismiss();
-//
-//				////////////////////////////////
-//
-//				// report
-//
-//				////////////////////////////////
-//				if (numOfItemsAdded > 0) {
-//					
-//					// debug
-//					String msg_Toast = "New items => " + numOfItemsAdded;
-//					Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
-//					
-//				} else if (numOfItemsAdded == CONS.Retval.NoNewFiles){
-//
-//					String msg_log = "New files => none";
-//					Toast.makeText(actv, msg_log, Toast.LENGTH_SHORT).show();
-//					
-//				}
-//				
-//			}//public void run()
-//
-//		}).start();//new Thread(new Runnable() {
+
+		////////////////////////////////
+
+		// dismiss
+
+		////////////////////////////////
+		dlg1.dismiss();
+		dlg2.dismiss();
 
 	}//create_Dir(Activity actv)
 
@@ -2585,73 +2583,6 @@ public class Methods {
 		actv.startActivity(i);
 		
 	}//start_Activity_ImpActv
-
-	public static void 
-	create_Dir(final Activity actv) {
-		// TODO Auto-generated method stub
-		
-//		int numOfItemsAdded = 0;
-		
-		final ProgressDialog ringProgressDialog = 
-						ProgressDialog.show(
-//								MainActivity.this,
-								actv,
-								"Please wait ...", 
-								"Downloading Image ...", 
-								true);
-
-		ringProgressDialog.setCancelable(true);
-
-		new Thread(new Runnable() {
-
-			@Override
-
-			public void run() {
-
-				int numOfItemsAdded = 0;
-				
-				try {
-	
-					// Here you should write your time consuming task...
-		
-					// Let the progress ring for 10 seconds...
-		
-//					CONS.MainActv.numOfItemsAdded = Methods.refresh_MainDB(actv);
-					numOfItemsAdded = Ops.refresh_MainDB(actv);
-//					numOfItemsAdded = Methods.refresh_MainDB(actv);
-					
-					Thread.sleep(3000);
-	//				Thread.sleep(10000);
-	
-				} catch (Exception e) {
-	
-				}//try
-	
-				ringProgressDialog.dismiss();
-
-				////////////////////////////////
-
-				// report
-
-				////////////////////////////////
-				if (numOfItemsAdded > 0) {
-					
-					// debug
-					String msg_Toast = "New items => " + numOfItemsAdded;
-					Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
-					
-				} else if (numOfItemsAdded == CONS.Retval.NoNewFiles){
-
-					String msg_log = "New files => none";
-					Toast.makeText(actv, msg_log, Toast.LENGTH_SHORT).show();
-					
-				}
-				
-			}//public void run()
-
-		}).start();//new Thread(new Runnable() {
-
-	}//create_Dir(Activity actv)
 
 	public static boolean
 	restore_DB(Activity actv) {

@@ -243,11 +243,24 @@ public class DB_OCL implements OnClickListener {
 			
 			break;
 			
+		case DLG_CREATE_DIR_OK://------------------------------------------------
+			
+			dlg_DLG_CREATE_DIR_OK();
+			
+			break;
+			
 			
 		default: // ----------------------------------------------------
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void dlg_DLG_CREATE_DIR_OK() {
+		// TODO Auto-generated method stub
+		
+		Methods_dlg.dlg_IsEmpty(actv, dlg1);
+		
+	}
 
 	private void dlg_DLG_DELETE_FOLDER_CONF_OK() {
 		// TODO Auto-generated method stub

@@ -80,6 +80,9 @@ public class Tags {
 		
 		// dlg: delete folder
 		DLG_DELETE_FOLDER_CONF_OK,
+
+		// dlg: create dir
+		DLG_CREATE_DIR_OK, DLG_CREATE_DIR_CONF_OK,
 		
 	}//public static enum DialogTags
 	
