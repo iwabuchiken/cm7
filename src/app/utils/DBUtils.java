@@ -1819,7 +1819,8 @@ public class DBUtils extends SQLiteOpenHelper{
 		try {
 			
 			c = rdb.query(
-					table_Name,			// 1
+					CONS.DB.tname_CM7,			// 1
+//					table_Name,			// 1
 					CONS.DB.col_names_CM7_full,	// 2
 					where, args,		// 3,4
 					null, null,		// 5,6

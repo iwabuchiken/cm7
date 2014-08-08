@@ -1709,7 +1709,7 @@ public class Methods {
 
 	public static void
 	start_Activity_PlayActv(Activity actv, AI ai) {
-		// TODO Auto-generated method stub
+		
 		////////////////////////////////
 
 		// Prep: infos
