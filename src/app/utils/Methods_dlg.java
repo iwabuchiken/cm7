@@ -405,6 +405,58 @@ public class Methods_dlg {
 	}//public static Dialog dlg_template_okCancel_SecondDialog()
 	
 	public static
+	Dialog dlg_template_okCancel_ThirdDialog
+	(Activity actv, 
+		int layoutId, int titleStringId,
+		
+		int okButtonId, int cancelButtonId,
+		Tags.DialogTags okTag, Tags.DialogTags cancelTag,
+		
+		Dialog dlg1, Dialog dlg2) {
+		/****************************
+		 * Steps
+		 * 1. Set up
+		 * 2. Add listeners => OnTouch
+		 * 3. Add listeners => OnClick
+		 ****************************/
+		
+		// 
+		Dialog dlg3 = new Dialog(actv);
+		
+		//
+		dlg3.setContentView(layoutId);
+		
+		// Title
+		dlg3.setTitle(titleStringId);
+		
+		/****************************
+		 * 2. Add listeners => OnTouch
+		 ****************************/
+		//
+		Button btn_ok = (Button) dlg3.findViewById(okButtonId);
+		Button btn_cancel = (Button) dlg3.findViewById(cancelButtonId);
+		
+		//
+		btn_ok.setTag(okTag);
+		btn_cancel.setTag(cancelTag);
+		
+		//
+		btn_ok.setOnTouchListener(new DB_OTL(actv, dlg3));
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg3));
+		
+		/****************************
+		 * 3. Add listeners => OnClick
+		 ****************************/
+		//
+		btn_ok.setOnClickListener(new DB_OCL(actv, dlg1, dlg2, dlg3));
+		btn_cancel.setOnClickListener(new DB_OCL(actv, dlg1, dlg2, dlg3));
+		
+		
+		return dlg3;
+		
+	}//public static Dialog dlg_template_okCancel_SecondDialog()
+	
+	public static
 	Dialog dlg_template_okCancel_SecondDialog
 	(Activity actv, int layoutId, String title,
 			int okButtonId, int cancelButtonId,
@@ -1214,7 +1266,8 @@ public class Methods_dlg {
 		* Modify: Button layout
 		***************************************/
 		LinearLayout llButton =
-		(LinearLayout) dlg1.findViewById(R.id.actv_imp_ll_filepath);
+					(LinearLayout) dlg1.findViewById(R.id.dlg_tmpl_cancel_lv_ll_filepath);
+//		(LinearLayout) dlg1.findViewById(R.id.actv_imp_ll_filepath);
 		
 		LinearLayout.LayoutParams params =
 				new LinearLayout.LayoutParams(
@@ -1407,8 +1460,33 @@ public class Methods_dlg {
 			
 		}
 		
-		CONS.ALActv.dir_List = Methods.get_DirList(currentPath);
-//		List<String> dir_List = Methods.get_DirList(currentPath);
+//		CONS.ALActv.dir_List = Methods.get_DirList(currentPath);
+		List<String> dir_List = Methods.get_DirList(currentPath);
+		CONS.ALActv.dir_List = new ArrayList<String>();
+		
+		for (String dirName : dir_List) {
+//			for (String dirName : CONS.ALActv.dir_List) {
+			
+			CONS.ALActv.dir_List.add(CONS.DB.tname_CM7 + File.separator + dirName);
+//			dirName = CONS.DB.tname_CM7 + File.separator + dirName;
+			
+		}
+		
+		// Log
+		String msg_Log = "dir list => modified";
+		Log.d("Methods_dlg.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		for (String dirName : CONS.ALActv.dir_List) {
+			
+			// Log
+			msg_Log = "dir name => " + dirName;
+			Log.d("Methods_dlg.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}
 		
 		CONS.ALActv.dir_List.add(CONS.Admin.dirString_UpperDir);
 		
@@ -1423,14 +1501,19 @@ public class Methods_dlg {
 						CONS.ALActv.dir_List
 		);
 		
+		ListView lv = (ListView) dlg2.findViewById(R.id.dlg_tmpl_cancel_lv_2_lv);
+		
+		lv.setAdapter(CONS.ALActv.adp_DirList);
+		
 		////////////////////////////////
 		
 		// set: listener
 		
 		////////////////////////////////
-		ListView lv = (ListView) dlg2.findViewById(R.id.dlg_tmpl_cancel_lv_2_lv);
+		lv.setTag(Tags.DialogItemTags.DLG_ALACTV_LIST_MOVE_FILE);
 		
-		lv.setAdapter(CONS.ALActv.adp_DirList);
+		lv.setOnItemClickListener(
+				new DOI_CL(actv, dlg1, dlg2, ai, aiList_Position));
 		
 		
 		////////////////////////////////
@@ -1441,5 +1524,74 @@ public class Methods_dlg {
 		dlg2.show();
 		
 	}//dlg_Move_AI
+
+	/******************************
+		@param choice => this method doesn't conduct validation as to<br>
+						whether the choice is the same as the current<br>
+						ai.table_name
+	 ******************************/
+	public static void 
+	conf_MoveAi
+	(Activity actv, 
+		Dialog dlg1, Dialog dlg2,
+		AI ai, int aiList_Position, String choice) {
+		// TODO Auto-generated method stub
+		
+		Dialog dlg3 = new Dialog(actv);
+		
+		//
+		dlg3.setContentView(R.layout.dlg_tmpl_confirm_simple);
+		
+		// Title
+		dlg3.setTitle(R.string.generic_notice);
+		
+		////////////////////////////////
+
+		// display
+
+		////////////////////////////////
+		TextView tv_Message = 
+				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_tv_message);
+		
+		TextView tv_Choice = 
+				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_tv_item_name);
+
+		tv_Message.setText(actv.getString(
+						R.string.dlg_alactv_move_files_confirm_message));
+		
+		tv_Choice.setText(ai.getFile_name() + " => " + choice);
+		
+		/****************************
+		 * 2. Add listeners => OnTouch
+		 ****************************/
+		//
+		Button btn_ok = 
+				(Button) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_btn_ok);
+		Button btn_cancel = 
+				(Button) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_btn_cancel);
+		
+		//
+		btn_ok.setTag(Tags.DialogTags.DLG_ALACTV_MOVEFILE_CONF_OK);
+//		btn_cancel.setTag(Tags.DialogTags.dlg_generic_dismiss_third_dialog);
+		btn_cancel.setTag(Tags.DialogTags.DLG_GENERIC_DISMISS_THIRD_DIALOG);
+		
+		//
+		btn_ok.setOnTouchListener(new DB_OTL(actv, dlg3));
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg3));
+		
+		/****************************
+		 * 3. Add listeners => OnClick
+		 ****************************/
+		//
+		btn_ok.setOnClickListener(
+					new DB_OCL(
+							actv, dlg1, dlg2, dlg3,
+							ai, aiList_Position, choice
+					));
+		btn_cancel.setOnClickListener(new DB_OCL(actv, dlg1, dlg2, dlg3));
+		
+		dlg3.show();
+		
+	}//conf_MoveAi
 
 }//public class Methods_dialog

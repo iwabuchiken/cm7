@@ -5,7 +5,7 @@ public class Tags {
 	public static enum DialogTags {
 		// Generics
 		DLG_GENERIC_DISMISS, DLG_GENERIC_DISMISS_SECOND_DIALOG,
-		dlg_generic_dismiss_third_dialog,
+		DLG_GENERIC_DISMISS_THIRD_DIALOG,
 		
 		
 		// dlg_create_folder.xml
@@ -83,6 +83,9 @@ public class Tags {
 
 		// dlg: create dir
 		DLG_CREATE_DIR_OK, DLG_CREATE_DIR_CONF_OK,
+
+		// dlg: move file
+		DLG_ALACTV_MOVEFILE_CONF_OK,
 		
 	}//public static enum DialogTags
 	
@@ -113,6 +116,9 @@ public class Tags {
 		
 		// dlg_alactv_list_long_click
 		DLG_ALACTV_LIST_LONGCLICK,
+		
+		// dlg_alactv_list_move_file
+		DLG_ALACTV_LIST_MOVE_FILE,
 		
 		// dlg_ImpActv
 		DLG_IMPACTV_LIST,

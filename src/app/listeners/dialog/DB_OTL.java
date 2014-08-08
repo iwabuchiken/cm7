@@ -38,7 +38,7 @@ public class DB_OTL implements OnTouchListener {
 				switch (tag_name) {
 				
 				case DLG_GENERIC_DISMISS:
-				case dlg_generic_dismiss_third_dialog:
+				case DLG_GENERIC_DISMISS_THIRD_DIALOG:
 				case DLG_GENERIC_DISMISS_SECOND_DIALOG:
 					
 				case DLG_CREATE_FOLDER_OK:
@@ -84,7 +84,7 @@ public class DB_OTL implements OnTouchListener {
 
 			case DLG_GENERIC_DISMISS:
 			case DLG_GENERIC_DISMISS_SECOND_DIALOG:
-			case dlg_generic_dismiss_third_dialog:
+			case DLG_GENERIC_DISMISS_THIRD_DIALOG:
 
 			case DLG_CREATE_FOLDER_OK:
 			case dlg_create_folder_cancel:

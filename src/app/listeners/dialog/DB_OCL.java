@@ -43,6 +43,7 @@ public class DB_OCL implements OnClickListener {
 	int alList_Position;
 	
 	String folderName;	// MainActv, long click, delete folder, conf OK
+	private String choice;
 	
 	public DB_OCL(Activity actv, Dialog dlg1) {
 		//
@@ -125,7 +126,7 @@ public class DB_OCL implements OnClickListener {
 		
 		this.ai		= ai;
 		this.alList_Position	= alList_Position;
-		
+	
 		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 
 	}
@@ -160,6 +161,27 @@ public class DB_OCL implements OnClickListener {
 
 	}
 
+	public 
+	DB_OCL
+	(Activity actv, 
+			Dialog dlg1, Dialog dlg2, Dialog dlg3,
+			AI ai, int aiList_Position, String choice) {
+		// TODO Auto-generated constructor stub
+		this.actv = actv;
+		
+		this.dlg1 = dlg1;
+		this.dlg2 = dlg2;
+		this.dlg3 = dlg3;
+		
+		this.ai		= ai;
+		this.alList_Position	= aiList_Position;
+	
+		this.choice	= choice;
+		
+		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+
+	}
+
 	public void onClick(View v) {
 		//
 		Tags.DialogTags tag_name = (Tags.DialogTags) v.getTag();
@@ -189,7 +211,7 @@ public class DB_OCL implements OnClickListener {
 			
 			break;// case dlg_generic_dismiss_second_dialog
 
-		case dlg_generic_dismiss_third_dialog://------------------------------------------------
+		case DLG_GENERIC_DISMISS_THIRD_DIALOG://------------------------------------------------
 			
 			dlg3.dismiss();
 			
@@ -249,11 +271,29 @@ public class DB_OCL implements OnClickListener {
 			
 			break;
 			
+		case DLG_ALACTV_MOVEFILE_CONF_OK://------------------------------------------------
+			
+			dlg_DLG_ALACTV_MOVEFILE_CONF_OK();
+			
+			break;
+			
 			
 		default: // ----------------------------------------------------
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void 
+	dlg_DLG_ALACTV_MOVEFILE_CONF_OK() {
+		// TODO Auto-generated method stub
+
+//		String tname_New = Methods.conv_CurrentPathMove_to_TableName(choice);
+
+		Methods.move_Files(actv, 
+				dlg1, dlg2, dlg3,
+				ai, alList_Position, choice);
+		
+	}
 
 	private void dlg_DLG_CREATE_DIR_OK() {
 		// TODO Auto-generated method stub

@@ -239,6 +239,9 @@ public final class R {
         /**  dlg_alactv_list_long_click 
          */
         public static final int dlg_alactv_list_long_click_title=0x7f06002b;
+        /**  dlg: conf move files 
+         */
+        public static final int dlg_alactv_move_files_confirm_message=0x7f06004d;
         /**  dlg_bmactv_list_long_click 
          */
         public static final int dlg_bmactv_list_long_click_title=0x7f06002a;

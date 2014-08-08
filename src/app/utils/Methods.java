@@ -2603,22 +2603,22 @@ public class Methods {
 
 		}//if (fileExists == true)
 		
-		////////////////////////////////
-
-		// create: table
-
-		////////////////////////////////
-		String tname_New = 
-				Methods.conv_CurrentPath_to_TableName(newDir.getAbsolutePath());
-		
-		// Log
-		msg_Log = "tname_New => " + tname_New;
-		Log.d("Methods.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
-		
-		Methods.create_Table_Audio(actv, tname_New);
-//		Methods.create_Table(actv, tname_New);
+//		////////////////////////////////
+//
+//		// create: table
+//
+//		////////////////////////////////
+//		String tname_New = 
+//				Methods.conv_CurrentPath_to_TableName(newDir.getAbsolutePath());
+//		
+//		// Log
+//		msg_Log = "tname_New => " + tname_New;
+//		Log.d("Methods.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+//		
+//		Methods.create_Table_Audio(actv, tname_New);
+////		Methods.create_Table(actv, tname_New);
 		
 		////////////////////////////////
 
@@ -2921,6 +2921,82 @@ public class Methods {
 		return path.substring(len + 1);
 		
 	}
+
+	public static String 
+	conv_CurrentPathMove_to_TableName
+	(String choice) {
+		// TODO Auto-generated method stub
+		
+		String[] tokens = choice.split(File.separator);
+		
+		return StringUtils.join(tokens, CONS.DB.jointString_TableName);
+		
+	}//conv_CurrentPathMove_to_TableName
+
+	public static void 
+	move_Files
+	(Activity actv, 
+			Dialog dlg1, Dialog dlg2, Dialog dlg3, 
+			AI ai, int alList_Position, String choice) {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// update: table name
+
+		////////////////////////////////
+		String tname_New = Methods.conv_CurrentPathMove_to_TableName(choice);
+
+		ai.setTable_name(tname_New);
+		
+		boolean res = DBUtils.updateData_AI_All(actv, ai.getDb_id(), ai);
+		
+		/******************************
+			validate: updated?
+		 ******************************/
+		if (res == false) {
+			
+			String msg = "DB update => failed";
+			Methods_dlg.dlg_ShowMessage(actv, msg);
+			
+			dlg3.dismiss();
+			
+			return;
+			
+		}
+		
+		////////////////////////////////
+
+		// remove: from listview
+
+		////////////////////////////////
+		CONS.ALActv.list_AI.remove(ai);
+		
+		////////////////////////////////
+
+		// notify
+
+		////////////////////////////////
+		CONS.ALActv.adp_AIList.notifyDataSetChanged();
+		
+		////////////////////////////////
+
+		// dismiss
+
+		////////////////////////////////
+		dlg3.dismiss();
+		dlg2.dismiss();
+		dlg1.dismiss();
+		
+		////////////////////////////////
+
+		// report
+
+		////////////////////////////////
+		String msg = "Move file => done";
+		Methods_dlg.dlg_ShowMessage(actv, msg);
+		
+		
+	}//move_Files
 
 	
 }//public class Methods

@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -103,6 +104,23 @@ public class DOI_CL implements OnItemClickListener {
 		
 	}
 
+	public 
+	DOI_CL
+	(Activity actv, 
+		Dialog dlg1, Dialog dlg2, 
+		AI ai, int aiList_Position) {
+		// TODO Auto-generated constructor stub
+		this.actv	= actv;
+		this.dlg1	= dlg1;
+		this.dlg2	= dlg2;
+		
+		this.ai		= ai;
+		this.aiList_Position	= aiList_Position;
+		
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		
+	}
+
 	//	@Override
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 		/*----------------------------
@@ -163,12 +181,45 @@ public class DOI_CL implements OnItemClickListener {
 			
 			break;// case dlg_bmactv_list_long_click
 			
+		case DLG_ALACTV_LIST_MOVE_FILE://----------------------------------------------
+			
+			choice = (String) parent.getItemAtPosition(position);
+			
+			case_DLG_ALACTV_LIST_MOVE_FILE(choice);
+			
+			break;// case dlg_bmactv_list_long_click
+			
 			
 		default:
 			break;
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+
+	private void 
+	case_DLG_ALACTV_LIST_MOVE_FILE
+	(String choice) {
+		// TODO Auto-generated method stub
+
+		/******************************
+			validate: table name and the choice => same?
+		 ******************************/
+		String tname_New = Methods.conv_CurrentPathMove_to_TableName(choice);
+
+		if (ai.getTable_name().equals(tname_New)) {
+			
+			String msg = "You are choosing the same table as the current one";
+			Methods_dlg.dlg_ShowMessage(actv, msg);
+			
+			return;
+			
+		}
+		
+		Methods_dlg.conf_MoveAi(
+						actv, dlg1, dlg2, 
+						ai, aiList_Position, choice);
+		
+	}//case_DLG_ALACTV_LIST_MOVE_FILE
 
 	private void 
 	case_DLG_ACTVMAIN_LONGCLICK

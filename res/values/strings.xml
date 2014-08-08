@@ -144,6 +144,8 @@
    		<string name="dlg_create_dir_message">
    		    		Available chars: a-zA-Z_\nNo \"__\"(double underbar)</string>
    			
+	<!-- dlg: conf move files -->
+   		<string name="dlg_alactv_move_files_confirm_message">Move ?</string>
     		
 </resources>
 

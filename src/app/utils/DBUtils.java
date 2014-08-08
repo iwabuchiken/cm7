@@ -1659,21 +1659,21 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 		SQLiteDatabase rdb = dbu.getReadableDatabase();
 		
-		////////////////////////////////
-		
-		// validate: table exists?
-		
-		////////////////////////////////
-		boolean res = dbu.tableExists(rdb, tableName);
-
-		if (res == false) {
-			
-			String msg = "No such table: " + tableName;
-			Methods_dlg.dlg_ShowMessage(actv, msg);
-			
-			return null;
-			
-		}
+//		////////////////////////////////
+//		
+//		// validate: table exists?
+//		
+//		////////////////////////////////
+//		boolean res = dbu.tableExists(rdb, tableName);
+//
+//		if (res == false) {
+//			
+//			String msg = "No such table: " + tableName;
+//			Methods_dlg.dlg_ShowMessage(actv, msg);
+//			
+//			return null;
+//			
+//		}
 
 		////////////////////////////////
 		
@@ -1682,15 +1682,27 @@ public class DBUtils extends SQLiteOpenHelper{
 		////////////////////////////////
 		Cursor c = null;
 		
+		String where = CONS.DB.col_names_CM7_full[8] + " = ?";
+		String[] args = new String[]{
+				
+							tableName
+		};
+		
 		try {
 			
 			c = rdb.query(
-					tableName,			// 1
+					CONS.DB.tname_CM7,			// 1
 					CONS.DB.col_names_CM7_full,	// 2
-					null, null,		// 3,4
+					where, args,		// 3,4
 					null, null,		// 5,6
 					null,			// 7
 					null);
+//			tableName,			// 1
+//			CONS.DB.col_names_CM7_full,	// 2
+//			null, null,		// 3,4
+//			null, null,		// 5,6
+//			null,			// 7
+//			null);
 			
 		} catch (Exception e) {
 
@@ -2358,6 +2370,13 @@ public class DBUtils extends SQLiteOpenHelper{
 		// memo
 		sb.append(CONS.DB.col_names_CM7_full[6] 
 				+ "='" + ai.getMemo()
+				+ "'");
+		
+		// table name
+		sb.append(", ");
+		
+		sb.append(CONS.DB.col_names_CM7_full[8] 
+				+ "='" + ai.getTable_name()
 				+ "'");
 		
 		sb.append(" WHERE " 

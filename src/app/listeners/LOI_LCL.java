@@ -141,7 +141,7 @@ LOI_LCL implements OnItemLongClickListener {
 		
 		for (String item : choices) {
 		
-		list.add(item);
+			list.add(item);
 		
 		}
 		
@@ -269,7 +269,8 @@ LOI_LCL implements OnItemLongClickListener {
 		 * Modify: Button layout
 		 ***************************************/
 		LinearLayout llButton =
-				(LinearLayout) dlg.findViewById(R.id.actv_imp_ll_filepath);
+				(LinearLayout) dlg.findViewById(R.id.dlg_tmpl_cancel_lv_ll_filepath);
+//		(LinearLayout) dlg.findViewById(R.id.actv_imp_ll_filepath);
 		
 		LinearLayout.LayoutParams params =
 						new LinearLayout.LayoutParams(
