@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Toast;
 import app.items.AI;
 import app.items.BM;
 import app.listeners.dialog.DOI_CL;
@@ -29,6 +30,12 @@ public class
 LOI_LCL implements OnItemLongClickListener {
 
 	Activity actv;
+
+	Dialog dlg1;
+	Dialog dlg2; 
+	
+	AI ai;
+	int aiList_Position;
 	
 	Vibrator vib;
 	
@@ -40,11 +47,70 @@ LOI_LCL implements OnItemLongClickListener {
 		
 	}
 
+	public 
+	LOI_LCL
+	(Activity actv, Dialog dlg1, Dialog dlg2, 
+			AI ai, int aiList_Position) {
+		// TODO Auto-generated constructor stub
+		
+		this.actv	= actv;
+		this.dlg1	= dlg1;
+		this.dlg2	= dlg2;
+		
+		this.ai		= ai;
+		this.aiList_Position	= aiList_Position;
+		
+		vib = (Vibrator) actv.getSystemService(actv.VIBRATOR_SERVICE);
+
+	}
+
 	public boolean
 	onItemLongClick
 	(AdapterView<?> parent, View v, int position, long id) {
 		
-		Tags.ListTags tag = (Tags.ListTags) parent.getTag();
+		////////////////////////////////
+
+		// dispatch: tag
+
+		////////////////////////////////
+		Class tmp_class = parent.getTag().getClass();
+		
+		Tags.ListTags tag = null;
+		
+		if (tmp_class == Tags.ListTags.class) {
+			
+			tag = (Tags.ListTags) parent.getTag();
+			
+		} else if (tmp_class == Tags.DialogItemTags.class) {
+
+			onItemLongClick_DialogItemTags(parent, v, position, id);
+			
+			return true;
+			
+		}
+		
+//		Tags.ListTags tag = (Tags.ListTags) parent.getTag();
+
+		// Log
+		
+//		String msg_Log = "tmp_class == Tags.ListTags.class => " 
+//					+ (tmp_class == Tags.ListTags.class);
+//		
+//		Log.d("LOI_LCL.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+		
+//		// Log
+//		String msg_Log = "tag: class name => " + parent.getTag().getClass().getName();
+//		Log.d("LOI_LCL.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+//		
+//		// Log
+//		msg_Log = "ListTags? => " + (parent.getTag() instanceof Tags.ListTags);
+//		Log.d("LOI_LCL.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
 		
 		vib.vibrate(CONS.Admin.vibLength_click);
 		
@@ -85,6 +151,61 @@ LOI_LCL implements OnItemLongClickListener {
 		return true;
 		
 	}//onItemLongClick (AdapterView<?> parent, View v, int position, long id)
+
+	/******************************
+		This method is used when a long click on an item <br>
+			in a list whose tag is of DialogItemTags<bt>
+			instead of ListTags
+	 ******************************/
+	private void 
+	onItemLongClick_DialogItemTags
+	(AdapterView<?> parent, View v,
+			int position, long id) {
+		// TODO Auto-generated method stub
+		
+		Tags.DialogItemTags tag = (Tags.DialogItemTags) parent.getTag();
+		
+		vib.vibrate(CONS.Admin.vibLength_click);
+		
+		switch (tag) {
+		
+		case DLG_ALACTV_LIST_MOVE_FILE://----------------------------------------------------
+
+			String item = (String) parent.getItemAtPosition(position);
+			
+			case_DLG_ALACTV_LIST_MOVE_FILE(item);
+			
+			break;// case actv_bm_lv
+		
+		default:
+			break;
+		
+		}//switch (tag)
+		
+	}//onItemLongClick_DialogItemTags
+
+	private void 
+	case_DLG_ALACTV_LIST_MOVE_FILE
+	(String item) {
+		// TODO Auto-generated method stub
+
+		////////////////////////////////
+
+		// choice => Upper dir? ("..")
+
+		////////////////////////////////
+		if (item.equals(CONS.Admin.dirString_UpperDir)) {
+			
+			String msg_Toa = "Upper dir";
+			Toast.makeText(actv, msg_Toa, Toast.LENGTH_SHORT).show();
+			
+			return;
+			
+		}
+		
+		Methods.update_MoveFilesList(actv, dlg1, dlg2, ai, aiList_Position, item);
+		
+	}//case_DLG_ALACTV_LIST_MOVE_FILE
 
 	private void 
 	case_ACTV_MAIN_LV(String item) {

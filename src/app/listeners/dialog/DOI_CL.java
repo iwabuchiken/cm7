@@ -215,6 +215,21 @@ public class DOI_CL implements OnItemClickListener {
 			
 		}
 		
+		////////////////////////////////
+
+		// choice => Upper dir? ("..")
+
+		////////////////////////////////
+		if (choice.equals(CONS.Admin.dirString_UpperDir)) {
+			
+			String msg_Toa = "Upper dir";
+			Toast.makeText(actv, msg_Toa, Toast.LENGTH_SHORT).show();
+			
+			return;
+			
+		}
+
+		
 		Methods_dlg.conf_MoveAi(
 						actv, dlg1, dlg2, 
 						ai, aiList_Position, choice);

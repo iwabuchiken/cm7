@@ -3014,6 +3014,103 @@ public class Methods {
 		
 	}//move_Files
 
+	public static void 
+	update_MoveFilesList
+	(Activity actv, 
+			Dialog dlg1, Dialog dlg2, 
+			AI ai, int aiList_Position, 
+			String choice) {
+		// TODO Auto-generated method stub
+		
+		// Log
+		String msg_Log = "choice => " + choice;
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+				// choice => cm7/sq
+		
+		String currentPath = Methods.get_Pref_String(
+				actv, 
+				CONS.Pref.pname_MainActv, 
+				CONS.Pref.pkey_CurrentPath, 
+				null);
+				
+				// current path => /mnt/sdcard-ext/cm7
+		
+				
+
+		// Log
+		msg_Log = "current path => " + currentPath;
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+
+		// build: paths
+
+		////////////////////////////////
+		String new_DirPath = StringUtils.join(
+				new String[]{
+		
+						CONS.Paths.dpath_Storage_Sdcard,
+						choice
+				},
+				File.separator);
+		
+		// Log
+		msg_Log = "new_DirPath => " + new_DirPath;
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+
+		////////////////////////////////
+
+		// build: list
+
+		////////////////////////////////
+		List<String> dir_List = Methods.get_DirList(new_DirPath);
+		
+		CONS.ALActv.dir_List.clear();
+		
+		for (String dirName : dir_List) {
+//			for (String dirName : CONS.ALActv.dir_List) {
+			
+			CONS.ALActv.dir_List.add(choice + File.separator + dirName);
+//			CONS.ALActv.dir_List.add(CONS.DB.tname_CM7 + File.separator + dirName);
+//			dirName = CONS.DB.tname_CM7 + File.separator + dirName;
+			
+		}
+		
+		// Log
+		msg_Log = "dir list => modified";
+		Log.d("Methods_dlg.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		CONS.ALActv.dir_List.add(CONS.Admin.dirString_UpperDir);
+
+		////////////////////////////////
+
+		// notify
+
+		////////////////////////////////
+		CONS.ALActv.adp_DirList.notifyDataSetChanged();
+		
+		// Log
+		msg_Log = "adapter => notified";
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+	}//update_MoveFilesList
+
+	private static String conv_CurrentPathMove_to_DirPath(String choice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }//public class Methods
 

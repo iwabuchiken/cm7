@@ -35,6 +35,7 @@ import android.widget.Toast;
 import app.adapters.Adp_AIList;
 import app.items.AI;
 import app.items.BM;
+import app.listeners.LOI_LCL;
 import app.listeners.dialog.DB_OCL;
 import app.listeners.dialog.DB_OTL;
 import app.listeners.dialog.DOI_CL;
@@ -1470,16 +1471,6 @@ public class Methods_dlg {
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		
-		for (String dirName : CONS.ALActv.dir_List) {
-			
-			// Log
-			msg_Log = "dir name => " + dirName;
-			Log.d("Methods_dlg.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", msg_Log);
-			
-		}
-		
 		CONS.ALActv.dir_List.add(CONS.Admin.dirString_UpperDir);
 		
 		////////////////////////////////
@@ -1504,9 +1495,13 @@ public class Methods_dlg {
 		////////////////////////////////
 		lv.setTag(Tags.DialogItemTags.DLG_ALACTV_LIST_MOVE_FILE);
 		
+		// Item click
 		lv.setOnItemClickListener(
 				new DOI_CL(actv, dlg1, dlg2, ai, aiList_Position));
 		
+		// long click
+		lv.setOnItemLongClickListener(
+				new LOI_LCL(actv, dlg1, dlg2, ai, aiList_Position));
 		
 		////////////////////////////////
 
