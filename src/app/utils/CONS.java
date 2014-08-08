@@ -323,6 +323,9 @@ public class CONS {
 		public static String pkey_CurrentPosition_ALActv
 									= "pkey_CurrentPosition_ALActv";
 		
+		public static String pkey_ALActv__CurPath_Move
+									= "pkey_ALActv__CurPath_Move";
+		
 		////////////////////////////////
 		
 		// BMActv
