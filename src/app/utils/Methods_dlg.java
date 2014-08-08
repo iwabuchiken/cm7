@@ -1365,14 +1365,6 @@ public class Methods_dlg {
 	(Activity actv) {
 		// TODO Auto-generated method stub
 		
-//		Dialog dlg1 = Methods_dlg.dlg_temp(
-//				actv,
-//				R.layout.dlg_tmpl_edittext_simple,
-//				item,
-//				
-//				R.id.dlg_tmpl_cancel_lv_bt_cancel,
-//				Tags.DialogTags.DLG_GENERIC_DISMISS);
-
 		Dialog dlg1 = new Dialog(actv);
 		
 		//

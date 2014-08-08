@@ -2457,9 +2457,24 @@ public class Methods {
 		// validate: pref
 
 		////////////////////////////////
-		if (CONS.MainActv.prefval_CurrentPath == null) {
+		String currentPath = Methods.get_Pref_String(
+				actv, 
+				CONS.Pref.pname_MainActv, 
+				CONS.Pref.pkey_CurrentPath, 
+				null);
+		
+		if (currentPath == null) {
+//			if (CONS.MainActv.prefval_CurrentPath == null) {
 			
-			String path = StringUtils.join(
+			// Log
+			String msg_Log = "currentPath == null";
+//			String msg_Log = "CONS.MainActv.prefval_CurrentPath == null";
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+//			String path = StringUtils.join(
+			currentPath = StringUtils.join(
 								new String[]{
 										CONS.Paths.dpath_Storage_Sdcard, 
 										CONS.Paths.dname_Base
@@ -2470,9 +2485,9 @@ public class Methods {
 					actv, 
 					CONS.Pref.pname_MainActv, 
 					CONS.Pref.pkey_CurrentPath, 
-					path);
+					currentPath);
 			
-			CONS.MainActv.prefval_CurrentPath = path;
+//			CONS.MainActv.prefval_CurrentPath = path;
 			
 		}
 
@@ -2481,7 +2496,8 @@ public class Methods {
 		// build: file path
 		
 		////////////////////////////////
-		File newDir = new File(CONS.MainActv.prefval_CurrentPath, dname_New);
+		File newDir = new File(currentPath, dname_New);
+//		File newDir = new File(CONS.MainActv.prefval_CurrentPath, dname_New);
 		
 		// Log
 		String msg_Log = "new dir path => " + newDir.getAbsolutePath();
@@ -2625,7 +2641,7 @@ public class Methods {
 		// rebuild: listview
 
 		////////////////////////////////
-		File currentDir = new File(CONS.MainActv.prefval_CurrentPath);
+		File currentDir = new File(currentPath);
 		CONS.MainActv.list_RootDir.clear();
 		
 		List<String> tmp_List = Methods.get_FileList(currentDir);
