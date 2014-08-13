@@ -323,6 +323,9 @@ public class CONS {
 		public static String pkey_CurrentPosition_ALActv
 									= "pkey_CurrentPosition_ALActv";
 		
+		public static String pkey_ALActv__CurPath_Move
+									= "pkey_ALActv__CurPath_Move";
+		
 		////////////////////////////////
 		
 		// BMActv
@@ -483,7 +486,7 @@ public class CONS {
 		
 		public static final int vibLength_click = 35;
 		
-		public static final String format_Date = "yyyy/MM/dd hh:mm:ss.SSS";
+		public static final String format_Date = "yyyy/MM/dd HH:mm:ss.SSS";
 //		public static final String date_Format = "yyyy/MM/dd hh:mm:ss.SSS";
 		
 		public static final String format_Clock = "%02d:%02d";

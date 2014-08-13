@@ -842,4 +842,119 @@ public class Ops {
 		
 	}//go_Down_Dir
 
+	public static void
+	go_Up_Dir_Move
+	(Activity actv) {
+		// TODO Auto-generated method stub
+	
+		String curPath_Move = Methods.get_Pref_String(
+				actv, 
+				CONS.Pref.pname_ALActv, 
+				CONS.Pref.pkey_ALActv__CurPath_Move, 
+				null);
+		
+		String newPath_Move = 
+				Methods.conv_CurrentPathMove_to_CurrentPathMove_New(curPath_Move);
+
+		String new_Path = StringUtils.join(
+					new String[]{
+							
+						CONS.Paths.dpath_Storage_Sdcard,
+						newPath_Move
+							
+					}, 
+					File.separator);
+
+		String msg_Log = "newPath_Move => " + newPath_Move;
+		Log.d("Ops.java"
+				+ "["
+				+ Thread.currentThread().getStackTrace()[2]
+						.getLineNumber() + "]", msg_Log);
+
+		// Log
+		msg_Log = "new_Path => " + new_Path;
+		Log.d("Ops.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+
+		// list
+
+		////////////////////////////////
+		List<String> dir_List = Methods.get_DirList(new_Path);
+		CONS.ALActv.dir_List.clear();
+		
+		for (String dirName : dir_List) {
+//			for (String dirName : CONS.ALActv.dir_List) {
+			
+			CONS.ALActv.dir_List.add(newPath_Move + File.separator + dirName);
+//			CONS.ALActv.dir_List.add(CONS.DB.tname_CM7 + File.separator + dirName);
+//			dirName = CONS.DB.tname_CM7 + File.separator + dirName;
+			
+		}
+		
+		// Log
+		msg_Log = "dir list => modified";
+		Log.d("Methods_dlg.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		CONS.ALActv.dir_List.add(CONS.Admin.dirString_UpperDir);
+		
+		////////////////////////////////
+
+		// notify
+
+		////////////////////////////////
+		CONS.ALActv.adp_DirList.notifyDataSetChanged();
+		
+		// Log
+		msg_Log = "adapter => notified";
+		Log.d("Ops.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+
+		// set: pref: pkey_ALActv__CurPath_Move
+
+		////////////////////////////////
+		boolean res = Methods.set_Pref_String(
+				actv, 
+				CONS.Pref.pname_ALActv, 
+				CONS.Pref.pkey_ALActv__CurPath_Move, 
+				newPath_Move); 
+		
+		if (res == true) {
+			
+			// Log
+			msg_Log = "new pref set => " + newPath_Move;
+			Log.d("Ops.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		} else {
+
+			// Log
+			msg_Log = "new pref not set! => " + newPath_Move;
+			Log.d("Ops.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+				
+		}
+		
+//		// Log
+//		String msg_Log = "newPath_Move => " + newPath_Move;
+//		Log.d("Ops.java"
+//				+ "["
+//				+ Thread.currentThread().getStackTrace()[2]
+//						.getLineNumber() + "]", msg_Log);
+//
+//		String msg_Toa = "Upper dir";
+//		Toast.makeText(actv, msg_Toa, Toast.LENGTH_SHORT).show();
+
+		
+	}
+
 }

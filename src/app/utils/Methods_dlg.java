@@ -1505,6 +1505,17 @@ public class Methods_dlg {
 		
 		////////////////////////////////
 
+		// set: pref: pkey_ALActv__CurPath_Move
+
+		////////////////////////////////
+		boolean res = Methods.set_Pref_String(
+				actv, 
+				CONS.Pref.pname_ALActv, 
+				CONS.Pref.pkey_ALActv__CurPath_Move, 
+				CONS.DB.tname_CM7);
+		
+		////////////////////////////////
+
 		// show
 
 		////////////////////////////////

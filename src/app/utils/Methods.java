@@ -2945,6 +2945,37 @@ public class Methods {
 		
 		String[] tokens = choice.split(File.separator);
 		
+		/******************************
+			validate: null
+		 ******************************/
+		if (tokens == null) {
+			
+			// Log
+			String msg_Log = "tokens => null";
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return choice;
+			
+		}
+		
+		////////////////////////////////
+
+		// size => 1
+
+		////////////////////////////////
+		if (tokens.length == 1) {
+			
+			return tokens[0];
+			
+		}
+
+		////////////////////////////////
+
+		// size > 1
+
+		////////////////////////////////
 		return StringUtils.join(tokens, CONS.DB.jointString_TableName);
 		
 	}//conv_CurrentPathMove_to_TableName
@@ -3110,6 +3141,42 @@ public class Methods {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public static String 
+	conv_CurrentPathMove_to_CurrentPathMove_New
+	(String curPath_Move) {
+		// TODO Auto-generated method stub
+		
+		String[] tokens = curPath_Move.split(File.separator);
+		
+		////////////////////////////////
+
+		// tokens == 1
+
+		////////////////////////////////
+		if (tokens == null) {
+			
+			return curPath_Move;
+			
+		} else if (tokens.length == 1) {
+			
+			return curPath_Move;
+			
+		}
+		
+		////////////////////////////////
+
+		// tokens > 1
+
+		////////////////////////////////
+		int len = tokens.length;
+		
+		String[] tokens_New = Arrays.copyOfRange(tokens, 0, len - 1);
+//		String[] tokens_New = Arrays.copyOfRange(tokens, 0, len - 2);
+		
+		return StringUtils.join(tokens_New, File.separator);
+		
+	}//conv_CurrentPathMove_to_CurrentPathMove_New
 
 	
 }//public class Methods
