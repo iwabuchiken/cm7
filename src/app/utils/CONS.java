@@ -486,7 +486,7 @@ public class CONS {
 		
 		public static final int vibLength_click = 35;
 		
-		public static final String format_Date = "yyyy/MM/dd hh:mm:ss.SSS";
+		public static final String format_Date = "yyyy/MM/dd HH:mm:ss.SSS";
 //		public static final String date_Format = "yyyy/MM/dd hh:mm:ss.SSS";
 		
 		public static final String format_Clock = "%02d:%02d";

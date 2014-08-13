@@ -129,9 +129,9 @@ public class ALActv extends ListActivity {
 		
 		// Sort list
 		Methods.sort_List_ai_List(
-		CONS.ALActv.list_AI,
-		CONS.Enums.SortType.FileName, 
-		CONS.Enums.SortOrder.DEC);
+					CONS.ALActv.list_AI,
+					CONS.Enums.SortType.FileName, 
+					CONS.Enums.SortOrder.DEC);
 		
 		////////////////////////////////
 		
