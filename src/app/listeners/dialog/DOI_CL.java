@@ -13,6 +13,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 import app.items.AI;
 import app.items.BM;
+import app.items.ListItem;
 import app.tasks.Task_RefreshDB;
 import app.utils.CONS;
 import app.utils.Methods;
@@ -24,8 +25,8 @@ public class DOI_CL implements OnItemClickListener {
 
 	//
 	Activity actv;
-	Dialog dlg1;
-	Dialog dlg2;
+	Dialog d1;
+	Dialog d2;
 	
 	//
 	Vibrator vib;
@@ -43,7 +44,7 @@ public class DOI_CL implements OnItemClickListener {
 	public DOI_CL(Activity actv, Dialog dlg, AI ai, int alList_Position) {
 		// 
 		this.actv = actv;
-		this.dlg1 = dlg;
+		this.d1 = dlg;
 		
 		this.ai		= ai;
 		this.aiList_Position = alList_Position;
@@ -55,8 +56,8 @@ public class DOI_CL implements OnItemClickListener {
 	public DOI_CL(Activity actv, Dialog dlg, Dialog dlg2) {
 		// 
 		this.actv = actv;
-		this.dlg1 = dlg;
-		this.dlg2 = dlg2;
+		this.d1 = dlg;
+		this.d2 = dlg2;
 		
 		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 		
@@ -66,7 +67,7 @@ public class DOI_CL implements OnItemClickListener {
 	public DOI_CL(Activity actv, Dialog dlg, BM bm) {
 		// TODO Auto-generated constructor stub
 		this.actv	= actv;
-		this.dlg1	= dlg;
+		this.d1	= dlg;
 		this.bm		= bm;
 		
 		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
@@ -77,7 +78,7 @@ public class DOI_CL implements OnItemClickListener {
 		// TODO Auto-generated constructor stub
 		
 		this.actv	= actv;
-		this.dlg1	= dlg1;
+		this.d1	= dlg1;
 		this.ai		= ai;
 		
 		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
@@ -88,7 +89,7 @@ public class DOI_CL implements OnItemClickListener {
 		// TODO Auto-generated constructor stub
 		
 		this.actv	= actv;
-		this.dlg1	= dlg1;
+		this.d1	= dlg1;
 		
 		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -97,7 +98,7 @@ public class DOI_CL implements OnItemClickListener {
 	public DOI_CL(Activity actv, Dialog dlg, String file_Name) {
 		// TODO Auto-generated constructor stub
 		this.actv	= actv;
-		this.dlg1	= dlg;
+		this.d1	= dlg;
 		this.file_Name	= file_Name;
 		
 		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
@@ -111,8 +112,8 @@ public class DOI_CL implements OnItemClickListener {
 		AI ai, int aiList_Position) {
 		// TODO Auto-generated constructor stub
 		this.actv	= actv;
-		this.dlg1	= dlg1;
-		this.dlg2	= dlg2;
+		this.d1	= dlg1;
+		this.d2	= dlg2;
 		
 		this.ai		= ai;
 		this.aiList_Position	= aiList_Position;
@@ -134,7 +135,10 @@ public class DOI_CL implements OnItemClickListener {
 //		
 		vib.vibrate(CONS.Admin.vibLength_click);
 		
-		String item = (String) parent.getItemAtPosition(position);
+		String item;
+//		String item = (String) parent.getItemAtPosition(position);
+		
+		ListItem li;
 		
 		/*----------------------------
 		 * 3. Switching
@@ -144,7 +148,9 @@ public class DOI_CL implements OnItemClickListener {
 //		case dlg_db_admin_lv://----------------------------------------------
 		case DLG_DB_ADMIN_LV://----------------------------------------------
 			
-			case_DLG_DB_ADMIN_LV(item);
+			li = (ListItem) parent.getItemAtPosition(position);
+			
+			case_DLG_DB_ADMIN_LV(li);
 			
 			break;// case dlg_add_memos_gv
 
@@ -189,12 +195,52 @@ public class DOI_CL implements OnItemClickListener {
 			
 			break;// case dlg_bmactv_list_long_click
 			
+		case DLG_ACTV_MAIN_OPERATIONS://----------------------------------------------
+			
+			li = (ListItem) parent.getItemAtPosition(position);
+			
+			case_DLG_ACTV_MAIN_OPERATIONS(li);
+			
+			break;// case dlg_bmactv_list_long_click
+			
 			
 		default:
 			break;
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+
+	private void 
+	case_DLG_ACTV_MAIN_OPERATIONS
+	(ListItem li) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// Dispatch
+
+		////////////////////////////////
+		if (li.getText().equals(actv.getString(
+				R.string.dlg_db_admin_item_op_imp_db))) {
+
+			Methods_dlg.conf_Import_DB(actv, d1, d2);
+			
+		} else if (li.getText().equals(actv.getString(
+				R.string.dlg_db_admin_item_op_imp_patterns))) {
+			
+			Methods_dlg.conf_Import_Patterns(actv, d1, d2);
+			
+		} else  {
+
+			String msg = "Unknown choice => " + li.getText();
+			Methods_dlg.dlg_ShowMessage(actv, msg, R.color.gold2);
+			
+			return;
+
+		}		
+		
+		
+	}//case_DLG_ACTV_MAIN_OPERATIONS
 
 	private void 
 	case_DLG_ALACTV_LIST_MOVE_FILE
@@ -231,7 +277,7 @@ public class DOI_CL implements OnItemClickListener {
 
 		
 		Methods_dlg.conf_MoveAi(
-						actv, dlg1, dlg2, 
+						actv, d1, d2, 
 						ai, aiList_Position, choice);
 		
 	}//case_DLG_ALACTV_LIST_MOVE_FILE
@@ -244,7 +290,7 @@ public class DOI_CL implements OnItemClickListener {
 		if (choice.equals(actv.getString(
 				R.string.dlg_actvmain_lv_delete))) {	// Edit
 
-			Methods_dlg.conf_DeleteFolder(actv, dlg1, file_Name, choice);
+			Methods_dlg.conf_DeleteFolder(actv, d1, file_Name, choice);
 			
 		} else {//if (item.equals(actv.getString(R.string.generic_tv_edit)))
 			
@@ -265,7 +311,7 @@ public class DOI_CL implements OnItemClickListener {
 			
 			if (res == true) {
 				
-				dlg1.dismiss();
+				d1.dismiss();
 				
 			}
 			
@@ -282,16 +328,16 @@ public class DOI_CL implements OnItemClickListener {
 		// TODO Auto-generated method stub
 		if (item.equals(actv.getString(R.string.generic_tv_edit))) {	// Edit
 			
-			Methods_dlg.edit_AI(actv, dlg1, ai, aiList_Position);
+			Methods_dlg.edit_AI(actv, d1, ai, aiList_Position);
 			
 		} else if (item.equals(actv.getString(R.string.generic_tv_delete))) {
 	
-			Methods_dlg.conf_DeleteAL(actv, dlg1, ai, aiList_Position);
+			Methods_dlg.conf_DeleteAL(actv, d1, ai, aiList_Position);
 			
 		} else if (item.equals(actv.getString(
 						R.string.dlg_alactv_list_long_click_item_move))) {
 			
-			Methods_dlg.dlg_Move_AI(actv, dlg1, ai, aiList_Position);
+			Methods_dlg.dlg_Move_AI(actv, d1, ai, aiList_Position);
 			
 		}//if (item.equals(actv.getString(R.string.generic_tv_edit)))
 		
@@ -299,47 +345,62 @@ public class DOI_CL implements OnItemClickListener {
 
 	private void
 //	case_Dlg_Db_Admin_lv(String item) {
-	case_DLG_DB_ADMIN_LV(String item) {
+	case_DLG_DB_ADMIN_LV
+	(ListItem li) {
 		// TODO Auto-generated method stub
 		////////////////////////////////
 
 		// Dispatch
 
 		////////////////////////////////
-		if (item.equals(actv.getString(
+		if (li.getText().equals(actv.getString(
 				R.string.dlg_db_admin_item_exec_sql))) {
 			
 			Methods.exec_Sql(actv);
 			
-		} else if (item.equals(actv.getString(
+		} else if (li.getText().equals(actv.getString(
 				R.string.dlg_db_admin_item_backup_db))) {
 			
 			Methods.db_Backup(actv);
 			
-		} else if (item.equals(actv.getString(		// Refresh DB
+		} else if (li.getText().equals(actv.getString(		// Refresh DB
 				R.string.dlg_db_admin_item_refresh_db))) {
 			
 			case_DLG_DB_ADMIN_LV__RefreshDB(actv);
 			
-		} else if (item.equals(actv.getString(		// Refresh DB
+		} else if (li.getText().equals(actv.getString(		// Refresh DB
 				R.string.dlg_db_admin_item_impfile))) {
 			
 			case_DLG_DB_ADMIN_LV__ImpFile(actv);
 			
-		} else if (item.equals(actv.getString(		// Refresh DB
+		} else if (li.getText().equals(actv.getString(		// Refresh DB
 				R.string.dlg_db_admin_item_restore_db))) {
 			
 			case_DLG_DB_ADMIN_LV__RestoreDB(actv);
 			
-//			Methods.create_Table(actv, CONS.DB.tname_CM7);
+		} else if (li.getText().equals(actv.getString(		// Refresh DB
+				R.string.dlg_db_admin_item_operations))) {
+			
+			case_DLG_DB_ADMIN_LV__Operations(actv);
+			
+			return;
 
 		} else {
 
 		}
 	
-		dlg1.dismiss();
+		d1.dismiss();
 		
 	}//case_Dlg_Db_Admin_lv(String item)
+
+	private void 
+	case_DLG_DB_ADMIN_LV__Operations
+	(Activity actv) {
+		// TODO Auto-generated method stub
+		
+		Methods_dlg.dlg_Db_Operations(actv, d1);
+		
+	}//case_DLG_DB_ADMIN_LV__Operations
 
 	private void 
 	case_DLG_DB_ADMIN_LV__RestoreDB
@@ -350,7 +411,7 @@ public class DOI_CL implements OnItemClickListener {
 		
 		if (res == true) {
 			
-			dlg1.dismiss();
+			d1.dismiss();
 			
 			String msg = "DB => Restored";
 			Methods_dlg.dlg_ShowMessage(actv, msg);
@@ -390,12 +451,12 @@ public class DOI_CL implements OnItemClickListener {
 			
 //			// debug
 //			Toast.makeText(actv, "Edit", Toast.LENGTH_LONG).show();
-			Methods_dlg.edit_BM(actv, dlg1, bm);
+			Methods_dlg.edit_BM(actv, d1, bm);
 //			bmactv_editItem(bm);
 			
 		} else if (item.equals(actv.getString(R.string.generic_tv_delete))) {
 	
-			Methods_dlg.conf_DeleteBM(actv, dlg1, bm);
+			Methods_dlg.conf_DeleteBM(actv, d1, bm);
 //			bmactv_deleteItem(bm);
 //			CONS.BMActv.bmList.remove(bm);
 //			

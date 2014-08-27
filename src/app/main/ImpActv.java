@@ -335,6 +335,12 @@ public class ImpActv extends ListActivity {
 					
 		}
 		
+		// Log
+		String msg_Log = "CONS.ImpActv.currentPath =>" + CONS.ImpActv.currentPath;
+		Log.d("ImpActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
 	}//private void _Setup_General()
 
 	private void 
@@ -384,10 +390,20 @@ public class ImpActv extends ListActivity {
 		
 		if (cur_Dir.exists() == false) {
 			
-			String msg = "Path doesn't exist => " + current_Path;
+			String msg = "Path doesn't exist => " + current_Path
+						+ "\n"
+						+ "Starting from the top dir"
+					;
 			Methods_dlg.dlg_ShowMessage(this, msg);
 			
-			return;
+			// Reset current dir path
+			current_Path = CONS.ImpActv.top_ImpDir;
+			
+			Methods.set_Pref_String(
+					this, 
+					CONS.Pref.pname_ImpActv, 
+					CONS.Pref.pkey_ImpActv_CurrentPath, 
+					CONS.ImpActv.top_ImpDir);
 			
 		}
 		

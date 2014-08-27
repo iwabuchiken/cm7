@@ -4,7 +4,7 @@ public class Tags {
 
 	public static enum DialogTags {
 		// Generics
-		DLG_GENERIC_DISMISS, DLG_GENERIC_DISMISS_SECOND_DIALOG,
+		GENERIC_DISMISS, DLG_GENERIC_DISMISS_SECOND_DIALOG,
 		DLG_GENERIC_DISMISS_THIRD_DIALOG,
 		
 		
@@ -87,6 +87,10 @@ public class Tags {
 		// dlg: move file
 		DLG_ALACTV_MOVEFILE_CONF_OK,
 		
+		DLG_CONF_IMPORT_DB_OK,
+		
+		DLG_CONF_IMPORT_PATTERNS_OK,
+		
 	}//public static enum DialogTags
 	
 	public static enum DialogItemTags {
@@ -124,7 +128,9 @@ public class Tags {
 		DLG_IMPACTV_LIST,
 		
 		// dlg: MainActv, long click
-		DLG_ACTVMAIN_LONGCLICK,
+		DLG_ACTVMAIN_LONGCLICK, 
+		
+		DLG_ACTV_MAIN_OPERATIONS,
 		
 	}//public static enum DialogItemTags
 	

@@ -26,9 +26,9 @@ public class DB_OCL implements OnClickListener {
 		----------------------------*/
 	//
 	Activity actv;
-	Dialog dlg1;
-	Dialog dlg2;		//=> Used in dlg_input_empty_btn_XXX
-	Dialog dlg3;
+	Dialog d1;
+	Dialog d2;		//=> Used in dlg_input_empty_btn_XXX
+	Dialog d3;
 
 	//
 	Vibrator vib;
@@ -48,7 +48,7 @@ public class DB_OCL implements OnClickListener {
 	public DB_OCL(Activity actv, Dialog dlg1) {
 		//
 		this.actv = actv;
-		this.dlg1 = dlg1;
+		this.d1 = dlg1;
 		
 		//
 		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
@@ -58,8 +58,8 @@ public class DB_OCL implements OnClickListener {
 			Dialog dlg2) {
 		//
 		this.actv = actv;
-		this.dlg1 = dlg1;
-		this.dlg2 = dlg2;
+		this.d1 = dlg1;
+		this.d2 = dlg2;
 		
 		//
 		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
@@ -69,9 +69,9 @@ public class DB_OCL implements OnClickListener {
 			Dialog dlg2, Dialog dlg3) {
 		//
 		this.actv = actv;
-		this.dlg1 = dlg1;
-		this.dlg2 = dlg2;
-		this.dlg3 = dlg3;
+		this.d1 = dlg1;
+		this.d2 = dlg2;
+		this.d3 = dlg3;
 		
 		//
 		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
@@ -80,7 +80,7 @@ public class DB_OCL implements OnClickListener {
 	public DB_OCL(Activity actv, Dialog dlg1, long file_id, String tableName) {
 		// 
 		this.actv = actv;
-		this.dlg1 = dlg1;
+		this.d1 = dlg1;
 		
 		this.tableName = tableName;
 		
@@ -95,8 +95,8 @@ public class DB_OCL implements OnClickListener {
 		// TODO Auto-generated constructor stub
 		this.actv = actv;
 		
-		this.dlg1 = dlg1;
-		this.dlg2 = dlg2;
+		this.d1 = dlg1;
+		this.d2 = dlg2;
 		
 		this.bm		= bm;
 		
@@ -108,7 +108,7 @@ public class DB_OCL implements OnClickListener {
 		// TODO Auto-generated constructor stub
 		this.actv	= actv;
 		
-		this.dlg1	= dlg;
+		this.d1	= dlg;
 		
 		this.ai		= ai;
 		
@@ -121,8 +121,8 @@ public class DB_OCL implements OnClickListener {
 		// TODO Auto-generated constructor stub
 		this.actv = actv;
 		
-		this.dlg1 = dlg1;
-		this.dlg2 = dlg2;
+		this.d1 = dlg1;
+		this.d2 = dlg2;
 		
 		this.ai		= ai;
 		this.alList_Position	= alList_Position;
@@ -136,8 +136,8 @@ public class DB_OCL implements OnClickListener {
 		// TODO Auto-generated constructor stub
 		this.actv = actv;
 		
-		this.dlg1 = dlg1;
-		this.dlg2 = dlg2;
+		this.d1 = dlg1;
+		this.d2 = dlg2;
 		
 		this.ai		= ai;
 		
@@ -152,8 +152,8 @@ public class DB_OCL implements OnClickListener {
 		
 		this.actv = actv;
 		
-		this.dlg1 = dlg1;
-		this.dlg2 = dlg2;
+		this.d1 = dlg1;
+		this.d2 = dlg2;
 
 		this.folderName	= folderName;
 		
@@ -169,9 +169,9 @@ public class DB_OCL implements OnClickListener {
 		// TODO Auto-generated constructor stub
 		this.actv = actv;
 		
-		this.dlg1 = dlg1;
-		this.dlg2 = dlg2;
-		this.dlg3 = dlg3;
+		this.d1 = dlg1;
+		this.d2 = dlg2;
+		this.d3 = dlg3;
 		
 		this.ai		= ai;
 		this.alList_Position	= aiList_Position;
@@ -199,21 +199,21 @@ public class DB_OCL implements OnClickListener {
 		//
 		switch (tag_name) {
 		
-		case DLG_GENERIC_DISMISS://------------------------------------------------
+		case GENERIC_DISMISS://------------------------------------------------
 			
-			dlg1.dismiss();
+			d1.dismiss();
 			
 			break;
 
 		case DLG_GENERIC_DISMISS_SECOND_DIALOG: // ----------------------------------------------------
 			
-			dlg2.dismiss();
+			d2.dismiss();
 			
 			break;// case dlg_generic_dismiss_second_dialog
 
 		case DLG_GENERIC_DISMISS_THIRD_DIALOG://------------------------------------------------
 			
-			dlg3.dismiss();
+			d3.dismiss();
 			
 			break;
 
@@ -277,11 +277,110 @@ public class DB_OCL implements OnClickListener {
 			
 			break;
 			
+		case DLG_CONF_IMPORT_DB_OK://------------------------------------------------
+			
+			dlg_DLG_CONF_IMPORT_DB_OK();
+			
+			break;
+			
+		case DLG_CONF_IMPORT_PATTERNS_OK://------------------------------------------------
+			
+			dlg_DLG_CONF_IMPORT_PATTERNS_OK();
+			
+			break;
+			
 			
 		default: // ----------------------------------------------------
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void 
+	dlg_DLG_CONF_IMPORT_PATTERNS_OK() {
+		// TODO Auto-generated method stub
+		
+		int res = Methods.import_Patterns(actv);
+
+		////////////////////////////////
+
+		// report
+
+		////////////////////////////////
+		String msg = null;
+		int colorID = 0;
+		
+//		>1 Number of patterns saved
+//		0 No patterns saved
+//		-1 Table 'patterns' => not exist
+//		-2 Can't build list
+//		-3 Unknown result
+		
+		switch(res) {
+		
+		case -1: 
+			
+			msg = "Table 'patterns' => not exist";
+			colorID = R.color.red;
+			
+			d3.dismiss();
+			
+			break;
+		
+		case -2: 
+			
+			msg = "Can't build list";
+			colorID = R.color.red;
+			
+			d3.dismiss();
+			
+			break;
+			
+		case -3: 
+			
+			msg = "Unknown result";
+			colorID = R.color.gold2;
+			
+			d3.dismiss();
+			
+			break;
+			
+		case 0: 
+			
+			msg = "No patterns saved";
+			colorID = R.color.gold2;
+
+			d3.dismiss();
+			
+			break;
+			
+		default:
+			
+			msg = "Patterns imported => " + res;
+			colorID = R.color.green4;
+			
+			d3.dismiss();
+			d2.dismiss();
+			d1.dismiss();
+			
+			break;
+			
+		}
+		
+		Methods_dlg.dlg_ShowMessage(
+//				Methods_dlg.dlg_ShowMessage_Duration(
+				actv, 
+				msg,
+				colorID);
+		
+	}
+
+	private void 
+	dlg_DLG_CONF_IMPORT_DB_OK() {
+		// TODO Auto-generated method stub
+	
+		Methods.import_DB(actv, d1, d2, d3);
+		
+	}
 
 	private void 
 	dlg_DLG_ALACTV_MOVEFILE_CONF_OK() {
@@ -290,7 +389,7 @@ public class DB_OCL implements OnClickListener {
 //		String tname_New = Methods.conv_CurrentPathMove_to_TableName(choice);
 
 		Methods.move_Files(actv, 
-				dlg1, dlg2, dlg3,
+				d1, d2, d3,
 				ai, alList_Position, choice);
 		
 	}
@@ -298,7 +397,7 @@ public class DB_OCL implements OnClickListener {
 	private void dlg_DLG_CREATE_DIR_OK() {
 		// TODO Auto-generated method stub
 		
-		Methods_dlg.dlg_IsEmpty(actv, dlg1);
+		Methods_dlg.dlg_IsEmpty(actv, d1);
 		
 	}
 
@@ -311,7 +410,7 @@ public class DB_OCL implements OnClickListener {
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		
-		Ops.del_Folder(actv, dlg1, dlg2, folderName);
+		Ops.del_Folder(actv, d1, d2, folderName);
 		
 	}
 
@@ -320,21 +419,21 @@ public class DB_OCL implements OnClickListener {
 		// TODO Auto-generated method stub
 		
 //		Methods.create_Dir(actv, dlg1, dlg2);
-		Methods.create_Dir(actv, dlg1, dlg2);
+		Methods.create_Dir(actv, d1, d2);
 		
 	}//dlg_CONFIRM_CREATE_FOLDER_OK
 
 	private void dlg_DLG_CREATE_FOLDER_OK() {
 		// TODO Auto-generated method stub
 		
-		Methods_dlg.dlg_IsEmpty(actv, dlg1);
+		Methods_dlg.dlg_IsEmpty(actv, d1);
 		
 	}
 
 	private void 
 	dlg_ALActv_edit_AI_Ok() {
 		
-		Methods.edit_AI_Ok(actv, dlg1, dlg2, ai);
+		Methods.edit_AI_Ok(actv, d1, d2, ai);
 		// TODO Auto-generated method stub
 
 	}//dlg_ALActv_edit_AI_Ok()
@@ -342,7 +441,7 @@ public class DB_OCL implements OnClickListener {
 	private void dlg_ALActv_Delete_AI_Ok() {
 		// TODO Auto-generated method stub
 		
-		Methods.delete_AI(actv, dlg1, dlg2, ai, alList_Position);
+		Methods.delete_AI(actv, d1, d2, ai, alList_Position);
 		
 	}
 
@@ -357,7 +456,7 @@ public class DB_OCL implements OnClickListener {
 		////////////////////////////////
 		TextView tv_Title = (TextView) actv.findViewById(R.id.actv_play_tv_title);
 
-		EditText et_Title = (EditText) dlg1.findViewById(
+		EditText et_Title = (EditText) d1.findViewById(
 					R.id.dlg_edit_ai_title_et_content);
 		
 		tv_Title.setText(et_Title.getText().toString());
@@ -421,7 +520,7 @@ public class DB_OCL implements OnClickListener {
 			// Dialog
 			
 			////////////////////////////////
-			dlg1.dismiss();
+			d1.dismiss();
 			
 		} else {
 			
@@ -438,8 +537,8 @@ public class DB_OCL implements OnClickListener {
 		/***************************************
 		 * Get data
 		 ***************************************/
-		EditText etTitle = (EditText) dlg2.findViewById(R.id.dlg_edit_item_et_title);
-		EditText etMemo = (EditText) dlg2.findViewById(R.id.dlg_edit_item_et_memo);
+		EditText etTitle = (EditText) d2.findViewById(R.id.dlg_edit_item_et_title);
+		EditText etMemo = (EditText) d2.findViewById(R.id.dlg_edit_item_et_memo);
 
 		/***************************************
 		 * Set: New data to bm instance
@@ -497,8 +596,8 @@ public class DB_OCL implements OnClickListener {
 		/***************************************
 		 * If successful, close dialog
 		 ***************************************/
-		dlg2.dismiss();
-		dlg1.dismiss();
+		d2.dismiss();
+		d1.dismiss();
 		
 	}//private void dlg_Edit_BM_Ok()
 
@@ -528,7 +627,7 @@ public class DB_OCL implements OnClickListener {
 			
 		} else {
 
-			dlg2.dismiss();
+			d2.dismiss();
 			
 			// debug
 			String msg_Toast = "Can't remove BM from DB: " + bm.getPosition();
@@ -543,9 +642,9 @@ public class DB_OCL implements OnClickListener {
 		// Close dialog
 
 		////////////////////////////////
-		dlg2.dismiss();
+		d2.dismiss();
 		
-		dlg1.dismiss();
+		d1.dismiss();
 		
 		// debug
 		String msg_Toast = "BM => deleted: " + bm.getPosition();

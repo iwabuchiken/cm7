@@ -530,7 +530,7 @@ public class BO_CL implements OnClickListener {
 			new_Position = 0;
 
 		}
-		
+
 		lv.setSelection(new_Position);
 		
 //		int new_Position = lv.getLastVisiblePosition();

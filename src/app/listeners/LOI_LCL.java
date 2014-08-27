@@ -316,7 +316,7 @@ LOI_LCL implements OnItemLongClickListener {
 				title,
 				
 				R.id.dlg_tmpl_cancel_lv_bt_cancel,
-				Tags.DialogTags.DLG_GENERIC_DISMISS);
+				Tags.DialogTags.GENERIC_DISMISS);
 
 		/****************************
 		* 2. Prep => List
@@ -404,7 +404,7 @@ LOI_LCL implements OnItemLongClickListener {
 								R.string.dlg_bmactv_list_long_click_title,
 								
 								R.id.dlg_tmpl_cancel_lv_bt_cancel,
-								Tags.DialogTags.DLG_GENERIC_DISMISS);
+								Tags.DialogTags.GENERIC_DISMISS);
 		
 		/****************************
 		 * 2. Prep => List

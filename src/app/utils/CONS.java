@@ -15,6 +15,7 @@ import android.widget.TextView;
 import app.adapters.Adp_AIList;
 import app.adapters.Adp_BMList;
 import app.adapters.Adp_ImpList;
+import app.adapters.Adp_ListItems;
 import app.adapters.Adp_MainList;
 import app.items.AI;
 import app.items.BM;
@@ -116,6 +117,9 @@ public class CONS {
 
 		////////////////////////////////
 		public static String dbName = "cm7.db";
+		public static String dbName_CM6 = "cm6.db";
+		
+		public static String dbName_Importing = dbName_CM6;
 		
 		public static String dPath_dbFile;
 //		public static String dPath_dbFile = "/data/data/cm7.main/databases";
@@ -124,6 +128,9 @@ public class CONS {
 
 		public static String dPath_dbFile_backup 
 								= "/mnt/sdcard-ext/cm7_backup";
+		
+		public static String dPath_dbFile_backup_CM6 = 
+									"/mnt/sdcard-ext/cm5_backup";
 		
 //		public static String dPath_dbFile = 
 //							Methods.get_DirPath(new MainActv().getFilesDir().getPath());
@@ -134,6 +141,15 @@ public class CONS {
 		
 		public static String dname_TapeATalk_Sdcard
 								= "tapeatalk_records";
+		
+		////////////////////////////////
+		
+		// Table: memo_patterns (cm6)
+		
+		////////////////////////////////
+		public static final String tname_MemoPatterns_CM6	= "memo_patterns";
+		
+		static String[] cols_memo_patterns_CM6 = {"word", "table_name"};
 		
 		////////////////////////////////
 		
@@ -360,6 +376,10 @@ public class CONS {
 		public static ArrayAdapter<String> adp_dir_list = null;
 		
 		public static Adp_MainList aAdapter;
+		
+		public static Adp_ListItems adp_ListItems_DB;
+		
+		public static Adp_ListItems adp_ListItems_Operations;
 		
 		public static String prefval_CurrentPath;
 		

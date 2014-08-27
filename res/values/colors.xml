@@ -21,6 +21,11 @@
 	<color name="gray1">#424242</color>
 	<color name="gray_pale">#DFDFDF</color>
 	
+	<color name="yellow_bright">#ecf42a</color>
+	<color name="yellow_dark">#c2c166</color>
+	<color name="yellow_pale_dark">#E9E779</color>
+	<color name="yellow_pale_bright">#ffffb0</color>
+	
 <!-- /main.xml -->
 	
 </resources>
