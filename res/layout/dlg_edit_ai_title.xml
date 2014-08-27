@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="400dp"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    
     android:layout_gravity="center_horizontal"
-    
-    android:orientation="vertical" 
-    
-    
-    >
+    android:orientation="vertical" >
 
     <EditText
         android:id="@+id/dlg_edit_ai_title_et_content"
@@ -22,29 +17,38 @@
         android:inputType="text" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
 
-        <GridView
-            android:id="@+id/dlg_edit_ai_title_gv_1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:numColumns="2" >
+        <ListView
+            android:id="@+id/dlg_edit_ai_title_lv_1"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight="1" >
 
-        </GridView>
+        </ListView>
 
-        <GridView
-            android:id="@+id/dlg_edit_ai_title_gv_2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:numColumns="2" >
+                <ListView
+                    android:id="@+id/dlg_edit_ai_title_lv_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1" >
 
-        </GridView>
+        </ListView>
 
+        <ListView
+            android:id="@+id/dlg_edit_ai_title_lv_3"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1" >
+
+        </ListView>
+        
     </LinearLayout>
     
     <LinearLayout
@@ -61,6 +65,7 @@
             android:id="@+id/dlg_edit_ai_title_bt_add"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
             android:layout_marginBottom="0dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="4dp"
@@ -73,8 +78,9 @@
             android:id="@+id/dlg_edit_ai_title_bt_cancel"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
             android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:text="@string/generic_bt_cancel"
             android:textColor="@color/red"

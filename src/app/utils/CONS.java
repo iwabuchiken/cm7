@@ -20,6 +20,7 @@ import app.adapters.Adp_MainList;
 import app.adapters.Adp_WordPatterns;
 import app.items.AI;
 import app.items.BM;
+import app.items.WordPattern;
 
 public class CONS {
 
@@ -450,6 +451,20 @@ public class CONS {
 		public static Adp_WordPatterns adp_Patterns_GV_1;
 		
 		public static Adp_WordPatterns adp_Patterns_GV_2;
+		
+		public static Adp_WordPatterns adp_Patterns_GV_3;
+		
+		public static Adp_WordPatterns adp_Dlg_EditTitle_LV_1;
+		
+		public static Adp_WordPatterns adp_Dlg_EditTitle_LV_2;
+		
+		public static Adp_WordPatterns adp_Dlg_EditTitle_LV_3;
+		
+		public static List<WordPattern> list_Dlg_EditTitle_LV_1;
+		
+		public static List<WordPattern> list_Dlg_EditTitle_LV_2;
+		
+		public static List<WordPattern> list_Dlg_EditTitle_LV_3;
 		
 		////////////////////////////////
 

@@ -9,11 +9,13 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 import app.items.AI;
 import app.items.BM;
 import app.items.ListItem;
+import app.items.WordPattern;
 import app.tasks.Task_RefreshDB;
 import app.utils.CONS;
 import app.utils.Methods;
@@ -140,6 +142,8 @@ public class DOI_CL implements OnItemClickListener {
 		
 		ListItem li;
 		
+		WordPattern wp;
+		
 		/*----------------------------
 		 * 3. Switching
 			----------------------------*/
@@ -203,12 +207,68 @@ public class DOI_CL implements OnItemClickListener {
 			
 			break;// case dlg_bmactv_list_long_click
 			
+		case DLG_ADD_MEMOS_GV_1://----------------------------------------------
+		case DLG_ADD_MEMOS_GV_2://----------------------------------------------
+		case DLG_ADD_MEMOS_GV_3://----------------------------------------------
+			
+			wp = (WordPattern) parent.getItemAtPosition(position);
+			
+			case_DLG_ADD_MEMOS_GV_1(wp);
+			
+			break;// case dlg_bmactv_list_long_click
 			
 		default:
 			break;
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+
+	private void 
+	case_DLG_ADD_MEMOS_GV_1
+	(WordPattern wp) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// view
+
+		////////////////////////////////
+		EditText et = (EditText) d1.findViewById(R.id.dlg_edit_ai_title_et_content);
+		
+		////////////////////////////////
+
+		// build: text
+
+		////////////////////////////////
+		String tmp = et.getText().toString();
+		
+		if (tmp == null || tmp == "") {
+			
+			tmp = wp.getWord() + " ";
+			
+		} else {
+
+			tmp = tmp + " " + wp.getWord() + " ";
+			
+		}
+		
+		////////////////////////////////
+
+		// set
+
+		////////////////////////////////
+		et.setText(tmp);
+		
+		et.setSelection(tmp.length());
+
+		
+//		// Log
+//		String msg_Log = "pattern => " + wp.getWord();
+//		Log.d("DOI_CL.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+		
+	}
 
 	private void 
 	case_DLG_ACTV_MAIN_OPERATIONS

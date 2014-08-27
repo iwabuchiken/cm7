@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnLongClickListener;
+import android.widget.EditText;
 import android.widget.TextView;
 import app.items.AI;
 import app.utils.Methods_dlg;
@@ -73,6 +74,7 @@ public class TV_LCL implements OnLongClickListener {
 	case_PlayActv_Title(View v) {
 		// TODO Auto-generated method stub
 		
+//		EditText tv_Title = (EditText) v;
 		TextView tv_Title = (TextView) v;
 		
 		String currentTitle = tv_Title.getText().toString();

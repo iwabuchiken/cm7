@@ -578,10 +578,14 @@ public class Methods_dlg {
 		// Set: current data
 
 		////////////////////////////////
-		TextView tv_Title = 
-				(TextView) dlg.findViewById(R.id.dlg_edit_ai_title_et_content);
+		EditText et_Title = 
+				(EditText) dlg.findViewById(R.id.dlg_edit_ai_title_et_content);
+//		TextView tv_Title = 
+//				(TextView) dlg.findViewById(R.id.dlg_edit_ai_title_et_content);
 		
-		tv_Title.setText(currentTitle);
+		et_Title.setText(currentTitle);
+		
+		et_Title.setSelection(currentTitle.length());
 		
 		////////////////////////////////
 
@@ -636,8 +640,22 @@ public class Methods_dlg {
 	(Activity actv, Dialog dlg, AI ai) {
 		// TODO Auto-generated method stub
 		
-		GridView gv_1 = (GridView) dlg.findViewById(R.id.dlg_edit_ai_title_gv_1);
-		GridView gv_2 = (GridView) dlg.findViewById(R.id.dlg_edit_ai_title_gv_2);
+		////////////////////////////////
+
+		// views
+
+		////////////////////////////////
+		ListView lv_1 = 
+				(ListView) dlg.findViewById(R.id.dlg_edit_ai_title_lv_1);
+		
+		ListView lv_2 = 
+				(ListView) dlg.findViewById(R.id.dlg_edit_ai_title_lv_2);
+		
+		ListView lv_3 = 
+				(ListView) dlg.findViewById(R.id.dlg_edit_ai_title_lv_3);
+		
+//		GridView gv_1 = (GridView) dlg.findViewById(R.id.dlg_edit_ai_title_gv_1);
+//		GridView gv_2 = (GridView) dlg.findViewById(R.id.dlg_edit_ai_title_gv_2);
 //		
 		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
 		
@@ -716,7 +734,10 @@ public class Methods_dlg {
 		
 		c.moveToFirst();
 		
-		List<WordPattern> patternList = new ArrayList<WordPattern>();
+		CONS.PlayActv.list_Dlg_EditTitle_LV_1 = new ArrayList<WordPattern>();
+		CONS.PlayActv.list_Dlg_EditTitle_LV_2 = new ArrayList<WordPattern>();
+		CONS.PlayActv.list_Dlg_EditTitle_LV_3 = new ArrayList<WordPattern>();
+//		List<WordPattern> patternList = new ArrayList<WordPattern>();
 //		List<String> patternList = new ArrayList<String>();
 		
 		if (c.getCount() > 0) {
@@ -724,12 +745,29 @@ public class Methods_dlg {
 			for (int i = 0; i < c.getCount(); i++) {
 				
 //				patternList.add(c.getString(3));	// "word"
-				patternList.add(
+				CONS.PlayActv.list_Dlg_EditTitle_LV_1.add(
+//						patternList.add(
 							new WordPattern.Builder()
 								.setDb_Id(c.getLong(0))
 								.setWord(c.getString(3))
 							
 								.build());	// "word"
+				
+				CONS.PlayActv.list_Dlg_EditTitle_LV_2.add(
+//						patternList.add(
+						new WordPattern.Builder()
+						.setDb_Id(c.getLong(0))
+						.setWord(c.getString(3))
+						
+						.build());	// "word"
+				
+				CONS.PlayActv.list_Dlg_EditTitle_LV_3.add(
+//						patternList.add(
+						new WordPattern.Builder()
+						.setDb_Id(c.getLong(0))
+						.setWord(c.getString(3))
+						
+						.build());	// "word"
 				
 				c.moveToNext();
 				
@@ -755,13 +793,29 @@ public class Methods_dlg {
 		CONS.PlayActv.adp_Patterns_GV_1 = new Adp_WordPatterns(
 										actv,
 										R.layout.add_memo_grid_view,
-										patternList
+										CONS.PlayActv.list_Dlg_EditTitle_LV_1
+//										patternList
 										);
+		
 		CONS.PlayActv.adp_Patterns_GV_2 = new Adp_WordPatterns(
-										actv,
-										R.layout.add_memo_grid_view,
-										patternList
-										);
+				actv,
+				R.layout.add_memo_grid_view,
+				CONS.PlayActv.list_Dlg_EditTitle_LV_2
+//										patternList
+				);
+		
+		CONS.PlayActv.adp_Patterns_GV_3 = new Adp_WordPatterns(
+				actv,
+				R.layout.add_memo_grid_view,
+				CONS.PlayActv.list_Dlg_EditTitle_LV_3
+//										patternList
+				);
+		
+//		CONS.PlayActv.adp_Patterns_GV_2 = new Adp_WordPatterns(
+//										actv,
+//										R.layout.add_memo_grid_view,
+//										patternList
+//										);
 //		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
 //				actv,
 //				R.layout.add_memo_grid_view,
@@ -783,19 +837,38 @@ public class Methods_dlg {
 			
 		}
 		
-		gv_1.setAdapter(CONS.PlayActv.adp_Patterns_GV_1);
+		lv_1.setAdapter(CONS.PlayActv.adp_Patterns_GV_1);
+		
+		lv_2.setAdapter(CONS.PlayActv.adp_Patterns_GV_2);
+		
+		lv_3.setAdapter(CONS.PlayActv.adp_Patterns_GV_3);
+		
+		////////////////////////////////
 
-//		gv_1.setTag(Tags.DialogItemTags.dlg_add_memos_gv);
-		gv_1.setTag(Tags.DialogItemTags.DLG_ADD_MEMOS_GV_1);
+		// tags
+
+		////////////////////////////////
+		lv_1.setTag(Tags.DialogItemTags.DLG_ADD_MEMOS_GV_1);
+		lv_2.setTag(Tags.DialogItemTags.DLG_ADD_MEMOS_GV_2);
+		lv_3.setTag(Tags.DialogItemTags.DLG_ADD_MEMOS_GV_3);
 		
-		gv_1.setOnItemClickListener(new DOI_CL(actv, dlg));
+		////////////////////////////////
+
+		// listener
+
+		////////////////////////////////
+		lv_1.setOnItemClickListener(new DOI_CL(actv, dlg));
+		lv_2.setOnItemClickListener(new DOI_CL(actv, dlg));
+		lv_3.setOnItemClickListener(new DOI_CL(actv, dlg));
 		
-		gv_2.setAdapter(CONS.PlayActv.adp_Patterns_GV_2);
+//		gv_1.setAdapstener(new DOI_CL(actv, dlg));
 		
-//		gv_1.setTag(Tags.DialogItemTags.dlg_add_memos_gv);
-		gv_2.setTag(Tags.DialogItemTags.DLG_ADD_MEMOS_GV_2);
-		
-		gv_2.setOnItemClickListener(new DOI_CL(actv, dlg));
+//		gv_2.setAdapter(CONS.PlayActv.adp_Patterns_GV_2);
+//		
+////		gv_1.setTag(Tags.DialogItemTags.dlg_add_memos_gv);
+//		gv_2.setTag(Tags.DialogItemTags.DLG_ADD_MEMOS_GV_2);
+//		
+//		gv_2.setOnItemClickListener(new DOI_CL(actv, dlg));
 		
 		// Log
 		Log.d("Methods.java" + "["
