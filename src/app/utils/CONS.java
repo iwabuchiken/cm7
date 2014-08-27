@@ -17,6 +17,7 @@ import app.adapters.Adp_BMList;
 import app.adapters.Adp_ImpList;
 import app.adapters.Adp_ListItems;
 import app.adapters.Adp_MainList;
+import app.adapters.Adp_WordPatterns;
 import app.items.AI;
 import app.items.BM;
 
@@ -445,6 +446,10 @@ public class CONS {
 		public static MediaPlayer mp = null;
 		
 		public static SeekBar sb;
+		
+		public static Adp_WordPatterns adp_Patterns_GV_1;
+		
+		public static Adp_WordPatterns adp_Patterns_GV_2;
 		
 		////////////////////////////////
 

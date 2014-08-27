@@ -34,9 +34,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import app.adapters.Adp_AIList;
 import app.adapters.Adp_ListItems;
+import app.adapters.Adp_WordPatterns;
 import app.items.AI;
 import app.items.BM;
 import app.items.ListItem;
+import app.items.WordPattern;
 import app.listeners.LOI_LCL;
 import app.listeners.dialog.DB_OCL;
 import app.listeners.dialog.DB_OTL;
@@ -583,6 +585,13 @@ public class Methods_dlg {
 		
 		////////////////////////////////
 
+		// grid view
+
+		////////////////////////////////
+		dlg = Methods_dlg._PlayActv_EditTitle_GV(actv, dlg, ai);
+		
+		////////////////////////////////
+
 		// Listeners
 
 		////////////////////////////////
@@ -615,7 +624,7 @@ public class Methods_dlg {
 		// GridView
 
 		////////////////////////////////
-		dlg = Methods_dlg.dlg_EditTitle_GridView(actv, dlg, ai);
+		dlg = Methods_dlg._PlayActv_EditTitle_GV(actv, dlg, ai);
 		
 		
 		dlg.show();
@@ -623,11 +632,12 @@ public class Methods_dlg {
 	}//dlg_EditTitle
 
 	private static Dialog
-	dlg_EditTitle_GridView
+	_PlayActv_EditTitle_GV
 	(Activity actv, Dialog dlg, AI ai) {
 		// TODO Auto-generated method stub
 		
-		GridView gv = (GridView) dlg.findViewById(R.id.dlg_edit_ai_title_gv);
+		GridView gv_1 = (GridView) dlg.findViewById(R.id.dlg_edit_ai_title_gv_1);
+		GridView gv_2 = (GridView) dlg.findViewById(R.id.dlg_edit_ai_title_gv_2);
 //		
 		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
 		
@@ -662,9 +672,21 @@ public class Methods_dlg {
 		////////////////////////////////
 		rdb = dbu.getReadableDatabase();
 		
-		String sql = "SELECT * FROM " + tableName + " ORDER BY word ASC";
+//		String sql = "SELECT * FROM " + tableName + " ORDER BY word ASC";
 		
-		Cursor c = rdb.rawQuery(sql, null);
+		String orderBy = CONS.DB.col_names_MemoPatterns_full[3] + " ASC"; 
+		
+		Cursor c = rdb.query(
+						CONS.DB.tname_MemoPatterns,
+						CONS.DB.col_names_MemoPatterns_full,
+		//				CONS.DB.col_types_refresh_log_full,
+						null, null,		// selection, args 
+						null, 			// group by
+						null, 		// having
+						orderBy);
+
+		
+//		Cursor c = rdb.rawQuery(sql, null);
 
 		////////////////////////////////
 
@@ -694,13 +716,20 @@ public class Methods_dlg {
 		
 		c.moveToFirst();
 		
-		List<String> patternList = new ArrayList<String>();
+		List<WordPattern> patternList = new ArrayList<WordPattern>();
+//		List<String> patternList = new ArrayList<String>();
 		
 		if (c.getCount() > 0) {
 			
 			for (int i = 0; i < c.getCount(); i++) {
 				
-				patternList.add(c.getString(3));	// "word"
+//				patternList.add(c.getString(3));	// "word"
+				patternList.add(
+							new WordPattern.Builder()
+								.setDb_Id(c.getLong(0))
+								.setWord(c.getString(3))
+							
+								.build());	// "word"
 				
 				c.moveToNext();
 				
@@ -716,24 +745,57 @@ public class Methods_dlg {
 		}//if (c.getCount() > 0)
 		
 		
-		Collections.sort(patternList);
+//		Collections.sort(patternList);
 
 		////////////////////////////////
 
 		// Build: adapter
 
 		////////////////////////////////
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+		CONS.PlayActv.adp_Patterns_GV_1 = new Adp_WordPatterns(
 										actv,
 										R.layout.add_memo_grid_view,
 										patternList
 										);
+		CONS.PlayActv.adp_Patterns_GV_2 = new Adp_WordPatterns(
+										actv,
+										R.layout.add_memo_grid_view,
+										patternList
+										);
+//		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+//				actv,
+//				R.layout.add_memo_grid_view,
+//				patternList
+//				);
 		
-		gv.setAdapter(adapter);
+		/******************************
+			validate
+		 ******************************/
+		if (CONS.PlayActv.adp_Patterns_GV_1 == null) {
+			
+			// Log
+			String msg_Log = "CONS.PlayActv.adp_Patterns_GV => null";
+			Log.e("Methods_dlg.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return dlg;
+			
+		}
+		
+		gv_1.setAdapter(CONS.PlayActv.adp_Patterns_GV_1);
 
-		gv.setTag(Tags.DialogItemTags.dlg_add_memos_gv);
+//		gv_1.setTag(Tags.DialogItemTags.dlg_add_memos_gv);
+		gv_1.setTag(Tags.DialogItemTags.DLG_ADD_MEMOS_GV_1);
 		
-		gv.setOnItemClickListener(new DOI_CL(actv, dlg));
+		gv_1.setOnItemClickListener(new DOI_CL(actv, dlg));
+		
+		gv_2.setAdapter(CONS.PlayActv.adp_Patterns_GV_2);
+		
+//		gv_1.setTag(Tags.DialogItemTags.dlg_add_memos_gv);
+		gv_2.setTag(Tags.DialogItemTags.DLG_ADD_MEMOS_GV_2);
+		
+		gv_2.setOnItemClickListener(new DOI_CL(actv, dlg));
 		
 		// Log
 		Log.d("Methods.java" + "["

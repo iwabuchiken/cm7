@@ -98,7 +98,7 @@ public class Tags {
 		dlg_move_files,
 		
 		// dlg_add_memos.xml
-		dlg_add_memos_gv,
+		DLG_ADD_MEMOS_GV_1, DLG_ADD_MEMOS_GV_2,
 
 		// dlg_db_admin.xml
 		DLG_DB_ADMIN_LV,

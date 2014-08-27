@@ -21,21 +21,31 @@
         android:gravity="top|left"
         android:inputType="text" />
 
-    <GridView
-        android:id="@+id/dlg_edit_ai_title_gv"
-        
-		android:layout_width="350dp"
-		android:layout_height="200dp"
-		
-		android:layout_gravity="center_horizontal"
-		
-		android:layout_marginLeft="50dp"
-		android:layout_marginRight="30dp"
-		
-		android:numColumns="3"
-		
-		>
-    </GridView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <GridView
+            android:id="@+id/dlg_edit_ai_title_gv_1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:numColumns="2" >
+
+        </GridView>
+
+        <GridView
+            android:id="@+id/dlg_edit_ai_title_gv_2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:numColumns="2" >
+
+        </GridView>
+
+    </LinearLayout>
     
     <LinearLayout
         android:layout_width="wrap_content"
