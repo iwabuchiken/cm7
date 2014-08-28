@@ -61,9 +61,11 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.AsyncTask;
+import app.comps.Comp_WP;
 import app.items.AI;
 import app.items.BM;
 import app.items.Refresh;
+import app.items.WordPattern;
 import app.listeners.MP_OCmpL;
 import app.listeners.dialog.DL;
 import app.main.ALActv;
@@ -3664,6 +3666,167 @@ public class Methods {
 		return counter;
 		
 	}//_import_Patterns__SavePatterns
+
+	public static void 
+	delete_Pattern
+	(Activity actv, 
+		Dialog d1, Dialog d2, Dialog d3, WordPattern wp) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// delete: db
+
+		////////////////////////////////
+		int res = DBUtils.delete_Pattern(actv, wp);
+		
+		////////////////////////////////
+
+		// report
+
+		////////////////////////////////
+		String msg = null;
+		int colorID = 0;
+		
+		String tname = CONS.DB.tname_MemoPatterns;
+		
+		switch(res) {
+
+//		-1	Table doesn't exist<br>
+//		-2	Deletion => failed<br>
+//		> 1	Deletion => done<br>
+		
+		case -1: 
+			
+			msg = "Table doesn't exist => " + tname;
+			colorID = R.color.gold2;
+			
+			Methods_dlg.dlg_ShowMessage(
+					actv, 
+					msg,
+					colorID);
+
+			d3.dismiss();
+
+			return;
+		
+		case -2: 
+			
+			msg = "Deletion => failed: " + wp.getWord();
+			colorID = R.color.red;
+			
+			Methods_dlg.dlg_ShowMessage(
+					actv, 
+					msg,
+					colorID);
+
+			d3.dismiss();
+			
+			return;
+			
+		}
+
+		////////////////////////////////
+
+		// delete from: list view
+
+		////////////////////////////////
+		
+		Methods.update_PLayActv_EditTitle_ListViews(actv);
+		
+//		CONS.MemoActv.li.remove(memo);
+//		
+//		CONS.ShowListActv.adp_List_Memos.notifyDataSetChanged();
+
+		////////////////////////////////
+
+		// report
+
+		////////////////////////////////
+		msg = "Deletion => done";
+		colorID = R.color.green4;
+		
+		Methods_dlg.dlg_ShowMessage(
+				actv, 
+				msg,
+				colorID);
+
+		////////////////////////////////
+
+		// dismiss
+
+		////////////////////////////////
+		d3.dismiss();
+		d2.dismiss();
+//		d1.dismiss();
+		
+//		Methods_dlg.dlg_ShowMessage(
+//				actv, 
+//				msg,
+//				colorID);
+
+		
+	}//delete_Pattern
+
+	public static void 
+	update_PLayActv_EditTitle_ListViews
+	(Activity actv) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// update lists
+
+		////////////////////////////////
+		List<WordPattern> list = DBUtils.find_All_WordPatterns(actv);
+		
+		CONS.PlayActv.list_Dlg_EditTitle_LV_1.clear();
+		CONS.PlayActv.list_Dlg_EditTitle_LV_2.clear();
+		CONS.PlayActv.list_Dlg_EditTitle_LV_3.clear();
+		
+		CONS.PlayActv.list_Dlg_EditTitle_LV_1.addAll(list);
+//		.addAll(DBUtils.find_All_WordPatterns(actv));
+		CONS.PlayActv.list_Dlg_EditTitle_LV_2.addAll(list);
+		CONS.PlayActv.list_Dlg_EditTitle_LV_3.addAll(list);
+			
+		////////////////////////////////
+
+		// sort
+
+		////////////////////////////////
+		Collections.sort(
+				CONS.PlayActv.list_Dlg_EditTitle_LV_1, 
+						new Comp_WP(
+								
+								CONS.Enums.SortType.WORD,
+								CONS.Enums.SortOrder.ASC
+						));
+		Collections.sort(
+				CONS.PlayActv.list_Dlg_EditTitle_LV_2, 
+				new Comp_WP(
+						
+						CONS.Enums.SortType.WORD,
+						CONS.Enums.SortOrder.ASC
+						));
+		Collections.sort(
+				CONS.PlayActv.list_Dlg_EditTitle_LV_3, 
+				new Comp_WP(
+						
+						CONS.Enums.SortType.WORD,
+						CONS.Enums.SortOrder.ASC
+						));
+
+
+		////////////////////////////////
+
+		// notify
+
+		////////////////////////////////
+		CONS.PlayActv.adp_Patterns_GV_1.notifyDataSetChanged();
+		CONS.PlayActv.adp_Patterns_GV_2.notifyDataSetChanged();
+		CONS.PlayActv.adp_Patterns_GV_3.notifyDataSetChanged();
+		
+	}//update_MemoActv_ListViews
 
 	
 }//public class Methods

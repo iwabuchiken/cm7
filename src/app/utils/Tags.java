@@ -89,7 +89,7 @@ public class Tags {
 		
 		DLG_CONF_IMPORT_DB_OK,
 		
-		DLG_CONF_IMPORT_PATTERNS_OK,
+		DLG_CONF_IMPORT_PATTERNS_OK, DLG_CONF_DELETE_PATTERN_OK,
 		
 	}//public static enum DialogTags
 	
@@ -130,7 +130,7 @@ public class Tags {
 		// dlg: MainActv, long click
 		DLG_ACTVMAIN_LONGCLICK, 
 		
-		DLG_ACTV_MAIN_OPERATIONS,
+		DLG_ACTV_MAIN_OPERATIONS, ACTV_PLAY_PATTERNS_LONGCLICK_LV,
 		
 	}//public static enum DialogItemTags
 	

@@ -39,6 +39,7 @@ public class DOI_CL implements OnItemClickListener {
 	int aiList_Position;
 
 	String file_Name;	// ImpActv list
+	private WordPattern wp;
 	
 	//
 //	Methods.DialogTags dlgTag = null;
@@ -122,6 +123,20 @@ public class DOI_CL implements OnItemClickListener {
 		
 		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 		
+	}
+
+	public DOI_CL
+	(Activity actv, Dialog d1, Dialog d2, WordPattern wp) {
+		// TODO Auto-generated constructor stub
+		
+		this.actv	= actv;
+		this.d1	= d1;
+		this.d2	= d2;
+
+		this.wp	= wp;
+		
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+
 	}
 
 	//	@Override
@@ -217,11 +232,50 @@ public class DOI_CL implements OnItemClickListener {
 			
 			break;// case dlg_bmactv_list_long_click
 			
+		case ACTV_PLAY_PATTERNS_LONGCLICK_LV://----------------------------------------------
+			
+			li = (ListItem) parent.getItemAtPosition(position);
+			
+			case_ACTV_PLAY_PATTERNS_LONGCLICK_LV(li);
+			
+			break;// case dlg_bmactv_list_long_click
+			
 		default:
 			break;
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+
+	private void 
+	case_ACTV_PLAY_PATTERNS_LONGCLICK_LV
+	(ListItem li) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// Dispatch
+
+		////////////////////////////////
+		if (li.getText().equals(actv.getString(
+				R.string.generic_tv_edit))) {
+
+//			Methods_dlg.conf_Import_DB(actv, d1, d2);
+			
+		} else if (li.getText().equals(actv.getString(
+				R.string.generic_tv_delete))) {
+			
+			Methods_dlg.conf_Delete_Pattern(actv, d1, d2, wp);
+			
+		} else  {
+
+			String msg = "Unknown choice => " + li.getText();
+			Methods_dlg.dlg_ShowMessage(actv, msg, R.color.gold2);
+			
+			return;
+
+		}		
+		
+	}//case_ACTV_PLAY_PATTERNS_LONGCLICK_LV
 
 	private void 
 	case_DLG_ADD_MEMOS_GV_1

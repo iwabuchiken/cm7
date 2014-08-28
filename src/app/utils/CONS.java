@@ -523,6 +523,8 @@ public class CONS {
 
 		////////////////////////////////
 		public static Vibrator vib;
+
+		public static int ratio_Dialog_to_Screen_W	= 60;	// X out of 100
 		
 		public static final int vibLength_click = 35;
 		
@@ -571,14 +573,14 @@ public class CONS {
 		
 		public static enum SortType {
 			
-			FileName, POSITION,
+			FileName, POSITION, WORD, CREATED_AT,
 			
 		}
 
 		// Sort order
 		public static enum SortOrder {
 				ASC, DEC,
-				CREATED_AT,
+				CREATED_AT, DESC,
 		};
 
 	}

@@ -16,6 +16,8 @@ public class DB_OTL implements OnTouchListener {
 	//
 	Activity actv;
 	Dialog dlg;
+	private Dialog d2;
+	private Dialog d3;
 	
 	public DB_OTL(Activity actv, Dialog dlg) {
 		//
@@ -28,7 +30,18 @@ public class DB_OTL implements OnTouchListener {
 		this.actv = actv;
 	}
 
-//	@Override
+	public DB_OTL
+	(Activity actv, Dialog d1, Dialog d2, Dialog d3) {
+			// TODO Auto-generated constructor stub
+		
+		this.actv = actv;
+		this.dlg = d1;
+		this.d2 = d2;
+		this.d3 = d3;
+
+	}
+
+	//	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		
 		Tags.DialogTags tag_name = (Tags.DialogTags) v.getTag();
@@ -74,6 +87,8 @@ public class DB_OTL implements OnTouchListener {
 				case DLG_CONF_IMPORT_DB_OK:
 					
 				case DLG_CONF_IMPORT_PATTERNS_OK:
+					
+				case DLG_CONF_DELETE_PATTERN_OK:
 					
 					//
 					v.setBackgroundColor(Color.GRAY);
@@ -123,6 +138,8 @@ public class DB_OTL implements OnTouchListener {
 			case DLG_CONF_IMPORT_DB_OK:
 				
 			case DLG_CONF_IMPORT_PATTERNS_OK:
+				
+			case DLG_CONF_DELETE_PATTERN_OK:
 				
 				//
 					v.setBackgroundColor(Color.WHITE);

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import app.items.AI;
 import app.items.BM;
+import app.items.WordPattern;
 import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
@@ -44,6 +45,7 @@ public class DB_OCL implements OnClickListener {
 	
 	String folderName;	// MainActv, long click, delete folder, conf OK
 	private String choice;
+	private WordPattern wp;
 	
 	public DB_OCL(Activity actv, Dialog dlg1) {
 		//
@@ -182,6 +184,23 @@ public class DB_OCL implements OnClickListener {
 
 	}
 
+	public DB_OCL
+	(Activity actv, 
+		Dialog d1, Dialog d2, Dialog d3, WordPattern wp) {
+		// TODO Auto-generated constructor stub
+		
+		this.actv = actv;
+		
+		this.d1 = d1;
+		this.d2 = d2;
+		this.d3 = d3;
+
+		this.wp	= wp;
+		
+		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+
+	}
+
 	public void onClick(View v) {
 		//
 		Tags.DialogTags tag_name = (Tags.DialogTags) v.getTag();
@@ -289,11 +308,25 @@ public class DB_OCL implements OnClickListener {
 			
 			break;
 			
+		case DLG_CONF_DELETE_PATTERN_OK://------------------------------------------------
+			
+			dlg_DLG_CONF_DELETE_PATTERN_OK();
+			
+			break;
+			
 			
 		default: // ----------------------------------------------------
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void 
+	dlg_DLG_CONF_DELETE_PATTERN_OK() {
+		// TODO Auto-generated method stub
+
+		Methods.delete_Pattern(actv, d1, d2, d3, wp);
+		
+	}
 
 	private void 
 	dlg_DLG_CONF_IMPORT_PATTERNS_OK() {

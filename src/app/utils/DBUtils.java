@@ -6,6 +6,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import cm7.main.R;
+
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -29,6 +31,7 @@ import android.widget.Toast;
 import app.items.AI;
 import app.items.BM;
 import app.items.Refresh;
+import app.items.WordPattern;
 
 /****************************************
  * Copy & pasted from => C:\WORKS\WORKSPACES_ANDROID\ShoppingList\src\shoppinglist\main\DBUtils.java
@@ -1914,6 +1917,162 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//find_AI
 
+	/******************************
+		@return
+			null => <br>
+				1. No DB file<br>
+				2. No such table<br>
+				3. Query exception<br>
+				4. Query returned null<br>
+				5. No entry in the table<br>
+	 ******************************/
+	public static List<WordPattern>
+	find_All_WordPatterns
+	(Activity actv) {
+		
+		////////////////////////////////
+
+		// validate: DB file exists?
+
+		////////////////////////////////
+		File dpath_DBFile = actv.getDatabasePath(CONS.DB.dbName);
+
+		if (!dpath_DBFile.exists()) {
+			
+			String msg = "No DB file: " + CONS.DB.dbName;
+			Methods_dlg.dlg_ShowMessage(actv, msg);
+			
+			return null;
+			
+		}
+		
+		////////////////////////////////
+
+		// DB
+
+		////////////////////////////////
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		SQLiteDatabase rdb = dbu.getReadableDatabase();
+		
+		String tname = CONS.DB.tname_MemoPatterns;
+		
+		////////////////////////////////
+		
+		// validate: table exists?
+		
+		////////////////////////////////
+		boolean res = dbu.tableExists(rdb, tname);
+
+		if (res == false) {
+			
+			String msg = "No such table: " + tname;
+			Methods_dlg.dlg_ShowMessage(actv, msg, R.color.red);
+			
+			return null;
+			
+		}
+
+		////////////////////////////////
+		
+		// Query
+		
+		////////////////////////////////
+		Cursor c = null;
+		
+		try {
+			
+			c = rdb.query(
+					CONS.DB.tname_MemoPatterns,			// 1
+					CONS.DB.col_names_MemoPatterns_full,	// 2
+					null, null,		// 3,4
+//					where, args,		// 3,4
+					null, null,		// 5,6
+					null,			// 7
+					null);
+			
+		} catch (Exception e) {
+
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", e.toString());
+			
+			rdb.close();
+			
+			return null;
+			
+		}//try
+		
+		/***************************************
+		 * Validate
+		 * 	Cursor => Null?
+		 * 	Entry => 0?
+		 ***************************************/
+		if (c == null) {
+			
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "Query failed");
+			
+			rdb.close();
+			
+			return null;
+			
+		} else if (c.getCount() < 1) {//if (c == null)
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "No entry in the table");
+			
+			rdb.close();
+			
+			return null;
+			
+		}//if (c == null)
+		
+		/***************************************
+		 * Build list
+		 ***************************************/
+		c.moveToFirst();
+
+//		android.provider.BaseColumns._ID,		// 0
+//		"created_at", "modified_at",			// 1,2
+//		"word"									// 3
+
+		List<WordPattern> list_WPs = new ArrayList<WordPattern>();
+		
+		for (int i = 0; i < c.getCount(); i++) {
+			
+//			patternList.add(c.getString(3));	// "word"
+			list_WPs.add(
+//					patternList.add(
+						new WordPattern.Builder()
+							.setDb_Id(c.getLong(0))
+							.setWord(c.getString(3))
+						
+							.build());	// "word"
+			
+			c.moveToNext();
+			
+		}//for (int i = 0; i < patternList.size(); i++)
+
+
+		rdb.close();
+		
+		return list_WPs;
+		
+	}//find_All_WordPatterns
+	
+
 	public boolean insertData_BM(Activity actv, BM bm) {
 		// TODO Auto-generated method stub
 		SQLiteDatabase wdb = this.getWritableDatabase();
@@ -2617,6 +2776,97 @@ public class DBUtils extends SQLiteOpenHelper{
 		return val;
 		
 	}//_insert_Data_Patterns__ContentValues
+
+	/******************************
+		@return
+			-1	Table doesn't exist<br>
+			-2	Deletion => failed<br>
+			> 1	Deletion => done<br>
+	 ******************************/
+	public static int 
+	delete_Pattern
+	(Activity actv, WordPattern wp) {
+		// TODO Auto-generated method stub
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		//
+		SQLiteDatabase wdb = dbu.getWritableDatabase();
+		
+		////////////////////////////////
+		
+		// validate: table exists
+		
+		////////////////////////////////
+		String tname = CONS.DB.tname_MemoPatterns;
+				
+		if (!DBUtils.tableExists(actv, CONS.DB.dbName, tname)) {
+			// Log
+			Log.i("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Table doesn't exist => " + tname);
+			
+			wdb.close();
+			
+			return -1;
+			
+		}//if (!tableExists(SQLiteDatabase db, String tableName))
+		
+		////////////////////////////////
+		
+		// delete
+		
+		////////////////////////////////
+		////////////////////////////////
+		
+		// Query
+		
+		////////////////////////////////
+		String where = CONS.DB.col_names_MemoPatterns_full[0] + " = ?";
+	//	String where = CONS.DB.col_names_IFM11[1] + " = ?";
+		
+		String[] args = new String[]{
+				
+				String.valueOf(wp.getDb_Id())
+				
+		};
+		
+		int res_int = wdb.delete(tname, where, args);
+		
+		// Log
+		String msg_Log = "res_int => " + res_int;
+		Log.d("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+		
+		// report
+		
+		////////////////////////////////
+		switch(res_int) {
+		
+		case 0:
+			
+			// Log
+			msg_Log = "deletion => failed";
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			wdb.close();
+			
+			return -2;
+			
+		default:
+			
+			wdb.close();
+			
+			return res_int;
+			
+		}
+		
+	}//delete_Memo
 
 	
 }//public class DBUtils
