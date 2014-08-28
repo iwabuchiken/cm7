@@ -2500,4 +2500,96 @@ public class Methods_dlg {
 		
 	}//dlg_Template_OkCancel_SecondDialog
 
+	public static void
+	dlg_ShowMessage_ThirdDialog
+	(Activity actv, 
+		String message, Dialog dlg1, Dialog dlg2) {
+		
+		Dialog dlg3 = Methods_dlg.dlg_Template_Cancel_ThirdDialog(
+				actv, dlg1, dlg2,
+				R.layout.dlg_tmpl_toast_ok, 
+				R.string.generic_tv_confirm, 
+				
+				R.id.dlg_tmpl_toast_ok_bt_cancel, 
+				Tags.DialogTags.DLG_GENERIC_DISMISS_THIRD_DIALOG);
+		
+		TextView tv_Message = 
+				(TextView) dlg3.findViewById(R.id.dlg_tmpl_toast_ok_tv_message);
+		
+		tv_Message.setText(message);
+		
+		dlg3.show();
+		
+	}
+
+	public static void
+	dlg_ShowMessage_ThirdDialog
+	(Activity actv, 
+			String message, Dialog dlg1, Dialog dlg2, int colorID) {
+		
+		Dialog dlg3 = Methods_dlg.dlg_Template_Cancel_ThirdDialog(
+				actv, dlg1, dlg2,
+				R.layout.dlg_tmpl_toast_ok, 
+				R.string.generic_tv_confirm, 
+				
+				R.id.dlg_tmpl_toast_ok_bt_cancel, 
+				Tags.DialogTags.DLG_GENERIC_DISMISS_THIRD_DIALOG);
+		
+		TextView tv_Message = 
+				(TextView) dlg3.findViewById(R.id.dlg_tmpl_toast_ok_tv_message);
+		
+		tv_Message.setTextColor(colorID);
+		
+		tv_Message.setText(message);
+		
+		dlg3.show();
+		
+	}
+	
+	public static Dialog 
+	dlg_Template_Cancel_ThirdDialog
+	(Activity actv, Dialog dlg1, Dialog dlg2,
+			int layoutId, int titleStringId,
+			int cancelButtonId, Tags.DialogTags cancelTag) {
+		/****************************
+		 * Steps
+		 * 1. Set up
+		 * 2. Add listeners => OnTouch
+		 * 3. Add listeners => OnClick
+		 ****************************/
+		
+		// 
+		Dialog dlg3 = new Dialog(actv);
+		
+		//
+		dlg3.setContentView(layoutId);
+		
+		// Title
+		dlg3.setTitle(titleStringId);
+		
+		/****************************
+		 * 2. Add listeners => OnTouch
+		 ****************************/
+		//
+		Button btn_cancel = (Button) dlg3.findViewById(cancelButtonId);
+		
+		//
+		btn_cancel.setTag(cancelTag);
+		
+		//
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg1, dlg2, dlg3));
+		
+		/****************************
+		 * 3. Add listeners => OnClick
+		 ****************************/
+		//
+		btn_cancel.setOnClickListener(new DB_OCL(actv, dlg1, dlg2, dlg3));
+		
+		//
+		//dlg.show();
+		
+		return dlg3;
+		
+	}//public static Dialog dlg_template_okCancel()
+
 }//public class Methods_dialog

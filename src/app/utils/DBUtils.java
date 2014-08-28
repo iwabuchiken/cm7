@@ -2868,6 +2868,264 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//delete_Memo
 
+	/******************************
+		@return
+			-1	insertion => failed<br>
+			-2	Exception<br>
+			-3	pattern already in DB<br>
+			1	Inserted<br>
+	 ******************************/
+	public static int 
+	save_Pattern
+	(Activity actv, String new_Word) {
+		// TODO Auto-generated method stub
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		SQLiteDatabase wdb = dbu.getWritableDatabase();
+		
+		////////////////////////////////
+	
+		// validate: exists?
+	
+		////////////////////////////////
+		int res_i = DBUtils.isInDB_Pattern(wdb, new_Word);
+		
+		if (res_i == 1) {
+			
+			// Log
+			String msg_Log = "pattern already in DB => " + new_Word;
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			wdb.close();
+			
+			return -3;
+			
+		}
+		
+		////////////////////////////////
+		
+		// prep: content values
+		
+		////////////////////////////////
+		ContentValues val = _build_Values__Pattern(actv, new_Word);
+		
+		try {
+			// Start transaction
+			wdb.beginTransaction();
+			
+			// Insert data
+			long res = wdb.insert(CONS.DB.tname_MemoPatterns, null, val);
+	//		long res = wdb.insert(CONS.DB.tname_RefreshLog, null, val);
+			
+			if (res == -1) {
+				
+				// Log
+				String msg_Log = "insertion => failed";
+				Log.e("DBUtils.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+				wdb.endTransaction();
+				wdb.close();
+				
+				return -1;
+				
+			} else {
+				
+				// Log
+				String msg_Log = "insertion => done";
+				Log.d("DBUtils.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+			}
+			
+			// Set as successful
+			wdb.setTransactionSuccessful();
+			
+			// End transaction
+			wdb.endTransaction();
+			
+	//		// Log
+	//		Log.d("DBUtils.java" + "["
+	//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+	//				+ "]", "Data inserted => " + "(" + columnNames[0] + " => " + values[0] + "), and others");
+			
+			wdb.close();
+			
+			return 1;
+			
+		} catch (Exception e) {
+			
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception! => " + e.toString());
+			
+			wdb.close();
+			
+			return -2;
+			
+		}//try
+		
+	}//save_Pattern
+
+	/******************************
+		@return
+			-1	Query exception<br>
+			-2	Query => null<br>
+			-3	No entry in the table<br>
+			-4	Unknown result<br>
+			1	Entry exists<br>
+	 ******************************/
+	public static int 
+	isInDB_Pattern
+	(SQLiteDatabase db, String word) {
+		
+		Cursor c = null;
+		
+		String where = CONS.DB.col_names_MemoPatterns[0] + " = ?";
+		String[] args = new String[]{
+				
+							word
+							
+						};
+		
+		try {
+			
+			c = db.query(
+					
+					CONS.DB.tname_MemoPatterns,			// 1
+					CONS.DB.col_names_MemoPatterns,	// 2
+	//				null, null,		// 3,4
+					where, args,		// 3,4
+					null, null,		// 5,6
+					null,			// 7
+					null);
+			
+		} catch (Exception e) {
+	
+			// Log
+			String msg_Log = "Exception";
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+	//		String msg = "Query exception";
+	//		Methods_dlg.dlg_ShowMessage(actv, msg, R.color.red);
+			
+			return -1;
+			
+		}//try
+		
+		/***************************************
+		 * Validate
+		 * 	Cursor => Null?
+		 * 	Entry => 0?
+		 ***************************************/
+		if (c == null) {
+			
+			String msg = "Query => null";
+			
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", msg);
+	
+			return -2;
+			
+		} else if (c.getCount() < 1) {//if (c == null)
+			
+			String msg = "No entry in the table";
+			
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", msg);
+	
+			return -3;
+			
+		} else if (c.getCount() >= 1) {//if (c == null)
+			
+			// Log
+			String msg_Log = "Entry exists => " + c.getCount();
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return 1;
+			
+		} else {//if (c == null)
+			
+			// Log
+			String msg_Log = "Unknown result";
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return -4;
+			
+		}//if (c == null)
+		
+	//	String sql = "SELECT * FROM " + CONS.DB.tname_Patterns
+	//			+ " WHERE " + CONS.DB.col_names_Patterns[0] + " = "
+	//			+ "'" + word + "'";
+	//	
+	//	// Log
+	//	String msg_Log = "sql => " + sql;
+	//	Log.d("DBUtils.java" + "["
+	//			+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+	//			+ "]", msg_Log);
+	//	
+	//	long result = DatabaseUtils.longForQuery(db, sql, null);
+	//	
+	//	// Log
+	//	Log.d("DBUtils.java" + "["
+	//			+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+	//			+ "]", "result => " + String.valueOf(result));
+	//	
+	//	if (result > 0) {
+	//		
+	//		return true;
+	//		
+	//	} else {//if (result > 0)
+	//		
+	//		return false;
+	//		
+	//	}//if (result > 0)
+		
+	//	return false;
+		
+	}//public static boolean isInDB_long_ai
+
+	private static ContentValues 
+	_build_Values__Pattern
+	(Activity actv, String word) {
+		// TODO Auto-generated method stub
+		ContentValues val = new ContentValues();
+		
+		
+		val.put("created_at",
+				Methods.conv_MillSec_to_TimeLabel(Methods.getMillSeconds_now()));
+		val.put("modified_at",
+				Methods.conv_MillSec_to_TimeLabel(Methods.getMillSeconds_now()));
+		
+		val.put("word", word);
+		
+		return val;
+		
+	}//_build_Values__TI
+
 	
 }//public class DBUtils
+
 

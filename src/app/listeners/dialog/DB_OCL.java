@@ -314,11 +314,132 @@ public class DB_OCL implements OnClickListener {
 			
 			break;
 			
+		case DLG_REGISTER_PATTERNS_OK://------------------------------------------------
+			
+			dlg_DLG_REGISTER_PATTERNS_OK();
+			
+			break;
+			
 			
 		default: // ----------------------------------------------------
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void 
+	dlg_DLG_REGISTER_PATTERNS_OK() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// view
+
+		////////////////////////////////
+		EditText et = (EditText) d2.findViewById(R.id.dlg_tmpl_ok_cancel_et);
+		
+		////////////////////////////////
+
+		// get: value
+
+		////////////////////////////////
+		String new_Word = et.getText().toString();
+		
+		////////////////////////////////
+
+		// validate: any input
+
+		////////////////////////////////
+		if (new_Word == null ) {
+			
+			String msg = "Input => null";
+			Methods_dlg.dlg_ShowMessage_ThirdDialog(actv, msg, d1, d2, R.color.gold2);
+			
+			return;
+			
+		}
+		
+		if (new_Word.length() < 1) {
+			
+			String msg = "No input";
+			Methods_dlg.dlg_ShowMessage(actv, msg, R.color.red);
+			
+			return;
+			
+		}
+		
+		////////////////////////////////
+
+		// save word
+
+		////////////////////////////////
+		int res = DBUtils.save_Pattern(actv, new_Word);
+		
+		////////////////////////////////
+
+		// report
+
+		////////////////////////////////
+		String msg = null;
+		int colorID = 0;
+		
+//		-1 insertion => failed
+//		-2 Exception
+//		-3 pattern already in DB
+//		1 Inserted
+
+		
+		switch(res) {
+		
+		case -1: 
+			
+			msg = "insertion => failed";
+			colorID = R.color.red;
+
+			break;
+		
+		case -2: 
+			
+			msg = "Exception";
+			colorID = R.color.red;
+			
+			break;
+			
+		case -3: 
+			
+			msg = "pattern already in DB";
+			colorID = R.color.red;
+			
+			break;
+			
+		case 1: 
+			
+			msg = "Inserted => " + new_Word;
+			colorID = R.color.green4;
+			
+			d2.dismiss();
+			d1.dismiss();
+			
+			break;
+			
+		default:
+			
+			msg = "Unknown result => " + res;
+			colorID = R.color.gold2;
+			
+			d2.dismiss();
+			
+			break;
+			
+		}
+		
+		Methods_dlg.dlg_ShowMessage(
+//				Methods_dlg.dlg_ShowMessage_Duration(
+				actv, 
+				msg,
+				colorID);
+		
+		
+	}//dlg_DLG_REGISTER_PATTERNS_OK
 
 	private void 
 	dlg_DLG_CONF_DELETE_PATTERN_OK() {
