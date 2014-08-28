@@ -15,14 +15,14 @@ public class DB_OTL implements OnTouchListener {
 		----------------------------*/
 	//
 	Activity actv;
-	Dialog dlg;
+	Dialog d1;
 	private Dialog d2;
 	private Dialog d3;
 	
 	public DB_OTL(Activity actv, Dialog dlg) {
 		//
 		this.actv = actv;
-		this.dlg = dlg;
+		this.d1 = dlg;
 	}
 	
 	public DB_OTL(Activity actv) {
@@ -35,9 +35,20 @@ public class DB_OTL implements OnTouchListener {
 			// TODO Auto-generated constructor stub
 		
 		this.actv = actv;
-		this.dlg = d1;
+		this.d1 = d1;
 		this.d2 = d2;
 		this.d3 = d3;
+
+	}
+
+	public 
+	DB_OTL
+	(Activity actv, Dialog d1, Dialog d2) {
+		// TODO Auto-generated constructor stub
+		
+		this.actv = actv;
+		this.d1 = d1;
+		this.d2 = d2;
 
 	}
 

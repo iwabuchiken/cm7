@@ -240,11 +240,55 @@ public class DOI_CL implements OnItemClickListener {
 			
 			break;// case dlg_bmactv_list_long_click
 			
+		case ACTV_PLAY_OPTION_ADMIN_PATTERNS://----------------------------------------------
+			
+			li = (ListItem) parent.getItemAtPosition(position);
+			
+			case_ACTV_PLAY_OPTION_ADMIN_PATTERNS(li);
+			
+			break;// case dlg_bmactv_list_long_click
+			
 		default:
 			break;
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+
+	private void 
+	case_ACTV_PLAY_OPTION_ADMIN_PATTERNS
+	(ListItem li) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// Dispatch
+
+		////////////////////////////////
+		if (li.getText().equals(actv.getString(
+				R.string.generic_tv_register))) {
+
+			Methods_dlg.dlg_Register_Patterns(actv, d1);
+			
+		} else if (li.getText().equals(actv.getString(
+				R.string.generic_tv_edit))) {
+			
+//			Methods_dlg.conf_Delete_Pattern(actv, d1, d2, wp);
+			
+		} else if (li.getText().equals(actv.getString(
+				R.string.generic_tv_delete))) {
+			
+			Methods_dlg.conf_Delete_Pattern(actv, d1, d2, wp);
+			
+		} else  {
+
+			String msg = "Unknown choice => " + li.getText();
+			Methods_dlg.dlg_ShowMessage(actv, msg, R.color.gold2);
+			
+			return;
+
+		}		
+		
+	}//case_ACTV_PLAY_OPTION_ADMIN_PATTERNS
 
 	private void 
 	case_ACTV_PLAY_PATTERNS_LONGCLICK_LV

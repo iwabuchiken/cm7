@@ -33,6 +33,7 @@ import app.listeners.text.TV_TL;
 import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
+import app.utils.Methods_dlg;
 import app.utils.Tags;
 
 public class PlayActv extends Activity {
@@ -714,9 +715,9 @@ public class PlayActv extends Activity {
 		
 		switch (item.getItemId()) {
 			
-		case R.id.menu_actv_play_register_pattern://------------------------------------
+		case R.id.menu_actv_play_admin_pattern://------------------------------------
 			
-//			Methods.dlg_register_patterns(this);
+			Methods_dlg.dlg_Admin_Patterns_PlayActv_Option(this);
 			
 //			Methods_dlg.dlg_patterns(this);
 			

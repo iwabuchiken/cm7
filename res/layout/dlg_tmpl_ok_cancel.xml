@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp" >
+
+        <TextView
+            android:id="@+id/dlg_tmpl_ok_cancel_tv_message"
+            style="@style/tv_basic_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/commons_lbl_word" />
+
+        <EditText
+            android:id="@+id/dlg_tmpl_ok_cancel_et"
+            android:layout_weight="1"
+            
+            style="@style/et_basic_1"
+            
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/dlg_tmpl_ok_cancel_bt_ok"
+            style="@style/bt_basic_1"
+            android:layout_weight="1"
+            android:text="@string/generic_bt_ok" />
+
+        <Button
+            android:id="@+id/dlg_tmpl_ok_cancel_bt_cancel"
+            style="@style/bt_basic_1"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/generic_bt_cancel"
+            android:textColor="@color/red" />
+
+    </LinearLayout>
+
+</LinearLayout>
