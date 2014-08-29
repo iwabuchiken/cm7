@@ -43,45 +43,28 @@
 
         <ImageButton
             android:id="@+id/actv_al_ib_toTop"
-            android:src="@drawable/actv_al_top_disenabled_50x50"
-            
-            style="@style/v1_ib" 
-            
-            />
+            style="@style/v1_ib"
+            android:src="@drawable/actv_al_ib_top_45x45" />
 
         <ImageButton
-            android:id="@+id/actv_al_ib_prev_page"
-            android:src="@drawable/actv_al_up_disenabled_50x50"
-            
+            android:id="@+id/actv_al_ib_up"
             style="@style/v1_ib"
-            
-             />
+            android:src="@drawable/actv_al_up_50x50" />
 
         <ImageButton
             android:id="@+id/actv_al_ib_back"
-            android:src="@drawable/actv_al_back_50x50_disenabled"
-            
             style="@style/v1_ib"
-            
-			/>
+            android:src="@drawable/actv_al_back_50x50" />
 
         <ImageButton
-            android:id="@+id/actv_al_ib_next_page"
-            
-            android:src="@drawable/actv_al_down_disenabled_50x50"
-            
+            android:id="@+id/actv_al_ib_down"
             style="@style/v1_ib"
-            
-            />
+            android:src="@drawable/actv_al_down_50x50" />
 
         <ImageButton
             android:id="@+id/actv_al_ib_toBottom"
-        	
-            android:src="@drawable/actv_al_bottom_disenabled_50x50"
-            
             style="@style/v1_ib"
-            
-            />
+            android:src="@drawable/actv_al_ib_bottom_45x45" />
 
     </LinearLayout>
 

@@ -45,17 +45,17 @@
         <ImageButton
             android:id="@+id/actv_bm_ib_up"
             style="@style/v1_ib"
-            android:src="@drawable/ifm8_thumb_up_50x50" />
+            android:src="@drawable/actv_al_up_50x50" />
 
         <ImageButton
             android:id="@+id/actv_bm_ib_back"
             style="@style/v1_ib"
-            android:src="@drawable/ifm8_thumb_back_50x50" />
+            android:src="@drawable/actv_al_back_50x50" />
 
         <ImageButton
             android:id="@+id/actv_bm_ib_down"
             style="@style/v1_ib"
-            android:src="@drawable/ifm8_thumb_down_50x50" />
+            android:src="@drawable/actv_al_down_50x50" />
 
         <ImageButton
             android:id="@+id/actv_bm_ib_bottom"

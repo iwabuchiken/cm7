@@ -61,10 +61,13 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.AsyncTask;
+import android.os.Environment;
 import app.comps.Comp_WP;
 import app.items.AI;
 import app.items.BM;
 import app.items.Refresh;
+import app.items.WavFile;
+import app.items.WavFileException;
 import app.items.WordPattern;
 import app.listeners.MP_OCmpL;
 import app.listeners.dialog.DL;
@@ -3827,7 +3830,6 @@ public class Methods {
 		CONS.PlayActv.adp_Patterns_GV_3.notifyDataSetChanged();
 		
 	}//update_MemoActv_ListViews
-
 	
 }//public class Methods
 

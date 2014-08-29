@@ -37,6 +37,8 @@ public class BO_TL implements OnTouchListener {
 		// TODO ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ黷ｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ?�ｿｽ�ｿｽ\?�ｿｽ�ｿｽb?�ｿｽ�ｿｽh?�ｿｽ�ｿｽE?�ｿｽ�ｿｽX?�ｿｽ�ｿｽ^?�ｿｽ�ｿｽu
 		Tags.ButtonTags tag = (Tags.ButtonTags) v.getTag();
 		
+		ImageButton ib;
+		
 		switch (event.getActionMasked()) {
 		case MotionEvent.ACTION_DOWN: //----------------------------
 			
@@ -77,6 +79,41 @@ public class BO_TL implements OnTouchListener {
 				
 				break;
 				
+			case ACTV_AL_IB_BACK:
+
+				ib = (ImageButton) v;
+				ib.setImageResource(R.drawable.actv_al_back_50x50_disenabled);
+				
+				break;
+				
+			case ACTV_AL_IB_UP:
+				
+				ib = (ImageButton) v;
+				ib.setImageResource(R.drawable.actv_al_up_disenabled_50x50);
+				
+				break;
+				
+			case ACTV_AL_IB_DOWN:
+				
+				ib = (ImageButton) v;
+				ib.setImageResource(R.drawable.actv_al_down_50x50_disenabled);
+				
+				break;
+				
+			case ACTV_AL_IB_TOP:
+				
+				ib = (ImageButton) v;
+				ib.setImageResource(R.drawable.actv_al_ib_top_45x45_disabled);
+				
+				break;
+				
+			case ACTV_AL_IB_BOTTOM:
+				
+				ib = (ImageButton) v;
+				ib.setImageResource(R.drawable.actv_al_ib_bottom_45x45_disabled);
+				
+				break;
+
 			}//switch (tag)
 			
 			break;//case MotionEvent.ACTION_DOWN:
@@ -123,6 +160,41 @@ public class BO_TL implements OnTouchListener {
 				
 				break;
 
+			case ACTV_AL_IB_BACK:
+
+				ib = (ImageButton) v;
+				ib.setImageResource(R.drawable.actv_al_back_50x50);
+				
+				break;
+
+			case ACTV_AL_IB_UP:
+				
+				ib = (ImageButton) v;
+				ib.setImageResource(R.drawable.actv_al_up_50x50);
+				
+				break;
+
+			case ACTV_AL_IB_DOWN:
+				
+				ib = (ImageButton) v;
+				ib.setImageResource(R.drawable.actv_al_down_50x50);
+				
+				break;
+
+			case ACTV_AL_IB_TOP:
+				
+				ib = (ImageButton) v;
+				ib.setImageResource(R.drawable.actv_al_ib_top_45x45);
+				
+				break;
+				
+			case ACTV_AL_IB_BOTTOM:
+				
+				ib = (ImageButton) v;
+				ib.setImageResource(R.drawable.actv_al_ib_bottom_45x45);
+				
+				break;
+				
 			}//switch (tag)
 			
 			break;//case MotionEvent.ACTION_UP:

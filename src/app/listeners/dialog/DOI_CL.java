@@ -18,6 +18,7 @@ import app.items.ListItem;
 import app.items.WordPattern;
 import app.tasks.Task_RefreshDB;
 import app.utils.CONS;
+import app.utils.Lab;
 import app.utils.Methods;
 import app.utils.Methods_dlg;
 import app.utils.Ops;
@@ -387,6 +388,11 @@ public class DOI_CL implements OnItemClickListener {
 				R.string.dlg_db_admin_item_op_imp_patterns))) {
 			
 			Methods_dlg.conf_Import_Patterns(actv, d1, d2);
+			
+		} else if (li.getText().equals(actv.getString(
+				R.string.dlg_db_admin_item_op_imp_lab_wavefile))) {
+
+			Lab.lab_WaveFile(actv);
 			
 		} else  {
 

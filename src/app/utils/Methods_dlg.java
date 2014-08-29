@@ -1895,12 +1895,20 @@ public class Methods_dlg {
 				.setIconID(R.drawable.menu_icon_admin_32x32)
 				.setTextColor_ID(R.color.blue1)
 				.build());
+		
 		list.add(new ListItem.Builder()
 				.setText(actv.getString(
 						R.string.dlg_db_admin_item_op_imp_patterns))
 				.setIconID(R.drawable.menu_icon_admin_32x32_brown)
 				.setTextColor_ID(R.color.black)
 				.build());
+		
+		list.add(new ListItem.Builder()
+				.setText(actv.getString(
+						R.string.dlg_db_admin_item_op_imp_lab_wavefile))
+						.setIconID(R.drawable.menu_icon_admin_32x32_green)
+						.setTextColor_ID(R.color.green4)
+						.build());
 		
 		////////////////////////////////
 

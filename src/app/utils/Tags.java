@@ -173,6 +173,8 @@ public class Tags {
 		
 		// actv_hist.xml
 		actv_hist_ib_back, actv_hist_ib_bottom, actv_hist_ib_top,
+		
+		ACTV_AL_IB_BACK, ACTV_AL_IB_UP, ACTV_AL_IB_DOWN, ACTV_AL_IB_TOP, ACTV_AL_IB_BOTTOM,
 
 		
 		

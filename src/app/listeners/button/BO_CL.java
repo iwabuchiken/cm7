@@ -190,9 +190,190 @@ public class BO_CL implements OnClickListener {
 			
 			break;
 			
+		case ACTV_AL_IB_BACK:
+			
+			case_ACTV_AL_IB_BACK();
+			
+			break;
+			
+		case ACTV_AL_IB_UP:
+			
+			case_ACTV_AL_IB_UP();
+			
+			break;
+			
+		case ACTV_AL_IB_DOWN:
+			
+			case_ACTV_AL_IB_DOWN();
+			
+			break;
+			
+		case ACTV_AL_IB_TOP:
+			
+			case_ACTV_AL_IB_TOP();
+			
+			break;
+			
+		case ACTV_AL_IB_BOTTOM:
+			
+			case_ACTV_AL_IB_BOTTOM();
+			
+			break;
+			
 		}//switch (tag)
 		
 	}//public void onClick(View v)
+
+	private void 
+	case_ACTV_AL_IB_BOTTOM() {
+		// TODO Auto-generated method stub
+		
+		/******************************
+			validate: list
+		 ******************************/
+		if (CONS.ALActv.list_AI == null) {
+			
+	//		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+			
+			String tableName = 
+					Methods.conv_CurrentPath_to_TableName(CONS.ALActv.currentPath);
+			
+			// Log
+			String msg_Log = "table name = " + tableName;
+			Log.d("ALActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+
+			////////////////////////////////
+
+			// Get items from: DB
+
+			////////////////////////////////
+			CONS.ALActv.list_AI = DBUtils.find_All_AI(actv, tableName);
+			
+		}
+		
+		ListView lv = ((ListActivity) actv).getListView();
+		
+		int numOfGroups = CONS.ALActv.list_AI.size() / lv.getChildCount();
+		
+		int indexOfLastChild = lv.getChildCount() * numOfGroups;
+		
+		lv.setSelection(indexOfLastChild);
+	
+	}//case_ACTV_AL_IB_BOTTOM
+
+	private void case_ACTV_AL_IB_TOP() {
+		// TODO Auto-generated method stub
+		
+//		/******************************
+//			validate: list
+//		 ******************************/
+//		if (CONS.ALActv.list_AI == null) {
+//			
+//	//		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+//			
+//			String tableName = 
+//					Methods.conv_CurrentPath_to_TableName(CONS.ALActv.currentPath);
+//			
+//			// Log
+//			String msg_Log = "table name = " + tableName;
+//			Log.d("ALActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
+//
+//			////////////////////////////////
+//
+//			// Get items from: DB
+//
+//			////////////////////////////////
+//			CONS.ALActv.list_AI = DBUtils.find_All_AI(actv, tableName);
+//			
+//		}
+		
+		ListView lv = ((ListActivity) actv).getListView();
+		
+		lv.setSelection(0);
+
+	}
+
+	private void case_ACTV_AL_IB_DOWN() {
+		// TODO Auto-generated method stub
+		
+		/******************************
+			validate: list
+		 ******************************/
+		if (CONS.ALActv.list_AI == null) {
+			
+	//		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+			
+			String tableName = 
+					Methods.conv_CurrentPath_to_TableName(CONS.ALActv.currentPath);
+			
+			// Log
+			String msg_Log = "table name = " + tableName;
+			Log.d("ALActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+
+			////////////////////////////////
+
+			// Get items from: DB
+
+			////////////////////////////////
+			CONS.ALActv.list_AI = DBUtils.find_All_AI(actv, tableName);
+			
+		}
+		
+		ListView lv = ((ListActivity) actv).getListView();
+		
+		int new_Position = lv.getLastVisiblePosition();
+		
+		if((new_Position + lv.getChildCount()) 
+				> CONS.ALActv.list_AI.size()) {
+			
+			new_Position = CONS.ALActv.list_AI.size() - lv.getChildCount();
+			
+		}
+		
+		lv.setSelection(new_Position);
+		
+	}
+
+	private void case_ACTV_AL_IB_UP() {
+		// TODO Auto-generated method stub
+
+		ListView lv = ((ListActivity) actv).getListView();
+		
+		int lastPos = lv.getLastVisiblePosition();
+		
+		int childCount = lv.getChildCount();
+		
+		int new_Position;
+		
+		if (lastPos - (childCount * 2) + 2 > 0) {
+			
+			new_Position = lastPos - (childCount * 2) + 2;
+			
+		} else {
+			
+			new_Position = 0;
+	
+		}
+		
+		lv.setSelection(new_Position);		
+
+	}
+
+	private void 
+	case_ACTV_AL_IB_BACK() {
+		// TODO Auto-generated method stub
+		
+		actv.finish();
+		
+		actv.overridePendingTransition(0, 0);
+		
+	}
 
 	private void case_ACTV_MAIN_IB_UP() {
 		// TODO Auto-generated method stub

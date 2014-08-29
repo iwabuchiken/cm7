@@ -38,6 +38,8 @@ import android.widget.Toast;
 import app.adapters.Adp_AIList;
 import app.items.AI;
 import app.listeners.LOI_LCL;
+import app.listeners.button.BO_CL;
+import app.listeners.button.BO_TL;
 import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
@@ -183,6 +185,65 @@ public class ALActv extends ListActivity {
 		
 		lv.setOnItemLongClickListener(new LOI_LCL(this));
 		
+		////////////////////////////////
+
+		// button: back
+
+		////////////////////////////////
+		ImageButton ib_Back = (ImageButton) findViewById(R.id.actv_al_ib_back);
+		
+		ib_Back.setTag(Tags.ButtonTags.ACTV_AL_IB_BACK);
+		
+		ib_Back.setOnTouchListener(new BO_TL(this));
+		ib_Back.setOnClickListener(new BO_CL(this));
+		
+		////////////////////////////////
+		
+		// button: up
+		
+		////////////////////////////////
+		ImageButton ib_Up = (ImageButton) findViewById(R.id.actv_al_ib_up);
+		
+		ib_Up.setTag(Tags.ButtonTags.ACTV_AL_IB_UP);
+		
+		ib_Up.setOnTouchListener(new BO_TL(this));
+		ib_Up.setOnClickListener(new BO_CL(this));
+		
+		////////////////////////////////
+		
+		// button: up
+		
+		////////////////////////////////
+		ImageButton ib_Down = (ImageButton) findViewById(R.id.actv_al_ib_down);
+		
+		ib_Down.setTag(Tags.ButtonTags.ACTV_AL_IB_DOWN);
+		
+		ib_Down.setOnTouchListener(new BO_TL(this));
+		ib_Down.setOnClickListener(new BO_CL(this));
+		
+		////////////////////////////////
+		
+		// button: top
+		
+		////////////////////////////////
+		ImageButton ib_Top = (ImageButton) findViewById(R.id.actv_al_ib_toTop);
+		
+		ib_Top.setTag(Tags.ButtonTags.ACTV_AL_IB_TOP);
+		
+		ib_Top.setOnTouchListener(new BO_TL(this));
+		ib_Top.setOnClickListener(new BO_CL(this));
+		
+		////////////////////////////////
+		
+		// button: bottom
+		
+		////////////////////////////////
+		ImageButton ib_Bottom = (ImageButton) findViewById(R.id.actv_al_ib_toBottom);
+		
+		ib_Bottom.setTag(Tags.ButtonTags.ACTV_AL_IB_BOTTOM);
+		
+		ib_Bottom.setOnTouchListener(new BO_TL(this));
+		ib_Bottom.setOnClickListener(new BO_CL(this));
 		
 	}
 
