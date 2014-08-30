@@ -141,7 +141,9 @@ public class DOI_CL implements OnItemClickListener {
 	}
 
 	//	@Override
-	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+	public void 
+	onItemClick
+	(AdapterView<?> parent, View v, int position, long id) {
 		/*----------------------------
 		 * Steps
 		 * 1. Get tag
@@ -249,11 +251,148 @@ public class DOI_CL implements OnItemClickListener {
 			
 			break;// case dlg_bmactv_list_long_click
 			
+		case DLG_MOVE_FILES://----------------------------------------------
+			
+			choice = (String) parent.getItemAtPosition(position);
+			
+			case_DLG_MOVE_FILES(choice);
+			
+			break;// case dlg_bmactv_list_long_click
+
+		case DLG_MOVE_FILES_FOLDER://----------------------------------------------
+			
+			choice = (String) parent.getItemAtPosition(position);
+			
+			case_DLG_MOVE_FILES_FOLDER(choice);
+			
+			break;// case dlg_bmactv_list_long_click
+		
 		default:
 			break;
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+
+	private void 
+	case_DLG_MOVE_FILES_FOLDER
+	(String choice) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// validate: table name and the choice => same?
+
+		////////////////////////////////
+//		String tname_New = Methods.conv_CurrentPath_to_TableName(choice);
+		String tname_New = Methods.conv_CurrentPathMove_to_TableName(choice);
+	
+		String pref_CurPath = Methods.get_Pref_String(
+				actv, 
+				CONS.Pref.pname_MainActv, 
+				CONS.Pref.pkey_CurrentPath, 
+				null);
+
+		String tname_Current = Methods.conv_CurrentPath_to_TableName(pref_CurPath);
+		
+		if (tname_Current.equals(tname_New)) {
+			
+			String msg = "You are choosing the same table as the current one";
+			Methods_dlg.dlg_ShowMessage(actv, msg);
+			
+			return;
+			
+		}
+		
+		////////////////////////////////
+
+		// get: current path-move
+
+		////////////////////////////////
+		String curPath_Move = Methods.get_Pref_String(
+						actv, 
+						CONS.Pref.pname_MainActv, 
+						CONS.Pref.pkey_ALActv__CurPath_Move, 
+						CONS.DB.tname_CM7);
+
+		////////////////////////////////
+
+		// choice => Upper dir? ("..")
+
+		////////////////////////////////
+		if (choice.equals(CONS.Admin.dirString_UpperDir)) {
+
+			// Log
+			String msg_Log = "curPath_Move => " + curPath_Move;
+			Log.d("DOI_CL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			////////////////////////////////
+
+			// Uppder dir => top dir?
+
+			////////////////////////////////
+			if (curPath_Move.equals(CONS.DB.tname_CM7)) {
+
+				if (tname_Current.equals(curPath_Move)) {
+					
+					String message = "Same as the current path";
+					Methods_dlg.dlg_ShowMessage_ThirdDialog(
+								actv, message, d1, d2, R.color.gold2);
+					
+					return;
+					
+				}
+			
+				Methods_dlg.conf_MoveFiles__Folder_Top(actv, d1, d2);
+
+			////////////////////////////////
+
+			// Upper dir => not the top dir
+
+			////////////////////////////////
+			} else {
+				
+//				Methods.go_Up_Dir_Move(actv);
+				
+			}
+			
+			return;
+			
+		}
+
+		
+		////////////////////////////////
+
+		// dlg: confirm
+
+		////////////////////////////////
+		Methods_dlg.conf_MoveFiles__Folder(actv, d1, d2, choice);
+		
+	}
+
+	private void 
+	case_DLG_MOVE_FILES
+	(String choice) {
+		// TODO Auto-generated method stub
+	
+		////////////////////////////////
+
+		// dispatch
+
+		////////////////////////////////
+		if (choice.equals(actv.getString(
+				R.string.dlg_move_files_item_folder))) {
+
+			Methods_dlg.dlg_MoveFiles__Folder(actv, d1);
+			
+		} else if (choice.equals(actv.getString(		// Refresh DB
+				R.string.dlg_move_files_item_remote))) {
+			
+//			Methods_dlg.dlg_MoveFiles__Remote(actv, dlg1);
+			
+		}
+		
+	}//case_DLG_MOVE_FILES
 
 	private void 
 	case_ACTV_PLAY_OPTION_ADMIN_PATTERNS

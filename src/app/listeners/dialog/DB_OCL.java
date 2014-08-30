@@ -320,11 +320,25 @@ public class DB_OCL implements OnClickListener {
 			
 			break;
 			
+		case DLG_CONF_MOVE_FILES_FOLDER_OK://------------------------------------------------
+			
+			dlg_DLG_CONF_MOVE_FILES_FOLDER_OK();
+			
+			break;
 			
 		default: // ----------------------------------------------------
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void 
+	dlg_DLG_CONF_MOVE_FILES_FOLDER_OK() {
+		// TODO Auto-generated method stub
+
+		Methods.move_Files(actv, d1, d2, d3);
+		
+		
+	}//dlg_DLG_CONF_MOVE_FILES_FOLDER_OK
 
 	private void 
 	dlg_DLG_REGISTER_PATTERNS_OK() {

@@ -51,6 +51,19 @@ DLOI_LCL implements OnItemLongClickListener {
 
 	}
 
+	public 
+	DLOI_LCL
+	(Activity actv, Dialog d1, Dialog d2) {
+		// TODO Auto-generated constructor stub
+		
+		this.actv = actv;
+		this.d1	= d1;
+		this.d2	= d2;
+		
+		CONS.Admin.vib = (Vibrator) actv.getSystemService(actv.VIBRATOR_SERVICE);
+
+	}
+
 	public boolean
 	onItemLongClick
 	(AdapterView<?> parent, View v, int position, long id) {

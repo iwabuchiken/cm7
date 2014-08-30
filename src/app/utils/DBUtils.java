@@ -2,6 +2,7 @@ package app.utils;
 
 
 
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -3125,7 +3126,154 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//_build_Values__TI
 
-	
+	/******************************
+		@return
+		number of items updated
+	 ******************************/
+	public static int 
+	update_TI_All__TableName
+	(Activity actv, List<AI> toMoveFiles) {
+		// TODO Auto-generated method stub
+
+		////////////////////////////////
+
+		// vars
+
+		////////////////////////////////
+		int counter = 0;
+		
+		////////////////////////////////
+
+		// setup db
+
+		////////////////////////////////
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		SQLiteDatabase wdb = dbu.getWritableDatabase();
+
+		String sql = null;
+		
+		ContentValues val = null;
+		
+		////////////////////////////////
+
+		// update
+
+		////////////////////////////////
+		for (AI ti : toMoveFiles) {
+			
+			val = DBUtils.get_ContentValues__TI_TableName(actv, ti.getTable_name());
+			
+			String where = CONS.DB.col_names_CM7_full[0]
+							+ " = ?";
+			
+			String[] args = new String[]{String.valueOf(ti.getDb_id())};
+			
+			try {
+				// Start transaction
+				wdb.beginTransaction();
+				
+				// Insert data
+				long res = wdb.update(CONS.DB.tname_CM7, val, where, args);
+//				long res = wdb.insert(CONS.DB.tname_RefreshLog, null, val);
+				
+				if (res < 1) {
+//					if (res == -1) {
+					
+					// Log
+					String msg_Log = String.format(
+										"insertion => failed: file name = %s" +
+										" (result = %d)"
+										, ti.getFile_name(), res);
+
+					// Log
+					Log.d("DBUtils.java"
+							+ "["
+							+ Thread.currentThread().getStackTrace()[2]
+									.getLineNumber() + "]", msg_Log);
+					
+					wdb.endTransaction();
+			
+					continue;
+					
+				} else {
+					
+					// Log
+					String msg_Log = String.format(
+									"insertion => done (file name = %s)"
+									, ti.getFile_name());
+					Log.d("DBUtils.java"
+							+ "["
+							+ Thread.currentThread().getStackTrace()[2]
+									.getLineNumber() + "]", msg_Log);
+					
+				}
+				
+				// Set as successful
+				wdb.setTransactionSuccessful();
+				
+				// End transaction
+				wdb.endTransaction();
+				
+				// count
+				counter += 1;
+				
+			} catch (Exception e) {
+				
+				String msg_Log = String.format(
+							"Exception (%s) => " + e.toString(), 
+							ti.getFile_name());
+				// Log
+				Log.e("DBUtils.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ "]", msg_Log);
+
+				continue;
+				
+			}//try					
+			
+		}//for (TI ti : toMoveFiles)
+
+		////////////////////////////////
+
+		// close db
+
+		////////////////////////////////
+		wdb.close();
+		
+		
+		return counter;
+		
+	}//update_TI_All__TableName
+
+	private static ContentValues 
+	get_ContentValues__TI_TableName
+	(Activity actv, String tableName) {
+		// TODO Auto-generated method stub
+		ContentValues val = new ContentValues();
+		
+//		android.provider.BaseColumns._ID,	// 0
+//		"created_at", "modified_at",		// 1, 2
+//		"file_name", "file_path",			// 3, 4
+//		"title", "memo",					// 5, 6
+//		"last_played_at",					// 7
+//		"table_name",						// 8
+//		"length",							// 9
+//		"audio_created_at"					// 10		
+		
+		val.put(
+				CONS.DB.col_names_CM7_full[2],		// modified_at 
+				Methods.conv_MillSec_to_TimeLabel(
+						Methods.getMillSeconds_now()));
+		
+		val.put(
+				CONS.DB.col_names_CM7_full[8],		// memos
+				tableName);
+		
+		return val;
+		
+	}//_insert_Data_Patterns__ContentValues
+
 }//public class DBUtils
 
 

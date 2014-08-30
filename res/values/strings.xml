@@ -163,6 +163,21 @@
    			
 	<!-- dlg: conf move files -->
    		<string name="dlg_alactv_move_files_confirm_message">Move ?</string>
-    		
+
+   	<!-- dlg: move files -->
+   		<string name="dlg_move_files_title">Move files</string>
+   		<string name="dlg_move_files_title_folder">Move to folder</string>
+   		<string name="dlg_move_files_title_remote">Move to remote</string>
+   		
+   		<string name="dlg_move_files_confirm_move_to_folder_msg">
+   		    										Move files to folder?</string>
+   		<string name="dlg_move_files_confirm_move_to_rmeote_msg">
+   		    										Move files to remote?</string>
+   		<string name="dlg_move_files_confirm_move_to_flolder_top_msg">
+   		    										Move files to top dir?</string>
+   		
+   		<string name="dlg_move_files_item_folder">To folder</string>
+   		<string name="dlg_move_files_item_remote">To remote</string>
+   						
 </resources>
 

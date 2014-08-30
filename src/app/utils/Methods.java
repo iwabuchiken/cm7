@@ -3939,8 +3939,8 @@ public class Methods {
 		
 		Methods.sort_List_ai_List(
 						CONS.ALActv.list_AI, 
-						CONS.Enums.SortType.CREATED_AT, 
-						CONS.Enums.SortOrder.ASC);
+						CONS.Enums.SortType.FileName, 
+						CONS.Enums.SortOrder.DEC);
 		
 		////////////////////////////////
 	
@@ -4093,8 +4093,9 @@ public class Methods {
 		
 		Methods.sort_List_ai_List(
 						CONS.ALActv.list_AI, 
-						CONS.Enums.SortType.CREATED_AT, 
-						CONS.Enums.SortOrder.ASC);
+						CONS.Enums.SortType.FileName, 
+						CONS.Enums.SortOrder.DEC);
+//		CONS.Enums.SortOrder.ASC);
 		
 		////////////////////////////////
 	
@@ -4211,6 +4212,182 @@ public class Methods {
 //		return list_TNActv_Main;
 //		
 //	}//_moveMode_False__Search
+
+	public static void 
+	move_Files
+	(Activity actv, 
+			Dialog dlg1, Dialog dlg2, Dialog dlg3) {
+
+		////////////////////////////////
+
+		// get: choice
+
+		////////////////////////////////
+		TextView tv_ItemName = 
+				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_tv_item_name);
+		
+		String choice = tv_ItemName.getText().toString();
+		
+		// Log
+		String msg_Log = "target path => " + choice;
+
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+
+		// conv: choice string to => table name
+
+		////////////////////////////////
+		String tname_New = Methods.conv_CurrentPathMove_to_TableName(choice);
+		
+		// Log
+		msg_Log = "tname_New => " + tname_New;
+		
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+
+		// build: TI list from => checkedPositions
+
+		////////////////////////////////
+		List<AI> toMoveFiles = _move_Files__Get_ToMoveList();
+		
+		// Log
+		msg_Log = "toMoveFiles.size => " + toMoveFiles.size();
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+
+		////////////////////////////////
+
+		// update: table name
+
+		////////////////////////////////
+		for (AI ti : toMoveFiles) {
+			
+			ti.setTable_name(tname_New);
+			
+		}
+		
+		////////////////////////////////
+
+		// update: DB
+
+		////////////////////////////////
+		int counter = DBUtils.update_TI_All__TableName(actv, toMoveFiles);
+		
+		// Log
+		msg_Log = "moved => " + counter;
+		
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+
+		// clear: checkedPositions
+
+		////////////////////////////////
+		CONS.ALActv.checkedPositions.clear();
+		
+		////////////////////////////////
+
+		// re-build: TI list
+
+		////////////////////////////////
+		// current path
+		String currentPath = Methods.get_Pref_String(
+				actv, 
+				CONS.Pref.pname_MainActv, 
+				CONS.Pref.pkey_CurrentPath, 
+				null);
+
+		/******************************
+			validate: null
+		 ******************************/
+		if (currentPath == null) {
+			
+			String msg = "Can't get current path";
+			Methods_dlg.dlg_ShowMessage(actv, msg, R.color.red);
+			
+			return;
+			
+		}
+		
+		////////////////////////////////
+
+		// re-build: TI list (move)
+
+		////////////////////////////////
+		// conv to => table
+		String cur_TableName = Methods.conv_CurrentPath_to_TableName(currentPath);
+		
+		// list
+		CONS.ALActv.list_AI.clear();
+		
+		List<AI> ti_List_Move = DBUtils.find_All_AI(actv, cur_TableName);
+		
+		if (ti_List_Move != null) {
+			
+			CONS.ALActv.list_AI.addAll(ti_List_Move);
+//			DBUtils.find_All_TI(actv, cur_TableName));
+			
+		}
+		
+		////////////////////////////////
+
+		// sort
+
+		////////////////////////////////
+		Methods.sort_List_ai_List(
+				CONS.ALActv.list_AI,
+				CONS.Enums.SortType.FileName, 
+				CONS.Enums.SortOrder.DEC);
+		
+		////////////////////////////////
+	
+		// notify
+	
+		////////////////////////////////
+		CONS.ALActv.adp_TNActv_Main_Move.notifyDataSetChanged();
+		
+		// Log
+		msg_Log = "adapter(move) => notified";
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+	
+		// dismiss dlgs
+	
+		////////////////////////////////
+		dlg3.dismiss();
+		dlg2.dismiss();
+		dlg1.dismiss();
+		
+	}//public static void move_Files
+
+	private static List<AI>
+	_move_Files__Get_ToMoveList() {
+		// TODO Auto-generated method stub
+		
+		List<AI> toMoveFiles = new ArrayList<AI>();
+		
+		for (int position : CONS.ALActv.checkedPositions) {
+			
+			toMoveFiles.add(CONS.ALActv.list_AI.get(position));
+			
+		}//for (int position : ThumbnailActivity.checkedPositions)
+		
+		
+		return toMoveFiles;
+		
+	}//_move_Files__Get_ToMoveList
 
 }//public class Methods
 

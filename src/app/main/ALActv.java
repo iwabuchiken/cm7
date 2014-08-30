@@ -43,6 +43,7 @@ import app.listeners.button.BO_TL;
 import app.utils.CONS;
 import app.utils.DBUtils;
 import app.utils.Methods;
+import app.utils.Methods_dlg;
 import app.utils.Tags;
 
 public class ALActv extends ListActivity {
@@ -622,7 +623,11 @@ public class ALActv extends ListActivity {
 			
 			break;// case R.id.thumb_actv_menu_move_files
 	
-		
+		case R.id.al_actv_menu_move_files://---------------------------------------
+			
+			_case_Opt_MoveFiles();
+			
+			break;// case R.id.thumb_actv_menu_move_files
 		
 		}//switch (item.getItemId())
 		
@@ -632,4 +637,32 @@ public class ALActv extends ListActivity {
 		
 	}//public boolean onOptionsItemSxelected(MenuItem item)
 
+	private void 
+	_case_Opt_MoveFiles() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// validate: any positions
+
+		////////////////////////////////
+		if (CONS.ALActv.checkedPositions.size() < 1) {
+			
+			String msg = "No checked positions";
+			Methods_dlg.dlg_ShowMessage(this, msg, R.color.red);
+			
+			return;
+			
+		}
+		
+		////////////////////////////////
+
+		// start: dialog
+
+		////////////////////////////////
+		Methods_dlg.dlg_MoveFiles(this);
+		
+	}//_case_Opt_MoveFiles
+
+	
 }//public class TNActv

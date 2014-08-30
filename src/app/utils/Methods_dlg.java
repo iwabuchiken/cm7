@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -2546,7 +2547,9 @@ public class Methods_dlg {
 		TextView tv_Message = 
 				(TextView) dlg3.findViewById(R.id.dlg_tmpl_toast_ok_tv_message);
 		
-		tv_Message.setTextColor(colorID);
+		tv_Message.setBackgroundColor(actv.getResources().getColor(colorID));
+		
+		tv_Message.setTextColor(Color.WHITE);
 		
 		tv_Message.setText(message);
 		
@@ -2599,5 +2602,349 @@ public class Methods_dlg {
 		return dlg3;
 		
 	}//public static Dialog dlg_template_okCancel()
+
+	public static void 
+	dlg_MoveFiles
+	(Activity actv) {
+		// TODO Auto-generated method stub
+
+		////////////////////////////////
+
+		// dialog
+
+		////////////////////////////////
+		Dialog dlg1 = Methods_dlg.dlg_Template_Cancel(
+				actv, R.layout.dlg_tmpl_list_cancel, 
+				R.string.dlg_move_files_title, 
+				R.id.dlg_tmpl_list_cancel_bt_cancel, 
+//				R.id.dlg_db_admin_bt_cancel, 
+				Tags.DialogTags.GENERIC_DISMISS);
+
+		////////////////////////////////
+
+		// Prep => List
+
+		////////////////////////////////
+		String[] choices = {
+		
+			actv.getString(R.string.dlg_move_files_item_folder),
+			actv.getString(R.string.dlg_move_files_item_remote),
+		
+		};
+		
+		List<String> list = new ArrayList<String>();
+		
+		for (String item : choices) {
+		
+			list.add(item);
+		
+		}
+		
+		////////////////////////////////
+
+		// Adapter
+
+		////////////////////////////////
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+				
+					actv,
+					R.layout.list_row_simple_1,
+					list
+					
+		);
+		
+		/****************************
+		* 4. Set adapter
+		****************************/
+		ListView lv = (ListView) dlg1.findViewById(R.id.dlg_tmpl_list_cancel_lv);
+		
+		lv.setAdapter(adapter);
+		
+		/****************************
+		* 5. Set listener to list
+		****************************/
+//		lv.setTag(Tags.DialogItemTags.dlg_move_files);
+		lv.setTag(Tags.DialogItemTags.DLG_MOVE_FILES);
+		
+		lv.setOnItemClickListener(new DOI_CL(actv, dlg1));
+		
+		/****************************
+		* 6. Show dialog
+		****************************/
+		dlg1.show();
+		
+	}
+
+	public static void 
+	dlg_MoveFiles__Folder
+	(Activity actv, Dialog d1) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// dialog
+
+		////////////////////////////////
+		Dialog d2 = Methods_dlg.dlg_Template_Cancel_SecondDialog(
+				actv, d1,
+				R.layout.dlg_tmpl_list_cancel_2, 
+				R.string.dlg_move_files_title_folder, 
+				R.id.dlg_tmpl_list_cancel_2_bt_cancel, 
+//				R.id.dlg_db_admin_bt_cancel, 
+				Tags.DialogTags.DLG_GENERIC_DISMISS_SECOND_DIALOG);
+
+		////////////////////////////////
+
+		// Prep => List
+
+		////////////////////////////////
+		boolean res = _dlg_MoveFiles__Folder__BuildList(actv);
+
+		if (res == false) {
+			
+			String msg = "Can't build folders list";
+			Methods_dlg.dlg_ShowMessage(actv, msg, R.color.red);
+			
+			return;
+		}
+		
+		////////////////////////////////
+
+		// set: pref: current path
+
+		////////////////////////////////
+		res = 
+				Methods.set_Pref_String(
+							actv, 
+							CONS.Pref.pname_MainActv, 
+							CONS.Pref.pkey_ALActv__CurPath_Move, 
+							CONS.DB.tname_CM7);
+
+		////////////////////////////////
+
+		// Adapter
+
+		////////////////////////////////
+		CONS.ALActv.adp_DirList = new ArrayAdapter<String>(
+				
+					actv,
+					R.layout.list_row_simple_1,
+					CONS.ALActv.dir_List
+//					list
+					
+		);
+		
+		/****************************
+		* 4. Set adapter
+		****************************/
+		ListView lv = (ListView) d2.findViewById(R.id.dlg_tmpl_list_cancel_2_lv);
+		
+		lv.setAdapter(CONS.ALActv.adp_DirList);
+//		lv.setAdapter(adapter);
+		
+		////////////////////////////////
+
+		// Set listener to list
+
+		////////////////////////////////
+		// Item click
+//		lv.setTag(Tags.DialogItemTags.dlg_move_files);
+		lv.setTag(Tags.DialogItemTags.DLG_MOVE_FILES_FOLDER);
+		
+		lv.setOnItemClickListener(new DOI_CL(actv, d1, d2));
+
+		// Long click
+		lv.setOnItemLongClickListener(new DLOI_LCL(actv, d1, d2));
+//		lv.setOnItemLongClickListener(new LOI_LCL(actv, dlg1, dlg2));
+		
+		/****************************
+		* 6. Show dialog
+		****************************/
+		d2.show();
+		
+	}//dlg_MoveFiles__Folder
+
+	private static boolean 
+	_dlg_MoveFiles__Folder__BuildList
+	(Activity actv) {
+		// TODO Auto-generated method stub
+		
+		List<String> list = new ArrayList<String>();
+		
+//		////////////////////////////////
+//
+//		// set: pref: current path
+//
+//		////////////////////////////////
+//		boolean res = 
+//				Methods.set_Pref_String(
+//							actv, 
+//							CONS.Pref.pname_MainActv, 
+//							CONS.Pref.pkey_TNActv__CurPath_Move, 
+//							CONS.DB.tname_IFM11);
+//		
+		////////////////////////////////
+
+		// get: top directory
+
+		////////////////////////////////
+		String currentPath = StringUtils.join(
+				new String[]{
+						CONS.Paths.dpath_Storage_Sdcard, 
+						CONS.Paths.dname_Base},
+				File.separator);
+
+		if (currentPath == null) {
+			
+//			String msg = "Can't get the current path: " + currentPath;
+//			Methods_dlg.dlg_ShowMessage(actv, msg);
+			
+			return false;
+			
+		}
+		
+		//CONS.ALActv.dir_List = Methods.get_DirList(currentPath);
+		List<String> dir_List = Methods.get_DirList(currentPath);
+		CONS.ALActv.dir_List = new ArrayList<String>();
+		
+		for (String dirName : dir_List) {
+		//	for (String dirName : CONS.ALActv.dir_List) {
+			
+			CONS.ALActv.dir_List.add(
+							CONS.Paths.dname_Base + File.separator + dirName);
+		//	dirName = CONS.DB.tname_CM7 + File.separator + dirName;
+			
+		}
+		
+		// Log
+		String msg_Log = "dir list => modified";
+		Log.d("Methods_dlg.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		CONS.ALActv.dir_List.add(CONS.Admin.dirString_UpperDir);		
+		
+		////////////////////////////////
+
+		// return
+
+		////////////////////////////////
+		return true;
+		
+//		return list;
+		
+	}//_dlg_MoveFiles__Folder__BuildList
+
+	public static void 
+	conf_MoveFiles__Folder
+	(Activity actv, 
+		Dialog dlg1, Dialog dlg2, String choice) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// dialog
+
+		////////////////////////////////
+		Dialog dlg3 = 
+				Methods_dlg.dlg_Tmpl_OkCancel_ThirdDialog(
+						actv, 
+						R.layout.dlg_tmpl_confirm_simple, 
+						R.string.generic_tv_confirm, 
+						
+						R.id.dlg_tmpl_confirm_simple_btn_ok, 
+						R.id.dlg_tmpl_confirm_simple_btn_cancel, 
+						
+						Tags.DialogTags.DLG_CONF_MOVE_FILES_FOLDER_OK, 
+						Tags.DialogTags.DLG_GENERIC_DISMISS_THIRD_DIALOG, 
+						
+						dlg1, dlg2);
+		
+		////////////////////////////////
+
+		// view: message
+
+		////////////////////////////////
+		TextView tv_Msg = 
+				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_tv_message);
+		
+		tv_Msg.setText(actv.getString(
+								R.string.dlg_move_files_confirm_move_to_folder_msg));
+		
+		////////////////////////////////
+
+		// view: item name
+
+		////////////////////////////////
+		TextView tv_ItemName = 
+				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_tv_item_name);
+//		dlg_tmpl_confirm_simple_tv_message
+		
+		tv_ItemName.setText(choice);
+		
+		////////////////////////////////
+
+		// show
+
+		////////////////////////////////
+		dlg3.show();
+		
+	}//conf_MoveFiles__Folder
+//	
+	public static void 
+	conf_MoveFiles__Folder_Top
+	(Activity actv, 
+			Dialog dlg1, Dialog dlg2) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+		
+		// dialog
+		
+		////////////////////////////////
+		Dialog dlg3 = 
+				Methods_dlg.dlg_Tmpl_OkCancel_ThirdDialog(
+						actv, 
+						R.layout.dlg_tmpl_confirm_simple, 
+						R.string.generic_tv_confirm, 
+						
+						R.id.dlg_tmpl_confirm_simple_btn_ok, 
+						R.id.dlg_tmpl_confirm_simple_btn_cancel, 
+						
+						Tags.DialogTags.DLG_CONF_MOVE_FILES_FOLDER_TOP_OK, 
+						Tags.DialogTags.DLG_GENERIC_DISMISS_THIRD_DIALOG, 
+						
+						dlg1, dlg2);
+		
+		////////////////////////////////
+		
+		// view: message
+		
+		////////////////////////////////
+		TextView tv_Msg = 
+				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_tv_message);
+		
+		tv_Msg.setText(actv.getString(
+				R.string.dlg_move_files_confirm_move_to_flolder_top_msg));
+		
+		////////////////////////////////
+		
+		// view: item name
+		
+		////////////////////////////////
+		TextView tv_ItemName = 
+				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_tv_item_name);
+//		dlg_tmpl_confirm_simple_tv_message
+		
+		tv_ItemName.setText(CONS.Paths.dname_Base);
+		
+		////////////////////////////////
+		
+		// show
+		
+		////////////////////////////////
+		dlg3.show();
+		
+	}//conf_MoveFiles__Folder
 
 }//public class Methods_dialog
