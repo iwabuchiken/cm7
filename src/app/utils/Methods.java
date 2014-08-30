@@ -63,7 +63,7 @@ import android.widget.Toast;
 import android.os.AsyncTask;
 import android.os.Environment;
 import app.adapters.Adp_AIList;
-import app.adapters.Adp_TIList_Move;
+import app.adapters.Adp_AIList_Move;
 import app.comps.Comp_WP;
 import app.items.AI;
 import app.items.BM;
@@ -3977,6 +3977,12 @@ public class Methods {
 		////////////////////////////////
 		((ListActivity) actv).setListAdapter(CONS.ALActv.adp_AIList);
 		
+		////////////////////////////////
+
+		// set selection
+
+		////////////////////////////////
+		Methods.set_Selection(actv);
 		
 	}//_moveMode_True
 
@@ -4095,7 +4101,7 @@ public class Methods {
 		// adapter
 	
 		////////////////////////////////
-		CONS.ALActv.adp_TNActv_Main_Move = new Adp_TIList_Move(
+		CONS.ALActv.adp_TNActv_Main_Move = new Adp_AIList_Move(
 				actv,
 				R.layout.list_row_ai_list_checkbox,
 	//			R.layout.list_row,
@@ -4116,7 +4122,71 @@ public class Methods {
 		////////////////////////////////
 		((ListActivity) actv).setListAdapter(CONS.ALActv.adp_TNActv_Main_Move);
 	
+		////////////////////////////////
+
+		// set selection
+
+		////////////////////////////////
+		Methods.set_Selection(actv);
+		
 	}//_moveMode_False
+
+	public static void 
+	set_Selection
+	(Activity actv) {
+		// TODO Auto-generated method stub
+		
+		/******************************
+			validate: position => set?
+		 ******************************/
+		if(CONS.ALActv.display_TopPosition_Current == -1
+				|| CONS.ALActv.display_TopPosition_Previous == -1)
+			
+			return;
+		
+		////////////////////////////////
+	
+		// Calculate: target position
+	
+		////////////////////////////////
+		int target_Position;
+		
+		// If the current is larger than the previous,
+		//	i.e. the position is increasing
+		//	=> modify the target
+		if (CONS.ALActv.display_TopPosition_Current > 
+				CONS.ALActv.display_TopPosition_Previous) {
+			
+			target_Position = CONS.ALActv.display_TopPosition_Current - 5;
+			
+		} else {
+			
+			// If the current is smaller than the previous,
+			//	i.e. the position is decreasing
+			//	=> set the target with the current
+			target_Position = CONS.ALActv.display_TopPosition_Current;
+	
+		}
+		
+		// Log
+		String msg_Log = "CONS.ALActv.display_TopPosition_Current = "
+						+ CONS.ALActv.display_TopPosition_Current
+						+ " // "
+						+ "CONS.ALActv.display_TopPosition_Previous = "
+						+ CONS.ALActv.display_TopPosition_Previous
+						+ " // "
+						+ "target_Position = "
+						+ target_Position
+						;
+		Log.d("ALActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		//REF http://stackoverflow.com/questions/7561353/programmatically-scroll-to-a-specific-position-in-an-android-listview answered Sep 26 '11 at 21:39
+		((ListActivity)actv).getListView().setSelection(target_Position);
+		
+		
+	}//set_Selection
 
 //	private static List<TI> 
 //	_moveMode_False__Search

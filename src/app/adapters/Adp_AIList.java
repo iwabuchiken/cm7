@@ -270,10 +270,10 @@ public class Adp_AIList extends ArrayAdapter<AI> implements OnTouchListener {
 		if (pref_CurrentPosition == position) {
 			
 			tv_FileName.setBackgroundColor(
-					((Activity)con).getResources().getColor(R.color.blue1));
+					((Activity)con).getResources().getColor(R.color.gold2));
 
 			tv_FileName.setTextColor(
-					((Activity)con).getResources().getColor(R.color.white));
+					((Activity)con).getResources().getColor(R.color.black));
 			
 //			this.notifyDataSetChanged();
 			

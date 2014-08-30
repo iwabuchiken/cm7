@@ -18,7 +18,7 @@ import app.adapters.Adp_BMList;
 import app.adapters.Adp_ImpList;
 import app.adapters.Adp_ListItems;
 import app.adapters.Adp_MainList;
-import app.adapters.Adp_TIList_Move;
+import app.adapters.Adp_AIList_Move;
 import app.adapters.Adp_WordPatterns;
 import app.items.AI;
 import app.items.BM;
@@ -431,7 +431,7 @@ public class CONS {
 		
 		public static Adp_AIList adp_AIList;
 		
-		public static Adp_TIList_Move adp_TNActv_Main_Move;
+		public static Adp_AIList_Move adp_TNActv_Main_Move;
 		
 		public static int display_TopPosition_Current = -1;
 		public static int display_TopPosition_Previous = -1;

@@ -28,9 +28,10 @@ import app.items.AI;
 import app.listeners.LCL;
 import app.listeners.button.BO_CL;
 import app.utils.CONS;
+import app.utils.Methods;
 import app.utils.Tags;
 
-public class Adp_TIList_Move extends ArrayAdapter<AI> {
+public class Adp_AIList_Move extends ArrayAdapter<AI> {
 
 	/*--------------------------------------------------------
 	 * Class fields
@@ -52,7 +53,7 @@ public class Adp_TIList_Move extends ArrayAdapter<AI> {
 		--------------------------------------------------------*/
 	//
 	public 
-	Adp_TIList_Move
+	Adp_AIList_Move
 	(Context con, int resourceId, List<AI> items) {
 		// Super
 		super(con, resourceId, items);
@@ -72,7 +73,7 @@ public class Adp_TIList_Move extends ArrayAdapter<AI> {
 	}//public TIListAdapter(Context con, int resourceId, List<TI> items)
 
 
-	public Adp_TIList_Move(Context con, int resourceId, List<AI> items, 
+	public Adp_AIList_Move(Context con, int resourceId, List<AI> items, 
 											CONS.Enums.MoveMode moveMode) {
 		// Super
 		super(con, resourceId, items);
@@ -138,122 +139,52 @@ public class Adp_TIList_Move extends ArrayAdapter<AI> {
 
 		}//if (convertView != null)
 
-//    	/*----------------------------
-//		 * 2.2. Get view
-//			----------------------------*/
-//    	ImageView iv = (ImageView) v.findViewById(R.id.list_row_checked_box_iv_thumbnail);
-
     	/*----------------------------
 		 * 2.3. Get item
 			----------------------------*/
-    	AI ti = getItem(position);
+    	AI ai = getItem(position);
 
-//    	////////////////////////////////
-//
-//		// bitmap
-//
-//		////////////////////////////////
-//    	ContentResolver cr = con.getContentResolver();
-//    	
-//    	// Bitmap
-//    	Bitmap bmp = 
-//				MediaStore.Images.Thumbnails.getThumbnail(
-//							cr, 
-//							ti.getFileId(), 
-//							MediaStore.Images.Thumbnails.MICRO_KIND, 
-//							null);
-//    	
-//    	/******************************
-//			validate: null
-//		 ******************************/
-//		if (bmp == null) {
-//			
-//			//REF http://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap answered Jun 14 '10 at 8:32
-//			bmp = BitmapFactory.decodeResource(con.getResources(), R.drawable.ic_launcher);
-//			
-//		}
-//    	
-//    	// Set bitmap
-//    	iv.setImageBitmap(bmp);
-//    	
     	////////////////////////////////
 
 		// memo, file name
 
 		////////////////////////////////
-		TextView tv_FileName = 
-				(TextView) v.findViewById(R.id.list_row_ai_list_checkbox_tv_file_name);
-		
-		tv_FileName.setText(ti.getFile_name());
-
-		tv_FileName.setClickable(true);
-
-    	////////////////////////////////
-
-		// View: File name
-		// Set background: current position
-
-		////////////////////////////////
-//		int savedPosition = Methods.get_Pref_Int(
-//								(Activity)con, 
-//								CONS.Pref.pname_MainActv, 
-//								CONS.Pref.pkey_CurrentPosition_TNActv, 
-//								CONS.Pref.dflt_IntExtra_value);
-		
-//		if (savedPosition == position) {
-//			
-//			tv_FileName.setBackgroundResource(R.color.gold2);
-//			tv_FileName.setTextColor(Color.BLACK);
-//			
-//		} else if (savedPosition == -1) {//if (savedPosition == position)
-//			
-//		} else {//if (savedPosition == position)
-//			
-//			tv_FileName.setBackgroundColor(Color.BLACK);
-//			tv_FileName.setTextColor(Color.WHITE);
-//			
-//		}//if (savedPosition == position)
-
-		// move_mode
-		if (CONS.ALActv.checkedPositions.contains((Integer) position)) {
-			
-			tv_FileName.setTextColor(((Activity)con).getResources().getColor(R.color.white));
-			tv_FileName.setBackgroundColor(Color.BLUE);
-			
-		} else {//if (ThumbnailActivity.move_mode == true)
-				
-			tv_FileName.setTextColor(((Activity)con).getResources().getColor(R.color.black));
-			tv_FileName.setBackgroundColor(Color.WHITE);
-				
-		}
-		
+    	_getView_Set_FileName(v, ai, position);
+    	
 		////////////////////////////////
 
 		// view: Length
 
 		////////////////////////////////
-		TextView tv_Length = 
-				(TextView) v.findViewById(R.id.list_row_ai_list_checkbox_tv_file_length);
-		
-//		String memo = ti.getMemo();
-		String file_LEn = ti.getLength();
-		
-		if (file_LEn != null) {
-			tv_Length.setText(file_LEn);
-			
-		} else {//if (memo)
-
-			tv_Length.setText("");
-		}//if (memo)
-		
-		tv_Length.setTextColor(((Activity)con).getResources().getColor(R.color.white));
-		tv_Length.setBackgroundColor(((Activity)con).getResources().getColor(R.color.black));
-		
+    	_getView_Set_FileLength(v, ai, position);
+    	
+    	////////////////////////////////
+    	
+    	// view: title
+    	
+    	////////////////////////////////
+    	_getView_Set_FileTitle(v, ai, position);
+    	
 		////////////////////////////////
 
 		// view: checkbox
 
 		////////////////////////////////
+    	_getView_Set_CheckBox(v, ai, position);
+    	
+		/*----------------------------
+		 * 2.7. Return
+			----------------------------*/
+		return v;
+		
+	}//moveMode_on
+
+
+	private void 
+	_getView_Set_CheckBox
+	(View v, AI ai, int position) {
+		// TODO Auto-generated method stub
+		
 		CheckBox cb = (CheckBox) v.findViewById(R.id.list_row_ai_list_checkbox_cb);
 		
 //		cb.setTag(Tags.ButtonTags.tilist_cb);
@@ -275,12 +206,95 @@ public class Adp_TIList_Move extends ArrayAdapter<AI> {
 		
 		
 		cb.setOnLongClickListener(new LCL((Activity) con, position));
-
-		/*----------------------------
-		 * 2.7. Return
-			----------------------------*/
-		return v;
 		
-	}//moveMode_on
+	}
+	
 
+
+	private void 
+	_getView_Set_FileLength
+	(View v, AI ai, int position) {
+		// TODO Auto-generated method stub
+		
+		TextView tv_Length = 
+				(TextView) v.findViewById(R.id.list_row_ai_list_checkbox_tv_file_length);
+		
+//		String memo = ti.getMemo();
+		String file_LEn = ai.getLength();
+		
+		if (file_LEn != null) {
+			tv_Length.setText(file_LEn);
+			
+		} else {//if (memo)
+
+			tv_Length.setText("");
+		}//if (memo)
+		
+		tv_Length.setTextColor(((Activity)con).getResources().getColor(R.color.white));
+		tv_Length.setBackgroundColor(((Activity)con).getResources().getColor(R.color.black));
+		
+	}
+	
+
+
+	private void 
+	_getView_Set_FileName
+	(View v, AI ai, int position) {
+		// TODO Auto-generated method stub
+		
+		TextView tv_FileName = 
+				(TextView) v.findViewById(R.id.list_row_ai_list_checkbox_tv_file_name);
+		
+		tv_FileName.setText(ai.getFile_name());
+
+		tv_FileName.setClickable(true);
+
+    	////////////////////////////////
+
+		// Current position
+
+		////////////////////////////////
+    	int pref_CurrentPosition = 
+    			Methods.get_Pref_Int(
+    					(Activity)con, 
+    					CONS.Pref.pname_ALActv, 
+    					CONS.Pref.pkey_CurrentPosition_ALActv,
+    					-1);
+
+		// move_mode
+		if (pref_CurrentPosition == position) {
+			
+			tv_FileName.setTextColor(
+					((Activity)con).getResources().getColor(R.color.black));
+			tv_FileName.setBackgroundColor(
+					((Activity)con).getResources().getColor(R.color.gold2));
+			
+		} else if (CONS.ALActv.checkedPositions.contains((Integer) position)) {//if (ThumbnailActivity.move_mode == true)
+			
+			tv_FileName.setTextColor(((Activity)con).getResources().getColor(R.color.white));
+			tv_FileName.setBackgroundColor(Color.BLUE);
+			
+		} else {//if (ThumbnailActivity.move_mode == true)
+				
+			tv_FileName.setTextColor(((Activity)con).getResources().getColor(R.color.black));
+			tv_FileName.setBackgroundColor(Color.WHITE);
+				
+		}
+		
+	}
+
+	private void 
+	_getView_Set_FileTitle
+	(View v, AI ai, int position) {
+		// TODO Auto-generated method stub
+		
+		TextView tv_FileTitle = 
+				(TextView) v.findViewById(R.id.list_row_ai_list_checkbox_tv_title);
+		
+		tv_FileTitle.setText(ai.getTitle());
+		
+		tv_FileTitle.setClickable(true);
+		
+	}
+	
 }//public class TIListAdapter extends ArrayAdapter<TI>

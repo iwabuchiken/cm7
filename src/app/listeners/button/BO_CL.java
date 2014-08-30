@@ -235,9 +235,76 @@ public class BO_CL implements OnClickListener {
 			
 			break;
 			
+		case ACTV_AI_LIST_MOVE_CB:
+			
+			case_ACTV_AI_LIST_MOVE_CB();
+			
+			break;
+			
 		}//switch (tag)
 		
 	}//public void onClick(View v)
+
+	private void 
+	case_ACTV_AI_LIST_MOVE_CB() {
+		// TODO Auto-generated method stub
+		
+		if (CONS.ALActv.checkedPositions.contains((int)position)) {
+			// Log
+			Log.d("BO_CL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "position exists => " + position);
+			
+//			TNActv.checkedPositions.add(position);
+//			TNActv.checkedPositions.remove(position);
+			CONS.ALActv.checkedPositions.remove((Integer) position);
+			
+			// Log
+			Log.d("BO_CL.java"
+					+ "["
+					+ Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + "]", "position removed => " + position);
+			
+		} else {//if (TNActv.checkedPositions.contains((int)position))
+			/*----------------------------
+			 * 2. If not yet, enlist into it
+				----------------------------*/
+			
+			CONS.ALActv.checkedPositions.add(position);
+			
+			// Log
+			String temp = "new position added => " + String.valueOf(position) +
+					"(size=" + CONS.ALActv.checkedPositions.size() + ")" + "[";
+			
+			StringBuilder sb = new StringBuilder();
+			
+			sb.append(temp);
+			for (int i = 0; i < CONS.ALActv.checkedPositions.size(); i++) {
+				
+				sb.append(CONS.ALActv.checkedPositions.get(i) + ",");
+				
+			}//for (int i = 0; i < TNActv.checkedPositions.size(); i++)
+			sb.append("]");
+			
+			
+			Log.d("BO_CL.java"
+					+ "["
+					+ Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + "]", sb.toString());
+//							.getLineNumber() + "]", "new position added => " + String.valueOf(position) +
+//							"(size=" + TNActv.checkedPositions.size() + ")" + "[" +);
+			
+			
+		}//if (TNActv.checkedPositions.contains((int)position))
+		
+		////////////////////////////////
+
+		// notify
+
+		////////////////////////////////
+		CONS.ALActv.adp_TNActv_Main_Move.notifyDataSetChanged();
+				
+	}//case_ACTV_AI_LIST_MOVE_CB
 
 	private void 
 	case_ACTV_AL_IB_BOTTOM() {

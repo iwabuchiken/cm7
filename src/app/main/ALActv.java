@@ -252,55 +252,57 @@ public class ALActv extends ListActivity {
 	_onCreate_SetSelection() {
 		// TODO Auto-generated method stub
 		
-		/******************************
-			validate: position => set?
-		 ******************************/
-		if(CONS.ALActv.display_TopPosition_Current == -1
-				|| CONS.ALActv.display_TopPosition_Previous == -1)
-			
-			return;
+		Methods.set_Selection(this);
 		
-		////////////////////////////////
-
-		// Calculate: target position
-
-		////////////////////////////////
-		int target_Position;
-		
-		// If the current is larger than the previous,
-		//	i.e. the position is increasing
-		//	=> modify the target
-		if (CONS.ALActv.display_TopPosition_Current > 
-				CONS.ALActv.display_TopPosition_Previous) {
-			
-			target_Position = CONS.ALActv.display_TopPosition_Current - 5;
-			
-		} else {
-			
-			// If the current is smaller than the previous,
-			//	i.e. the position is decreasing
-			//	=> set the target with the current
-			target_Position = CONS.ALActv.display_TopPosition_Current;
-
-		}
-		
-		// Log
-		String msg_Log = "CONS.ALActv.display_TopPosition_Current = "
-						+ CONS.ALActv.display_TopPosition_Current
-						+ " // "
-						+ "CONS.ALActv.display_TopPosition_Previous = "
-						+ CONS.ALActv.display_TopPosition_Previous
-						+ " // "
-						+ "target_Position = "
-						+ target_Position
-						;
-		Log.d("ALActv.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
-		
-		//REF http://stackoverflow.com/questions/7561353/programmatically-scroll-to-a-specific-position-in-an-android-listview answered Sep 26 '11 at 21:39
-		this.getListView().setSelection(target_Position);
-		
+//		/******************************
+//			validate: position => set?
+//		 ******************************/
+//		if(CONS.ALActv.display_TopPosition_Current == -1
+//				|| CONS.ALActv.display_TopPosition_Previous == -1)
+//			
+//			return;
+//		
+//		////////////////////////////////
+//
+//		// Calculate: target position
+//
+//		////////////////////////////////
+//		int target_Position;
+//		
+//		// If the current is larger than the previous,
+//		//	i.e. the position is increasing
+//		//	=> modify the target
+//		if (CONS.ALActv.display_TopPosition_Current > 
+//				CONS.ALActv.display_TopPosition_Previous) {
+//			
+//			target_Position = CONS.ALActv.display_TopPosition_Current - 5;
+//			
+//		} else {
+//			
+//			// If the current is smaller than the previous,
+//			//	i.e. the position is decreasing
+//			//	=> set the target with the current
+//			target_Position = CONS.ALActv.display_TopPosition_Current;
+//
+//		}
+//		
+//		// Log
+//		String msg_Log = "CONS.ALActv.display_TopPosition_Current = "
+//						+ CONS.ALActv.display_TopPosition_Current
+//						+ " // "
+//						+ "CONS.ALActv.display_TopPosition_Previous = "
+//						+ CONS.ALActv.display_TopPosition_Previous
+//						+ " // "
+//						+ "target_Position = "
+//						+ target_Position
+//						;
+//		Log.d("ALActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+//		
+//		//REF http://stackoverflow.com/questions/7561353/programmatically-scroll-to-a-specific-position-in-an-android-listview answered Sep 26 '11 at 21:39
+//		this.getListView().setSelection(target_Position);
+//		
 //		int pref_CurrentPosition = 
 //    			Methods.get_Pref_Int(
 //    					this, 
