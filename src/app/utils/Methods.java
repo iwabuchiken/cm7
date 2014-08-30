@@ -4389,5 +4389,125 @@ public class Methods {
 		
 	}//_move_Files__Get_ToMoveList
 
+	public static void 
+	go_Down_Dir_Move
+	(Activity actv, String item) {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// update list
+		// update: pref: current path-move
+
+		////////////////////////////////
+		////////////////////////////////
+
+		// build: paths
+
+		////////////////////////////////
+		String new_DirPath = StringUtils.join(
+				new String[]{
+		
+						CONS.Paths.dpath_Storage_Sdcard,
+						item
+				},
+				File.separator);
+		
+		// Log
+		String msg_Log = "new_DirPath => " + new_DirPath;
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+
+		////////////////////////////////
+
+		// get: current path-move
+
+		////////////////////////////////
+		String curPath_Move = Methods.get_Pref_String(
+						actv, 
+						CONS.Pref.pname_MainActv, 
+						CONS.Pref.pkey_ALActv__CurPath_Move, 
+						CONS.DB.tname_CM7);
+
+		// Log
+		msg_Log = "curPath_Move => " + curPath_Move;
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+
+		// build: list
+
+		////////////////////////////////
+		List<String> dir_List = Methods.get_DirList(new_DirPath);
+		
+		CONS.ALActv.dir_List.clear();
+		
+		for (String dirName : dir_List) {
+//			for (String dirName : CONS.ALActv.dir_List) {
+			
+			CONS.ALActv.dir_List.add(item + File.separator + dirName);
+//			CONS.ALActv.dir_List.add(CONS.DB.tname_CM7 + File.separator + dirName);
+//			dirName = CONS.DB.tname_CM7 + File.separator + dirName;
+			
+		}
+		
+		// Log
+		msg_Log = "dir list => modified";
+		Log.d("Methods_dlg.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		CONS.ALActv.dir_List.add(CONS.Admin.dirString_UpperDir);
+
+		////////////////////////////////
+
+		// notify
+
+		////////////////////////////////
+		CONS.ALActv.adp_DirList.notifyDataSetChanged();
+		
+		// Log
+		msg_Log = "adapter => notified";
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+
+		////////////////////////////////
+
+		// update: pref: current_path_move
+
+		////////////////////////////////
+		boolean res = 
+				Methods.set_Pref_String(
+							actv, 
+							CONS.Pref.pname_MainActv, 
+							CONS.Pref.pkey_ALActv__CurPath_Move, 
+							item);
+		
+		if (res == true) {
+			
+			// Log
+			msg_Log = "pkey_ALActv__CurPath_Move => set: "
+							+ CONS.Pref.pkey_ALActv__CurPath_Move;
+			Log.i("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+					
+		} else {
+
+			// Log
+			msg_Log = "pkey_ALActv__CurPath_Move => NOT set: "
+					+ CONS.Pref.pkey_ALActv__CurPath_Move;
+			Log.e("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}
+
+		
+	}//go_Down_Dir_Move
+
 }//public class Methods
 

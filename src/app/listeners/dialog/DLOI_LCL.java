@@ -18,6 +18,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Toast;
 import app.items.WordPattern;
 import app.utils.CONS;
+import app.utils.Methods;
 import app.utils.Methods_dlg;
 import app.utils.Tags;
 
@@ -90,6 +91,14 @@ DLOI_LCL implements OnItemLongClickListener {
 			
 			break;// case actv_bm_lv
 			
+		case DLG_MOVE_FILES_FOLDER://----------------------------------------------------
+
+			String item = (String) parent.getItemAtPosition(position);
+			
+			case_DLG_MOVE_FILES_FOLDER(item);
+			
+			break;// case actv_bm_lv
+
 		default:
 			break;
 		
@@ -98,6 +107,106 @@ DLOI_LCL implements OnItemLongClickListener {
 		return true;
 		
 	}//onItemLongClick (AdapterView<?> parent, View v, int position, long id)
+
+	private void 
+	case_DLG_MOVE_FILES_FOLDER
+	(String item) {
+		// TODO Auto-generated method stub
+		
+		// Log
+		String msg_Log = "item => " + item;
+		Log.d("DLOI_LCL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+
+		// get: current path-move
+
+		////////////////////////////////
+		String curPath_Move = Methods.get_Pref_String(
+						actv, 
+						CONS.Pref.pname_MainActv, 
+						CONS.Pref.pkey_ALActv__CurPath_Move, 
+						CONS.DB.tname_CM7);
+
+		////////////////////////////////
+
+		// case: upper dir
+
+		////////////////////////////////
+		if (item.equals(CONS.Admin.dirString_UpperDir)) {
+			
+			// top dir("cm7") ?
+			if (curPath_Move.equals(CONS.DB.tname_CM7)) {
+				
+				Methods_dlg.conf_MoveFiles__Folder_Top(actv, d1, d2);
+				
+				return;
+				
+			} else {
+				// not the top dir
+				
+				// Log
+				msg_Log = "not the top dir";
+				Log.d("DLOI_LCL.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+//				Methods.go_Up_Dir_Move(actv);
+//				Ops.go_Up_Dir_Move(actv);
+				
+				return;
+				
+			}
+			
+		}//if (item.equals(CONS.Admin.dirString_UpperDir))
+		
+		////////////////////////////////
+
+		// lower dir
+
+		////////////////////////////////
+		// Log
+		msg_Log = "lower dir => " + item;
+		Log.d("DLOI_LCL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		Methods.go_Down_Dir_Move(actv, item);
+		
+		return;
+		
+//		////////////////////////////////
+//
+//		// set: pref: pkey_ALActv__CurPath_Move
+//
+//		////////////////////////////////
+//		boolean res = Methods.set_Pref_String(
+//				actv, 
+//				CONS.Pref.pname_ALActv, 
+//				CONS.Pref.pkey_ALActv__CurPath_Move, 
+//				item);
+//		
+//		if (res == true) {
+//			
+//			// Log
+//			msg_Log = "pref set => " + item;
+//			Log.d("LOI_LCL.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
+//			
+//		}
+//
+//		////////////////////////////////
+//
+//		// update: list
+//
+//		////////////////////////////////
+//		Methods.update_MoveFilesList(actv, dlg1, dlg2, ai, aiList_Position, item);
+
+		
+	}//case_DLG_MOVE_FILES_FOLDER
 
 	private void 
 	case_ACTV_MEMO_LV_3(WordPattern wp) {
