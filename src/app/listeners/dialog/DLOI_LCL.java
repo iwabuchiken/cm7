@@ -153,7 +153,7 @@ DLOI_LCL implements OnItemLongClickListener {
 						+ "["
 						+ Thread.currentThread().getStackTrace()[2]
 								.getLineNumber() + "]", msg_Log);
-//				Methods.go_Up_Dir_Move(actv);
+				Methods.go_Up_Dir_Move(actv);
 //				Ops.go_Up_Dir_Move(actv);
 				
 				return;

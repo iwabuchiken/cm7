@@ -494,6 +494,17 @@ public class ALActv extends ListActivity {
 		 * Current position => Clear
 		 *********************************/
 		
+		////////////////////////////////
+
+		// move mode => clear
+
+		////////////////////////////////
+		if (CONS.ALActv.moveMode == true) {
+			
+			CONS.ALActv.moveMode = false;
+			
+		}
+		
 		
 	}//protected void onDestroy()
 
