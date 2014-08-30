@@ -511,50 +511,31 @@ public class MainActv extends ListActivity {
 		// Get file list
 
 		////////////////////////////////
-		if (CONS.MainActv.list_RootDir == null) {
+		// Get: current path
+		String currentPath = Methods.get_Pref_String(
+				this, 
+				CONS.Pref.pname_MainActv, 
+				CONS.Pref.pkey_CurrentPath, 
+				null);
+		
+		if (currentPath == null) {
 			
-			CONS.MainActv.list_RootDir = Methods.get_FileList(root_Dir);
-
-			if (CONS.MainActv.list_RootDir == null) {
-				
-				// Log
-				String msg_log = "CONS.MainActv.list_RootDir => can't build";
-				Log.d("MainActv.java"
-						+ "["
-						+ Thread.currentThread().getStackTrace()[2]
-								.getLineNumber() + "]", msg_log);
-				
-				return false;
-				
-			}
+			currentPath = root_Dir.getAbsolutePath();
 			
-		} else {//if (this.CONS.MainActv.list_RootDir == null)
-			
-			String currentPath = Methods.get_Pref_String(
+			Methods.set_Pref_String(
 					this, 
 					CONS.Pref.pname_MainActv, 
 					CONS.Pref.pkey_CurrentPath, 
-					null);
+					currentPath);
 			
-			if (currentPath == null) {
-				
-				currentPath = root_Dir.getAbsolutePath();
-				
-				Methods.set_Pref_String(
-						this, 
-						CONS.Pref.pname_MainActv, 
-						CONS.Pref.pkey_CurrentPath, 
-						currentPath);
-				
-			}
+		}
+		
+		// Build: files list
+		CONS.MainActv.list_RootDir = Methods.get_FileList(new File(currentPath));
+		
+		if (CONS.MainActv.list_RootDir == null) {
 			
-			// Log
-			String msg_Log = "currentPath => " + currentPath;
-			Log.d("MainActv.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ "]", msg_Log);
-			
-			CONS.MainActv.list_RootDir = Methods.get_FileList(new File(currentPath));
+			CONS.MainActv.list_RootDir = Methods.get_FileList(root_Dir);
 			
 			if (CONS.MainActv.list_RootDir == null) {
 				
@@ -568,27 +549,69 @@ public class MainActv extends ListActivity {
 				return false;
 				
 			}
-
-//			// Log
-//			Log.d("MainActv.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", "CONS.MainActv.list_RootDir != null");
-			
-			
-			
-		}//if (this.CONS.MainActv.list_RootDir == null)
-
-////		for (List<String> CONS.MainActv.list_RootDir : item) {
-//		for (String item : CONS.MainActv.list_RootDir) {
-//			
-//			// Log
-//			String msg_log = "list_RootDir item = " + item;
-//			Log.d("MainActv.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", msg_log);
-//			
-//		}
+				
+		}
 		
+//		if (CONS.MainActv.list_RootDir == null) {
+//			
+//			CONS.MainActv.list_RootDir = Methods.get_FileList(root_Dir);
+//
+//			if (CONS.MainActv.list_RootDir == null) {
+//				
+//				// Log
+//				String msg_log = "CONS.MainActv.list_RootDir => can't build";
+//				Log.d("MainActv.java"
+//						+ "["
+//						+ Thread.currentThread().getStackTrace()[2]
+//								.getLineNumber() + "]", msg_log);
+//				
+//				return false;
+//				
+//			}
+//			
+//		} else {//if (this.CONS.MainActv.list_RootDir == null)
+//			
+//			String currentPath = Methods.get_Pref_String(
+//					this, 
+//					CONS.Pref.pname_MainActv, 
+//					CONS.Pref.pkey_CurrentPath, 
+//					null);
+//			
+//			if (currentPath == null) {
+//				
+//				currentPath = root_Dir.getAbsolutePath();
+//				
+//				Methods.set_Pref_String(
+//						this, 
+//						CONS.Pref.pname_MainActv, 
+//						CONS.Pref.pkey_CurrentPath, 
+//						currentPath);
+//				
+//			}
+//			
+//			// Log
+//			String msg_Log = "currentPath => " + currentPath;
+//			Log.d("MainActv.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
+//			
+//			CONS.MainActv.list_RootDir = Methods.get_FileList(new File(currentPath));
+//			
+//			if (CONS.MainActv.list_RootDir == null) {
+//				
+//				// Log
+//				String msg_log = "CONS.MainActv.list_RootDir => can't build";
+//				Log.d("MainActv.java"
+//						+ "["
+//						+ Thread.currentThread().getStackTrace()[2]
+//								.getLineNumber() + "]", msg_log);
+//				
+//				return false;
+//				
+//			}
+//
+//		}//if (this.CONS.MainActv.list_RootDir == null)
+
 		////////////////////////////////
 
 		// Set list to adapter
@@ -610,6 +633,7 @@ public class MainActv extends ListActivity {
 			return false;
 			
 		}
+		
 		
 		////////////////////////////////
 
@@ -659,23 +683,26 @@ public class MainActv extends ListActivity {
 
 	private void initPrefs_CurrentPath() {
 		// TODO Auto-generated method stub
-		////////////////////////////////
-
-		// Get: Pref
-
-		////////////////////////////////
-		CONS.Pref.prefs_MainActv = 
-				this.getSharedPreferences(
-						CONS.Pref.pname_MainActv,
-						MODE_PRIVATE);
+//		////////////////////////////////
+//
+//		// Get: Pref
+//
+//		////////////////////////////////
+//		CONS.Pref.prefs_MainActv = 
+//				this.getSharedPreferences(
+//						CONS.Pref.pname_MainActv,
+//						MODE_PRIVATE);
+//		
+//		////////////////////////////////
+//
+//		// Prefs set already?
+//
+//		////////////////////////////////
+//		String temp = CONS.Pref.prefs_MainActv
+//				.getString(CONS.Pref.pkey_CurrentPath, null);
 		
-		////////////////////////////////
-
-		// Prefs set already?
-
-		////////////////////////////////
-		String temp = CONS.Pref.prefs_MainActv
-				.getString(CONS.Pref.pkey_CurrentPath, null);
+		String temp = Methods.get_Pref_String(
+					this, CONS.Pref.pname_MainActv, CONS.Pref.pkey_CurrentPath, null);
 		
 		if (temp != null) {
 //			if (temp != null && !temp.equals("IFM8")) {
@@ -695,8 +722,6 @@ public class MainActv extends ListActivity {
 		// Set: base current path
 
 		////////////////////////////////
-		SharedPreferences.Editor editor = CONS.Pref.prefs_MainActv.edit();
-		
 		// New path
 		String base_path = StringUtils.join(
 				new String[]{
@@ -704,21 +729,43 @@ public class MainActv extends ListActivity {
 				},
 				File.separator);
 		
-		// Log
-		Log.d("MainActv.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", "base_path=" + base_path);
+		boolean res = Methods.set_Pref_String(
+							this, 
+							CONS.Pref.pname_MainActv, 
+							CONS.Pref.pkey_CurrentPath, 
+							base_path);
+		
+//		SharedPreferences.Editor editor = CONS.Pref.prefs_MainActv.edit();
+//		
+//		// Log
+//		Log.d("MainActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", "base_path=" + base_path);
+//
+//		// Commit
+//		editor.putString(CONS.Pref.pkey_CurrentPath, base_path);
+//		
+//		editor.commit();
+		
+		String msg_log = null;
+		
+		if (res == true) {
+			
+			// Log
+			msg_log = "Base path => Set: " + base_path;
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_log);
+			
+		} else {
+			
+			// Log
+			msg_log = "Base path => Not set: " + base_path;
+			Log.e("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_log);
 
-		// Commit
-		editor.putString(CONS.Pref.pkey_CurrentPath, base_path);
-		
-		editor.commit();
-		
-		// Log
-		String msg_log = "Bae path => Set: " + base_path;
-		Log.d("MainActv.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_log);
+		}
 		
 	}//private void initPrefs_CurrentPath()
 

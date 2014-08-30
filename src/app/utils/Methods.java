@@ -62,6 +62,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.os.AsyncTask;
 import android.os.Environment;
+import app.adapters.Adp_AIList;
+import app.adapters.Adp_TIList_Move;
 import app.comps.Comp_WP;
 import app.items.AI;
 import app.items.BM;
@@ -3830,6 +3832,315 @@ public class Methods {
 		CONS.PlayActv.adp_Patterns_GV_3.notifyDataSetChanged();
 		
 	}//update_MemoActv_ListViews
+
+	public static void 
+	move_Mode
+	(Activity actv, MenuItem item) {
+		// TODO Auto-generated method stub
+
+		////////////////////////////////
+
+		// dispatch
+
+		////////////////////////////////
+		if (CONS.ALActv.moveMode == true) {
+			
+			_moveMode_True(actv, item);
+			
+		} else {// move_mode => false
+			
+			_moveMode_False(actv, item);
+			
+		}//if (move_mode == true)
+
+		
+	}//move_Mode
+
+	/******************************
+		this method is used when<br>
+			=> changing from move_mode on to<br>
+				move_mode off<br>
+				i.e. when you want to go back to<br>
+				non-moving mode
+	 ******************************/
+	private static void 
+	_moveMode_True
+	(Activity actv, MenuItem item) {
+		// TODO Auto-generated method stub
 	
+		////////////////////////////////
+		
+		// get: environs
+		
+		////////////////////////////////
+		String currentPath = Methods.get_Pref_String(
+				actv, 
+				CONS.Pref.pname_MainActv, 
+				CONS.Pref.pkey_CurrentPath, 
+				null);
+		
+		/******************************
+			validate: null
+		 ******************************/
+		if (currentPath == null) {
+			
+			String msg = "Current path => null";
+			Methods_dlg.dlg_ShowMessage(actv, msg, R.color.red);
+			
+			return;
+			
+		}
+		
+		
+		String tableName = Methods.conv_CurrentPath_to_TableName(currentPath);
+		
+		////////////////////////////////
+		
+		// icon => change
+		
+		////////////////////////////////
+		item.setIcon(R.drawable.ifm8_thumb_actv_opt_menu_move_mode_off);
+	
+		if (CONS.ALActv.menu != null) {
+			
+			// Log
+			String msg_Log = "CONS.ALActv.menu => not null";
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}
+	
+		////////////////////////////////
+		
+		// move mode
+		
+		////////////////////////////////
+		CONS.ALActv.moveMode = false;
+	
+		////////////////////////////////
+	
+		// rebuild: tiList
+	
+		////////////////////////////////
+		CONS.ALActv.list_AI.clear();
+		
+		List<AI> ti_List_Move = DBUtils.find_All_AI(actv, tableName);
+//		List<AI> ti_List_Move = DBUtils.find_All_TI(actv, tableName);
+		
+		if (ti_List_Move != null) {
+			
+			CONS.ALActv.list_AI.addAll(ti_List_Move);
+	//		DBUtils.find_All_TI(actv, cur_TableName));
+			
+		}
+	
+	//	CONS.TNActv.list_TNActv_Main.addAll(DBUtils.find_All_TI(actv, tableName));
+		
+		Methods.sort_List_ai_List(
+						CONS.ALActv.list_AI, 
+						CONS.Enums.SortType.CREATED_AT, 
+						CONS.Enums.SortOrder.ASC);
+		
+		////////////////////////////////
+	
+		// checked positions
+	
+		////////////////////////////////
+		if (CONS.ALActv.checkedPositions != null) {
+			
+			CONS.ALActv.checkedPositions.clear();
+			
+		}
+		
+		////////////////////////////////
+	
+		// adapter
+	
+		////////////////////////////////
+		CONS.ALActv.adp_AIList = new Adp_AIList(
+				actv,
+				R.layout.list_row_ai_list,
+				CONS.ALActv.list_AI
+		);
+//		CONS.ALActv.adp_TNActv_Main = new Adp_TIList(
+//				actv,
+//				R.layout.list_row,
+//	//		R.layout.thumb_activity,
+//				CONS.ALActv.list_TNActv_Main
+//				);
+		
+		////////////////////////////////
+		
+		// Set adapter
+		
+		////////////////////////////////
+		((ListActivity) actv).setListAdapter(CONS.ALActv.adp_AIList);
+		
+		
+	}//_moveMode_True
+
+	/******************************
+		this method is used when<br>
+			=> changing from move_mode off to<br>
+				move_mode on<br>
+				i.e. when you want to move files
+	 ******************************/
+	private static void 
+	_moveMode_False
+	(Activity actv, MenuItem item) {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+		
+		// get: environs
+		
+		////////////////////////////////
+		String currentPath = Methods.get_Pref_String(
+				actv, 
+				CONS.Pref.pname_MainActv, 
+				CONS.Pref.pkey_CurrentPath, 
+				null);
+		
+		/******************************
+			validate: null
+		 ******************************/
+		if (currentPath == null) {
+			
+			String msg = "Current path => null";
+			Methods_dlg.dlg_ShowMessage(actv, msg, R.color.red);
+			
+			return;
+			
+		}
+		
+		
+		String tableName = Methods.conv_CurrentPath_to_TableName(currentPath);
+	
+		////////////////////////////////
+	
+		// icon => change
+	
+		////////////////////////////////
+		item.setIcon(R.drawable.actv_al_opt_menu_move_mode_on);
+		
+		if (CONS.ALActv.menu != null) {
+			
+			// Log
+			String msg_Log = "CONS.ALActv.menu => not null";
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}
+		
+		////////////////////////////////
+	
+		// change mode
+	
+		////////////////////////////////
+		CONS.ALActv.moveMode = true;
+	
+		////////////////////////////////
+	
+		// prep: list type
+	
+		////////////////////////////////
+		CONS.ALActv.list_AI.clear();
+		
+		// List type
+		String listType = Methods.get_Pref_String(
+				actv, 
+				CONS.Pref.pname_MainActv, 
+				CONS.Pref.pkey_TNActv__ListType, 
+				null);
+		
+		if (listType == null) {
+			
+			listType = CONS.Enums.ListType.STANDARD.toString();
+			
+		}
+	
+		////////////////////////////////
+	
+		// rebuild: tiList
+	
+		////////////////////////////////
+		if (listType.equals(
+						CONS.Enums.ListType.SEARCH.toString())
+				&& CONS.ALActv.searchedItems != null) {
+			
+			// Log
+			String msg_Log = "search";
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+//			CONS.ALActv.list_AI.addAll(
+//					_moveMode_False__Search(actv, tableName));
+			
+		} else {
+	
+			CONS.ALActv.list_AI.addAll(DBUtils.find_All_AI(actv, tableName));
+			
+		}
+	
+		
+		Methods.sort_List_ai_List(
+						CONS.ALActv.list_AI, 
+						CONS.Enums.SortType.CREATED_AT, 
+						CONS.Enums.SortOrder.ASC);
+		
+		////////////////////////////////
+	
+		// adapter
+	
+		////////////////////////////////
+		CONS.ALActv.adp_TNActv_Main_Move = new Adp_TIList_Move(
+				actv,
+				R.layout.list_row_ai_list_checkbox,
+	//			R.layout.list_row,
+	//			R.layout.thumb_activity,
+				CONS.ALActv.list_AI
+				);
+		
+		// Log
+		String msg_Log = "adapter move => created";
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+		
+		// Set adapter
+		
+		////////////////////////////////
+		((ListActivity) actv).setListAdapter(CONS.ALActv.adp_TNActv_Main_Move);
+	
+	}//_moveMode_False
+
+//	private static List<TI> 
+//	_moveMode_False__Search
+//	(Activity actv, String tableName) {
+//		// TODO Auto-generated method stub
+//		
+//		////////////////////////////////
+//	
+//		// build: TI list
+//	
+//		////////////////////////////////
+//		List<TI> list_TNActv_Main = DBUtils.find_All_TI__Search(actv);
+//	//	CONS.TNActv.list_TNActv_Main = DBUtils.find_All_TI__Search(this);
+//		
+//		if (list_TNActv_Main == null) {
+//	//		if (list_TNActv_Main == null) {
+//			
+//			list_TNActv_Main = DBUtils.find_All_AI(actv, tableName);
+//			
+//		}
+//		
+//		return list_TNActv_Main;
+//		
+//	}//_moveMode_False__Search
+
 }//public class Methods
 

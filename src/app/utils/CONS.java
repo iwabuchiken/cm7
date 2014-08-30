@@ -9,6 +9,7 @@ import android.media.MediaPlayer;
 import android.os.Vibrator;
 import android.preference.EditTextPreference;
 import android.provider.MediaStore;
+import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import app.adapters.Adp_BMList;
 import app.adapters.Adp_ImpList;
 import app.adapters.Adp_ListItems;
 import app.adapters.Adp_MainList;
+import app.adapters.Adp_TIList_Move;
 import app.adapters.Adp_WordPatterns;
 import app.items.AI;
 import app.items.BM;
@@ -344,6 +346,10 @@ public class CONS {
 		public static String pkey_ALActv__CurPath_Move
 									= "pkey_ALActv__CurPath_Move";
 		
+		// standard, search, history, a.o.
+		public static final String pkey_TNActv__ListType
+									= "pkey_TNActv__ListType";
+		
 		////////////////////////////////
 		
 		// BMActv
@@ -425,6 +431,8 @@ public class CONS {
 		
 		public static Adp_AIList adp_AIList;
 		
+		public static Adp_TIList_Move adp_TNActv_Main_Move;
+		
 		public static int display_TopPosition_Current = -1;
 		public static int display_TopPosition_Previous = -1;
 		
@@ -435,6 +443,18 @@ public class CONS {
 		
 		// ALActv, long click, move files
 		public static List<String> dir_List;
+		
+		public static boolean moveMode;
+		
+		public static Menu menu;
+		
+		public static List<Integer> checkedPositions = new ArrayList<Integer>();
+		
+		// MainActv: option "Search"
+		public static List<Long> searchedItems;
+		
+		public static int list_Pos_Current = -1;
+		public static int list_Pos_Prev = -1;
 		
 	}
 
@@ -582,6 +602,18 @@ public class CONS {
 				ASC, DEC,
 				CREATED_AT, DESC,
 		};
+
+		public static enum ListType {
+			
+			STANDARD, SEARCH, HISTORY, ANY,
+			
+		}
+
+		public static enum MoveMode {
+			// TIListAdapter.java
+			ON, OFF,
+			
+		}//public static enum MoveMode
 
 	}
 

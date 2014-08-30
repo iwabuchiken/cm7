@@ -82,6 +82,21 @@ public class BO_CL implements OnClickListener {
 		
 	}//public ButtonOnClickListener(Activity actv, AI ai)
 
+	public BO_CL(Activity actv, int position) {
+		// TODO Auto-generated constructor stub
+		
+		this.actv = actv;
+
+		this.position	= position;
+		
+		if (CONS.Admin.vib == null) {
+			
+			CONS.Admin.vib = (Vibrator) actv.getSystemService(actv.VIBRATOR_SERVICE);
+			
+		}
+
+	}
+
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
