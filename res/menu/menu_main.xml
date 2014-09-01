@@ -13,4 +13,11 @@
 		android:title="@string/opt_menu_main_settings"
 		android:icon="@drawable/settings"></item>
 		
+    <item 
+	    android:id="@+id/opt_menu_main_search" 
+	    android:title="@string/opt_menu_main_search" 
+	    android:icon="@drawable/ifm8_main_actv_opt_menu_search_30x30">
+	    
+	</item>
+	
 </menu>

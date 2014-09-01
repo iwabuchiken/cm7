@@ -456,6 +456,8 @@ public class CONS {
 		public static int list_Pos_Current = -1;
 		public static int list_Pos_Prev = -1;
 		
+		public static boolean searchDone	= false;
+		
 	}
 
 	public static class PlayActv {
@@ -529,6 +531,10 @@ public class CONS {
 		public static final String dName_backup = "cm5_backup";
 		
 		public static final String dirString_UpperDir	= "..";
+		
+		public static final String char_Space_Half	= " ";
+		
+		public static final String char_Space_Whole	= "　";
 		
 		////////////////////////////////
 

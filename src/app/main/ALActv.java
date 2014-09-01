@@ -94,16 +94,16 @@ public class ALActv extends ListActivity {
 		******************************/
 		if (CONS.ALActv.currentPath == null) {
 		
-		// Log
-		String msg_Log = "CONS.ALActv.currentPath => null";
-		Log.e("ALActv.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ "]", msg_Log);
-		
-		// debug
-		Toast.makeText(this, msg_Log, Toast.LENGTH_SHORT).show();
-		
-		return;
+			// Log
+			String msg_Log = "CONS.ALActv.currentPath => null";
+			Log.e("ALActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			// debug
+			Toast.makeText(this, msg_Log, Toast.LENGTH_SHORT).show();
+			
+			return;
 		
 		}
 		
@@ -347,6 +347,53 @@ public class ALActv extends ListActivity {
 		// TODO Auto-generated method stub
 		////////////////////////////////
 
+		// get: pref: list type
+
+		////////////////////////////////
+		String listType = Methods.get_Pref_String(
+				this, 
+				CONS.Pref.pname_MainActv, 
+				CONS.Pref.pkey_TNActv__ListType, 
+				null);
+		
+		if (listType == null) {
+			
+			listType = CONS.Enums.ListType.STANDARD.toString();
+			
+		}
+		
+		// Log
+		String msg_Log = "listType => " + listType;
+		Log.d("TNActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+
+		// dispatch
+
+		////////////////////////////////
+		if (listType.equals(
+						CONS.Enums.ListType.SEARCH.toString())
+				&& CONS.ALActv.searchedItems != null) {
+			
+			_Setup_SetList__Search();
+			
+			return true;
+			
+		} else {
+
+			// Log
+			msg_Log = "not equal to => " + CONS.Enums.ListType.SEARCH.toString();
+			Log.d("TNActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}
+
+		
+		////////////////////////////////
+
 		// Table name
 
 		////////////////////////////////
@@ -354,7 +401,7 @@ public class ALActv extends ListActivity {
 				Methods.conv_CurrentPath_to_TableName(CONS.ALActv.currentPath);
 		
 		// Log
-		String msg_Log = "table name = " + tableName;
+		msg_Log = "table name = " + tableName;
 		Log.d("ALActv.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
@@ -388,6 +435,40 @@ public class ALActv extends ListActivity {
 		return true;
 		
 	}//private void _onCreate_SetFileList()
+
+	private void 
+	_Setup_SetList__Search() {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// build: TI list
+
+		////////////////////////////////
+//		List<TI> list_TNActv_Main = DBUtils.find_All_TI__Search(this);
+		CONS.ALActv.list_AI = DBUtils.find_All_AI__Search(this);
+		
+		if (CONS.ALActv.list_AI == null) {
+//			if (list_TNActv_Main == null) {
+			
+			// Log
+			String msg_Log = "CONS.ALActv.list_TNActv_Main => null";
+			Log.d("TNActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		} else {
+		
+			// Log
+			String msg_Log = "CONS.ALActv.list_TNActv_Main.size => "
+							+ CONS.ALActv.list_AI.size();
+			Log.d("TNActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+		
+		}
+		
+	}//_Setup_SetList__Search
 
 
 	private void _onCreate_Get_CurrentPath() {
