@@ -531,7 +531,7 @@ public class DOI_CL implements OnItemClickListener {
 		} else if (li.getText().equals(actv.getString(
 				R.string.dlg_db_admin_item_op_imp_lab_wavefile))) {
 
-			Lab.lab_WaveFile(actv);
+			Lab.lab_WaveFile(actv, d1, d2);
 			
 		} else  {
 

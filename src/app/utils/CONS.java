@@ -136,6 +136,9 @@ public class CONS {
 		public static String dPath_dbFile_backup_CM6 = 
 									"/mnt/sdcard-ext/cm5_backup";
 		
+		public static String dPath_Lab = 
+				"/mnt/sdcard-ext/cm7_data/lab";
+		
 //		public static String dPath_dbFile = 
 //							Methods.get_DirPath(new MainActv().getFilesDir().getPath());
 		
