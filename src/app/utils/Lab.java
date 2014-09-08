@@ -17,6 +17,72 @@ public class Lab {
 	(Activity actv) {
 		// TODO Auto-generated method stub
 		
+		_lab_WaveFile_D_29_V_1_0(actv);
+		
+//		////////////////////////////////
+//
+//		// setup
+//
+//		////////////////////////////////
+//		String msg_Log;
+//		
+//		String dpath_SDCard = Environment.getExternalStorageDirectory().getPath();
+//		
+//		String fpath = dpath_SDCard + "/tapeatalk_records/14-08-28-20-44-56.wav";
+//		
+//		////////////////////////////////
+//
+//		// get file
+//
+//		////////////////////////////////
+//		File f = new File(fpath);
+//		
+//		// Log
+//		msg_Log = "file exists => " + f.exists();
+//		Log.d("Methods.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+//		
+//		// Log
+//		msg_Log = "sdcard path => " + Environment.getExternalStorageDirectory().getPath() ;
+//		Log.d("Methods.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+//		
+//		////////////////////////////////
+//
+//		// open
+//
+//		////////////////////////////////
+//		WavFile wavFile = null;
+//		
+//		try {
+//			
+//			wavFile = WavFile.openWavFile(f);
+//			
+//			Lab._lab_WaveFile__ShowData(actv, wavFile);
+//			
+////			Lab.read_Wave(actv, wavFile);
+//			
+//			wavFile.close();
+//			
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (WavFileException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
+		
+	}//lab_WaveFile
+
+	private static void 
+	_lab_WaveFile_D_29_V_1_0
+	(Activity actv) {
+		// TODO Auto-generated method stub
+		
 		////////////////////////////////
 
 		// setup
@@ -72,9 +138,7 @@ public class Lab {
 			e.printStackTrace();
 		}
 		
-		
-		
-	}//lab_WaveFile
+	}//_lab_WaveFile_D_29_V_1_0
 
 	private static void 
 	read_Wave
