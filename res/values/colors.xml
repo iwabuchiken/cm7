@@ -28,4 +28,8 @@
 	
 <!-- /main.xml -->
 	
+<!-- browns -->
+	<color name="brown">#61380B</color>
+	
+	
 </resources>

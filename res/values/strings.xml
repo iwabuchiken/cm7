@@ -50,7 +50,10 @@
    	<string name="dlg_db_admin_item_operations">Operations</string>
    	<string name="dlg_db_admin_item_op_imp_db">Import DB (cm6)</string>
    	<string name="dlg_db_admin_item_op_imp_patterns">Import patterns</string>
-   	<string name="dlg_db_admin_item_op_imp_lab_wavefile">LAB: Wave file</string>
+   	<string name="dlg_db_admin_item_lab">LAB</string>
+   	
+   	<string name="dlg_LAB_create_wave_file">Create: Wave file</string>
+   	<string name="dlg_LAB_canvas">Start canvas</string>
    	
    	<string name="dlg_db_admin_item_drop_table_cm7">Drop table: cm7</string>
    	<string name="dlg_db_admin_item_create_table_cm7">Create table: cm7</string>

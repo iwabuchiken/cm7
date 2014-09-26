@@ -18,6 +18,7 @@ public class DB_OTL implements OnTouchListener {
 	Dialog d1;
 	private Dialog d2;
 	private Dialog d3;
+	private Dialog d4;
 	
 	public DB_OTL(Activity actv, Dialog dlg) {
 		//
@@ -52,6 +53,19 @@ public class DB_OTL implements OnTouchListener {
 
 	}
 
+	public DB_OTL
+	(Activity actv, 
+		Dialog d1, Dialog d2, Dialog d3, Dialog d4) {
+		// TODO Auto-generated constructor stub
+		
+		this.actv = actv;
+		this.d1 = d1;
+		this.d2 = d2;
+		this.d3 = d3;
+		this.d4 = d4;
+
+	}
+
 	//	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		
@@ -64,6 +78,7 @@ public class DB_OTL implements OnTouchListener {
 				case GENERIC_DISMISS:
 				case DLG_GENERIC_DISMISS_THIRD_DIALOG:
 				case DLG_GENERIC_DISMISS_SECOND_DIALOG:
+				case DLG_GENERIC_DISMISS_4TH_DIALOG:
 					
 				case DLG_CREATE_FOLDER_OK:
 				case dlg_create_folder_cancel:
@@ -105,6 +120,8 @@ public class DB_OTL implements OnTouchListener {
 				case DLG_CONF_MOVE_FILES_FOLDER_TOP_OK:
 				case DLG_SEARCH_OK:
 					
+				case DLG_RESTORE_DB_OK:
+					
 					//
 					v.setBackgroundColor(Color.GRAY);
 					
@@ -119,6 +136,8 @@ public class DB_OTL implements OnTouchListener {
 			case GENERIC_DISMISS:
 			case DLG_GENERIC_DISMISS_SECOND_DIALOG:
 			case DLG_GENERIC_DISMISS_THIRD_DIALOG:
+				
+			case DLG_GENERIC_DISMISS_4TH_DIALOG:
 
 			case DLG_CREATE_FOLDER_OK:
 			case dlg_create_folder_cancel:
@@ -159,6 +178,8 @@ public class DB_OTL implements OnTouchListener {
 				
 			case DLG_CONF_MOVE_FILES_FOLDER_TOP_OK:
 			case DLG_SEARCH_OK:
+				
+			case DLG_RESTORE_DB_OK:
 				
 				//
 					v.setBackgroundColor(Color.WHITE);
