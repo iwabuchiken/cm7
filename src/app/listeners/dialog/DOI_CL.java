@@ -324,6 +324,12 @@ public class DOI_CL implements OnItemClickListener {
 		} else if (li.getText().equals(actv.getString(
 				R.string.dlg_LAB_canvas))) {
 			
+			d3.dismiss();
+			d2.dismiss();
+			d1.dismiss();
+			
+			Methods.start_Activity_CanvasActv(actv);
+			
 //			Methods_dlg.conf_Delete_Pattern(actv, d1, d2, wp);
 			
 		} else  {

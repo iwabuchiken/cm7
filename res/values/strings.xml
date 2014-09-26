@@ -6,6 +6,9 @@
 	    <string name="generic_bt_ok">OK</string>
 	    <string name="generic_bt_cancel">Cancel</string>
 	    <string name="generic_bt_back">Back</string>
+	    
+	    <string name="generic_bt_go">Go</string>
+	    <string name="generic_bt_clear">Clear</string>
 	
 	    <string name="generic_tv_confirm">Confirm</string>
 	    <string name="generic_tv_menu">メニュー</string>
@@ -190,6 +193,10 @@
 	    <string name="dlg_search_message_file_name">Search by file name</string>
 	    
 	    <string name="dlg_search_message_no_words">No search words</string>
-   										
+
+   <!-- menu: actv_sensors -->
+		<string name="menu_actv_sensors_accelero">Accelero</string>
+		<string name="menu_actv_sensors_compass">Compass</string>
+	    										
 </resources>
 
