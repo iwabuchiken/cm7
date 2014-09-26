@@ -3,6 +3,7 @@ package app.utils;
 import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Random;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -14,7 +15,7 @@ import app.items.WavFileException;
 public class Lab {
 
 	public static void 
-	lab_WaveFile
+	lab_Create_WaveFile
 	(Activity actv, Dialog d1, Dialog d2) {
 		// TODO Auto-generated method stub
 		
@@ -124,6 +125,9 @@ public class Lab {
 			long frameCounter = 0;
 
 			// Loop until all frames written
+			
+			Random rnd = new Random();
+			
 			while (frameCounter < numFrames)
 			{
 			   // Determine how many frames to write, up to a maximum of the buffer size
@@ -135,8 +139,16 @@ public class Lab {
 			   
 			   for (s=0 ; s < (toWrite / 2) ; s++, frameCounter++)
 			   {
-			      buffer[0][s] = Math.sin(2.0 * Math.PI * 200 * frameCounter / sampleRate);
-			      buffer[1][s] = Math.sin(2.0 * Math.PI * 300 * frameCounter / sampleRate);
+			      buffer[0][s] = 
+		    		  	Math.sin(
+		    		  			2.0 * Math.PI * (rnd.nextInt(100) + 100) 
+		    		  			* frameCounter / sampleRate);
+			      buffer[1][s] = 
+			    		Math.sin(
+			    				2.0 * Math.PI * (rnd.nextInt(100) + 200)
+			    				* frameCounter / sampleRate);
+//			      buffer[0][s] = Math.sin(2.0 * Math.PI * 200 * frameCounter / sampleRate);
+//			      buffer[1][s] = Math.sin(2.0 * Math.PI * 300 * frameCounter / sampleRate);
 //			      buffer[0][s] = Math.sin(2.0 * Math.PI * 400 * frameCounter / sampleRate);
 //			      buffer[1][s] = Math.sin(2.0 * Math.PI * 500 * frameCounter / sampleRate);
 			   }

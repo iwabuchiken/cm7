@@ -184,7 +184,15 @@ public class Tags {
 		// actv_hist.xml
 		actv_hist_ib_back, actv_hist_ib_bottom, actv_hist_ib_top,
 		
-		ACTV_AL_IB_BACK, ACTV_AL_IB_UP, ACTV_AL_IB_DOWN, ACTV_AL_IB_TOP, ACTV_AL_IB_BOTTOM, ACTV_AI_LIST_MOVE_CB,
+		ACTV_AL_IB_BACK, 
+		ACTV_AL_IB_UP, 
+		ACTV_AL_IB_DOWN, 
+		ACTV_AL_IB_TOP, 
+		ACTV_AL_IB_BOTTOM, 
+		
+		ACTV_AI_LIST_MOVE_CB, 
+		
+		ACTV_ACCELERO_BT_CLEAR, ACTV_ACCELERO_BT_GO,
 
 		
 		

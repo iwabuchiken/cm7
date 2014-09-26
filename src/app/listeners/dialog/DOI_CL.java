@@ -308,16 +308,27 @@ public class DOI_CL implements OnItemClickListener {
 		////////////////////////////////
 		if (li.getText().equals(actv.getString(
 				R.string.dlg_LAB_create_wave_file))) {
+			
+			d3.dismiss();
+			
+			Lab.lab_Create_WaveFile(actv, d1, d2);
+			
 
-			//test
-			String message = "LAB";
-			Methods_dlg.dlg_ShowMessage_4TH_Dialog(
-							actv, message, d1, d2, d3, R.color.green4);
+//			//test
+//			String message = "LAB";
+//			Methods_dlg.dlg_ShowMessage_4TH_Dialog(
+//							actv, message, d1, d2, d3, R.color.green4);
 			
 //			Methods_dlg.dlg_Register_Patterns(actv, d1);
 			
 		} else if (li.getText().equals(actv.getString(
 				R.string.dlg_LAB_canvas))) {
+			
+			d3.dismiss();
+			d2.dismiss();
+			d1.dismiss();
+			
+			Methods.start_Activity_CanvasActv(actv);
 			
 //			Methods_dlg.conf_Delete_Pattern(actv, d1, d2, wp);
 			

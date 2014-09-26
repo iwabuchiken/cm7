@@ -74,6 +74,7 @@ import app.items.WordPattern;
 import app.listeners.MP_OCmpL;
 import app.listeners.dialog.DL;
 import app.main.ALActv;
+import app.main.CanvasActv;
 import app.main.ImpActv;
 import app.main.PlayActv;
 import app.main.PrefActv;
@@ -2682,6 +2683,20 @@ public class Methods {
 		actv.startActivity(i);
 		
 	}//start_Activity_ImpActv
+	
+	public static void 
+	start_Activity_CanvasActv
+	(Activity actv) {
+		// TODO Auto-generated method stub
+		Intent i = new Intent();
+		
+		i.setClass(actv, CanvasActv.class);
+		
+		i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		
+		actv.startActivity(i);
+		
+	}//start_Activity_CanvasActv
 	
 	public static void 
 	start_Activity_PrefActv

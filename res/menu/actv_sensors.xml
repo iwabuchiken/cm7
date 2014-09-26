@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_sensors_accelero"
+        android:icon="@drawable/actv_sensors_opt_menu_accelero"
+        android:title="@string/menu_actv_sensors_accelero"/>
+
+    <item
+        android:id="@+id/menu_sensors_compass"
+        android:icon="@drawable/actv_sensors_opt_menu_compass"
+        android:title="@string/menu_actv_sensors_compass"/>
+
+</menu>
