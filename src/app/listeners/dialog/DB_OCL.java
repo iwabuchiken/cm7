@@ -46,6 +46,7 @@ public class DB_OCL implements OnClickListener {
 	String folderName;	// MainActv, long click, delete folder, conf OK
 	private String choice;
 	private WordPattern wp;
+	private Dialog d4;
 	
 	public DB_OCL(Activity actv, Dialog dlg1) {
 		//
@@ -201,6 +202,22 @@ public class DB_OCL implements OnClickListener {
 
 	}
 
+	public DB_OCL
+	(Activity actv, 
+		Dialog d1, Dialog d2, Dialog d3, Dialog d4) {
+		// TODO Auto-generated constructor stub
+		
+		this.actv = actv;
+		
+		this.d1 = d1;
+		this.d2 = d2;
+		this.d3 = d3;
+		this.d4 = d4;
+
+		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+
+	}
+
 	public void onClick(View v) {
 		//
 		Tags.DialogTags tag_name = (Tags.DialogTags) v.getTag();
@@ -236,6 +253,27 @@ public class DB_OCL implements OnClickListener {
 			
 			break;
 
+		case GENERIC_DISMISS_ALL_3RD_DIALOG://------------------------------------------------
+			
+			d3.dismiss();
+			d2.dismiss();
+			d1.dismiss();
+			
+			break;
+			
+		case GENERIC_DISMISS_ALL_2ND_DIALOG://------------------------------------------------
+			
+			d2.dismiss();
+			d1.dismiss();
+			
+			break;
+			
+		case DLG_GENERIC_DISMISS_4TH_DIALOG://------------------------------------------------
+			
+			d4.dismiss();
+			
+			break;
+			
 		case dlg_conf_delete_BM_ok://------------------------------------------------
 			
 			dlg_Conf_Delete_BM_Ok();
@@ -338,10 +376,42 @@ public class DB_OCL implements OnClickListener {
 			
 			break;
 			
+		case DLG_RESTORE_DB_OK://------------------------------------------------
+			
+			dlg_DLG_RESTORE_DB_OK();
+			
+			break;
+			
 		default: // ----------------------------------------------------
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void 
+	dlg_DLG_RESTORE_DB_OK() {
+		// TODO Auto-generated method stub
+		
+		boolean res = Methods.restore_DB(actv);
+		
+		if (res == true) {
+			
+			d2.dismiss();
+			d1.dismiss();
+			
+			String msg = "DB => Restored";
+			Methods_dlg.dlg_ShowMessage(actv, msg);
+			
+		} else {
+			
+			d2.dismiss();
+			
+			String msg = "DB => Can't be restored";
+//			Methods_dlg.dlg_ShowMessage(actv, msg);
+			Methods_dlg.dlg_ShowMessage_SecondDialog(actv, msg, d1);
+
+		}
+		
+	}//dlg_DLG_RESTORE_DB_OK
 
 	private void 
 	dlg_DLG_SEARCH_OK() {

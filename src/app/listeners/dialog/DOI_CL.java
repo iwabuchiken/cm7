@@ -30,6 +30,7 @@ public class DOI_CL implements OnItemClickListener {
 	Activity actv;
 	Dialog d1;
 	Dialog d2;
+	private Dialog d3;
 	
 	//
 	Vibrator vib;
@@ -138,6 +139,20 @@ public class DOI_CL implements OnItemClickListener {
 		
 		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 
+	}
+
+	public 
+	DOI_CL
+	(Activity actv, Dialog d1, Dialog d2, Dialog d3) {
+		// TODO Auto-generated constructor stub
+		
+		this.actv	= actv;
+		this.d1	= d1;
+		this.d2	= d2;
+		this.d3	= d3;
+
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		
 	}
 
 	//	@Override
@@ -267,11 +282,57 @@ public class DOI_CL implements OnItemClickListener {
 			
 			break;// case dlg_bmactv_list_long_click
 		
+		case DLG_LAB://----------------------------------------------
+			
+			li = (ListItem) parent.getItemAtPosition(position);
+			
+			case_DLG_LAB(li);
+			
+			break;// case dlg_bmactv_list_long_click
+			
 		default:
 			break;
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+
+	private void 
+	case_DLG_LAB
+	(ListItem li) {
+		// TODO Auto-generated method stub
+		
+		////////////////////////////////
+
+		// Dispatch
+
+		////////////////////////////////
+		if (li.getText().equals(actv.getString(
+				R.string.dlg_LAB_create_wave_file))) {
+
+			//test
+			String message = "LAB";
+			Methods_dlg.dlg_ShowMessage_4TH_Dialog(
+							actv, message, d1, d2, d3, R.color.green4);
+			
+//			Methods_dlg.dlg_Register_Patterns(actv, d1);
+			
+		} else if (li.getText().equals(actv.getString(
+				R.string.dlg_LAB_canvas))) {
+			
+//			Methods_dlg.conf_Delete_Pattern(actv, d1, d2, wp);
+			
+		} else  {
+
+			String msg = "Unknown choice => " + li.getText();
+			Methods_dlg.dlg_ShowMessage_4TH_Dialog(
+							actv, msg, d1, d2, d3, R.color.red);
+			
+			return;
+
+		}		
+
+		
+	}//case_DLG_LAB
 
 	private void 
 	case_DLG_MOVE_FILES_FOLDER
@@ -529,9 +590,10 @@ public class DOI_CL implements OnItemClickListener {
 			Methods_dlg.conf_Import_Patterns(actv, d1, d2);
 			
 		} else if (li.getText().equals(actv.getString(
-				R.string.dlg_db_admin_item_op_imp_lab_wavefile))) {
+				R.string.dlg_db_admin_item_lab))) {
 
-			Lab.lab_WaveFile(actv, d1, d2);
+			Methods_dlg.dlg_LAB(actv, d1, d2);
+//			Lab.lab_WaveFile(actv, d1, d2);
 			
 		} else  {
 
@@ -681,6 +743,8 @@ public class DOI_CL implements OnItemClickListener {
 			
 			case_DLG_DB_ADMIN_LV__RestoreDB(actv);
 			
+			return;
+			
 		} else if (li.getText().equals(actv.getString(		// Refresh DB
 				R.string.dlg_db_admin_item_operations))) {
 			
@@ -709,22 +773,24 @@ public class DOI_CL implements OnItemClickListener {
 	case_DLG_DB_ADMIN_LV__RestoreDB
 	(Activity actv) {
 		// TODO Auto-generated method stub
-		
-		boolean res = Methods.restore_DB(actv);
-		
-		if (res == true) {
-			
-			d1.dismiss();
-			
-			String msg = "DB => Restored";
-			Methods_dlg.dlg_ShowMessage(actv, msg);
-			
-		} else {
-			
-			String msg = "DB => Can't be restored";
-			Methods_dlg.dlg_ShowMessage(actv, msg);
 
-		}
+		Methods_dlg.conf_Restore_DB(actv, d1);
+		
+//		boolean res = Methods.restore_DB(actv);
+//		
+//		if (res == true) {
+//			
+//			d1.dismiss();
+//			
+//			String msg = "DB => Restored";
+//			Methods_dlg.dlg_ShowMessage(actv, msg);
+//			
+//		} else {
+//			
+//			String msg = "DB => Can't be restored";
+//			Methods_dlg.dlg_ShowMessage(actv, msg);
+//
+//		}
 		
 	}//case_DLG_DB_ADMIN_LV__RestoreDB
 

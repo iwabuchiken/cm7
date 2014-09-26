@@ -31,6 +31,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -1613,6 +1614,83 @@ public class Methods_dlg {
 	}//conf_DeleteFolder
 
 	public static void 
+	conf_Restore_DB
+	(Activity actv, Dialog dlg1) {
+		// TODO Auto-generated method stub
+		
+		Dialog dlg2 = new Dialog(actv);
+		
+		// layout
+//		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple);
+		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple);
+		
+		// Title
+		dlg2.setTitle(R.string.generic_tv_confirm);
+		
+		////////////////////////////////
+		
+		// Set: Message
+		
+		////////////////////////////////
+		TextView tv_Message = (TextView) dlg2.findViewById(
+//							R.id.dlg_tmpl_confirm_simple_tv_message);
+				R.id.dlg_tmpl_confirm_simple_tv_message);
+//							R.id.dlg_tmpl_confirm_simple_cb_tv_message);
+		
+//		tv_Message.setText(actv.getString(R.string.dlg_conf_delete_bm_tv_message));
+		tv_Message.setText(actv.getString(
+				R.string.dlg_db_admin_item_restore_db) + "?");
+		
+		////////////////////////////////
+		
+		// Set: Folder name
+		
+		////////////////////////////////
+		TextView tv_ItemName = (TextView) dlg2.findViewById(
+				R.id.dlg_tmpl_confirm_simple_tv_item_name);
+//							R.id.dlg_tmpl_confirm_simple_cb_tv_item_name);
+		
+		tv_ItemName.setText(CONS.DB.dbName);
+		
+		////////////////////////////////
+		
+		// Add listeners => OnTouch
+		
+		////////////////////////////////
+		Button btn_ok = (Button) dlg2.findViewById(
+				R.id.dlg_tmpl_confirm_simple_btn_ok);
+		Button btn_cancel = (Button) dlg2.findViewById(
+				R.id.dlg_tmpl_confirm_simple_btn_cancel);
+		
+		////////////////////////////////
+
+		// set: tag
+
+		////////////////////////////////
+		btn_ok.setTag(Tags.DialogTags.DLG_RESTORE_DB_OK);
+		btn_cancel.setTag(Tags.DialogTags.DLG_GENERIC_DISMISS_SECOND_DIALOG);
+		
+		////////////////////////////////
+
+		// listener
+
+		////////////////////////////////
+		btn_ok.setOnTouchListener(new DB_OTL(actv, dlg1, dlg2));
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg1, dlg2));
+		
+		//
+		btn_ok.setOnClickListener(
+				new DB_OCL(actv, dlg1, dlg2));
+		btn_cancel.setOnClickListener(new DB_OCL(actv, dlg1, dlg2));
+		
+		/****************************
+		 * 5. Show dialog
+		 ****************************/
+		dlg2.show();
+		
+	}//conf_DeleteFolder
+	
+	public static void 
 	dlg_Create_Dir
 	(Activity actv) {
 		// TODO Auto-generated method stub
@@ -1877,10 +1955,10 @@ public class Methods_dlg {
 		
 		Dialog d2 = Methods_dlg.dlg_Template_Cancel_SecondDialog(
 				actv, d1,
-				R.layout.dlg_tmpl_cancel_lv_2, 
-				R.string.dlg_alactv_list_long_click_item_move, 
+				R.layout.dlg_tmpl_cancel_lv_with_btn_2, 
+				R.string.dlg_db_admin_item_operations, 
 				
-				R.id.dlg_tmpl_cancel_lv_2_bt_cancel, 
+				R.id.dlg_tmpl_cancel_lv_with_btn_2_bt_cancel, 
 				Tags.DialogTags.DLG_GENERIC_DISMISS_SECOND_DIALOG);
 
 		////////////////////////////////
@@ -1906,7 +1984,7 @@ public class Methods_dlg {
 		
 		list.add(new ListItem.Builder()
 				.setText(actv.getString(
-						R.string.dlg_db_admin_item_op_imp_lab_wavefile))
+						R.string.dlg_db_admin_item_lab))
 						.setIconID(R.drawable.menu_icon_admin_32x32_green)
 						.setTextColor_ID(R.color.green4)
 						.build());
@@ -1936,7 +2014,7 @@ public class Methods_dlg {
 			
 		}
 		
-		ListView lv = (ListView) d2.findViewById(R.id.dlg_tmpl_cancel_lv_2_lv);
+		ListView lv = (ListView) d2.findViewById(R.id.dlg_tmpl_cancel_lv_with_btn_2_lv);
 		
 		lv.setAdapter(CONS.MainActv.adp_ListItems_Operations);
 		
@@ -1951,6 +2029,21 @@ public class Methods_dlg {
 		lv.setOnItemClickListener(
 				new DOI_CL(actv, d1, d2));
 		
+		////////////////////////////////
+		
+		// button: all dismiss
+		
+		////////////////////////////////
+		ImageButton ib_AllClear = 
+				(ImageButton) d2.findViewById(R.id.dlg_tmpl_cancel_lv_with_btn_2_ib);
+		//(ImageButton) d2.findViewById(R.id.dlg_tmpl_cancel_lv_with_btn_ib);
+		
+		ib_AllClear.setTag(Tags.DialogTags.GENERIC_DISMISS_ALL_2ND_DIALOG);
+		
+		ib_AllClear.setOnTouchListener(new DB_OTL(actv, d1, d2));
+		
+		ib_AllClear.setOnClickListener(new DB_OCL(actv, d1, d2));
+
 		////////////////////////////////
 	
 		// show
@@ -2532,6 +2625,31 @@ public class Methods_dlg {
 	}
 
 	public static void
+	dlg_ShowMessage_4TH_Dialog
+	(Activity actv, 
+		String message, Dialog dlg1, Dialog dlg2, Dialog d3, 
+		int colorID) {
+		
+		Dialog d4 = Methods_dlg.dlg_Template_Cancel_4TH_Dialog(
+				actv, dlg1, dlg2, d3,
+				R.layout.dlg_tmpl_toast_ok, 
+				R.string.generic_tv_confirm, 
+				
+				R.id.dlg_tmpl_toast_ok_bt_cancel, 
+				Tags.DialogTags.DLG_GENERIC_DISMISS_4TH_DIALOG);
+		
+		TextView tv_Message = 
+				(TextView) d4.findViewById(R.id.dlg_tmpl_toast_ok_tv_message);
+		
+		tv_Message.setText(message);
+		
+		tv_Message.setBackgroundColor(actv.getResources().getColor(colorID));
+		
+		d4.show();
+		
+	}//dlg_ShowMessage_4TH_Dialog
+	
+	public static void
 	dlg_ShowMessage_ThirdDialog
 	(Activity actv, 
 			String message, Dialog dlg1, Dialog dlg2, int colorID) {
@@ -2603,6 +2721,52 @@ public class Methods_dlg {
 		
 	}//public static Dialog dlg_template_okCancel()
 
+	public static Dialog 
+	dlg_Template_Cancel_4TH_Dialog
+	(Activity actv, Dialog dlg1, Dialog dlg2, Dialog d3,
+			int layoutId, int titleStringId,
+			int cancelButtonId, Tags.DialogTags cancelTag) {
+		/****************************
+		 * Steps
+		 * 1. Set up
+		 * 2. Add listeners => OnTouch
+		 * 3. Add listeners => OnClick
+		 ****************************/
+		
+		// 
+		Dialog d4 = new Dialog(actv);
+		
+		//
+		d4.setContentView(layoutId);
+		
+		// Title
+		d4.setTitle(titleStringId);
+		
+		/****************************
+		 * 2. Add listeners => OnTouch
+		 ****************************/
+		//
+		Button btn_cancel = (Button) d4.findViewById(cancelButtonId);
+		
+		//
+		btn_cancel.setTag(cancelTag);
+		
+		//
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg1, dlg2, d3, d4));
+		
+		/****************************
+		 * 3. Add listeners => OnClick
+		 ****************************/
+		//
+		btn_cancel.setOnClickListener(new DB_OCL(actv, dlg1, dlg2, d3, d4));
+		
+		//
+		//dlg.show();
+		
+		return d4;
+		
+	}//dlg_Template_Cancel_4TH_Dialog
+	
 	public static void 
 	dlg_MoveFiles
 	(Activity actv) {
@@ -3018,5 +3182,126 @@ public class Methods_dlg {
 		return dlg;
 	
 	}//public static Dialog dlg_template_okCancel()
+
+	public static void
+	dlg_ShowMessage_SecondDialog
+	(Activity actv, String message, Dialog dlg1) {
+		
+		Dialog dlg2 = Methods_dlg.dlg_Template_Cancel_SecondDialog(
+				actv, dlg1,
+				R.layout.dlg_tmpl_toast_ok, 
+				R.string.generic_tv_confirm, 
+				
+				R.id.dlg_tmpl_toast_ok_bt_cancel, 
+				Tags.DialogTags.DLG_GENERIC_DISMISS_SECOND_DIALOG);
+		
+		TextView tv_Message = 
+				(TextView) dlg2.findViewById(R.id.dlg_tmpl_toast_ok_tv_message);
+		
+		tv_Message.setText(message);
+		
+		dlg2.show();
+		
+	}
+
+	public static void 
+	dlg_LAB
+	(Activity actv, Dialog d1, Dialog d2) {
+		// TODO Auto-generated method stub
+		
+		Dialog d3 = 
+				Methods_dlg.dlg_Template_Cancel_ThirdDialog(
+						actv, d1, d2,
+						R.layout.dlg_tmpl_cancel_lv_with_btn_3, 
+						R.string.dlg_db_admin_item_lab, 
+						
+						R.id.dlg_tmpl_cancel_lv_with_btn_3_bt_cancel, 
+						Tags.DialogTags.DLG_GENERIC_DISMISS_THIRD_DIALOG
+				);
+
+		////////////////////////////////
+
+		// Prep => List
+
+		////////////////////////////////
+		List<ListItem> list = new ArrayList<ListItem>();
+		
+		list.add(new ListItem.Builder()
+				.setText(actv.getString(
+							R.string.dlg_LAB_create_wave_file))
+				.setIconID(R.drawable.menu_icon_admin_32x32)
+				.setTextColor_ID(R.color.blue1)
+				.build());
+		
+		list.add(new ListItem.Builder()
+				.setText(actv.getString(
+						R.string.dlg_LAB_canvas))
+				.setIconID(R.drawable.menu_icon_admin_32x32_brown)
+				.setTextColor_ID(R.color.brown)
+				.build());
+		
+		////////////////////////////////
+
+		// Adapter
+
+		////////////////////////////////
+		Adp_ListItems adp = new Adp_ListItems(
+				actv,
+//				R.layout.dlg_db_admin,
+//				android.R.layout.simple_list_item_1,
+				R.layout.list_row_simple_1,
+				list
+				);
+
+		/******************************
+			validate
+		 ******************************/
+//		if (adp == null) {
+//			
+//			String msg = "Can't build adapter";
+//			Methods_dlg.dlg_ShowMessage(actv, msg, R.color.red);
+//			
+//			return;
+//			
+//		}
+		
+		ListView lv = (ListView) d3.findViewById(R.id.dlg_tmpl_cancel_lv_with_btn_3_lv);
+		
+		lv.setAdapter(adp);
+		
+		////////////////////////////////
+		
+		// set: listener
+		
+		////////////////////////////////
+		lv.setTag(Tags.DialogItemTags.DLG_LAB);
+		
+		// Item click
+		lv.setOnItemClickListener(
+				new DOI_CL(actv, d1, d2, d3));
+		
+		////////////////////////////////
+
+		// button: all dismiss
+
+		////////////////////////////////
+		ImageButton ib_AllClear = 
+				(ImageButton) d3.findViewById(R.id.dlg_tmpl_cancel_lv_with_btn_3_ib);
+//		(ImageButton) d2.findViewById(R.id.dlg_tmpl_cancel_lv_with_btn_ib);
+		
+		ib_AllClear.setTag(Tags.DialogTags.GENERIC_DISMISS_ALL_3RD_DIALOG);
+		
+		ib_AllClear.setOnTouchListener(new DB_OTL(actv, d1, d2, d3));
+		
+		ib_AllClear.setOnClickListener(new DB_OCL(actv, d1, d2, d3));
+
+		////////////////////////////////
+	
+		// show
+	
+		////////////////////////////////
+		d3.show();		
+		
+	}//dlg_LAB
 
 }//public class Methods_dialog
