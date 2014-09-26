@@ -2671,6 +2671,13 @@ public class DBUtils extends SQLiteOpenHelper{
 	delete_AudioFile
 	(Activity actv, AI ai) {
 		// TODO Auto-generated method stub
+		// Log
+		String msg_Log = "external path => " 
+					+ android.os.Environment.getExternalStorageDirectory().getPath();
+		Log.d("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
 		////////////////////////////////
 
 		// get: file
@@ -2684,7 +2691,7 @@ public class DBUtils extends SQLiteOpenHelper{
 		if (!audio_File.exists()) {
 			
 			// Log
-			String msg_Log = "File doesn't exist: " + audio_File.getAbsolutePath();
+			msg_Log = "File doesn't exist: " + audio_File.getAbsolutePath();
 			Log.d("DBUtils.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", msg_Log);
@@ -2705,7 +2712,7 @@ public class DBUtils extends SQLiteOpenHelper{
 		if (res == true) {
 			
 			// Log
-			String msg_Log = "File => deleted: " + audio_File.getAbsolutePath();
+			msg_Log = "File => deleted: " + audio_File.getAbsolutePath();
 			Log.d("DBUtils.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", msg_Log);
@@ -2713,13 +2720,20 @@ public class DBUtils extends SQLiteOpenHelper{
 		} else {
 
 			// Log
-			String msg_Log = "File => can't be deleted: " 
+			msg_Log = "File => can't be deleted: " 
 							+ audio_File.getAbsolutePath();
 			Log.d("DBUtils.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", msg_Log);
 			
 		}
+		
+//		// Log
+//		String msg_Log = "external path => " 
+//					+ android.os.Environment.getExternalStorageDirectory().getPath();
+//		Log.d("DBUtils.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
 		
 		return res;
 		
