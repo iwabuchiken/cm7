@@ -6,7 +6,7 @@ import android.graphics.RadialGradient;
 import android.graphics.Shader;
 import android.graphics.drawable.ShapeDrawable;
 
-public class CONS_Canvas {
+public class CONS_C {
 	
 	public static class Main {
 
@@ -124,8 +124,10 @@ public class CONS_Canvas {
 	public static class Line {
 
 		public static boolean drawLine = false;
+		public static boolean drawLines	= false;
 		
-		public static Paint p;
+		public static Paint p_Line;
+		public static Paint p_Lines;
 		
 		public static float x1;
 		
@@ -134,6 +136,9 @@ public class CONS_Canvas {
 		public static float y1;
 		
 		public static float y2;
+		
+		public static float[] pnt_Lines;
+
 		
 	}
 	

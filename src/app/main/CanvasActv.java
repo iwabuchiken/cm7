@@ -123,7 +123,9 @@ public class CanvasActv extends Activity {
 		
 		_Setup_SetListeners();
 		
-		_test_DrawLine_2();
+//		_test_DrawLine_2();
+		
+		this._test_DrawLines();
 		
 		super.onStart();
 		
@@ -229,6 +231,59 @@ public class CanvasActv extends Activity {
 				+ "]", msg_Log);
 
 		c._drawLine(50, 50, 200, 200, paint);
+		
+		// Log
+		msg_Log = "canvas => line drawn";
+		Log.d("CanvasActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+	}//_test_DrawLine()
+	
+	private void 
+	_test_DrawLines() {
+		// TODO Auto-generated method stub
+		
+		String msg_Log;
+		
+		////////////////////////////////
+		
+		// paint
+		
+		////////////////////////////////
+		Paint paint = new Paint();
+		paint.setColor(Color.BLUE);
+//		paint.setColor(0xFF4444FF);
+		paint.setStyle(Paint.Style.FILL);
+		paint.setStrokeWidth(30);
+		
+		////////////////////////////////
+		
+		// canvas view
+		
+		////////////////////////////////
+		
+		app.views.CanvasView_4 c = 
+				(app.views.CanvasView_4) findViewById(R.id.actv_canvas_canvas);
+		
+//		int canvas_Height = c.getHeight();
+//		int canvas_Width = c.getWidth();
+//		
+//		// Log
+//		msg_Log = String.format("h = %d, w = %d", canvas_Height, canvas_Width);
+////		String msg_Log = "height => " + canvas_Height;
+//		Log.d("CanvasActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+		
+		float[] data = new float[]{
+				
+				50, 50, 200, 50,
+				50, 100, 200, 100,
+				
+		};
+		
+		c._drawLines(data, paint);
 		
 		// Log
 		msg_Log = "canvas => line drawn";
