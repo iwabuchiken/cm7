@@ -121,7 +121,8 @@ public class CONS_C {
 		
 	}//public static class Main
 	
-	public static class Line {
+	public static class 
+	Line {
 
 		public static boolean drawLine = false;
 		public static boolean drawLines	= false;
@@ -140,6 +141,19 @@ public class CONS_C {
 		public static float[] pnt_Lines;
 
 		
-	}
+	}//Line
+
+	public static class 
+	Pref {
+		
+		public static final String pnake_Canvas = "pnake_Canvas";
+		
+		public static final String pkey_Canvas_OpID = "pkey_Canvas_OpID";
+		
+		public static final int OPID_DRAW_LINE		= 1;
+		
+		public static final int OPID_DRAW_LINES		= 2;
+		
+	}//Pref
 	
 }//public class CONS

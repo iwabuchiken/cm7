@@ -133,6 +133,9 @@ public class CanvasView_4 extends View {
         			CONS_C.Line.x2, CONS_C.Line.y2, 
         			CONS_C.Line.p_Line);
         	
+        	
+        	CONS_C.Line.drawLine = false;
+        	
 		}
 
         ////////////////////////////////
@@ -145,6 +148,8 @@ public class CanvasView_4 extends View {
         	canvas.drawLines(
         			CONS_C.Line.pnt_Lines, 
         			CONS_C.Line.p_Lines);
+        	
+        	CONS_C.Line.drawLines = false;
         	
         }
         
@@ -447,7 +452,14 @@ public class CanvasView_4 extends View {
 
 		////////////////////////////////
 		this.invalidate();
+
+		////////////////////////////////
 		
+		// switch
+		
+		////////////////////////////////
+//		CONS_C.Line.drawLine = false;
+
 		// Log
 		String msg_Log = "drawLine() => done";
 		Log.d("CanvasView_4.java" + "["
@@ -489,7 +501,14 @@ public class CanvasView_4 extends View {
 		
 		////////////////////////////////
 		this.invalidate();
+
+		////////////////////////////////
 		
+		// switch
+		
+		////////////////////////////////
+//		CONS_C.Line.drawLines	= false;
+
 		// Log
 		String msg_Log = "drawLine() => done";
 		Log.d("CanvasView_4.java" + "["

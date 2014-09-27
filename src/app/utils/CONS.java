@@ -130,14 +130,22 @@ public class CONS {
 		//		Do not hardcode "/data/"; use Context.getFilesDir().getPath() instead
 		
 
+		public static String dPath_Data_Root = "/mnt/sdcard-ext/cm7_data";
+		
 		public static String dPath_dbFile_backup 
-								= "/mnt/sdcard-ext/cm7_backup";
+								= dPath_Data_Root + "/backup";
+//		= "/mnt/sdcard-ext/cm7_backup";
 		
 		public static String dPath_dbFile_backup_CM6 = 
 									"/mnt/sdcard-ext/cm5_backup";
 		
-		public static String dPath_Lab = 
-				"/mnt/sdcard-ext/cm7_data/lab";
+		public static String dPath_Lab 
+								= dPath_Data_Root + "/lab";
+//		"/mnt/sdcard-ext/cm7_data/lab";
+//		cm7_test_wave_20140927_075811.wav
+		
+		public static String dPath_Log 
+								= dPath_Data_Root + "/log";
 		
 //		public static String dPath_dbFile = 
 //							Methods.get_DirPath(new MainActv().getFilesDir().getPath());
