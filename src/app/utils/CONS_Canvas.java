@@ -1,6 +1,7 @@
 package app.utils;
 
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RadialGradient;
 import android.graphics.Shader;
 import android.graphics.drawable.ShapeDrawable;
@@ -119,5 +120,21 @@ public class CONS_Canvas {
 		
 		
 	}//public static class Main
+	
+	public static class Line {
+
+		public static boolean drawLine = false;
+		
+		public static Paint p;
+		
+		public static float x1;
+		
+		public static float x2;
+		
+		public static float y1;
+		
+		public static float y2;
+		
+	}
 	
 }//public class CONS

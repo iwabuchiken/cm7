@@ -141,6 +141,7 @@ public class Lab {
 			   {
 			      buffer[0][s] = 
 		    		  	Math.sin(
+		    		  			//REF http://sasuke.main.jp/ranjava.html
 		    		  			2.0 * Math.PI * (rnd.nextInt(100) + 100) 
 		    		  			* frameCounter / sampleRate);
 			      buffer[1][s] = 

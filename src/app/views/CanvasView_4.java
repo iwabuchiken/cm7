@@ -7,6 +7,7 @@ import app.utils.CONS_Canvas;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.RadialGradient;
 import android.graphics.Shader;
@@ -92,7 +93,7 @@ public class CanvasView_4 extends View {
 		
 		// Log
 		String msg_Log = "Dimension => set";
-		Log.d("CanvasView_2.java" + "["
+		Log.d("CanvasView_4.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		
@@ -100,11 +101,13 @@ public class CanvasView_4 extends View {
 
 	// onDraw���\�b�h(�`�揈��)
 	@Override
-	protected void onDraw(Canvas canvas) {
+	protected void 
+	onDraw
+	(Canvas canvas) {
 		
 		// Log
 		String msg_Log = "onDraw";
-		Log.d("CanvasView_2.java" + "["
+		Log.d("CanvasView_4.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		
@@ -116,15 +119,41 @@ public class CanvasView_4 extends View {
 		// DrawableView
 
 		// 4�F�̌�����ʂɕ\��
-        drawColorHole(canvas, 100, 100, 50, 50);
+//        drawColorHole(canvas, 100, 100, 50, 50);
+        
+        ////////////////////////////////
 
-	}
+		// draw line
+
+		////////////////////////////////
+        if (CONS_Canvas.Line.drawLine == true) {
+			
+        	canvas.drawLine(
+        			CONS_Canvas.Line.x1, CONS_Canvas.Line.y1, 
+        			CONS_Canvas.Line.x2, CONS_Canvas.Line.y2, 
+        			CONS_Canvas.Line.p);
+        	
+		}
+
+        // Log
+		int canvas_Height = canvas.getHeight();
+		int canvas_Width = canvas.getWidth();
+		
+		// Log
+		msg_Log = String.format("h = %d, w = %d", canvas_Height, canvas_Width);
+//		String msg_Log = "height => " + canvas_Height;
+		Log.d("CanvasActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+        
+        
+	}//onDraw
 
 	public void _go() {
 		
 		// Log
 		String msg_Log = "_onDraw_DrawLine => started";
-		Log.d("CanvasView_2.java" + "["
+		Log.d("CanvasView_4.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		
@@ -145,7 +174,7 @@ public class CanvasView_4 extends View {
 		
         // Log
 		msg_Log = "_onDraw_DrawLine => done";
-		Log.d("CanvasView_2.java" + "["
+		Log.d("CanvasView_4.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		
@@ -179,7 +208,7 @@ public class CanvasView_4 extends View {
 		
 		// Log
 		String msg_Log = "_clear => started";
-		Log.d("CanvasView_2.java" + "["
+		Log.d("CanvasView_4.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		
@@ -201,7 +230,7 @@ public class CanvasView_4 extends View {
 		
 		// Log
 		msg_Log = "_clear => done";
-		Log.d("CanvasView_2.java" + "["
+		Log.d("CanvasView_4.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		
@@ -372,5 +401,46 @@ public class CanvasView_4 extends View {
 		CONS_Canvas.Main.drawables[CONS_Canvas.Main.GREEN_OVAL].draw(canvas);
 		
 	}//_drawColorHole__Green(Canvas canvas)
+
+	public void 
+	_drawLine
+	(float x1, float y1, float x2, float y2, Paint p) {
+		
+//		this.drawLine(10, 10, 100, 100, p);
+		
+		////////////////////////////////
+
+		// switch
+
+		////////////////////////////////
+		CONS_Canvas.Line.drawLine = true;
+		
+		////////////////////////////////
+
+		// set vals
+
+		////////////////////////////////
+		CONS_Canvas.Line.x1	= x1;
+		CONS_Canvas.Line.x2	= x2;
+		CONS_Canvas.Line.y1	= y1;
+		CONS_Canvas.Line.y2	= y2;
+		
+		CONS_Canvas.Line.p	= p;
+		
+		
+		////////////////////////////////
+
+		// invalidate
+
+		////////////////////////////////
+		this.invalidate();
+		
+		// Log
+		String msg_Log = "drawLine() => done";
+		Log.d("CanvasView_4.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+	}//drawLine
 
 }

@@ -25,11 +25,11 @@ public class CanvasActv extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.actv_accelero_4);
+		setContentView(R.layout.actv_canvas);
 		
 		// Log
 		String msg_Log = "view => set";
-		Log.d("AcceleroActv.java" + "["
+		Log.d("CanvasActv.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		
@@ -45,7 +45,7 @@ public class CanvasActv extends Activity {
 		
 		// Log
 		String msg_Log = "onDestroy";
-		Log.d("AcceleroActv.java" + "["
+		Log.d("CanvasActv.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		
@@ -123,7 +123,7 @@ public class CanvasActv extends Activity {
 		
 		_Setup_SetListeners();
 		
-		_test_DrawLine();
+		_test_DrawLine_2();
 		
 		super.onStart();
 		
@@ -151,7 +151,7 @@ public class CanvasActv extends Activity {
 		////////////////////////////////
 		
 		app.views.CanvasView_4 v_Canvas = 
-				(app.views.CanvasView_4) findViewById(R.id.actv_accelero_canvas);
+				(app.views.CanvasView_4) findViewById(R.id.actv_canvas_canvas);
 //		lm1.views.CanvasView_2 v_Canvas = 
 //				(lm1.views.CanvasView_2) findViewById(R.id.actv_accelero_canvas);
 //		lm1.views.CanvasView_2 v_Canvas = 
@@ -159,10 +159,12 @@ public class CanvasActv extends Activity {
 //		View v_Canvas = (View) findViewById(R.id.actv_accelero_canvas);
 		
 		int canvas_Height = v_Canvas.getHeight();
+		int canvas_Width = v_Canvas.getWidth();
 		
 		// Log
-		String msg_Log = "height => " + canvas_Height;
-		Log.d("AcceleroActv.java" + "["
+		String msg_Log = String.format("h = %d, w = %d", canvas_Height, canvas_Width);
+//		String msg_Log = "height => " + canvas_Height;
+		Log.d("CanvasActv.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		
@@ -171,25 +173,71 @@ public class CanvasActv extends Activity {
 		c.drawLine(10, 10, 100, 100, paint);
 		
 		c.save();
-		
-		
+
+//		c.drawlin
 		
 		v_Canvas.draw(c);
 		
 		v_Canvas.setBackgroundColor(Color.YELLOW);
 		
-		v_Canvas.invalidate();
+//		v_Canvas.invalidate();
 		
 //		c.restore();
 		
 		// Log
 		msg_Log = "canvas => line drawn";
-		Log.d("AcceleroActv.java" + "["
+		Log.d("CanvasActv.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		
 	}//_test_DrawLine()
 
+	private void 
+	_test_DrawLine_2() {
+		// TODO Auto-generated method stub
+		
+		String msg_Log;
+		
+		////////////////////////////////
+		
+		// paint
+		
+		////////////////////////////////
+		Paint paint = new Paint();
+		paint.setColor(Color.BLUE);
+//		paint.setColor(0xFF4444FF);
+		paint.setStyle(Paint.Style.FILL);
+		paint.setStrokeWidth(30);
+		
+		////////////////////////////////
+		
+		// canvas view
+		
+		////////////////////////////////
+		
+		app.views.CanvasView_4 c = 
+				(app.views.CanvasView_4) findViewById(R.id.actv_canvas_canvas);
+		
+		int canvas_Height = c.getHeight();
+		int canvas_Width = c.getWidth();
+		
+		// Log
+		msg_Log = String.format("h = %d, w = %d", canvas_Height, canvas_Width);
+//		String msg_Log = "height => " + canvas_Height;
+		Log.d("CanvasActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+
+		c._drawLine(50, 50, 200, 200, paint);
+		
+		// Log
+		msg_Log = "canvas => line drawn";
+		Log.d("CanvasActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+	}//_test_DrawLine()
+	
 	private void _Setup_SetListeners() {
 		// TODO Auto-generated method stub
 		
@@ -198,7 +246,7 @@ public class CanvasActv extends Activity {
 		// Button: clear
 
 		////////////////////////////////
-		Button bt_Clear = (Button) findViewById(R.id.actv_accelero_bt_clear);
+		Button bt_Clear = (Button) findViewById(R.id.actv_canvas_bt_clear);
 		
 		bt_Clear.setTag(Tags.ButtonTags.ACTV_ACCELERO_BT_CLEAR);
 		
@@ -209,7 +257,7 @@ public class CanvasActv extends Activity {
 		// Button: go
 		
 		////////////////////////////////
-		Button bt_Go = (Button) findViewById(R.id.actv_accelero_bt_go);
+		Button bt_Go = (Button) findViewById(R.id.actv_canvas_bt_go);
 		
 		bt_Go.setTag(Tags.ButtonTags.ACTV_ACCELERO_BT_GO);
 		
@@ -222,7 +270,7 @@ public class CanvasActv extends Activity {
 		// TODO Auto-generated method stub
 		// Log
 		String msg_Log = "onStop";
-		Log.d("AcceleroActv.java" + "["
+		Log.d("CanvasActv.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
 		

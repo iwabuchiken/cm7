@@ -97,24 +97,24 @@ public final class R {
     }
     public static final class id {
         public static final int LL_main=0x7f09007e;
-        public static final int actv_accelero_bt_clear=0x7f090002;
-        public static final int actv_accelero_bt_go=0x7f090001;
-        public static final int actv_accelero_canvas=0x7f090003;
-        public static final int actv_al_LL_buttons=0x7f090004;
-        public static final int actv_al_ib_back=0x7f090007;
-        public static final int actv_al_ib_down=0x7f090008;
-        public static final int actv_al_ib_toBottom=0x7f090009;
-        public static final int actv_al_ib_toTop=0x7f090005;
-        public static final int actv_al_ib_up=0x7f090006;
-        public static final int actv_bm_LL_buttons=0x7f09000b;
-        public static final int actv_bm_bt_back=0x7f090012;
-        public static final int actv_bm_ib_back=0x7f09000e;
-        public static final int actv_bm_ib_bottom=0x7f090010;
-        public static final int actv_bm_ib_down=0x7f09000f;
-        public static final int actv_bm_ib_top=0x7f09000c;
-        public static final int actv_bm_ib_up=0x7f09000d;
-        public static final int actv_bm_ll_back=0x7f090011;
-        public static final int actv_bm_tv_file_name=0x7f09000a;
+        public static final int actv_al_LL_buttons=0x7f090000;
+        public static final int actv_al_ib_back=0x7f090003;
+        public static final int actv_al_ib_down=0x7f090004;
+        public static final int actv_al_ib_toBottom=0x7f090005;
+        public static final int actv_al_ib_toTop=0x7f090001;
+        public static final int actv_al_ib_up=0x7f090002;
+        public static final int actv_bm_LL_buttons=0x7f090007;
+        public static final int actv_bm_bt_back=0x7f09000e;
+        public static final int actv_bm_ib_back=0x7f09000a;
+        public static final int actv_bm_ib_bottom=0x7f09000c;
+        public static final int actv_bm_ib_down=0x7f09000b;
+        public static final int actv_bm_ib_top=0x7f090008;
+        public static final int actv_bm_ib_up=0x7f090009;
+        public static final int actv_bm_ll_back=0x7f09000d;
+        public static final int actv_bm_tv_file_name=0x7f090006;
+        public static final int actv_canvas_bt_clear=0x7f090011;
+        public static final int actv_canvas_bt_go=0x7f090010;
+        public static final int actv_canvas_canvas=0x7f090012;
         public static final int actv_imp_ll_filepath=0x7f090013;
         public static final int actv_imp_tv_filepath=0x7f090014;
         public static final int actv_play_bt_add_bm=0x7f09001c;
@@ -244,7 +244,7 @@ public final class R {
         public static final int listrow_actv_bm_tv_memo=0x7f090093;
         public static final int listrow_actv_bm_tv_point=0x7f090091;
         public static final int listrow_actv_bm_tv_title=0x7f090092;
-        public static final int ll_main=0x7f090000;
+        public static final int ll_main=0x7f09000f;
         public static final int main_LL_buttons=0x7f090096;
         public static final int main_bt_back=0x7f090097;
         public static final int main_bt_forward=0x7f090099;
@@ -261,9 +261,9 @@ public final class R {
         public static final int scrollView1=0x7f090030;
     }
     public static final class layout {
-        public static final int actv_accelero_4=0x7f030000;
-        public static final int actv_al=0x7f030001;
-        public static final int actv_bm=0x7f030002;
+        public static final int actv_al=0x7f030000;
+        public static final int actv_bm=0x7f030001;
+        public static final int actv_canvas=0x7f030002;
         public static final int actv_imp=0x7f030003;
         public static final int actv_play=0x7f030004;
         public static final int add_memo_grid_view=0x7f030005;
