@@ -98,7 +98,8 @@ public class BO_CL implements OnClickListener {
 	}
 
 	@Override
-	public void onClick(View v) {
+	public void 
+	onClick(View v) {
 		// TODO Auto-generated method stub
 		
 		Tags.ButtonTags tag = (Tags.ButtonTags) v.getTag();
@@ -109,6 +110,13 @@ public class BO_CL implements OnClickListener {
 		/*********************************
 		 * 1. actv_play.xml
 		 *********************************/
+		case ACTV_SHOWLOG_IB_BACK://-----------------------------------------------------------------------------
+			
+			case_ACTV_SHOWLOG_IB_BACK();
+			
+			break;
+
+
 		case actv_play_bt_play://----------------------------------------------------
 			
 			case_ActvPlay_BtPlay();
@@ -244,6 +252,17 @@ public class BO_CL implements OnClickListener {
 		}//switch (tag)
 		
 	}//public void onClick(View v)
+
+	private void 
+	case_ACTV_SHOWLOG_IB_BACK() {
+		// TODO Auto-generated method stub
+	
+		actv.finish();
+		
+		actv.overridePendingTransition(0, 0);
+		
+	}
+	
 
 	private void 
 	case_ACTV_AI_LIST_MOVE_CB() {

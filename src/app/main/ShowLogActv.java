@@ -244,12 +244,19 @@ public class ShowLogActv extends ListActivity {
 
 		////////////////////////////////
 
-		// listeners
+		// listeners: navigation
 
 		////////////////////////////////
 		res = this._Setup_SetListeners_Navigation();
 		
 		if (res == false) return;
+		
+//		////////////////////////////////
+//		
+//		// listeners
+//		
+//		////////////////////////////////
+//		res = this._Setup_Listeners();
 		
 	}//protected void onStart()
 
