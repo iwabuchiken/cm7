@@ -34,6 +34,7 @@ import java.util.regex.Pattern;
 
 
 
+
 import org.apache.commons.lang.StringUtils;
 
 import android.app.Activity;
@@ -83,6 +84,7 @@ import app.listeners.dialog.DL;
 import app.main.ALActv;
 import app.main.CanvasActv;
 import app.main.ImpActv;
+import app.main.LogActv;
 import app.main.PlayActv;
 import app.main.PrefActv;
 import app.main.ShowLogActv;
@@ -5168,5 +5170,27 @@ public class Methods {
 		
 	}//_build_LogItem_from_Matcher
 
+	public static void 
+	start_Activity_LogActv
+	(Activity actv, Dialog d1) {
+		// TODO Auto-generated method stub
+		Intent i = new Intent();
+		
+		i.setClass(actv, LogActv.class);
+		
+		i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		
+		actv.startActivity(i);
+		
+		////////////////////////////////
+
+		// dismiss
+
+		////////////////////////////////
+		d1.dismiss();
+		
+	}//start_Activity_LogActv
+
+	
 }//public class Methods
 

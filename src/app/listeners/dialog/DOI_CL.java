@@ -763,6 +763,13 @@ public class DOI_CL implements OnItemClickListener {
 			
 			return;
 
+		} else if (li.getText().equals(actv.getString(		// Refresh DB
+				R.string.dlg_db_admin_item_Log))) {
+			
+			case_DLG_DB_ADMIN_LV__Log(actv);
+			
+			return;
+			
 		} else {
 
 		}
@@ -770,6 +777,15 @@ public class DOI_CL implements OnItemClickListener {
 		d1.dismiss();
 		
 	}//case_Dlg_Db_Admin_lv(String item)
+
+	private void 
+	case_DLG_DB_ADMIN_LV__Log
+	(Activity actv) {
+		// TODO Auto-generated method stub
+		
+		Methods.start_Activity_LogActv(actv, this.d1);
+		
+	}//case_DLG_DB_ADMIN_LV__Log
 
 	private void 
 	case_DLG_DB_ADMIN_LV__Operations

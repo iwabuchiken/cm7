@@ -106,6 +106,13 @@ public class Methods_dlg {
 						.setTextColor_ID(R.color.darkgreen)
 						.build());
 		
+		list.add(new ListItem.Builder()
+				.setText(actv.getString(
+						R.string.dlg_db_admin_item_Log))
+						.setIconID(R.drawable.menu_icon_admin_32x32_blue)
+						.setTextColor_ID(R.color.blue1)
+						.build());
+		
 //		String[] choices = {
 //				actv.getString(R.string.dlg_db_admin_item_exec_sql),
 //				
