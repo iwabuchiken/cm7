@@ -241,7 +241,7 @@ public class PlayActv extends Activity {
 			//	=> then, set the current position with the one
 			//		stored in the pref
 			long savedPosition = 
-					Methods.getPref_Long(
+					Methods.get_Pref_Long(
 							this,
 							CONS.Pref.pname_PlayActv,
 							CONS.Pref.pkey_PlayActv_CurrentPosition,
@@ -891,7 +891,7 @@ public class PlayActv extends Activity {
 		
 		
 //		long currentPosition = Methods.conv_ClockLabel_to_MillSec(position);
-		long currentPosition = Methods.getPref_Long(this, 
+		long currentPosition = Methods.get_Pref_Long(this, 
 							CONS.Pref.pname_PlayActv, 
 							CONS.Pref.pkey_PlayActv_CurrentPosition, 
 							CONS.Pref.dflt_LongExtra_value);

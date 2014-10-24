@@ -487,7 +487,7 @@ public class BO_CL implements OnClickListener {
 	
 		////////////////////////////////
 		long cur_Position_long = 
-				Methods.getPref_Long(
+				Methods.get_Pref_Long(
 					actv,
 					CONS.Pref.pname_PlayActv,
 					CONS.Pref.pkey_PlayActv_CurrentPosition,
@@ -634,7 +634,7 @@ public class BO_CL implements OnClickListener {
 
 		////////////////////////////////
 		long cur_Position_long = 
-				Methods.getPref_Long(
+				Methods.get_Pref_Long(
 					actv,
 					CONS.Pref.pname_PlayActv,
 	//				CONS.Pref.pkey_PlayActv_position,

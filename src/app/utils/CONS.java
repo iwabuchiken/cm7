@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Vibrator;
@@ -17,11 +19,14 @@ import app.adapters.Adp_AIList;
 import app.adapters.Adp_BMList;
 import app.adapters.Adp_ImpList;
 import app.adapters.Adp_ListItems;
+import app.adapters.Adp_LogFileList;
 import app.adapters.Adp_MainList;
 import app.adapters.Adp_AIList_Move;
+import app.adapters.Adp_ShowLogFile_List;
 import app.adapters.Adp_WordPatterns;
 import app.items.AI;
 import app.items.BM;
+import app.items.LogItem;
 import app.items.WordPattern;
 
 public class CONS {
@@ -112,6 +117,14 @@ public class CONS {
 		
 		public final static int RESULT_CODE_SEE_BOOKMARKS_CANCEL = 0;
 		
+		////////////////////////////////
+
+		// ShowLogActv
+
+		////////////////////////////////
+		public static final String iKey_LogActv_LogFileName =
+													"iKey_LogActv_LogFileName";
+
 	}//public static class Intent
 	
 	public static class DB {
@@ -157,6 +170,12 @@ public class CONS {
 		public static String dname_TapeATalk_Sdcard
 								= "tapeatalk_records";
 		
+		public final static String fname_Log = "log.txt";
+
+		public final static String fname_Log_Trunk = "log";
+		
+		public final static String fname_Log_ext = ".txt";
+
 		////////////////////////////////
 		
 		// Table: memo_patterns (cm6)
@@ -296,7 +315,13 @@ public class CONS {
 			
 			RefreshHistory
 		}
-		
+	
+		////////////////////////////////
+
+		// others
+
+		////////////////////////////////
+		public static final long logFile_MaxSize = 40000;
 		
 	}//public static class DB
 
@@ -386,6 +411,14 @@ public class CONS {
 		public static String pkey_ImpActv_CurrentPath
 										= "pkey_ImpActv_CurrentPath";
 
+		////////////////////////////////
+
+		// LogActv
+
+		////////////////////////////////
+		public static String pkey_CurrentPosition_LogActv = 
+									"pkey_CurrentPosition_LogActv";
+		
 	}//public static class Pref
 
 	public static class MainActv {
@@ -639,5 +672,29 @@ public class CONS {
 		public static EditTextPreference prefEditText;
 		
 	}
-	
+
+	public static class LogActv {
+		
+		public static List<String> list_LogFiles = null;
+		
+//		public static ArrayAdapter<String> adp_LogFile_List = null;
+		
+		public static Adp_LogFileList adp_LogFile_List;
+		
+	}
+
+	public static class ShowLogActv {
+		
+		public static List<LogItem> list_ShowLog_Files = null;
+		
+//		public static ArrayAdapter<String> adp_LogFile_List = null;
+		
+		public static Adp_ShowLogFile_List adp_ShowLog_File_List;
+		
+		public static String fname_Target_LogFile = null;
+		
+		public static List<String> list_RawLines = null;
+		
+	}
+
 }//public class CONS

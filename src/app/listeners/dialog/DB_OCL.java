@@ -915,7 +915,7 @@ public class DB_OCL implements OnClickListener {
 		////////////////////////////////
 		String bm_Position = bm.getPosition();
 		
-		long pref_Position_Long = Methods.getPref_Long(actv, 
+		long pref_Position_Long = Methods.get_Pref_Long(actv, 
 						CONS.Pref.pname_PlayActv, 
 						CONS.Pref.pkey_PlayActv_CurrentPosition,
 						CONS.Pref.dflt_LongExtra_value);
