@@ -104,7 +104,7 @@ public class DB_OTL implements OnTouchListener {
 					
 				case DLG_EDIT_ITEM_BT_OK:
 					
-				case dlg_conf_delete_BM_ok:
+				case DLG_CONF_DELETE_BM_OK:
 					
 				case DLG_EDIT_AI_BT_OK:
 					
@@ -163,7 +163,7 @@ public class DB_OTL implements OnTouchListener {
 				
 			case DLG_EDIT_ITEM_BT_OK:
 				
-			case dlg_conf_delete_BM_ok:
+			case DLG_CONF_DELETE_BM_OK:
 				
 			case DLG_EDIT_AI_BT_OK:
 				

@@ -281,20 +281,14 @@ public class Methods_dlg {
 	}//public static Dialog dlg_template_okCancel()
 
 	public static void
-	conf_DeleteBM(Activity actv, Dialog dlg1, BM bm) {
+	conf_DeleteBM
+	(Activity actv, Dialog dlg1, BM bm, int lv_Position) {
 		// TODO Auto-generated method stub
-//		Dialog dlg = Methods_dlg.dlg_Template_Cancel(
-//				actv, R.layout.dlg_tmpl_list_cancel, 
-//				R.string.dlg_db_admin_title, 
-//				R.id.dlg_tmpl_list_cancel_bt_cancel, 
-////				R.id.dlg_db_admin_bt_cancel, 
-//				Tags.DialogTags.dlg_generic_dismiss);
 		
 		Dialog dlg2 = new Dialog(actv);
 		
 		//
 		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple);
-//		dlg2.setContentView(R.layout.dlg_confirm_remove_folder);
 		
 		// Title
 		dlg2.setTitle(R.string.generic_tv_confirm);
@@ -331,7 +325,8 @@ public class Methods_dlg {
 								R.id.dlg_tmpl_confirm_simple_btn_cancel);
 		
 		//
-		btn_ok.setTag(Tags.DialogTags.dlg_conf_delete_BM_ok);
+//		btn_ok.setTag(Tags.DialogTags.dlg_conf_delete_BM_ok);
+		btn_ok.setTag(Tags.DialogTags.DLG_CONF_DELETE_BM_OK);
 		btn_cancel.setTag(Tags.DialogTags.DLG_GENERIC_DISMISS_SECOND_DIALOG);
 		
 		//
@@ -342,7 +337,8 @@ public class Methods_dlg {
 		 * 4. Add listeners => OnClick
 			****************************/
 		//
-		btn_ok.setOnClickListener(new DB_OCL(actv, dlg1, dlg2, bm));
+//		btn_ok.setOnClickListener(new DB_OCL(actv, dlg1, dlg2, bm));
+		btn_ok.setOnClickListener(new DB_OCL(actv, dlg1, dlg2, bm, lv_Position));
 		btn_cancel.setOnClickListener(new DB_OCL(actv, dlg1, dlg2));
 		
 		/****************************

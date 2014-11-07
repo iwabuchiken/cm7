@@ -42,6 +42,7 @@ public class DOI_CL implements OnItemClickListener {
 
 	String file_Name;	// ImpActv list
 	private WordPattern wp;
+	private int lv_Position;
 	
 	//
 //	Methods.DialogTags dlgTag = null;
@@ -155,6 +156,20 @@ public class DOI_CL implements OnItemClickListener {
 		
 	}
 
+	public 
+	DOI_CL
+	(Activity actv, Dialog dlg, BM bm, int lv_Position) {
+		// TODO Auto-generated constructor stub
+		
+		this.actv	= actv;
+		this.d1		= dlg;
+		this.bm		= bm;
+		this.lv_Position	= lv_Position;
+		
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+
+	}//DOI_CL
+
 	//	@Override
 	public void 
 	onItemClick
@@ -196,7 +211,7 @@ public class DOI_CL implements OnItemClickListener {
 			
 			item = (String) parent.getItemAtPosition(position);
 			
-			case_Dlg_BMActv_LongClick(item);
+			case_DLG_BMACTV_LIST_LONGCLICK(item);
 			
 			break;// case dlg_bmactv_list_long_click
 			
@@ -841,7 +856,7 @@ public class DOI_CL implements OnItemClickListener {
 
 	private void
 //		case_dlg_bmactv_list_long_click(String item) {
-	case_Dlg_BMActv_LongClick(String item) {
+	case_DLG_BMACTV_LIST_LONGCLICK(String item) {
 		// TODO Auto-generated method stub
 		if (item.equals(actv.getString(R.string.generic_tv_edit))) {	// Edit
 			
@@ -852,7 +867,7 @@ public class DOI_CL implements OnItemClickListener {
 			
 		} else if (item.equals(actv.getString(R.string.generic_tv_delete))) {
 	
-			Methods_dlg.conf_DeleteBM(actv, d1, bm);
+			Methods_dlg.conf_DeleteBM(actv, d1, bm, this.lv_Position);
 //			bmactv_deleteItem(bm);
 //			CONS.BMActv.bmList.remove(bm);
 //			

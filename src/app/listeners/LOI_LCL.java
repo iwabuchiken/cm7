@@ -119,11 +119,12 @@ LOI_LCL implements OnItemLongClickListener {
 		
 		switch (tag) {
 			
-		case actv_bm_lv://----------------------------------------------------
+//		case actv_bm_lv://----------------------------------------------------
+		case ACTV_BM_LV://----------------------------------------------------
 
 			BM bm = (BM) parent.getItemAtPosition(position);
 			
-			case_BMActv_lv(bm);
+			case_ACTV_BM_LV(bm, position);
 			
 			break;// case actv_bm_lv
 			
@@ -394,7 +395,7 @@ LOI_LCL implements OnItemLongClickListener {
 		
 	}//case_BMActv_lv(AI ai)
 
-	private void case_BMActv_lv(BM bm) {
+	private void case_ACTV_BM_LV(BM bm, int lv_Position) {
 		/***************************************
 		 * Show dialog
 		 ***************************************/
@@ -445,7 +446,7 @@ LOI_LCL implements OnItemLongClickListener {
 			****************************/
 		lv.setTag(Tags.DialogItemTags.DLG_BMACTV_LIST_LONGCLICK);
 		
-		lv.setOnItemClickListener(new DOI_CL(actv, dlg, bm));
+		lv.setOnItemClickListener(new DOI_CL(actv, dlg, bm, lv_Position));
 
 		/***************************************
 		 * Modify the list view height

@@ -102,7 +102,7 @@ public class BMActv extends ListActivity {
 		 ***************************************/
 		ListView lv = this.getListView();
 		
-		lv.setTag(Tags.ListTags.actv_bm_lv);
+		lv.setTag(Tags.ListTags.ACTV_BM_LV);
 		
 		lv.setOnItemLongClickListener(new LOI_LCL(this));
 		

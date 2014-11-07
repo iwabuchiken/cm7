@@ -70,7 +70,7 @@ public class Tags {
 		DLG_EDIT_ITEM_BT_OK,
 		
 		// dlg: confirm delete BM
-		dlg_conf_delete_BM_ok,
+		DLG_CONF_DELETE_BM_OK,
 		
 		// dlg: confirm delete AI
 //		dlg_conf_delete_BM_ok,
@@ -241,7 +241,7 @@ public class Tags {
 		ACTV_MAIN_LV,
 		
 		// BMActv.java
-		actv_bm_lv,
+		ACTV_BM_LV,
 		
 		// ALActv.java
 		actv_ALActv_lv,

@@ -47,6 +47,7 @@ public class DB_OCL implements OnClickListener {
 	private String choice;
 	private WordPattern wp;
 	private Dialog d4;
+	private int lv_Position;
 	
 	public DB_OCL(Activity actv, Dialog dlg1) {
 		//
@@ -218,6 +219,25 @@ public class DB_OCL implements OnClickListener {
 
 	}
 
+	public 
+	DB_OCL
+	(Activity actv, 
+		Dialog d1, Dialog d2, BM bm, int lv_Position) {
+		// TODO Auto-generated constructor stub
+		
+		this.actv = actv;
+		
+		this.d1 = d1;
+		this.d2 = d2;
+		this.bm	= bm;
+		this.lv_Position	= lv_Position;
+
+		CONS.Admin.vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		
+		
+		
+	}//DB_OCL
+//
 	public void onClick(View v) {
 		//
 		Tags.DialogTags tag_name = (Tags.DialogTags) v.getTag();
@@ -274,9 +294,9 @@ public class DB_OCL implements OnClickListener {
 			
 			break;
 			
-		case dlg_conf_delete_BM_ok://------------------------------------------------
+		case DLG_CONF_DELETE_BM_OK://------------------------------------------------
 			
-			dlg_Conf_Delete_BM_Ok();
+			dlg_DLG_CONF_DELETE_BM_OK();
 			
 			break;
 			
@@ -859,7 +879,7 @@ public class DB_OCL implements OnClickListener {
 		
 	}//private void dlg_Edit_BM_Ok()
 
-	private void dlg_Conf_Delete_BM_Ok() {
+	private void dlg_DLG_CONF_DELETE_BM_OK() {
 		// TODO Auto-generated method stub
 		
 		// TODO Auto-generated method stub
@@ -880,6 +900,43 @@ public class DB_OCL implements OnClickListener {
 		if (res == true) {
 			
 			CONS.BMActv.bmList.remove(bm);
+			
+			////////////////////////////////
+
+			// validate: current position
+
+			////////////////////////////////
+			int last_Position = Methods.get_Pref_Int(
+					actv, 
+					CONS.Pref.pname_BMActv, 
+					CONS.Pref.pkey_CurrentPosition_BMActv, 
+					CONS.Pref.dflt_IntExtra_value);
+			
+			if (this.lv_Position == last_Position) {
+				
+				res = Methods.set_Pref_Int(
+						actv, 
+						CONS.Pref.pname_BMActv, 
+						CONS.Pref.pkey_CurrentPosition_BMActv, 
+						CONS.Pref.dflt_IntExtra_value);
+				
+				// Log
+				String msg_Log = "current position => cleared: " + this.lv_Position;
+				Log.d("DB_OCL.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+			} else {
+
+				// Log
+				String msg_Log = "current position => remains: " + this.lv_Position;
+				Log.d("DB_OCL.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+
+			}
 			
 			CONS.BMActv.aAdapter.notifyDataSetChanged();
 			
