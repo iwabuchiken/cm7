@@ -113,24 +113,6 @@ public class Methods_dlg {
 						.setTextColor_ID(R.color.blue1)
 						.build());
 		
-//		String[] choices = {
-//				actv.getString(R.string.dlg_db_admin_item_exec_sql),
-//				
-//				actv.getString(R.string.dlg_db_admin_item_backup_db),
-//				actv.getString(R.string.dlg_db_admin_item_refresh_db),
-//				actv.getString(R.string.dlg_db_admin_item_impfile),
-//				actv.getString(R.string.dlg_db_admin_item_restore_db),
-//				
-//					};
-//		
-//		List<String> list = new ArrayList<String>();
-//		
-//		for (String item : choices) {
-//			
-//			list.add(item);
-//			
-//		}
-		
 		////////////////////////////////
 
 		// Adapter
@@ -157,22 +139,12 @@ public class Methods_dlg {
 		}
 		
 		
-//		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-//				actv,
-////				R.layout.dlg_db_admin,
-////				android.R.layout.simple_list_item_1,
-//				R.layout.list_row_simple_1,
-//				list
-//				);
-
 		/****************************
 		 * 4. Set adapter
 			****************************/
 		ListView lv = (ListView) dlg.findViewById(R.id.dlg_tmpl_list_cancel_lv);
-//		ListView lv = (ListView) dlg.findViewById(R.id.dlg_db_admin_lv);
 		
 		lv.setAdapter(CONS.MainActv.adp_ListItems_DB);
-//		lv.setAdapter(adapter);
 		
 		/****************************
 		 * 5. Set listener to list
@@ -185,7 +157,6 @@ public class Methods_dlg {
 		 * 6. Show dialog
 			****************************/
 		dlg.show();
-		
 		
 	}//public static void dlg_db_activity(Activity actv)
 

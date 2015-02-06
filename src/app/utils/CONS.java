@@ -480,7 +480,8 @@ public class CONS {
 		public static int display_TopPosition_Current = -1;
 		public static int display_TopPosition_Previous = -1;
 		
-		public final static int TITLE_MAX_LENGTH	= 12;
+		public final static int TITLE_MAX_LENGTH	= 15;
+//		public final static int TITLE_MAX_LENGTH	= 12;
 
 		// ALActv, long click, move files
 		public static ArrayAdapter<String> adp_DirList;

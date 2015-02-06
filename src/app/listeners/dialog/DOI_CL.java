@@ -818,22 +818,6 @@ public class DOI_CL implements OnItemClickListener {
 
 		Methods_dlg.conf_Restore_DB(actv, d1);
 		
-//		boolean res = Methods.restore_DB(actv);
-//		
-//		if (res == true) {
-//			
-//			d1.dismiss();
-//			
-//			String msg = "DB => Restored";
-//			Methods_dlg.dlg_ShowMessage(actv, msg);
-//			
-//		} else {
-//			
-//			String msg = "DB => Can't be restored";
-//			Methods_dlg.dlg_ShowMessage(actv, msg);
-//
-//		}
-		
 	}//case_DLG_DB_ADMIN_LV__RestoreDB
 
 	private void 

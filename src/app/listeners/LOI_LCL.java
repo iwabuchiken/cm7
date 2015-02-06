@@ -294,22 +294,45 @@ LOI_LCL implements OnItemLongClickListener {
 		
 		int len;
 		
+		String title = null;
+		
 		if (ai.getFile_name().length() > CONS.ALActv.TITLE_MAX_LENGTH) {
 			
-			len = ai.getFile_name().length();
+			len = CONS.ALActv.TITLE_MAX_LENGTH;
+			
+			title = actv.getString(
+					R.string.dlg_alactv_list_long_click_title)
+				+ ": "
+				+ ai.getFile_name().substring(
+						0, len)
+				+ "..."
+//						0, CONS.ALActv.TITLE_MAX_LENGTH)
+				;
+
 			
 		} else {
 			
-			len = CONS.ALActv.TITLE_MAX_LENGTH;
+			len = ai.getFile_name().length();
+
+			title = actv.getString(
+					R.string.dlg_alactv_list_long_click_title)
+				+ ": "
+				+ ai.getFile_name().substring(
+						0, len)
+//				+ "..."
+//						0, CONS.ALActv.TITLE_MAX_LENGTH)
+				;
 
 		}
 		
-		String title = actv.getString(
-							R.string.dlg_alactv_list_long_click_title)
-						+ ": "
-						+ ai.getFile_name().substring(
-								0, CONS.ALActv.TITLE_MAX_LENGTH)
-						;
+//		String title = actv.getString(
+//							R.string.dlg_alactv_list_long_click_title)
+//						+ ": "
+//						+ ai.getFile_name().substring(
+//								0, len)
+//						+ "..."
+////								0, CONS.ALActv.TITLE_MAX_LENGTH)
+//						;
 		
 		Dialog dlg1 = Methods_dlg.dlg_Template_Cancel(
 				actv,
