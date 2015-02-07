@@ -502,8 +502,19 @@ public class CONS {
 		public static int list_Pos_Prev = -1;
 		
 		public static boolean searchDone	= false;
+
+		///////////////////////////////////
+		//
+		// enums
+		//
+		///////////////////////////////////
+		public static enum SaveLoadBMs {
+			
+			SaveBM, LoadBM,
+			
+		}
 		
-	}
+	}//public static class ALActv
 
 	public static class PlayActv {
 	

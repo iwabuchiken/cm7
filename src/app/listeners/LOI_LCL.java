@@ -325,15 +325,6 @@ LOI_LCL implements OnItemLongClickListener {
 
 		}
 		
-//		String title = actv.getString(
-//							R.string.dlg_alactv_list_long_click_title)
-//						+ ": "
-//						+ ai.getFile_name().substring(
-//								0, len)
-//						+ "..."
-////								0, CONS.ALActv.TITLE_MAX_LENGTH)
-//						;
-		
 		Dialog dlg1 = Methods_dlg.dlg_Template_Cancel(
 				actv,
 				R.layout.dlg_tmpl_cancel_lv,
@@ -345,19 +336,28 @@ LOI_LCL implements OnItemLongClickListener {
 		/****************************
 		* 2. Prep => List
 		****************************/
-		String[] choices = {
-					actv.getString(R.string.generic_tv_delete),
-					actv.getString(R.string.generic_tv_edit),
-					actv.getString(R.string.dlg_alactv_list_long_click_item_move),
-					};
-		
 		List<String> list = new ArrayList<String>();
 		
-		for (String item : choices) {
+		list.add(actv.getString(R.string.generic_tv_delete));
+		list.add(actv.getString(R.string.generic_tv_edit));
+		list.add(actv.getString(R.string.dlg_alactv_list_long_click_item_move));
 		
-			list.add(item);
+		list.add(actv.getString(R.string.dlg_alactv_list_long_click_SaveBM));
+		list.add(actv.getString(R.string.dlg_alactv_list_long_click_LoadBM));
 		
-		}
+//		String[] choices = {
+//					actv.getString(R.string.generic_tv_delete),
+//					actv.getString(R.string.generic_tv_edit),
+//					actv.getString(R.string.dlg_alactv_list_long_click_item_move),
+//					};
+//		
+//		List<String> list = new ArrayList<String>();
+//		
+//		for (String item : choices) {
+//		
+//			list.add(item);
+//		
+//		}
 		
 		/****************************
 		* 3. Adapter

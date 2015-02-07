@@ -215,6 +215,7 @@ public final class R {
         public static final int dlg_tmpl_cancel_lv_with_btn_3_ll_filepath=0x7f09006d;
         public static final int dlg_tmpl_cancel_lv_with_btn_3_ll_main=0x7f09006b;
         public static final int dlg_tmpl_cancel_lv_with_btn_3_lv=0x7f09006c;
+        public static final int dlg_tmpl_confirm_simple_TV_ItemName=0x7f090071;
         public static final int dlg_tmpl_confirm_simple_btn_cancel=0x7f090073;
         public static final int dlg_tmpl_confirm_simple_btn_ok=0x7f090072;
         public static final int dlg_tmpl_confirm_simple_cb_btn_cancel=0x7f090078;
@@ -222,7 +223,6 @@ public final class R {
         public static final int dlg_tmpl_confirm_simple_cb_cb=0x7f090076;
         public static final int dlg_tmpl_confirm_simple_cb_tv_item_name=0x7f090075;
         public static final int dlg_tmpl_confirm_simple_cb_tv_message=0x7f090074;
-        public static final int dlg_tmpl_confirm_simple_tv_item_name=0x7f090071;
         public static final int dlg_tmpl_confirm_simple_tv_message=0x7f090070;
         public static final int dlg_tmpl_edittext_simple_btn_cancel=0x7f09007c;
         public static final int dlg_tmpl_edittext_simple_btn_ok=0x7f09007b;
@@ -363,35 +363,37 @@ public final class R {
         public static final int dlg_LAB_create_wave_file=0x7f060028;
         /**  dlg: ACTVMAIN_LV 
          */
-        public static final int dlg_actvmain_lv_delete=0x7f06005b;
-        public static final int dlg_actvmain_lv_delete_confirm_message=0x7f06005c;
+        public static final int dlg_actvmain_lv_delete=0x7f06005d;
+        public static final int dlg_actvmain_lv_delete_confirm_message=0x7f06005e;
+        public static final int dlg_alactv_list_long_click_LoadBM=0x7f060040;
+        public static final int dlg_alactv_list_long_click_SaveBM=0x7f06003f;
         public static final int dlg_alactv_list_long_click_item_move=0x7f06003e;
         /**  dlg_alactv_list_long_click 
          */
         public static final int dlg_alactv_list_long_click_title=0x7f06003d;
         /**  dlg: conf move files 
          */
-        public static final int dlg_alactv_move_files_confirm_message=0x7f06005f;
+        public static final int dlg_alactv_move_files_confirm_message=0x7f060061;
         /**  dlg_bmactv_list_long_click 
          */
         public static final int dlg_bmactv_list_long_click_title=0x7f06003c;
         /**  dialog: delete AI 
          */
-        public static final int dlg_conf_delete_ai_tv_message=0x7f060040;
+        public static final int dlg_conf_delete_ai_tv_message=0x7f060042;
         /**  dialog: delete BM 
          */
-        public static final int dlg_conf_delete_bm_tv_message=0x7f06003f;
+        public static final int dlg_conf_delete_bm_tv_message=0x7f060041;
         /**  dlg_confirm_create_folder.xml 
          */
-        public static final int dlg_confirm_create_folder_tv_message=0x7f06004f;
-        public static final int dlg_create_dir_message=0x7f06005e;
+        public static final int dlg_confirm_create_folder_tv_message=0x7f060051;
+        public static final int dlg_create_dir_message=0x7f060060;
         /**  dlg: create dir 
          */
-        public static final int dlg_create_dir_title=0x7f06005d;
+        public static final int dlg_create_dir_title=0x7f06005f;
         /**  dlg_create_folder.xml 
          */
-        public static final int dlg_create_folder_title=0x7f06004c;
-        public static final int dlg_create_folder_tv_message=0x7f06004d;
+        public static final int dlg_create_folder_title=0x7f06004e;
+        public static final int dlg_create_folder_tv_message=0x7f06004f;
         public static final int dlg_db_admin_item_Log=0x7f060027;
         public static final int dlg_db_admin_item_backup_db=0x7f06001e;
         public static final int dlg_db_admin_item_create_table_bm=0x7f06002f;
@@ -415,45 +417,45 @@ public final class R {
         public static final int dlg_db_admin_title=0x7f06001d;
         /**  dlg_edit_ai.xml 
          */
-        public static final int dlg_edit_ai_title=0x7f060044;
-        public static final int dlg_edit_ai_tv_file_name=0x7f060045;
-        public static final int dlg_edit_ai_tv_file_path=0x7f060046;
-        public static final int dlg_edit_ai_tv_memo=0x7f060048;
-        public static final int dlg_edit_ai_tv_title=0x7f060047;
-        public static final int dlg_edit_item_bm_title=0x7f060042;
-        public static final int dlg_edit_item_memo=0x7f060043;
+        public static final int dlg_edit_ai_title=0x7f060046;
+        public static final int dlg_edit_ai_tv_file_name=0x7f060047;
+        public static final int dlg_edit_ai_tv_file_path=0x7f060048;
+        public static final int dlg_edit_ai_tv_memo=0x7f06004a;
+        public static final int dlg_edit_ai_tv_title=0x7f060049;
+        public static final int dlg_edit_item_bm_title=0x7f060044;
+        public static final int dlg_edit_item_memo=0x7f060045;
         /**  dlg_edit_item.xml 
          */
-        public static final int dlg_edit_item_title=0x7f060041;
-        public static final int dlg_impactv_list_item_import=0x7f060051;
+        public static final int dlg_edit_item_title=0x7f060043;
+        public static final int dlg_impactv_list_item_import=0x7f060053;
         /**  dlg_ImpActv 
          */
-        public static final int dlg_impactv_list_title=0x7f060050;
+        public static final int dlg_impactv_list_title=0x7f060052;
         /**  dlg_input_empty.xml 
          */
-        public static final int dlg_input_empty_message=0x7f06004e;
-        public static final int dlg_move_files_confirm_move_to_flolder_top_msg=0x7f060065;
-        public static final int dlg_move_files_confirm_move_to_folder_msg=0x7f060063;
-        public static final int dlg_move_files_confirm_move_to_rmeote_msg=0x7f060064;
-        public static final int dlg_move_files_item_folder=0x7f060066;
-        public static final int dlg_move_files_item_remote=0x7f060067;
+        public static final int dlg_input_empty_message=0x7f060050;
+        public static final int dlg_move_files_confirm_move_to_flolder_top_msg=0x7f060067;
+        public static final int dlg_move_files_confirm_move_to_folder_msg=0x7f060065;
+        public static final int dlg_move_files_confirm_move_to_rmeote_msg=0x7f060066;
+        public static final int dlg_move_files_item_folder=0x7f060068;
+        public static final int dlg_move_files_item_remote=0x7f060069;
         /**  dlg: move files 
          */
-        public static final int dlg_move_files_title=0x7f060060;
-        public static final int dlg_move_files_title_folder=0x7f060061;
-        public static final int dlg_move_files_title_remote=0x7f060062;
-        public static final int dlg_playactv_edit_ai_add_patterns=0x7f06004b;
-        public static final int dlg_playactv_edit_ai_memo_title=0x7f06004a;
+        public static final int dlg_move_files_title=0x7f060062;
+        public static final int dlg_move_files_title_folder=0x7f060063;
+        public static final int dlg_move_files_title_remote=0x7f060064;
+        public static final int dlg_playactv_edit_ai_add_patterns=0x7f06004d;
+        public static final int dlg_playactv_edit_ai_memo_title=0x7f06004c;
         /**  dlg_edit_title.xml 
          */
-        public static final int dlg_playactv_edit_ai_title_title=0x7f060049;
-        public static final int dlg_search_message_all_table=0x7f06006a;
-        public static final int dlg_search_message_file_name=0x7f06006b;
-        public static final int dlg_search_message_no_words=0x7f06006c;
+        public static final int dlg_playactv_edit_ai_title_title=0x7f06004b;
+        public static final int dlg_search_message_all_table=0x7f06006c;
+        public static final int dlg_search_message_file_name=0x7f06006d;
+        public static final int dlg_search_message_no_words=0x7f06006e;
         /**  dlg_search.xml 
          */
-        public static final int dlg_search_title=0x7f060068;
-        public static final int dlg_search_tv_message=0x7f060069;
+        public static final int dlg_search_title=0x7f06006a;
+        public static final int dlg_search_tv_message=0x7f06006b;
         public static final int generic_bt_back=0x7f060003;
         public static final int generic_bt_cancel=0x7f060002;
         public static final int generic_bt_clear=0x7f060005;
@@ -479,25 +481,25 @@ public final class R {
         public static final int menu_actv_play_register_pattern=0x7f06003b;
         /**  menu: actv_sensors 
          */
-        public static final int menu_actv_sensors_accelero=0x7f06006d;
-        public static final int menu_actv_sensors_compass=0x7f06006e;
+        public static final int menu_actv_sensors_accelero=0x7f06006f;
+        public static final int menu_actv_sensors_compass=0x7f060070;
         public static final int opt_menu_main_create_dir=0x7f06001a;
         /**  menu_main.xml 
          */
         public static final int opt_menu_main_db=0x7f060019;
         public static final int opt_menu_main_search=0x7f06001c;
         public static final int opt_menu_main_settings=0x7f06001b;
-        public static final int pkey_prefactv_step_length=0x7f060059;
-        public static final int prefactv_key_bgm=0x7f060053;
-        public static final int prefactv_key_resume_position=0x7f060056;
-        public static final int prefactv_summary_bgm=0x7f060054;
-        public static final int prefactv_summary_resume_position=0x7f060057;
-        public static final int prefactv_summary_step_length=0x7f06005a;
+        public static final int pkey_prefactv_step_length=0x7f06005b;
+        public static final int prefactv_key_bgm=0x7f060055;
+        public static final int prefactv_key_resume_position=0x7f060058;
+        public static final int prefactv_summary_bgm=0x7f060056;
+        public static final int prefactv_summary_resume_position=0x7f060059;
+        public static final int prefactv_summary_step_length=0x7f06005c;
         /**  PrefActv 
          */
-        public static final int prefactv_title_bgm=0x7f060052;
-        public static final int prefactv_title_resume_position=0x7f060055;
-        public static final int prefactv_title_step_length=0x7f060058;
+        public static final int prefactv_title_bgm=0x7f060054;
+        public static final int prefactv_title_resume_position=0x7f060057;
+        public static final int prefactv_title_step_length=0x7f06005a;
     }
     public static final class style {
         /** 

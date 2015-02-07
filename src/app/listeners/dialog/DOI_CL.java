@@ -730,6 +730,19 @@ public class DOI_CL implements OnItemClickListener {
 			
 			Methods_dlg.dlg_Move_AI(actv, d1, ai, aiList_Position);
 			
+		} else if (item.equals(actv.getString(
+						R.string.dlg_alactv_list_long_click_SaveBM))) {
+			
+			Methods_dlg.conf_SaveLoadBMs(actv, d1, ai, CONS.ALActv.SaveLoadBMs.SaveBM);
+			
+//			Methods_dlg.dlg_Move_AI(actv, d1, ai, aiList_Position);
+			
+		} else if (item.equals(actv.getString(
+						R.string.dlg_alactv_list_long_click_LoadBM))) {
+			
+			Methods_dlg.conf_SaveLoadBMs(actv, d1, ai, CONS.ALActv.SaveLoadBMs.LoadBM);
+//			Methods_dlg.dlg_Move_AI(actv, d1, ai, aiList_Position);
+			
 		}//if (item.equals(actv.getString(R.string.generic_tv_edit)))
 		
 	}//case_Dlg_ALActv_LongClick(String item)

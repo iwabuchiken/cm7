@@ -48,6 +48,7 @@ import app.listeners.dialog.DB_OCL;
 import app.listeners.dialog.DB_OTL;
 import app.listeners.dialog.DLOI_LCL;
 import app.listeners.dialog.DOI_CL;
+import app.utils.CONS.ALActv.SaveLoadBMs;
 import app.utils.Tags.DialogTags;
 
 public class Methods_dlg {
@@ -280,7 +281,7 @@ public class Methods_dlg {
 
 		////////////////////////////////
 		TextView tv_BM_Position = (TextView) dlg2.findViewById(
-							R.id.dlg_tmpl_confirm_simple_tv_item_name);
+							R.id.dlg_tmpl_confirm_simple_TV_ItemName);
 
 		tv_BM_Position.setText(bm.getPosition());
 
@@ -1548,7 +1549,7 @@ public class Methods_dlg {
 
 		////////////////////////////////
 		TextView tv_ItemName = (TextView) dlg2.findViewById(
-							R.id.dlg_tmpl_confirm_simple_tv_item_name);
+							R.id.dlg_tmpl_confirm_simple_TV_ItemName);
 //							R.id.dlg_tmpl_confirm_simple_cb_tv_item_name);
 
 		tv_ItemName.setText(folderName);
@@ -1621,7 +1622,7 @@ public class Methods_dlg {
 		
 		////////////////////////////////
 		TextView tv_ItemName = (TextView) dlg2.findViewById(
-				R.id.dlg_tmpl_confirm_simple_tv_item_name);
+				R.id.dlg_tmpl_confirm_simple_TV_ItemName);
 //							R.id.dlg_tmpl_confirm_simple_cb_tv_item_name);
 		
 		tv_ItemName.setText(CONS.DB.dbName);
@@ -1855,7 +1856,7 @@ public class Methods_dlg {
 				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_tv_message);
 		
 		TextView tv_Choice = 
-				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_tv_item_name);
+				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_TV_ItemName);
 
 		tv_Message.setText(actv.getString(
 						R.string.dlg_alactv_move_files_confirm_message));
@@ -2064,7 +2065,7 @@ public class Methods_dlg {
 
 		////////////////////////////////
 		TextView tv_ItemName = 
-				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_tv_item_name);
+				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_TV_ItemName);
 //		dlg_tmpl_confirm_simple_tv_message
 		
 		tv_ItemName.setText(CONS.DB.dbName_Importing);
@@ -2169,7 +2170,7 @@ public class Methods_dlg {
 
 		////////////////////////////////
 		TextView tv_ItemName = 
-				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_tv_item_name);
+				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_TV_ItemName);
 //		dlg_tmpl_confirm_simple_tv_message
 		
 		tv_ItemName.setText("From: " + CONS.DB.dbName_Importing);
@@ -2481,7 +2482,7 @@ public class Methods_dlg {
 
 		////////////////////////////////
 		TextView tv_ItemName = 
-				(TextView) d3.findViewById(R.id.dlg_tmpl_confirm_simple_tv_item_name);
+				(TextView) d3.findViewById(R.id.dlg_tmpl_confirm_simple_TV_ItemName);
 //		dlg_tmpl_confirm_simple_tv_message
 		
 		tv_ItemName.setText(wp.getWord());
@@ -3015,7 +3016,7 @@ public class Methods_dlg {
 
 		////////////////////////////////
 		TextView tv_ItemName = 
-				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_tv_item_name);
+				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_TV_ItemName);
 //		dlg_tmpl_confirm_simple_tv_message
 		
 		tv_ItemName.setText(choice);
@@ -3071,7 +3072,7 @@ public class Methods_dlg {
 		
 		////////////////////////////////
 		TextView tv_ItemName = 
-				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_tv_item_name);
+				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_TV_ItemName);
 //		dlg_tmpl_confirm_simple_tv_message
 		
 		tv_ItemName.setText(CONS.Paths.dname_Base);
@@ -3277,5 +3278,107 @@ public class Methods_dlg {
 		d3.show();		
 		
 	}//dlg_LAB
+
+	public static void 
+	conf_SaveLoadBMs
+	(Activity actv, Dialog d1, AI ai, SaveLoadBMs saveload) {
+		// TODO Auto-generated method stub
+		
+		Dialog dlg2 = new Dialog(actv);
+
+		// layout
+		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple);
+//		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple_checkbox);
+		
+		// Title
+		dlg2.setTitle(R.string.generic_tv_confirm);
+
+		////////////////////////////////
+
+		// Set: Message
+
+		////////////////////////////////
+		String message = null;
+		
+		switch(saveload) {
+		
+		case SaveBM: message = actv.getString(R.string.dlg_alactv_list_long_click_SaveBM) + "?";
+			
+			break;
+			
+		case LoadBM: message = actv.getString(R.string.dlg_alactv_list_long_click_LoadBM) + "?";
+			
+			break;
+			
+		}
+		
+		TextView tv_Message = (TextView) dlg2.findViewById(
+							R.id.dlg_tmpl_confirm_simple_tv_message);
+//							R.id.dlg_tmpl_confirm_simple_cb_tv_message);
+		
+//		tv_Message.setText(actv.getString(R.string.dlg_conf_delete_bm_tv_message));
+//		tv_Message.setText(actv.getString(R.string.dlg_conf_delete_ai_tv_message));
+		tv_Message.setText(message);
+
+		////////////////////////////////
+
+		// Set: BM position
+
+		////////////////////////////////
+		TextView tv_ItemName = (TextView) dlg2.findViewById(
+							R.id.dlg_tmpl_confirm_simple_TV_ItemName);
+//		R.id.dlg_tmpl_confirm_simple_tv_item_name);
+//		R.id.dlg_tmpl_confirm_simple_cb_tv_item_name);
+
+		tv_ItemName.setText(ai.getFile_name());
+
+		////////////////////////////////
+
+		// Add listeners => OnTouch
+
+		////////////////////////////////
+		Button btn_ok = (Button) dlg2.findViewById(
+								R.id.dlg_tmpl_confirm_simple_btn_ok);
+//		R.id.dlg_tmpl_confirm_simple_cb_btn_ok);
+		
+		Button btn_cancel = (Button) dlg2.findViewById(
+								R.id.dlg_tmpl_confirm_simple_btn_cancel);
+//		R.id.dlg_tmpl_confirm_simple_cb_btn_cancel);
+		
+		//
+		Tags.DialogTags tag = null;
+		
+		switch(saveload) {
+		
+		case SaveBM: tag = Tags.DialogTags.DLG_CONF_SAVE_BM_OK;
+			
+			break;
+			
+		case LoadBM: tag = Tags.DialogTags.DLG_CONF_LOAD_BM_OK;
+			
+			break;
+			
+		}
+		
+		btn_ok.setTag(tag);
+		btn_cancel.setTag(Tags.DialogTags.DLG_GENERIC_DISMISS_SECOND_DIALOG);
+		
+		//
+		btn_ok.setOnTouchListener(new DB_OTL(actv, dlg2));
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg2));
+		
+		/****************************
+		 * 4. Add listeners => OnClick
+			****************************/
+		//
+		btn_ok.setOnClickListener(new DB_OCL(actv, d1, dlg2, ai));
+		btn_cancel.setOnClickListener(new DB_OCL(actv, d1, dlg2));
+		
+		/****************************
+		 * 5. Show dialog
+			****************************/
+		dlg2.show();
+		
+	}//conf_SaveLoadBMs
 
 }//public class Methods_dialog

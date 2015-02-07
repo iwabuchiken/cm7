@@ -4292,7 +4292,7 @@ public class Methods {
 
 		////////////////////////////////
 		TextView tv_ItemName = 
-				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_tv_item_name);
+				(TextView) dlg3.findViewById(R.id.dlg_tmpl_confirm_simple_TV_ItemName);
 		
 		String choice = tv_ItemName.getText().toString();
 		

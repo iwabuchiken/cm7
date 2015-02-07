@@ -101,6 +101,8 @@
     <!-- dlg_alactv_list_long_click -->
   		<string name="dlg_alactv_list_long_click_title">AI</string>
   		<string name="dlg_alactv_list_long_click_item_move">Move</string>
+  		<string name="dlg_alactv_list_long_click_SaveBM">Save BM</string>
+  		<string name="dlg_alactv_list_long_click_LoadBM">Load BM</string>
 
   	<!-- dialog: delete BM -->
 		<string name="dlg_conf_delete_bm_tv_message">Delete BM?</string>
