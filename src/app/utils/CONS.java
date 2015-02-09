@@ -254,6 +254,32 @@ public class CONS {
 
 		////////////////////////////////
 		
+		// Table: BMStore (bookmark)
+		
+		////////////////////////////////
+		public static final String tname_BMStore = "bmstore";
+		
+		public static final String[] col_names_BMStore = {
+			"ai_id", "position", 			// 0,1
+			"title", "memo", "aiTableName"	// 2,3,4
+		};
+		
+		public static final String[] col_names_BMStore_full = {
+			android.provider.BaseColumns._ID,	// 0
+			"created_at", "modified_at",		// 1,2
+			"ai_name", "position",				// 3,4
+			"title", "memo",					// 5,6
+			"orig_created_at", "orig_modified_at",	// 7,8
+		};
+		
+		public static final String[] col_types_BMStore = {
+//			"INTEGER", "INTEGER",			// 0,1
+			"INTEGER", "TEXT",			// 0,1
+			"TEXT", "TEXT", "TEXT"			// 2,3,4
+		};
+		
+		////////////////////////////////
+		
 		// Table: refresh_history
 		
 		////////////////////////////////
