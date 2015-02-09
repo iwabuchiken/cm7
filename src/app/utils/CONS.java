@@ -260,8 +260,9 @@ public class CONS {
 		public static final String tname_BMStore = "bmstore";
 		
 		public static final String[] col_names_BMStore = {
-			"ai_id", "position", 			// 0,1
-			"title", "memo", "aiTableName"	// 2,3,4
+			"ai_name", "position",				// 0 1
+			"title", "memo",					// 2 3
+			"orig_created_at", "orig_modified_at",	// 4 5
 		};
 		
 		public static final String[] col_names_BMStore_full = {
@@ -273,9 +274,11 @@ public class CONS {
 		};
 		
 		public static final String[] col_types_BMStore = {
-//			"INTEGER", "INTEGER",			// 0,1
-			"INTEGER", "TEXT",			// 0,1
-			"TEXT", "TEXT", "TEXT"			// 2,3,4
+			"TEXT", "TEXT",				// 0 1
+			"TEXT", "TEXT",					// 2 3
+			"TEXT", "TEXT",	// 4 5
+//			"INTEGER", "TEXT",			// 0,1
+//			"TEXT", "TEXT", "TEXT"			// 2,3,4
 		};
 		
 		////////////////////////////////

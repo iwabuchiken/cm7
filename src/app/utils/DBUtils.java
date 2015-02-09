@@ -486,13 +486,8 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//public insertData(String tableName, String[] columnNames, String[] values)
 
-	/******************************
-		public boolean dropTable
-		
-		@return
-			false	=> Table can't be dropped or doesn't exist
-	 ******************************/
-	public boolean dropTable
+//	public boolean dropTable
+	public int dropTable
 	(Activity actv, String tableName) {
 		/***************************************
 		 * Setup: DB
@@ -522,7 +517,8 @@ public class DBUtils extends SQLiteOpenHelper{
 			String msg_Toast = "Table doesn't exist: " + tableName;
 			Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
 
-			return false;
+			return -1;
+			
 		}//if (tempBool == true)
 
 		/*------------------------------
@@ -552,7 +548,7 @@ public class DBUtils extends SQLiteOpenHelper{
 			wdb.close();
 			
 			// Return
-			return true;
+			return 1;
 			
 		} catch (SQLException e) {
 			// TODO ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽ黷ｽ catch ?�ｽ�ｽu?�ｽ�ｽ?�ｽ�ｽ?�ｽ�ｽb?�ｽ�ｽN
@@ -563,13 +559,13 @@ public class DBUtils extends SQLiteOpenHelper{
 			
 			// debug
 			Toast.makeText(actv, 
-						"DROP TABLE => failed(table=" + tableName, 
+						"DROP TABLE => failed(table=" + tableName + ")", 
 						Toast.LENGTH_LONG).show();
 			
 			wdb.close();
 			
 			// Return
-			return false;
+			return -2;
 		}//try
 
 	}//public boolean dropTable(String tableName) 

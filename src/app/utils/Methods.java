@@ -1377,7 +1377,8 @@ public class Methods {
 		
 	}//_refresh_MainDB__Setup_Table
 
-	public static void create_Table(Activity actv, String tname) {
+	public static boolean 
+	create_Table(Activity actv, String tname) {
 		// TODO Auto-generated method stub
 		
 		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
@@ -1399,7 +1400,6 @@ public class Methods {
 				// debug
 				String msg_Toast = "Table => created: " + CONS.DB.tname_CM7;
 				Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
-				
 				
 			} else {
 
@@ -1475,19 +1475,52 @@ public class Methods {
 				
 			}
 			
-		} else {
+		} else if (tname.equals(CONS.DB.tname_BMStore)) {
 			
+			res = dbu.createTable(actv, 
+					CONS.DB.tname_BMStore, CONS.DB.col_names_BMStore, 
+					CONS.DB.col_types_BMStore);
+//			CONS.DB.tname_MemoPatterns, CONS.DB.col_names_MemoPatterns, 
+//			CONS.DB.col_types_MemoPatterns);
+			
+			if (res == true) {
+				
+				// debug
+				String msg_Toast = "Table => created: " + tname;
+				Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+				
+				
+			} else {
+				
+				// debug
+				String msg_Toast = "Table => can't create: " + tname;
+				Toast.makeText(actv, msg_Toast, Toast.LENGTH_SHORT).show();
+				
+			}
+			
+		} else {
+
+			// Log
+			String msg_Log;
+
+			msg_Log = "unknown table name => " + tname;
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return false;
 
 		}//if (tname.equals(CONS.DB.tname_CM7))
 		
-//		res = dbu.createTable(actv, 
-//							CONS.DB.tname_RefresHistory, CONS.DB.col_names_RefreshHistory, 
-//							CONS.DB.col_types_RefreshHistory);
-//		CONS.DB.col_types_RefresHistory);
-//		CONS.DB.tname_CM7, CONS.DB.col_names_CM7, 
-//		CONS.DB.col_types_CM7);
+
+		///////////////////////////////////
+		//
+		// return
+		//
+		///////////////////////////////////
+		return res;
 		
-	}
+	}//create_Table(Activity actv, String tname)
 	
 	public static void 
 	create_Table_Audio
@@ -1523,7 +1556,16 @@ public class Methods {
 			
 	}//create_Table_Audio
 
-	public static boolean drop_Table
+	/******************************
+		public static int drop_Table
+		
+		@return
+			-1	=> Table doesn't exist<br>
+			-2	=> DROP TABLE => failed<br>
+			1	=> The table dropped<br>
+	 ******************************/
+//	public static boolean drop_Table
+	public static int drop_Table
 	(Activity actv, String tname) {
 		// TODO Auto-generated method stub
 

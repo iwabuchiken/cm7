@@ -602,9 +602,9 @@ public class Ops {
 		////////////////////////////////
 		String tname = Methods.conv_CurrentPath_to_TableName(target_Dir.getAbsolutePath());
 		
-		res = Methods.drop_Table(actv, tname);
+		int res_i = Methods.drop_Table(actv, tname);
 		
-		if (res == false) {
+		if (res_i == -2) {
 			
 			String msg = "Table => not dropped: " + tname;
 			Methods_dlg.dlg_ShowMessage(actv, msg);

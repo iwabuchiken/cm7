@@ -255,6 +255,12 @@ public class DB_OCL implements OnClickListener {
 		//
 		switch (tag_name) {
 		
+		case DLG_CONF_DROP_CREATE_TABLE_OK://------------------------------------------------
+			
+			case_DLG_CONF_DROP_CREATE_TABLE_OK();
+			
+			break;
+			
 		case GENERIC_DISMISS://------------------------------------------------
 			
 			d1.dismiss();
@@ -406,6 +412,98 @@ public class DB_OCL implements OnClickListener {
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void 
+	case_DLG_CONF_DROP_CREATE_TABLE_OK() {
+		// TODO Auto-generated method stub
+		///////////////////////////////////
+		//
+		// get: tname
+		//
+		///////////////////////////////////
+		TextView tv_Name = (TextView) d3.findViewById(R.id.dlg_tmpl_confirm_simple_TV_ItemName);
+		
+		// Log
+		String msg_Log;
+		
+		msg_Log = "table name => " + tv_Name.getText().toString();
+		Log.d("DB_OCL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		///////////////////////////////////
+		//
+		// dispatch
+		//
+		///////////////////////////////////
+		String tname = tv_Name.getText().toString();
+		
+		if (tname.equals(CONS.DB.tname_BMStore)) {
+			
+			int res_i = Methods.drop_Table(actv, tname);
+			
+			if (res_i == -2) {
+				
+				// Log
+				msg_Log = "drop table => failed: " + tname;
+				Log.d("DB_OCL.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+				return;
+				
+			}
+			
+			boolean res = Methods.create_Table(actv, tname);
+			
+			if (res == false) {
+				
+				// Log
+				msg_Log = "create table => failed: " + tname;
+				Log.d("DB_OCL.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+				return;
+				
+			}
+			
+		} else {
+
+			// Log
+			msg_Log = "unknown table name => " + tname;
+			Log.d("DB_OCL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return;
+			
+		}
+		
+		///////////////////////////////////
+		//
+		// report
+		//
+		///////////////////////////////////
+		// Log
+		msg_Log = "table created => " + tname;
+		Log.d("DB_OCL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+
+		///////////////////////////////////
+		//
+		// dismiss
+		//
+		///////////////////////////////////
+		d3.dismiss();
+		d2.dismiss();
+		d1.dismiss();
+		
+	}//case_DLG_CONF_DROP_CREATE_TABLE_OK
+	
 
 	private void 
 	dlg_DLG_RESTORE_DB_OK() {

@@ -1959,8 +1959,15 @@ public class Methods_dlg {
 		
 		list.add(new ListItem.Builder()
 				.setText(actv.getString(
+						R.string.dlg_db_admin_item_DropCreateTable_BMStore))
+						.setIconID(R.drawable.menu_icon_admin_32x32_purple)
+						.setTextColor_ID(R.color.green4)
+						.build());
+		
+		list.add(new ListItem.Builder()
+				.setText(actv.getString(
 						R.string.dlg_db_admin_item_lab))
-						.setIconID(R.drawable.menu_icon_admin_32x32_green)
+						.setIconID(R.drawable.menu_icon_admin_32x32_yellow)
 						.setTextColor_ID(R.color.green4)
 						.build());
 		
@@ -3380,5 +3387,64 @@ public class Methods_dlg {
 		dlg2.show();
 		
 	}//conf_SaveLoadBMs
+
+	public static void 
+	conf_DropCreate_Table
+	(Activity actv, Dialog d1, Dialog d2, String tname) {
+		// TODO Auto-generated method stub
+
+//		(Activity actv, 
+//				int layoutId, int titleStringId,
+//				
+//				int okButtonId, int cancelButtonId,
+//				Tags.DialogTags okTag, Tags.DialogTags cancelTag,
+//				
+//				Dialog dlg1, Dialog dlg2) {
+
+		Dialog d3 = 
+				Methods_dlg.dlg_template_okCancel_ThirdDialog(
+						actv, 
+						R.layout.dlg_tmpl_confirm_simple, 
+						R.string.generic_tv_confirm, 
+						
+						R.id.dlg_tmpl_confirm_simple_btn_ok, 
+						R.id.dlg_tmpl_confirm_simple_btn_cancel, 
+						
+						Tags.DialogTags.DLG_CONF_DROP_CREATE_TABLE_OK, 
+						Tags.DialogTags.DLG_GENERIC_DISMISS_THIRD_DIALOG,
+						d1, d2
+				);
+		
+		////////////////////////////////
+
+		// view: message
+
+		////////////////////////////////
+		TextView tv_Msg = 
+				(TextView) d3.findViewById(R.id.dlg_tmpl_confirm_simple_tv_message);
+		
+		tv_Msg.setText(actv.getString(
+								R.string.commons_lbl_DropCreate_Table)
+								+ "?");
+		
+		////////////////////////////////
+
+		// view: item name
+
+		////////////////////////////////
+		TextView tv_ItemName = 
+				(TextView) d3.findViewById(R.id.dlg_tmpl_confirm_simple_TV_ItemName);
+//		dlg_tmpl_confirm_simple_tv_message
+		
+		tv_ItemName.setText(tname);
+		
+		////////////////////////////////
+
+		// show
+
+		////////////////////////////////
+		d3.show();		
+		
+	}//conf_DropCreate_Table
 
 }//public class Methods_dialog

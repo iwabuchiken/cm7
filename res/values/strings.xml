@@ -26,6 +26,7 @@
     	<string name="commons_import_db_name">ifm11.db</string>
     	<string name="commons_lbl_create_table">Create table</string>
     	<string name="commons_lbl_drop_table">Drop table</string>
+    	<string name="commons_lbl_DropCreate_Table">Drop/Create table</string>
     	<string name="commons_lbl_restore_db">Restore DB</string>
     	<string name="commons_lbl_clear_view">Clear view</string>
     	<string name="commons_lbl_word">Word</string>
@@ -55,6 +56,7 @@
    	<string name="dlg_db_admin_item_op_imp_patterns">Import patterns</string>
    	<string name="dlg_db_admin_item_lab">LAB</string>
    	<string name="dlg_db_admin_item_Log">Log</string>
+   	<string name="dlg_db_admin_item_DropCreateTable_BMStore">Drop/Create: BMStore</string>
    	
    	<string name="dlg_LAB_create_wave_file">Create: Wave file</string>
    	<string name="dlg_LAB_canvas">Start canvas</string>

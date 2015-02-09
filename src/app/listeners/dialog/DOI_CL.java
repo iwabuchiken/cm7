@@ -616,8 +616,13 @@ public class DOI_CL implements OnItemClickListener {
 			Methods_dlg.conf_Import_Patterns(actv, d1, d2);
 			
 		} else if (li.getText().equals(actv.getString(
-				R.string.dlg_db_admin_item_lab))) {
+				R.string.dlg_db_admin_item_DropCreateTable_BMStore))) {
 
+			Methods_dlg.conf_DropCreate_Table(actv, d1, d2, CONS.DB.tname_BMStore);
+			
+		} else if (li.getText().equals(actv.getString(
+				R.string.dlg_db_admin_item_lab))) {
+			
 			Methods_dlg.dlg_LAB(actv, d1, d2);
 //			Lab.lab_WaveFile(actv, d1, d2);
 			
