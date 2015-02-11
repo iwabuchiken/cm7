@@ -1911,6 +1911,13 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//find_AI
 
+	/*******************************
+	 * @return
+	 * 
+	 * null	=> Query exception<br>
+	 * 		=> Query returned null<br>
+	 * 		=> No entries<br>
+	 *******************************/
 	public static AI
 	find_AI_ById
 	(Activity actv, long db_Id) {
@@ -2354,6 +2361,11 @@ public class DBUtils extends SQLiteOpenHelper{
 		for (int i = 0; i < c.getCount(); i++) {
 //			"ai_id", "position", "title", "memo", "aiTableName"
 			BM bm = new BM.Builder()
+			
+				.setDbId(c.getLong(0))
+				.setCreated_at(c.getString(1))
+				.setModified_at(c.getString(2))
+				
 				.setPosition(c.getString(c.getColumnIndex("position")))
 				.setTitle(c.getString(c.getColumnIndex("title")))
 				.setMemo(c.getString(c.getColumnIndex("memo")))

@@ -35,6 +35,9 @@ import java.util.regex.Pattern;
 
 
 
+
+
+
 import org.apache.commons.lang.StringUtils;
 
 import android.app.Activity;
@@ -74,6 +77,7 @@ import app.adapters.Adp_AIList_Move;
 import app.comps.Comp_WP;
 import app.items.AI;
 import app.items.BM;
+import app.items.BMStore;
 import app.items.LogItem;
 import app.items.Refresh;
 import app.items.WavFile;
@@ -5232,6 +5236,91 @@ public class Methods {
 		d1.dismiss();
 		
 	}//start_Activity_LogActv
+
+	public static List<BMStore> 
+	conv_BMs_to_BMStores
+	(Activity actv, List<BM> bmList) {
+		// TODO Auto-generated method stub
+		
+		List<BMStore> list_BMStores = new ArrayList<BMStore>();
+		
+		BM bm = null;
+		BMStore bm_Store = null;
+		
+		AI ai = null;
+		
+		for (int i = 0; i < bmList.size(); i++) {
+			
+			///////////////////////////////////
+			//
+			// get: BM
+			//
+			///////////////////////////////////
+			bm = bmList.get(i);
+			
+			///////////////////////////////////
+			//
+			// get: AI name
+			//
+			///////////////////////////////////
+			ai = DBUtils.find_AI_ById(actv, bm.getAiId());
+
+			/*******************************
+			 * validate
+			 *******************************/
+			if(ai == null) {
+				
+				continue;
+				
+			}
+			
+			///////////////////////////////////
+			//
+			// build: BMStore
+			//
+			///////////////////////////////////
+//			long	dbId;
+//			
+//			String	created_at;
+//			String	modified_at;
+//			
+//			String	ai_name;
+//			
+//			String	position;
+//			String	title;
+//			String	memo;
+//			
+//			String	orig_created_at;
+//			String	orig_modified_at;
+
+			bm_Store = new BMStore.Builder()
+						
+						.setCreated_at(Methods.conv_MillSec_to_TimeLabel(Methods.getMillSeconds_now()))
+						.setModified_at(Methods.conv_MillSec_to_TimeLabel(Methods.getMillSeconds_now()))
+						
+						.setAi_name(ai.getFile_name())
+						
+						.setPosition(bm.getPosition())
+						.setTitle(bm.getTitle())
+						.setMemo(bm.getMemo())
+						
+						.setOrig_created_at(bm.getCreated_at())
+						.setOrig_modified_at(bm.getModified_at())
+						
+						.build();
+			
+			///////////////////////////////////
+			//
+			// build: list
+			//
+			///////////////////////////////////
+			list_BMStores.add(bm_Store);
+			
+		}//for (int i = 0; i < bmList.size(); i++)
+		
+		return list_BMStores;
+		
+	}//conv_BMs_to_BMStores
 
 	
 }//public class Methods

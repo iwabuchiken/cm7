@@ -3291,14 +3291,14 @@ public class Methods_dlg {
 	(Activity actv, Dialog d1, AI ai, SaveLoadBMs saveload) {
 		// TODO Auto-generated method stub
 		
-		Dialog dlg2 = new Dialog(actv);
+		Dialog d2 = new Dialog(actv);
 
 		// layout
-		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple);
+		d2.setContentView(R.layout.dlg_tmpl_confirm_simple);
 //		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple_checkbox);
 		
 		// Title
-		dlg2.setTitle(R.string.generic_tv_confirm);
+		d2.setTitle(R.string.generic_tv_confirm);
 
 		////////////////////////////////
 
@@ -3319,7 +3319,7 @@ public class Methods_dlg {
 			
 		}
 		
-		TextView tv_Message = (TextView) dlg2.findViewById(
+		TextView tv_Message = (TextView) d2.findViewById(
 							R.id.dlg_tmpl_confirm_simple_tv_message);
 //							R.id.dlg_tmpl_confirm_simple_cb_tv_message);
 		
@@ -3332,7 +3332,7 @@ public class Methods_dlg {
 		// Set: BM position
 
 		////////////////////////////////
-		TextView tv_ItemName = (TextView) dlg2.findViewById(
+		TextView tv_ItemName = (TextView) d2.findViewById(
 							R.id.dlg_tmpl_confirm_simple_TV_ItemName);
 //		R.id.dlg_tmpl_confirm_simple_tv_item_name);
 //		R.id.dlg_tmpl_confirm_simple_cb_tv_item_name);
@@ -3344,11 +3344,11 @@ public class Methods_dlg {
 		// Add listeners => OnTouch
 
 		////////////////////////////////
-		Button btn_ok = (Button) dlg2.findViewById(
+		Button btn_ok = (Button) d2.findViewById(
 								R.id.dlg_tmpl_confirm_simple_btn_ok);
 //		R.id.dlg_tmpl_confirm_simple_cb_btn_ok);
 		
-		Button btn_cancel = (Button) dlg2.findViewById(
+		Button btn_cancel = (Button) d2.findViewById(
 								R.id.dlg_tmpl_confirm_simple_btn_cancel);
 //		R.id.dlg_tmpl_confirm_simple_cb_btn_cancel);
 		
@@ -3371,20 +3371,20 @@ public class Methods_dlg {
 		btn_cancel.setTag(Tags.DialogTags.DLG_GENERIC_DISMISS_SECOND_DIALOG);
 		
 		//
-		btn_ok.setOnTouchListener(new DB_OTL(actv, dlg2));
-		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg2));
+		btn_ok.setOnTouchListener(new DB_OTL(actv, d2));
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, d2));
 		
 		/****************************
 		 * 4. Add listeners => OnClick
 			****************************/
 		//
-		btn_ok.setOnClickListener(new DB_OCL(actv, d1, dlg2, ai));
-		btn_cancel.setOnClickListener(new DB_OCL(actv, d1, dlg2));
+		btn_ok.setOnClickListener(new DB_OCL(actv, d1, d2, ai));
+		btn_cancel.setOnClickListener(new DB_OCL(actv, d1, d2));
 		
 		/****************************
 		 * 5. Show dialog
 			****************************/
-		dlg2.show();
+		d2.show();
 		
 	}//conf_SaveLoadBMs
 

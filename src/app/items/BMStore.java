@@ -1,6 +1,6 @@
 package app.items;
 
-public class BMStrore {
+public class BMStore {
 
 //	android.provider.BaseColumns._ID,	// 0
 //	"created_at", "modified_at",		// 1,2
@@ -22,13 +22,13 @@ public class BMStrore {
 	String	orig_created_at;
 	String	orig_modified_at;
 	
-	public BMStrore() {
+	public BMStore() {
 		
 	}
 
 
 	
-	public BMStrore(Builder builder) {
+	public BMStore(Builder builder) {
 		// TODO Auto-generated constructor stub
 		dbId = builder.dbId;
 
@@ -149,8 +149,8 @@ public class BMStrore {
 		private String	orig_modified_at;
 		
 		
-		public BMStrore build() {
-			return new BMStrore(this);
+		public BMStore build() {
+			return new BMStore(this);
 		}
 
 

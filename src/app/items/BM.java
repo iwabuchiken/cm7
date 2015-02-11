@@ -2,14 +2,18 @@ package app.items;
 
 public class BM {
 
+	long	dbId;
+
+	String	created_at;
+	String	modified_at;
+
 //	long	position;
 	String	position;
 	String	title;
 	String	memo;
+	
 	long	aiId;
 	String	aiTableName;
-	
-	long	dbId;
 	
 	public BM() {
 		
@@ -19,15 +23,41 @@ public class BM {
 	
 	public BM(Builder builder) {
 		// TODO Auto-generated constructor stub
+		dbId = builder.dbId;
+		this.created_at = builder.created_at;
+		this.modified_at = builder.modified_at;
+		
 		position = builder.position;
 		title = builder.title;
 		memo = builder.memo;
 		aiId = builder.aiId;
 		aiTableName = builder.aiTableName;
 		
-		dbId = builder.dbId;
-
 	}//public BM(Builder builder)
+
+
+
+	public String getCreated_at() {
+		return created_at;
+	}
+
+
+
+	public String getModified_at() {
+		return modified_at;
+	}
+
+
+
+	public void setCreated_at(String created_at) {
+		this.created_at = created_at;
+	}
+
+
+
+	public void setModified_at(String modified_at) {
+		this.modified_at = modified_at;
+	}
 
 
 
@@ -73,16 +103,31 @@ public class BM {
 	
 	public static class Builder {
 
+		private long	dbId;
+		String	created_at;
+		String	modified_at;
+
 		private String	position;
 		private String	title;
 		private String	memo;
 		private long	aiId;
 		private String	aiTableName;
-		private long	dbId;
 		
 		
 		public BM build() {
 			return new BM(this);
+		}
+
+
+
+		public Builder setCreated_at(String created_at) {
+			this.created_at = created_at; return this;
+		}
+
+
+
+		public Builder setModified_at(String modified_at) {
+			this.modified_at = modified_at; return this;
 		}
 
 

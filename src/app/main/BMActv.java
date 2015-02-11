@@ -50,47 +50,47 @@ public class BMActv extends ListActivity {
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", "onCreate()");
 
-		////////////////////////////////
-
-		// Init: vars
-
-		////////////////////////////////
-		if (CONS.Admin.vib == null) {
-			
-			CONS.Admin.vib = 
-					(Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
-			
-		}
-		
-		
-		////////////////////////////////
-
-		// Get: AI
-
-		////////////////////////////////
-		_onCreate_GetAI();
-		
-		////////////////////////////////
-
-		// Setup: view: textviews
-
-		////////////////////////////////
-		_onCreate_Setup_Textviews();
-
-		////////////////////////////////
-
-		// BM list
-
-		////////////////////////////////
-		_onCreate_Set_BMList();
-		
-		////////////////////////////////
-
-		// Listeners
-
-		////////////////////////////////
-		_onCreate_SetListeners();
-		
+//		////////////////////////////////
+//
+//		// Init: vars
+//
+//		////////////////////////////////
+//		if (CONS.Admin.vib == null) {
+//			
+//			CONS.Admin.vib = 
+//					(Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+//			
+//		}
+//		
+//		
+//		////////////////////////////////
+//
+//		// Get: AI
+//
+//		////////////////////////////////
+//		_onCreate_GetAI();
+//		
+//		////////////////////////////////
+//
+//		// Setup: view: textviews
+//
+//		////////////////////////////////
+//		_onCreate_Setup_Textviews();
+//
+//		////////////////////////////////
+//
+//		// BM list
+//
+//		////////////////////////////////
+//		_onCreate_Set_BMList();
+//		
+//		////////////////////////////////
+//
+//		// Listeners
+//
+//		////////////////////////////////
+//		_onCreate_SetListeners();
+//		
 		
 	}//protected void onCreate(Bundle savedInstanceState)
 
@@ -187,16 +187,8 @@ public class BMActv extends ListActivity {
 		// TODO Auto-generated method stub
 		DBUtils dbu = new DBUtils(this, CONS.DB.dbName);
 		
-//		List<BM> bmList = dbu.getBMList(this, ai.getDb_id());
 		CONS.BMActv.bmList = dbu.get_BMList(this, CONS.BMActv.ai.getDb_id());
 		
-//		// Log
-//		Log.d("BMActv.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ ":"
-//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//				+ "]", "bmList=" + CONS.BMActv.bmList);
-
 		/******************************
 			validate
 		 ******************************/
@@ -559,16 +551,47 @@ public class BMActv extends ListActivity {
 		// TODO Auto-generated method stub
 		super.onStart();
 		
-//		int child_Count = this.getListView().getChildCount();
-//		
-//		// Log
-//		String msg_Log = "child_Count = " + child_Count;
-//		Log.d("BMActv.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ "]", msg_Log);
+		////////////////////////////////
+
+		// Init: vars
+
+		////////////////////////////////
+		if (CONS.Admin.vib == null) {
+			
+			CONS.Admin.vib = 
+					(Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+			
+		}
 		
 		
+		////////////////////////////////
+
+		// Get: AI
+
+		////////////////////////////////
+		_onCreate_GetAI();
 		
+		////////////////////////////////
+
+		// Setup: view: textviews
+
+		////////////////////////////////
+		_onCreate_Setup_Textviews();
+
+		////////////////////////////////
+
+		// BM list
+
+		////////////////////////////////
+		_onCreate_Set_BMList();
+		
+		////////////////////////////////
+
+		// Listeners
+
+		////////////////////////////////
+		_onCreate_SetListeners();
+
 	}//protected void onStart()
 
 	@Override

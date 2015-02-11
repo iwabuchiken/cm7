@@ -1,5 +1,7 @@
 package app.listeners.dialog;
 
+import java.util.List;
+
 import cm7.main.R;
 import android.app.Activity;
 import android.app.Dialog;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import app.items.AI;
 import app.items.BM;
+import app.items.BMStore;
 import app.items.WordPattern;
 import app.utils.CONS;
 import app.utils.DBUtils;
@@ -255,6 +258,12 @@ public class DB_OCL implements OnClickListener {
 		//
 		switch (tag_name) {
 		
+		case DLG_CONF_SAVE_BM_OK://------------------------------------------------
+			
+			case_DLG_CONF_SAVE_BM_OK();
+			
+			break;
+		
 		case DLG_CONF_DROP_CREATE_TABLE_OK://------------------------------------------------
 			
 			case_DLG_CONF_DROP_CREATE_TABLE_OK();
@@ -412,6 +421,100 @@ public class DB_OCL implements OnClickListener {
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void 
+	case_DLG_CONF_SAVE_BM_OK() {
+		// TODO Auto-generated method stub
+
+		///////////////////////////////////
+		//
+		// get: BMs
+		//
+		///////////////////////////////////
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		List<BM> bmList = dbu.get_BMList(actv, ai.getDb_id());
+		
+		/*******************************
+		 * validate: null
+		 *******************************/
+		if (bmList == null) {
+			
+			// Log
+			String msg_Log;
+
+			msg_Log = "bmList => null";
+			Log.d("DB_OCL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			String msg = "BM list => null";
+			Methods_dlg.dlg_ShowMessage_ThirdDialog(actv, msg, d1, d2, R.color.red);
+			
+			return;
+			
+		}		
+		
+		/*******************************
+		 * validate: no entry
+		 *******************************/
+		if (bmList.size() < 1) {
+			
+			// Log
+			String msg_Log;
+			
+			msg_Log = "bmList => size is 0";
+			Log.d("DB_OCL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			String msg = "BM list => no entry";
+			Methods_dlg.dlg_ShowMessage_ThirdDialog(actv, msg, d1, d2, R.color.red);
+			
+			return;
+			
+		}		
+		
+		/*******************************
+		 * report
+		 *******************************/
+		// Log
+		String msg_Log;
+
+		msg_Log = "bmList.size() => " + bmList.size();
+		Log.d("DB_OCL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		///////////////////////////////////
+		//
+		// build list: BMStores
+		//
+		///////////////////////////////////
+		List<BMStore> list_bmStores = Methods.conv_BMs_to_BMStores(actv, bmList);
+		
+		//debug
+		if (list_bmStores == null) {
+			
+			// Log
+			msg_Log = "list_bmStores => null";
+			Log.d("DB_OCL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		} else {
+			
+			// Log
+			msg_Log = "list_bmStores.size() => " + list_bmStores.size();
+			Log.d("DB_OCL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+
+		}
+		
+		
+	}//case_DLG_CONF_SAVE_BM_OK
+	
 
 	private void 
 	case_DLG_CONF_DROP_CREATE_TABLE_OK() {
