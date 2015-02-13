@@ -3,9 +3,9 @@ package app.utils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import cm7.main.R;
-
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import app.items.AI;
 import app.items.BM;
+import app.items.BMStore;
 import app.items.Refresh;
 import app.items.WordPattern;
 
@@ -2271,6 +2272,109 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//public boolean insertData_bm(Activity actv, BM bm)
 
+	public static boolean
+	insertData_BMStore
+	(Activity actv, SQLiteDatabase wdb, BMStore bmStore) {
+		// TODO Auto-generated method stub
+
+		try {
+			// Start transaction
+			wdb.beginTransaction();
+			
+			// ContentValues
+			ContentValues val = new ContentValues();
+			
+//			"ai_id", "position", "title", "memo", "aiTableName"
+//			val.put(android.provider.BaseColumns._ID, ai.getDb_id());
+			
+			val.put("created_at", 
+					Methods.conv_MillSec_to_TimeLabel(
+							Methods.getMillSeconds_now()));
+			
+			val.put("modified_at", 
+					Methods.conv_MillSec_to_TimeLabel(
+							Methods.getMillSeconds_now()));
+//			val.put("created_at", Methods.getMillSeconds_now());
+//			val.put("modified_at", Methods.getMillSeconds_now());
+			
+			val.put("ai_name", bmStore.getAi_name());
+			val.put("position", bmStore.getPosition());
+			
+			val.put("title", bmStore.getTitle());
+			val.put("memo", bmStore.getMemo());
+			
+			val.put("orig_created_at", 
+						bmStore.getOrig_created_at());
+			
+			val.put("orig_modified_at", 
+						bmStore.getOrig_modified_at());
+			
+			// Insert data
+			long res = wdb.insert(CONS.DB.tname_BMStore, null, val);
+			
+			// Set as successful
+			if (res != -1) {
+				
+				wdb.setTransactionSuccessful();
+				
+			} else {
+				
+				// Log
+				String msg_Log;
+				
+				msg_Log = String.format(
+								Locale.JAPAN,
+								"Insertion => failed: title = %s "
+								+ "(Name = %s)", 
+								bmStore.getTitle(), bmStore.getAi_name());
+						
+				Log.d("DBUtils.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", msg_Log);
+				
+			}
+			
+			// End transaction
+			wdb.endTransaction();
+			
+//			// Log
+//			Log.d("DBUtils.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]",
+//					"BM inserted: AiID = "
+//							+ bm.getAiId());
+			
+//			wdb.close();
+			
+			return true;
+			
+		} catch (Exception e) {
+			// Log
+			String msg_Log;
+			
+			msg_Log = String.format(
+							Locale.JAPAN,
+							"Exception => title = %s "
+							+ "(Name = %s)\n",
+							bmStore.getTitle(), bmStore.getAi_name()
+							);
+
+			Log.d("DBUtils.java"
+					+ "["
+					+ Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + "]", msg_Log);
+
+			e.printStackTrace();
+			
+//			wdb.close();
+			
+			return false;
+			
+		}//try
+		
+	}//insertData_BMStore(Activity actv, BMStore bmStore)
+	
 	public List<BM> get_BMList(Activity actv, long aiDbId) {
 		
 		SQLiteDatabase rdb = this.getReadableDatabase();
@@ -3478,6 +3582,43 @@ public class DBUtils extends SQLiteOpenHelper{
 		return ai_List;
 		
 	}//find_All_TI__Search
+
+	public static int 
+	save_BMStores
+	(Activity actv, List<BMStore> list_bmStores) {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// DB
+
+		////////////////////////////////
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		SQLiteDatabase wdb = dbu.getWritableDatabase();
+		
+		BMStore bms = null;
+		
+		int counter = 0;
+		boolean res = false;
+
+		for (int i = 0; i < list_bmStores.size(); i++) {
+			
+			bms = list_bmStores.get(i);
+
+			res = DBUtils.insertData_BMStore(actv, wdb, bms);
+			
+			if (res == true) {
+				
+				counter ++;
+				res = false;
+				
+			}
+			
+		}//for (int i = 0; i < list_bmStores.size(); i++)
+		
+		return counter;
+		
+	}//save_BMStores
 
 }//public class DBUtils
 

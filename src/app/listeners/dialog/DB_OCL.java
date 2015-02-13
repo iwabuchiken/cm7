@@ -1,6 +1,7 @@
 package app.listeners.dialog;
 
 import java.util.List;
+import java.util.Locale;
 
 import cm7.main.R;
 import android.app.Activity;
@@ -422,6 +423,12 @@ public class DB_OCL implements OnClickListener {
 		}//switch (tag_name)
 	}//public void onClick(View v)
 
+	/*******************************
+	 * @return
+	 * null	=> bmList == null<br>
+	 * 		=> bmList.size() < 1<br>
+	 * 		=> list_bmStores == null < 1<br>
+	 *******************************/
 	private void 
 	case_DLG_CONF_SAVE_BM_OK() {
 		// TODO Auto-generated method stub
@@ -502,6 +509,8 @@ public class DB_OCL implements OnClickListener {
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", msg_Log);
 			
+			return;
+			
 		} else {
 			
 			// Log
@@ -512,8 +521,58 @@ public class DB_OCL implements OnClickListener {
 
 		}
 		
+		///////////////////////////////////
+		//
+		// save: BMStores
+		//
+		///////////////////////////////////
+		int res_i = DBUtils.save_BMStores(actv, list_bmStores);
+		
+		// Log
+		msg_Log = String.format(
+						Locale.JAPAN,
+						"save BMStores => %d", res_i
+						);
+		
+		Log.d("DB_OCL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		///////////////////////////////////
+		//
+		// dismiss
+		//
+		///////////////////////////////////
+		d2.dismiss();
+		d1.dismiss();
+
+		///////////////////////////////////
+		//
+		// report
+		//
+		///////////////////////////////////
+		String msg = null;
+		int colorID;
+		
+		switch(res_i) {
+		
+		case 0:
+			msg = "Can't save BMStores";
+			colorID = R.color.red;
+			break;
+			
+		default:
+			msg = "BMs saved => " + res_i;
+			colorID = R.color.green4;
+			break;
+			
+		}
+	
+		Methods_dlg.dlg_ShowMessage(actv, msg, colorID);
+		
 		
 	}//case_DLG_CONF_SAVE_BM_OK
+	
 	
 
 	private void 
