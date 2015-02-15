@@ -219,7 +219,7 @@ public class DOI_CL implements OnItemClickListener {
 			
 			item = (String) parent.getItemAtPosition(position);
 			
-			case_Dlg_ALActv_LongClick(item);
+			case_DLG_ALACTV_LIST_LONGCLICK(item);
 			
 			break;// case dlg_bmactv_list_long_click
 			
@@ -720,7 +720,7 @@ public class DOI_CL implements OnItemClickListener {
 	}//case_DLG_IMPACTV_LIST(String item)
 
 	private void 
-	case_Dlg_ALActv_LongClick(String item) {
+	case_DLG_ALACTV_LIST_LONGCLICK(String item) {
 		// TODO Auto-generated method stub
 		if (item.equals(actv.getString(R.string.generic_tv_edit))) {	// Edit
 			

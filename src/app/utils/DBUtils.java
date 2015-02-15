@@ -2375,10 +2375,141 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//insertData_BMStore(Activity actv, BMStore bmStore)
 	
+	/*******************************
+	 * @return
+	 * null	=> Query exception<br>
+	 * 			Query returned null<br>
+	 * 			no entry<br>
+	 *******************************/
+	public static List<BMStore> get_BMStoreList(Activity actv, String fname) {
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		SQLiteDatabase rdb = dbu.getReadableDatabase();
+
+		Cursor c = null;
+
+//		android.provider.BaseColumns._ID,	// 0
+//		"created_at", "modified_at",		// 1,2
+//		"ai_name", "position",				// 3,4
+//		"title", "memo",					// 5,6
+//		"orig_created_at", "orig_modified_at",	// 7,8
+
+		try {
+			
+			c = rdb.query(
+							CONS.DB.tname_BMStore,
+							CONS.DB.col_names_BMStore_full,
+//							CONS.DB.cols_bm_full,
+//							CONS.DB.cols_bm[0], new String[]{String.valueOf(aiDbId)},
+							CONS.DB.col_names_BMStore_full[3] + " = ?", 
+//							CONS.DB.col_names_BM_full[0] + " = ?", 
+							new String[]{fname},
+							null, null, null);
+			
+		} catch (Exception e) {
+
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", e.toString());
+			
+			rdb.close();
+			
+			return null;
+			
+		}//try
+		
+		/***************************************
+		 * Validate
+		 * 	Cursor => Null?
+		 * 	Entry => 0?
+		 ***************************************/
+		if (c == null) {
+			
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "Query failed");
+			
+			rdb.close();
+			
+			return null;
+			
+		} else if (c.getCount() < 1) {//if (c == null)
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "No entry in the table");
+			
+			rdb.close();
+			
+			return null;
+			
+		}//if (c == null)
+		
+		/***************************************
+		 * Build list
+		 ***************************************/
+		c.moveToFirst();
+		
+		List<BMStore> list_BMStores = new ArrayList<BMStore>();
+		
+//		android.provider.BaseColumns._ID,	// 0
+//		"created_at", "modified_at",		// 1,2
+//		"ai_name", "position",				// 3,4
+//		"title", "memo",					// 5,6
+//		"orig_created_at", "orig_modified_at",	// 7,8
+		
+		for (int i = 0; i < c.getCount(); i++) {
+//			"ai_id", "position", "title", "memo", "aiTableName"
+			BMStore bmStore = new BMStore.Builder()
+			
+				.setDbId(c.getLong(0))
+				.setCreated_at(c.getString(1))
+				.setModified_at(c.getString(2))
+				
+				.setAi_name(c.getString(3))
+				.setPosition(c.getString(4))
+				
+				.setTitle(c.getString(c.getColumnIndex("title")))
+				.setMemo(c.getString(c.getColumnIndex("memo")))
+
+				.setOrig_created_at(c.getString(7))
+				.setOrig_modified_at(c.getString(8))
+
+				.build();
+
+			list_BMStores.add(bmStore);
+			
+			c.moveToNext();
+			
+		}//for (int i = 0; i < c.getCount(); i++)
+		
+		
+		rdb.close();
+		
+		return list_BMStores;
+		
+	}//public List<BM> getBMList(Activity actv)
+
+	/*******************************
+	 * @return
+	 * null	=> Query exception<br>
+	 * 			Query returned null<br>
+	 * 			no entry<br>
+	 *******************************/
 	public List<BM> get_BMList(Activity actv, long aiDbId) {
 		
 		SQLiteDatabase rdb = this.getReadableDatabase();
-
+		
 		Cursor c = null;
 		
 //		col_names_BM_full
@@ -2390,19 +2521,19 @@ public class DBUtils extends SQLiteOpenHelper{
 		try {
 			
 			c = rdb.query(
-							CONS.DB.tname_BM,
+					CONS.DB.tname_BM,
 //							CONS.DBAdmin.col_purchaseSchedule,
 //							CONS.DB.cols_bm,
-							CONS.DB.col_names_BM_full,
+					CONS.DB.col_names_BM_full,
 //							CONS.DB.cols_bm_full,
 //							CONS.DB.cols_bm[0], new String[]{String.valueOf(aiDbId)},
-							CONS.DB.col_names_BM_full[3] + " = ?", 
+					CONS.DB.col_names_BM_full[3] + " = ?", 
 //							CONS.DB.col_names_BM_full[0] + " = ?", 
-							new String[]{String.valueOf(aiDbId)},
-							null, null, null);
+					new String[]{String.valueOf(aiDbId)},
+					null, null, null);
 			
 		} catch (Exception e) {
-
+			
 			// Log
 			Log.e("DBUtils.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
@@ -2466,21 +2597,21 @@ public class DBUtils extends SQLiteOpenHelper{
 //			"ai_id", "position", "title", "memo", "aiTableName"
 			BM bm = new BM.Builder()
 			
-				.setDbId(c.getLong(0))
-				.setCreated_at(c.getString(1))
-				.setModified_at(c.getString(2))
-				
-				.setPosition(c.getString(c.getColumnIndex("position")))
-				.setTitle(c.getString(c.getColumnIndex("title")))
-				.setMemo(c.getString(c.getColumnIndex("memo")))
-				.setAiId(c.getLong(c.getColumnIndex("ai_id")))
-				.setAiTableName(c.getString(c.getColumnIndex("aiTableName")))
-				
-				.setDbId(c.getLong(c.getColumnIndex(
-									android.provider.BaseColumns._ID)))
+			.setDbId(c.getLong(0))
+			.setCreated_at(c.getString(1))
+			.setModified_at(c.getString(2))
+			
+			.setPosition(c.getString(c.getColumnIndex("position")))
+			.setTitle(c.getString(c.getColumnIndex("title")))
+			.setMemo(c.getString(c.getColumnIndex("memo")))
+			.setAiId(c.getLong(c.getColumnIndex("ai_id")))
+			.setAiTableName(c.getString(c.getColumnIndex("aiTableName")))
+			
+			.setDbId(c.getLong(c.getColumnIndex(
+					android.provider.BaseColumns._ID)))
 //				.setDbId(c.getLong(c.getColumnIndex(CONS.DB.cols_bm_full[0])))
-				.build();
-
+					.build();
+			
 			bmList.add(bm);
 			
 			c.moveToNext();
@@ -2493,7 +2624,7 @@ public class DBUtils extends SQLiteOpenHelper{
 		return bmList;
 		
 	}//public List<BM> getBMList(Activity actv)
-
+	
 	public static boolean
 	updateData_BM_TitleAndMemo
 	(Activity actv, long dbId, BM bm) {

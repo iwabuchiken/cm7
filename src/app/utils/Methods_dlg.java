@@ -41,6 +41,7 @@ import app.adapters.Adp_ListItems;
 import app.adapters.Adp_WordPatterns;
 import app.items.AI;
 import app.items.BM;
+import app.items.BMStore;
 import app.items.ListItem;
 import app.items.WordPattern;
 import app.listeners.LOI_LCL;
@@ -3290,7 +3291,32 @@ public class Methods_dlg {
 	conf_SaveLoadBMs
 	(Activity actv, Dialog d1, AI ai, SaveLoadBMs saveload) {
 		// TODO Auto-generated method stub
+
+		///////////////////////////////////
+		//
+		// validate: Save BMs: already BMs exist?
+		//
+		///////////////////////////////////
+//		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
 		
+		List<BMStore> list_BMStores = DBUtils.get_BMStoreList(actv, ai.getFile_name());
+//		List<BMStore> list_BMStores = dbu.get_BMList(actv, ai.getDb_id());
+
+		if (saveload == CONS.ALActv.SaveLoadBMs.SaveBM 
+				&& list_BMStores != null 
+				&& list_BMStores.size() > 1) {
+			
+			Methods_dlg.conf_SaveLoadBMs__SaveModes(actv, d1, ai, saveload);
+			
+			return;
+			
+		}
+		
+		///////////////////////////////////
+		//
+		// dialog
+		//
+		///////////////////////////////////
 		Dialog d2 = new Dialog(actv);
 
 		// layout
@@ -3387,6 +3413,65 @@ public class Methods_dlg {
 		d2.show();
 		
 	}//conf_SaveLoadBMs
+
+	private static void 
+	conf_SaveLoadBMs__SaveModes
+	(Activity actv, Dialog d1, AI ai, SaveLoadBMs saveload) {
+		// TODO Auto-generated method stub
+
+		///////////////////////////////////
+		//
+		// dialog
+		//
+		///////////////////////////////////
+		Dialog d2 = new Dialog(actv);
+
+		// layout
+		d2.setContentView(R.layout.dlg_tmpl_cancel_tv_lv);
+//		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple_checkbox);
+		
+		// Title
+		d2.setTitle(R.string.generic_tv_confirm);
+
+		////////////////////////////////
+
+		// Set: Message
+
+		////////////////////////////////
+		String message = actv.getString(R.string.dlg_alactv_list_long_click_SaveBM_SaveModes);
+		
+		TextView tv_Message = (TextView) d2.findViewById(
+							R.id.dlg_tmpl_cancel_tv_lv_TV);
+//							R.id.dlg_tmpl_confirm_simple_cb_tv_message);
+		
+		tv_Message.setText(message);
+
+		////////////////////////////////
+
+		// Add listeners => OnTouch
+
+		////////////////////////////////
+		Button btn_cancel = (Button) d2.findViewById(
+								R.id.dlg_tmpl_cancel_tv_lv_2_bt_cancel);
+		
+		//
+		btn_cancel.setTag(Tags.DialogTags.DLG_GENERIC_DISMISS_SECOND_DIALOG);
+		
+		//
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, d2));
+		
+		/****************************
+		 * 4. Add listeners => OnClick
+			****************************/
+		//
+		btn_cancel.setOnClickListener(new DB_OCL(actv, d1, d2));
+		
+		/****************************
+		 * 5. Show dialog
+			****************************/
+		d2.show();
+
+	}//conf_SaveLoadBMs__SaveModes
 
 	public static void 
 	conf_DropCreate_Table
