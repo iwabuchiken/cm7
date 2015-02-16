@@ -3299,18 +3299,18 @@ public class Methods_dlg {
 		///////////////////////////////////
 //		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
 		
-		List<BMStore> list_BMStores = DBUtils.get_BMStoreList(actv, ai.getFile_name());
-//		List<BMStore> list_BMStores = dbu.get_BMList(actv, ai.getDb_id());
-
-		if (saveload == CONS.ALActv.SaveLoadBMs.SaveBM 
-				&& list_BMStores != null 
-				&& list_BMStores.size() > 1) {
-			
-			Methods_dlg.conf_SaveLoadBMs__SaveModes(actv, d1, ai, saveload);
-			
-			return;
-			
-		}
+//		List<BMStore> list_BMStores = DBUtils.get_BMStoreList(actv, ai.getFile_name());
+////		List<BMStore> list_BMStores = dbu.get_BMList(actv, ai.getDb_id());
+//
+//		if (saveload == CONS.ALActv.SaveLoadBMs.SaveBM 
+//				&& list_BMStores != null 
+//				&& list_BMStores.size() > 1) {
+//			
+//			Methods_dlg.conf_SaveLoadBMs__SaveModes(actv, d1, ai, saveload);
+//			
+//			return;
+//			
+//		}
 		
 		///////////////////////////////////
 		//
@@ -3414,7 +3414,7 @@ public class Methods_dlg {
 		
 	}//conf_SaveLoadBMs
 
-	private static void 
+	public static void 
 	conf_SaveLoadBMs__SaveModes
 	(Activity actv, Dialog d1, AI ai, SaveLoadBMs saveload) {
 		// TODO Auto-generated method stub
@@ -3491,6 +3491,15 @@ public class Methods_dlg {
 		);
 
 		lv.setAdapter(adapter);
+		
+		///////////////////////////////////
+		//
+		// lv: listener
+		//
+		///////////////////////////////////
+		lv.setTag(Tags.DialogItemTags.DLG_ALACTV_LIST_BMSEXIST);
+		
+		lv.setOnItemClickListener(new DOI_CL(actv, d1, d2, ai, saveload));
 		
 		///////////////////////////////////
 		//

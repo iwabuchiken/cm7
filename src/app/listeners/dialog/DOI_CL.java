@@ -1,6 +1,9 @@
 package app.listeners.dialog;
 
 
+import java.util.List;
+import java.util.Locale;
+
 import cm7.main.R;
 import android.app.Activity;
 import android.app.Dialog;
@@ -14,10 +17,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 import app.items.AI;
 import app.items.BM;
+import app.items.BMStore;
 import app.items.ListItem;
 import app.items.WordPattern;
 import app.tasks.Task_RefreshDB;
 import app.utils.CONS;
+import app.utils.CONS.ALActv.SaveLoadBMs;
+import app.utils.DBUtils;
 import app.utils.Lab;
 import app.utils.Methods;
 import app.utils.Methods_dlg;
@@ -43,6 +49,7 @@ public class DOI_CL implements OnItemClickListener {
 	String file_Name;	// ImpActv list
 	private WordPattern wp;
 	private int lv_Position;
+	private SaveLoadBMs saveload;
 	
 	//
 //	Methods.DialogTags dlgTag = null;
@@ -170,6 +177,21 @@ public class DOI_CL implements OnItemClickListener {
 
 	}//DOI_CL
 
+	public DOI_CL
+	(Activity actv, Dialog d1, Dialog d2, AI ai, SaveLoadBMs saveload) {
+		// TODO Auto-generated constructor stub
+		
+		this.actv	= actv;
+		this.d1	= d1;
+		this.d2	= d2;
+		
+		this.ai		= ai;
+		this.saveload	= saveload;
+
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		
+	}
+
 	//	@Override
 	public void 
 	onItemClick
@@ -197,6 +219,14 @@ public class DOI_CL implements OnItemClickListener {
 			----------------------------*/
 		switch (tag) {
 		
+		case DLG_ALACTV_LIST_BMSEXIST://----------------------------------------------
+			
+			item = (String) parent.getItemAtPosition(position);
+			
+			case_DLG_ALACTV_LIST_BMSEXIST(item);
+			
+			break;// case dlg_add_memos_gv
+			
 //		case dlg_db_admin_lv://----------------------------------------------
 		case DLG_DB_ADMIN_LV://----------------------------------------------
 			
@@ -310,6 +340,40 @@ public class DOI_CL implements OnItemClickListener {
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+
+	private void 
+	case_DLG_ALACTV_LIST_BMSEXIST(String item) {
+		// TODO Auto-generated method stub
+	
+		if (item.equals(actv.getString(
+				R.string.dlg_alactv_list_long_click_SaveBM_Add))) {	// Edit
+		
+			///////////////////////////////////
+			//
+			// dismiss
+			//
+			///////////////////////////////////
+			d2.dismiss();
+			
+			Methods_dlg.conf_SaveLoadBMs(actv, d1, ai, saveload);
+			
+		} else if (item.equals(actv.getString(
+				R.string.dlg_alactv_list_long_click_SaveBM_Renew))) {//if (item.equals(actv.getString(R.string.generic_tv_edit)))
+
+			///////////////////////////////////
+			//
+			// dismiss
+			//
+			///////////////////////////////////
+			d2.dismiss();
+
+		} else {//if (item.equals(actv.getString(R.string.generic_tv_edit)))
+			
+			
+		}//if (item.equals(actv.getString(
+		
+	}//case_DLG_ALACTV_LIST_BMSEXIST
+	
 
 	private void 
 	case_DLG_LAB
@@ -738,6 +802,39 @@ public class DOI_CL implements OnItemClickListener {
 		} else if (item.equals(actv.getString(
 						R.string.dlg_alactv_list_long_click_SaveBM))) {
 			
+			
+			///////////////////////////////////
+			//
+			// set: saveload
+			//
+			///////////////////////////////////
+			this.saveload = CONS.ALActv.SaveLoadBMs.SaveBM;
+			
+			List<BMStore> list_BMStores = DBUtils.get_BMStoreList(actv, ai.getFile_name());
+//			List<BMStore> list_BMStores = dbu.get_BMList(actv, ai.getDb_id());
+
+			// Log
+			String msg_Log;
+			
+			msg_Log = String.format(
+					Locale.JAPAN,
+					"saveload => %s", saveload
+					);
+			
+			Log.d("DOI_CL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			if (saveload == CONS.ALActv.SaveLoadBMs.SaveBM 
+					&& list_BMStores != null 
+					&& list_BMStores.size() > 1) {
+				
+				Methods_dlg.conf_SaveLoadBMs__SaveModes(actv, d1, ai, saveload);
+				
+				return;
+				
+			}
+
 			Methods_dlg.conf_SaveLoadBMs(actv, d1, ai, CONS.ALActv.SaveLoadBMs.SaveBM);
 			
 //			Methods_dlg.dlg_Move_AI(actv, d1, ai, aiList_Position);
