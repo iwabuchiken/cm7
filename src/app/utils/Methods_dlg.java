@@ -3465,10 +3465,38 @@ public class Methods_dlg {
 			****************************/
 		//
 		btn_cancel.setOnClickListener(new DB_OCL(actv, d1, d2));
+
+		///////////////////////////////////
+		//
+		// listview
+		//
+		///////////////////////////////////
+		ListView lv = (ListView) d2.findViewById(
+									R.id.dlg_tmpl_cancel_tv_lv_2_lv);
 		
-		/****************************
-		 * 5. Show dialog
-			****************************/
+		List<String> list = new ArrayList<String>();
+		
+		list.add(actv.getString(R.string.dlg_alactv_list_long_click_SaveBM_Add));
+		list.add(actv.getString(R.string.dlg_alactv_list_long_click_SaveBM_Renew));
+		
+		///////////////////////////////////
+		//
+		// Adapter
+		//
+		///////////////////////////////////
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+						actv,
+						R.layout.list_row_simple_1,
+						list
+		);
+
+		lv.setAdapter(adapter);
+		
+		///////////////////////////////////
+		//
+		// Show dialog
+		//
+		///////////////////////////////////
 		d2.show();
 
 	}//conf_SaveLoadBMs__SaveModes
