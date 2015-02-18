@@ -3751,6 +3751,103 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//save_BMStores
 
+	/******************************
+		@param aiFileName 
+	 * @return
+			-1	Table doesn't exist<br>
+			-2	Deletion => failed<br>
+			1	Deletion => done<br>
+	 ******************************/
+	public static int 
+	delete_BMStores__AIFileName(Activity actv, String aiFileName) {
+		// TODO Auto-generated method stub
+		
+		String dbName = CONS.DB.dbName;
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		//
+		SQLiteDatabase wdb = dbu.getWritableDatabase();
+		
+		////////////////////////////////
+		
+		// validate: table exists
+		
+		////////////////////////////////
+		String tname = CONS.DB.tname_BMStore;
+		
+//		String dbName = CONS.DB.dbName;
+				
+		if (!DBUtils.tableExists(actv, dbName, tname)) {
+			// Log
+			Log.i("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Table doesn't exist => " + tname);
+			
+			wdb.close();
+			
+			return -1;
+			
+		}//if (!tableExists(SQLiteDatabase db, String tableName))
+		
+		////////////////////////////////
+		
+		// delete
+		
+		////////////////////////////////
+		////////////////////////////////
+		
+		// Query
+		
+		////////////////////////////////
+//		"ai_name", "position",				// 0 1
+//		"title", "memo",					// 2 3
+//		"orig_created_at", "orig_modified_at",	// 4 5
+		String where = CONS.DB.col_names_BMStore[0] + " = ?";
+		
+		String[] args = new String[]{
+				
+				aiFileName
+				
+		};
+		
+		int res_int = wdb.delete(tname, where, args);
+		
+		// Log
+		String msg_Log = "res_int => " + res_int;
+		Log.d("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		////////////////////////////////
+		
+		// report
+		
+		////////////////////////////////
+		switch(res_int) {
+		
+		case 0:
+			
+			// Log
+			msg_Log = "deletion => failed";
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			wdb.close();
+			
+			return -2;
+			
+		default:
+			
+			wdb.close();
+			
+			return res_int;
+			
+		}
+
+	}//delete_BMs
+
 }//public class DBUtils
 
 

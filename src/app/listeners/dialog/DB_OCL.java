@@ -259,6 +259,12 @@ public class DB_OCL implements OnClickListener {
 		//
 		switch (tag_name) {
 		
+		case DLG_CONF_SAVE_BM_RENEW_OK://------------------------------------------------
+			
+			case_DLG_CONF_SAVE_BM_RENEW_OK();
+			
+			break;
+			
 		case DLG_CONF_SAVE_BM_OK://------------------------------------------------
 			
 			case_DLG_CONF_SAVE_BM_OK();
@@ -422,6 +428,57 @@ public class DB_OCL implements OnClickListener {
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void 
+	case_DLG_CONF_SAVE_BM_RENEW_OK() {
+		// TODO Auto-generated method stub
+	
+		///////////////////////////////////
+		//
+		// existing BMs => delete
+		//
+		///////////////////////////////////
+		int res_i = DBUtils.delete_BMStores__AIFileName(actv, ai.getFile_name());
+		
+		// Log
+		String msg_Log;
+		
+		msg_Log = String.format(
+				Locale.JAPAN,
+				"res_i => %d", res_i
+				);
+		
+		Log.d("DB_OCL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		///////////////////////////////////
+		//
+		// validate
+		//
+		///////////////////////////////////
+		d2.dismiss();
+		
+		String message = actv.getString(
+					R.string.dlg_alactv_list_long_click_SaveBM_Renew__CantDeleteBMStores);
+		
+		if (!(res_i > 0)) {
+			
+			Methods_dlg.dlg_ShowMessage_SecondDialog(actv, message, d1, R.color.red, R.color.white);
+			
+			return;
+			
+		}
+		
+		///////////////////////////////////
+		//
+		// add: BMStores
+		//
+		///////////////////////////////////
+		this.case_DLG_CONF_SAVE_BM_OK();
+		
+	}//case_DLG_CONF_SAVE_BM_RENEW_OK
+	
 
 	/*******************************
 	 * @return

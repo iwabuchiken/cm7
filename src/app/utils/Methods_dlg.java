@@ -3187,6 +3187,35 @@ public class Methods_dlg {
 		
 	}
 
+	public static void
+	dlg_ShowMessage_SecondDialog
+	(Activity actv, String message, Dialog dlg1, 
+			int bgColorID, int textColorID) {
+		
+		Dialog dlg2 = Methods_dlg.dlg_Template_Cancel_SecondDialog(
+				actv, dlg1,
+				R.layout.dlg_tmpl_toast_ok, 
+				R.string.generic_tv_confirm, 
+				
+				R.id.dlg_tmpl_toast_ok_bt_cancel, 
+				Tags.DialogTags.DLG_GENERIC_DISMISS_SECOND_DIALOG);
+		
+		TextView tv_Message = 
+				(TextView) dlg2.findViewById(R.id.dlg_tmpl_toast_ok_tv_message);
+		
+		tv_Message.setText(message);
+		
+		tv_Message.setBackgroundColor(actv.getResources().getColor(bgColorID));
+		
+		tv_Message.setTextColor(textColorID);
+//		tv_Message.setTextColor(Color.WHITE);
+		
+		tv_Message.setText(message);
+
+		dlg2.show();
+		
+	}
+	
 	public static void 
 	dlg_LAB
 	(Activity actv, Dialog d1, Dialog d2) {
@@ -3292,26 +3321,6 @@ public class Methods_dlg {
 	(Activity actv, Dialog d1, AI ai, SaveLoadBMs saveload) {
 		// TODO Auto-generated method stub
 
-		///////////////////////////////////
-		//
-		// validate: Save BMs: already BMs exist?
-		//
-		///////////////////////////////////
-//		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
-		
-//		List<BMStore> list_BMStores = DBUtils.get_BMStoreList(actv, ai.getFile_name());
-////		List<BMStore> list_BMStores = dbu.get_BMList(actv, ai.getDb_id());
-//
-//		if (saveload == CONS.ALActv.SaveLoadBMs.SaveBM 
-//				&& list_BMStores != null 
-//				&& list_BMStores.size() > 1) {
-//			
-//			Methods_dlg.conf_SaveLoadBMs__SaveModes(actv, d1, ai, saveload);
-//			
-//			return;
-//			
-//		}
-		
 		///////////////////////////////////
 		//
 		// dialog
@@ -3568,5 +3577,91 @@ public class Methods_dlg {
 		d3.show();		
 		
 	}//conf_DropCreate_Table
+
+	public static void 
+	conf_SaveBMs__Renew(Activity actv, Dialog d1, AI ai) {
+		// TODO Auto-generated method stub
+		
+		///////////////////////////////////
+		//
+		// dialog
+		//
+		///////////////////////////////////
+		Dialog d2 = new Dialog(actv);
+
+		// layout
+		d2.setContentView(R.layout.dlg_tmpl_confirm_simple);
+//		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple_checkbox);
+		
+		// Title
+		d2.setTitle(R.string.generic_tv_confirm);
+
+		////////////////////////////////
+
+		// Set: Message
+
+		////////////////////////////////
+		String message = null;
+		
+		message = actv.getString(R.string.dlg_alactv_list_long_click_SaveBM_Renew) + "?";
+//		message = actv.getString(R.string.dlg_alactv_list_long_click_SaveBM) + "?";
+		
+		TextView tv_Message = (TextView) d2.findViewById(
+							R.id.dlg_tmpl_confirm_simple_tv_message);
+		
+		tv_Message.setText(message);
+
+		////////////////////////////////
+
+		// Set: AI file name
+
+		////////////////////////////////
+		TextView tv_ItemName = (TextView) d2.findViewById(
+							R.id.dlg_tmpl_confirm_simple_TV_ItemName);
+
+		tv_ItemName.setText(ai.getFile_name());
+
+		////////////////////////////////
+
+		// Add listeners => OnTouch
+
+		////////////////////////////////
+		Button btn_ok = (Button) d2.findViewById(
+								R.id.dlg_tmpl_confirm_simple_btn_ok);
+//		R.id.dlg_tmpl_confirm_simple_cb_btn_ok);
+		
+		Button btn_cancel = (Button) d2.findViewById(
+								R.id.dlg_tmpl_confirm_simple_btn_cancel);
+//		R.id.dlg_tmpl_confirm_simple_cb_btn_cancel);
+		
+		///////////////////////////////////
+		//
+		// tag
+		//
+		///////////////////////////////////
+		Tags.DialogTags tag = null;
+		
+		tag = Tags.DialogTags.DLG_CONF_SAVE_BM_RENEW_OK;
+		
+		btn_ok.setTag(tag);
+		btn_cancel.setTag(Tags.DialogTags.DLG_GENERIC_DISMISS_SECOND_DIALOG);
+		
+		//
+		btn_ok.setOnTouchListener(new DB_OTL(actv, d2));
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, d2));
+		
+		/****************************
+		 * 4. Add listeners => OnClick
+			****************************/
+		//
+		btn_ok.setOnClickListener(new DB_OCL(actv, d1, d2, ai));
+		btn_cancel.setOnClickListener(new DB_OCL(actv, d1, d2));
+		
+		/****************************
+		 * 5. Show dialog
+			****************************/
+		d2.show();
+		
+	}//conf_SaveBMs__Renew
 
 }//public class Methods_dialog

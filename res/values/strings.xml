@@ -110,6 +110,9 @@
   		
   		<string name="dlg_alactv_list_long_click_SaveBM_Add">Add</string>
   		<string name="dlg_alactv_list_long_click_SaveBM_Renew">Renew</string>
+  		
+  		<string name="dlg_alactv_list_long_click_SaveBM_Renew__CantDeleteBMStores">
+  		    										Can\'t delete BMStores</string>
 
   	<!-- dialog: delete BM -->
 		<string name="dlg_conf_delete_bm_tv_message">Delete BM?</string>
