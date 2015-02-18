@@ -259,6 +259,18 @@ public class DB_OCL implements OnClickListener {
 		//
 		switch (tag_name) {
 		
+		case DLG_CONF_LOAD_BMSTORES_OK://------------------------------------------------
+			
+			case_DLG_CONF_LOAD_BMSTORES_OK();
+			
+			break;
+			
+		case DLG_CONF_LOAD_BM_OK://------------------------------------------------
+			
+			case_DLG_CONF_LOAD_BM_OK();
+			
+			break;
+			
 		case DLG_CONF_SAVE_BM_RENEW_OK://------------------------------------------------
 			
 			case_DLG_CONF_SAVE_BM_RENEW_OK();
@@ -428,6 +440,54 @@ public class DB_OCL implements OnClickListener {
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	/*******************************
+	 * The method doesn't check if any entries in the BMStores table
+	 *******************************/
+	private void
+	case_DLG_CONF_LOAD_BMSTORES_OK() {
+		// TODO Auto-generated method stub
+		
+		///////////////////////////////////
+		//
+		// get: BMStores
+		//
+		///////////////////////////////////
+		List<BMStore> list_BMStores = DBUtils.get_BMStoreList(actv, ai.getFile_name());
+		
+		// Log
+		String msg_Log;
+		
+		msg_Log = String.format(
+				Locale.JAPAN,
+				"BMStores => %d", list_BMStores.size()
+				);
+		
+		Log.d("DB_OCL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		///////////////////////////////////
+		//
+		// save: BMs
+		//
+		///////////////////////////////////
+		List<BM> list_BMs = Methods.conv_BMStores_to_BMs(actv, list_BMStores);
+			
+		///////////////////////////////////
+		//
+		// dialogues
+		//
+		///////////////////////////////////
+		
+		
+	}//case_DLG_CONF_LOAD_BMSTORES_OK
+
+	private void case_DLG_CONF_LOAD_BM_OK() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 
 	private void 
 	case_DLG_CONF_SAVE_BM_RENEW_OK() {

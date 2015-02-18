@@ -219,7 +219,15 @@ public class DOI_CL implements OnItemClickListener {
 			----------------------------*/
 		switch (tag) {
 		
-		case DLG_ALACTV_LIST_BMSEXIST://----------------------------------------------
+		case DLG_ALACTV_LIST_BMS_EXIST://----------------------------------------------
+			
+			item = (String) parent.getItemAtPosition(position);
+			
+			case_DLG_ALACTV_LIST_BMS_EXIST(item);
+			
+			break;// case dlg_add_memos_gv
+			
+		case DLG_ALACTV_LIST_BMSTORES_EXIST://----------------------------------------------
 			
 			item = (String) parent.getItemAtPosition(position);
 			
@@ -340,6 +348,42 @@ public class DOI_CL implements OnItemClickListener {
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+
+	private void 
+	case_DLG_ALACTV_LIST_BMS_EXIST
+	(String item) {
+		// TODO Auto-generated method stub
+		if (item.equals(actv.getString(
+				R.string.dlg_alactv_list_long_click_SaveBM_Add))) {	// Edit
+		
+			///////////////////////////////////
+			//
+			// dismiss
+			//
+			///////////////////////////////////
+			d2.dismiss();
+			
+			Methods_dlg.conf_LoadBMStores(actv, d1, ai, saveload);
+			
+		} else if (item.equals(actv.getString(
+				R.string.dlg_alactv_list_long_click_SaveBM_Renew))) {//if (item.equals(actv.getString(R.string.generic_tv_edit)))
+
+			///////////////////////////////////
+			//
+			// dismiss
+			//
+			///////////////////////////////////
+			d2.dismiss();
+			
+//			Methods_dlg.conf_LoadBMStores__Renew(actv, d1, ai);
+
+		} else {//if (item.equals(actv.getString(R.string.generic_tv_edit)))
+			
+			
+		}//if (item.equals(actv.getString(
+		
+	}//case_DLG_ALACTV_LIST_BMS_EXIST
+	
 
 	private void 
 	case_DLG_ALACTV_LIST_BMSEXIST(String item) {
@@ -842,14 +886,149 @@ public class DOI_CL implements OnItemClickListener {
 //			Methods_dlg.dlg_Move_AI(actv, d1, ai, aiList_Position);
 			
 		} else if (item.equals(actv.getString(
-						R.string.dlg_alactv_list_long_click_LoadBM))) {
+						R.string.dlg_ALActv_list_long_click_LoadBM))) {
+
+			boolean res = case_DLG_ALACTV_LIST_LONGCLICK__LoadBM();
 			
-			Methods_dlg.conf_SaveLoadBMs(actv, d1, ai, CONS.ALActv.SaveLoadBMs.LoadBM);
+			
+			
+//			///////////////////////////////////
+//			//
+//			// set: saveload
+//			//
+//			///////////////////////////////////
+//			this.saveload = CONS.ALActv.SaveLoadBMs.LoadBM;
+//			
+//			List<BM> list_BMs = DBUtils.find_BM_All_By_AIid(actv, ai.getDb_id());
+////			List<BMStore> list_BMStores = dbu.get_BMList(actv, ai.getDb_id());
+//
+//			// Log
+//			String msg_Log;
+//			
+//			msg_Log = String.format(
+//					Locale.JAPAN,
+//					"saveload => %s", saveload
+//					);
+//			
+//			Log.d("DOI_CL.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", msg_Log);
+//			
+//			if (saveload == CONS.ALActv.SaveLoadBMs.LoadBM 
+//					&& list_BMs != null 
+//					&& list_BMs.size() > 1) {
+//				
+////				Methods_dlg.conf_LoadBMStores__BMsExist(actv, d1, ai, saveload);
+//				// Log
+//				msg_Log = String.format(
+//						Locale.JAPAN,
+//						"BMs => exist"
+//						);
+//				
+//				Log.d("DOI_CL.java" + "["
+//						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//						+ "]", msg_Log);
+//				
+//				return;
+//				
+//			}
+//
+//			Methods_dlg.conf_SaveLoadBMs(actv, d1, ai, CONS.ALActv.SaveLoadBMs.LoadBM);
 //			Methods_dlg.dlg_Move_AI(actv, d1, ai, aiList_Position);
 			
 		}//if (item.equals(actv.getString(R.string.generic_tv_edit)))
 		
 	}//case_Dlg_ALActv_LongClick(String item)
+
+	private boolean
+	case_DLG_ALACTV_LIST_LONGCLICK__LoadBM() {
+		// TODO Auto-generated method stub
+		
+		///////////////////////////////////
+		//
+		// set: saveload
+		//
+		///////////////////////////////////
+		this.saveload = CONS.ALActv.SaveLoadBMs.LoadBM;
+
+		///////////////////////////////////
+		//
+		// validate: BMStores exist
+		//
+		///////////////////////////////////
+		List<BMStore> list_BMStores = DBUtils.get_BMStoreList(actv, ai.getFile_name());
+
+		if (saveload == CONS.ALActv.SaveLoadBMs.LoadBM 
+				&& list_BMStores == null) {
+			
+//			Methods_dlg.conf_LoadBMStores__BMsExist(actv, d1, ai, saveload);
+			// Log
+			String msg_Log;
+			msg_Log = String.format(
+					Locale.JAPAN,
+					"BMs => exist"
+					);
+			
+			Log.d("DOI_CL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+
+			//dialog
+			String message = actv.getString(R.string.dlg_ALActv_list_long_click_LoadBM_NoBMStores);
+			
+			int bgColorID = R.color.red;
+			int textColorID = R.color.white;
+			
+			Methods_dlg.dlg_ShowMessage_SecondDialog(actv, message, d1, bgColorID, textColorID);
+			
+			return false;
+			
+		}
+		
+		///////////////////////////////////
+		//
+		// validate: BMs alreadyt exist
+		//
+		///////////////////////////////////
+		List<BM> list_BMs = DBUtils.find_BM_All_By_AIid(actv, ai.getDb_id());
+//		List<BMStore> list_BMStores = dbu.get_BMList(actv, ai.getDb_id());
+
+		// Log
+		String msg_Log;
+		
+		msg_Log = String.format(
+				Locale.JAPAN,
+				"saveload => %s", saveload
+				);
+		
+		Log.d("DOI_CL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		if (saveload == CONS.ALActv.SaveLoadBMs.LoadBM 
+				&& list_BMs != null 
+				&& list_BMs.size() > 1) {
+			
+			Methods_dlg.conf_LoadBMStores__BMsExist(actv, d1, ai, saveload);
+			// Log
+			msg_Log = String.format(
+					Locale.JAPAN,
+					"BMs => exist"
+					);
+			
+			Log.d("DOI_CL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			return false;
+			
+		}
+
+		Methods_dlg.conf_SaveLoadBMs(actv, d1, ai, CONS.ALActv.SaveLoadBMs.LoadBM);
+		
+		return true;
+		
+	}//case_DLG_ALACTV_LIST_LONGCLICK__LoadBM
 
 	private void
 //	case_Dlg_Db_Admin_lv(String item) {

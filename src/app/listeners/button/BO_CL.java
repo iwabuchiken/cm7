@@ -1169,41 +1169,9 @@ public class BO_CL implements OnClickListener {
 			
 			_case_PlayActv_Add_BM__Playing();
 			
-			
-//		} else if (!PlayActv.mp.isPlaying()) {//if (PlayActv.mp == null)
-//		} else if () {//if (PlayActv.mp == null)
-//			
-//			// Log
-//			Log.d("BO_CL.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ ":"
-//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//					+ "]", "Player => Not playing");
-//			
-//			// debug
-//			Toast.makeText(actv, "Player => Not playing", Toast.LENGTH_LONG).show();
-//			
-//			return;
-			
-		
 		} else if (!CONS.PlayActv.mp.isPlaying()) {//if (PlayActv.mp == null)
 			
 			_case_PlayActv_Add_BM__NotPlaying();
-			
-//			// Log
-//			String msg_Log = "Player => not playing";
-//			Log.d("BO_CL.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", msg_Log);
-//			
-//			// Log
-//			msg_Log = "position => " + CONS.PlayActv.mp.getCurrentPosition();
-//			Log.d("BO_CL.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", msg_Log);
-			
-			
-			
 			
 		} else {//if (PlayActv.mp == null)
 			
@@ -1215,100 +1183,6 @@ public class BO_CL implements OnClickListener {
 					+ "]", "Player => Unknown state");
 			
 		}//if (PlayActv.mp == null)
-		
-//		/***************************************
-//		 * Get: Current position
-//		 ***************************************/
-//		int currentPosition = PlayActv.mp.getCurrentPosition();
-//		
-//		// Log
-//		Log.d("BO_CL.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ ":"
-//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//				+ "]", "currentPosition=" + currentPosition);
-//		
-//		/***************************************
-//		 * Get: Table name and db id of the ai instance
-//		 ***************************************/
-//		String tableName = ai.getTable_name();
-//		long aiDbId = ai.getDb_id();
-//		
-//		// Log
-//		Log.d("BO_CL.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ ":"
-//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//				+ "]",
-//				"tableName=" + tableName
-//				+ "/"
-//				+ "aiDbId=" + aiDbId);
-//		
-//		/***************************************
-//		 * Insert BM data into db
-//		 * 1. Build a BM instance
-//		 * 2. Insert data using the instance
-//		 ***************************************/
-//		/***************************************
-//		 * 1. Build a BM instance
-//		 ***************************************/
-//		BM bm = new BM.Builder()
-//					.setPosition(currentPosition)
-//					.setTitle(ai.getTitle())
-//					.setMemo(ai.getMemo())
-//					.setAiId(ai.getDb_id())
-//					.setAiTableName(ai.getTable_name())
-//					.build();
-//		
-//		// Log
-//		Log.d("BO_CL.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ ":"
-//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//				+ "]", "ai.getTitle()=" + ai.getTitle());
-//		// Log
-//		Log.d("BO_CL.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ ":"
-//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//				+ "]", "bm.getTitle()=" + bm.getTitle());
-//		
-//		/***************************************
-//		 * 2. Insert data using the instance
-//		 ***************************************/
-//		DBUtils dbu = new DBUtils(actv, CONS.dbName);
-//		boolean res = dbu.insertData_bm(actv, bm);
-//		
-//		if (res == true) {
-//		
-//			// Log
-//			Log.d("BO_CL.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ ":"
-//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//					+ "]", "res=" + res);
-//			
-//			// debug
-//			Toast.makeText(actv, "Bookmark inserted", Toast.LENGTH_LONG).show();
-//			
-//		} else {//if (res == true)
-//
-//			// Log
-//			Log.d("BO_CL.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ ":"
-//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//					+ "]", "res=" + res);
-//
-//		}//if (res == true)
-		
-		
-		
-		//debug
-//		debug_case_actv_play_bt_add_bm();
-		
-		
-		
 		
 	}//case_PlayActv_Add_BM
 

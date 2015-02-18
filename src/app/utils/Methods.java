@@ -5322,6 +5322,17 @@ public class Methods {
 		
 	}//conv_BMs_to_BMStores
 
+	public static BM 
+	conv_BMStores_to_BMs
+	(Activity actv, List<BMStore> list_BMStores) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		return null;
+		
+	}//conv_BMStores_to_BMs
+
 	
 }//public class Methods
 

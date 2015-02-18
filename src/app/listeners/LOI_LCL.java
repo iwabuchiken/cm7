@@ -343,7 +343,7 @@ LOI_LCL implements OnItemLongClickListener {
 		list.add(actv.getString(R.string.dlg_alactv_list_long_click_item_move));
 		
 		list.add(actv.getString(R.string.dlg_alactv_list_long_click_SaveBM));
-		list.add(actv.getString(R.string.dlg_alactv_list_long_click_LoadBM));
+		list.add(actv.getString(R.string.dlg_ALActv_list_long_click_LoadBM));
 		
 //		String[] choices = {
 //					actv.getString(R.string.generic_tv_delete),

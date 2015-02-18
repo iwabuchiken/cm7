@@ -126,6 +126,8 @@ public class DB_OTL implements OnTouchListener {
 				case DLG_CONF_LOAD_BM_OK:
 					
 				case DLG_CONF_DROP_CREATE_TABLE_OK:
+					
+				case DLG_CONF_LOAD_BMSTORES_OK:
 
 					
 					//
@@ -192,6 +194,7 @@ public class DB_OTL implements OnTouchListener {
 
 			case DLG_CONF_DROP_CREATE_TABLE_OK:
 				
+			case DLG_CONF_LOAD_BMSTORES_OK:
 				//
 					v.setBackgroundColor(Color.WHITE);
 					

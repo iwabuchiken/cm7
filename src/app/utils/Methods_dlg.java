@@ -3207,7 +3207,7 @@ public class Methods_dlg {
 		
 		tv_Message.setBackgroundColor(actv.getResources().getColor(bgColorID));
 		
-		tv_Message.setTextColor(textColorID);
+		tv_Message.setTextColor(actv.getResources().getColor(textColorID));
 //		tv_Message.setTextColor(Color.WHITE);
 		
 		tv_Message.setText(message);
@@ -3348,7 +3348,7 @@ public class Methods_dlg {
 			
 			break;
 			
-		case LoadBM: message = actv.getString(R.string.dlg_alactv_list_long_click_LoadBM) + "?";
+		case LoadBM: message = actv.getString(R.string.dlg_ALActv_list_long_click_LoadBM) + "?";
 			
 			break;
 			
@@ -3506,7 +3506,7 @@ public class Methods_dlg {
 		// lv: listener
 		//
 		///////////////////////////////////
-		lv.setTag(Tags.DialogItemTags.DLG_ALACTV_LIST_BMSEXIST);
+		lv.setTag(Tags.DialogItemTags.DLG_ALACTV_LIST_BMSTORES_EXIST);
 		
 		lv.setOnItemClickListener(new DOI_CL(actv, d1, d2, ai, saveload));
 		
@@ -3663,5 +3663,189 @@ public class Methods_dlg {
 		d2.show();
 		
 	}//conf_SaveBMs__Renew
+
+	public static void 
+	conf_LoadBMStores__BMsExist
+	(Activity actv, Dialog d1, AI ai, SaveLoadBMs saveload) {
+		// TODO Auto-generated method stub
+		
+		///////////////////////////////////
+		//
+		// dialog
+		//
+		///////////////////////////////////
+		Dialog d2 = new Dialog(actv);
+
+		// layout
+		d2.setContentView(R.layout.dlg_tmpl_cancel_tv_lv);
+//		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple_checkbox);
+		
+		// Title
+		d2.setTitle(R.string.generic_tv_confirm);
+
+		////////////////////////////////
+
+		// Set: Message
+
+		////////////////////////////////
+		String message = actv.getString(R.string.dlg_ALActv_list_long_click_LoadBM_BMsExist);
+		
+		TextView tv_Message = (TextView) d2.findViewById(
+							R.id.dlg_tmpl_cancel_tv_lv_TV);
+		
+		tv_Message.setText(message);
+
+		////////////////////////////////
+
+		// Add listeners => OnTouch
+
+		////////////////////////////////
+		Button btn_cancel = (Button) d2.findViewById(
+								R.id.dlg_tmpl_cancel_tv_lv_2_bt_cancel);
+		
+		//
+		btn_cancel.setTag(Tags.DialogTags.DLG_GENERIC_DISMISS_SECOND_DIALOG);
+		
+		//
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, d2));
+		
+		/****************************
+		 * 4. Add listeners => OnClick
+			****************************/
+		//
+		btn_cancel.setOnClickListener(new DB_OCL(actv, d1, d2));
+
+		///////////////////////////////////
+		//
+		// listview
+		//
+		///////////////////////////////////
+		ListView lv = (ListView) d2.findViewById(
+									R.id.dlg_tmpl_cancel_tv_lv_2_lv);
+		
+		List<String> list = new ArrayList<String>();
+		
+		list.add(actv.getString(R.string.dlg_alactv_list_long_click_SaveBM_Add));
+		list.add(actv.getString(R.string.dlg_alactv_list_long_click_SaveBM_Renew));
+		
+		///////////////////////////////////
+		//
+		// Adapter
+		//
+		///////////////////////////////////
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+						actv,
+						R.layout.list_row_simple_1,
+						list
+		);
+
+		lv.setAdapter(adapter);
+		
+		///////////////////////////////////
+		//
+		// lv: listener
+		//
+		///////////////////////////////////
+		lv.setTag(Tags.DialogItemTags.DLG_ALACTV_LIST_BMS_EXIST);
+		
+		lv.setOnItemClickListener(new DOI_CL(actv, d1, d2, ai, saveload));
+		
+		///////////////////////////////////
+		//
+		// Show dialog
+		//
+		///////////////////////////////////
+		d2.show();
+		
+	}//conf_LoadBMStores__BMsExist
+
+	public static void 
+	conf_LoadBMStores
+	(Activity actv, Dialog d1, AI ai, SaveLoadBMs saveload) {
+		// TODO Auto-generated method stub
+		
+		///////////////////////////////////
+		//
+		// dialog
+		//
+		///////////////////////////////////
+		Dialog d2 = new Dialog(actv);
+
+		// layout
+		d2.setContentView(R.layout.dlg_tmpl_confirm_simple);
+//		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple_checkbox);
+		
+		// Title
+		d2.setTitle(R.string.generic_tv_confirm);
+
+		////////////////////////////////
+
+		// Set: Message
+
+		////////////////////////////////
+		String message = null;
+		
+		message = actv.getString(R.string.dlg_ALActv_list_long_click_LoadBM) + "?";
+		
+		
+		TextView tv_Message = (TextView) d2.findViewById(
+							R.id.dlg_tmpl_confirm_simple_tv_message);
+		
+		tv_Message.setText(message);
+
+		////////////////////////////////
+
+		// Set: BM position
+
+		////////////////////////////////
+		TextView tv_ItemName = (TextView) d2.findViewById(
+							R.id.dlg_tmpl_confirm_simple_TV_ItemName);
+
+		tv_ItemName.setText(ai.getFile_name());
+
+		////////////////////////////////
+
+		// Add listeners => OnTouch
+
+		////////////////////////////////
+		Button btn_ok = (Button) d2.findViewById(
+								R.id.dlg_tmpl_confirm_simple_btn_ok);
+		
+		Button btn_cancel = (Button) d2.findViewById(
+								R.id.dlg_tmpl_confirm_simple_btn_cancel);
+
+		///////////////////////////////////
+		//
+		// tag
+		//
+		///////////////////////////////////
+		Tags.DialogTags tag = null;
+		
+		tag = Tags.DialogTags.DLG_CONF_LOAD_BMSTORES_OK;
+
+		btn_ok.setTag(tag);
+		btn_cancel.setTag(Tags.DialogTags.DLG_GENERIC_DISMISS_SECOND_DIALOG);
+
+		///////////////////////////////////
+		//
+		// listener: onClick
+		//
+		///////////////////////////////////
+		btn_ok.setOnTouchListener(new DB_OTL(actv, d1, d2));
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, d1, d2));
+		
+		/****************************
+		 * 4. Add listeners => OnClick
+			****************************/
+		//
+		btn_ok.setOnClickListener(new DB_OCL(actv, d1, d2, ai));
+		btn_cancel.setOnClickListener(new DB_OCL(actv, d1, d2));
+		
+		/****************************
+		 * 5. Show dialog
+			****************************/
+		d2.show();
+		
+	}//conf_LoadBMStores
 
 }//public class Methods_dialog

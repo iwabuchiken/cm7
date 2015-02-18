@@ -104,9 +104,12 @@
   		<string name="dlg_alactv_list_long_click_title">AI</string>
   		<string name="dlg_alactv_list_long_click_item_move">Move</string>
   		<string name="dlg_alactv_list_long_click_SaveBM">Save BM</string>
-  		<string name="dlg_alactv_list_long_click_LoadBM">Load BM</string>
+  		<string name="dlg_ALActv_list_long_click_LoadBM">Load BMStores</string>
   		
-  		<string name="dlg_alactv_list_long_click_SaveBM_SaveModes">BMs already exist</string>
+  		<string name="dlg_ALActv_list_long_click_LoadBM_NoBMStores">No BMStores</string>
+  		<string name="dlg_ALActv_list_long_click_LoadBM_BMsExist">BMs exist</string>
+  		
+  		<string name="dlg_alactv_list_long_click_SaveBM_SaveModes">BMStores already exist</string>
   		
   		<string name="dlg_alactv_list_long_click_SaveBM_Add">Add</string>
   		<string name="dlg_alactv_list_long_click_SaveBM_Renew">Renew</string>
