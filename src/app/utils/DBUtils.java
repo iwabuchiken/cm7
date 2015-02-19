@@ -2272,7 +2272,13 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//public boolean insertData_bm(Activity actv, BM bm)
 
-	public static boolean 
+	/*******************************
+	 * @return
+	 * 1	=> data inserted<br>
+	 * -1	=> insertion failed<br>
+	 * -2	=> insertion exception<br>
+	 *******************************/
+	public static int 
 	insertData_BM_static(Activity actv, BM bm) {
 		// TODO Auto-generated method stub
 		
@@ -2285,28 +2291,30 @@ public class DBUtils extends SQLiteOpenHelper{
 			wdb.beginTransaction();
 			
 			// ContentValues
-			ContentValues val = new ContentValues();
-			
-//			"ai_id", "position", "title", "memo", "aiTableName"
-//			val.put(android.provider.BaseColumns._ID, ai.getDb_id());
-			
-			val.put("created_at", 
-					Methods.conv_MillSec_to_TimeLabel(
-							Methods.getMillSeconds_now()));
-			
-			val.put("modified_at", 
-					Methods.conv_MillSec_to_TimeLabel(
-							Methods.getMillSeconds_now()));
-//			val.put("created_at", Methods.getMillSeconds_now());
-//			val.put("modified_at", Methods.getMillSeconds_now());
-			
-			val.put("ai_id", bm.getAiId());
-			val.put("position", bm.getPosition());
-			
-			val.put("title", bm.getTitle());
-			val.put("memo", bm.getMemo());
-			
-			val.put("aiTableName", bm.getAiTableName());
+			ContentValues val = insertData_BM_static__GetCV(actv, bm);
+////			ContentValues val = new ContentValues();
+//			
+////			"ai_id", "position", "title", "memo", "aiTableName"
+////			val.put(android.provider.BaseColumns._ID, ai.getDb_id());
+//			
+//			
+//			val.put("created_at", 
+//					Methods.conv_MillSec_to_TimeLabel(
+//							Methods.getMillSeconds_now()));
+//			
+//			val.put("modified_at", 
+//					Methods.conv_MillSec_to_TimeLabel(
+//							Methods.getMillSeconds_now()));
+////			val.put("created_at", Methods.getMillSeconds_now());
+////			val.put("modified_at", Methods.getMillSeconds_now());
+//			
+//			val.put("ai_id", bm.getAiId());
+//			val.put("position", bm.getPosition());
+//			
+//			val.put("title", bm.getTitle());
+//			val.put("memo", bm.getMemo());
+//			
+//			val.put("aiTableName", bm.getAiTableName());
 			
 			// Insert data
 			long res = wdb.insert(CONS.DB.tname_BM, null, val);
@@ -2326,6 +2334,14 @@ public class DBUtils extends SQLiteOpenHelper{
 						+ Thread.currentThread().getStackTrace()[2]
 								.getLineNumber() + "]", msg_Log);
 				
+
+				// End transaction
+				wdb.endTransaction();
+				
+				wdb.close();
+				
+				return -1;
+
 			}
 			
 			// End transaction
@@ -2340,7 +2356,7 @@ public class DBUtils extends SQLiteOpenHelper{
 			
 			wdb.close();
 			
-			return true;
+			return 1;
 			
 		} catch (Exception e) {
 			// Log
@@ -2350,12 +2366,86 @@ public class DBUtils extends SQLiteOpenHelper{
 			
 			wdb.close();
 			
-			return false;
+			return -2;
 			
 		}//try
 		
 	}//public boolean insertData_bm(Activity actv, BM bm)
 	
+	private static ContentValues 
+	insertData_BM_static__GetCV
+	(Activity actv, BM bm) {
+		// TODO Auto-generated method stub
+		ContentValues val = new ContentValues();
+		
+//		"ai_id", "position", "title", "memo", "aiTableName"
+//		val.put(android.provider.BaseColumns._ID, ai.getDb_id());
+
+		///////////////////////////////////
+		//
+		// created_at
+		//
+		///////////////////////////////////
+		String created_at = null;
+		
+		if (bm.getCreated_at() == null || bm.getCreated_at().equals("")) {
+			
+			created_at = Methods.conv_MillSec_to_TimeLabel(
+					Methods.getMillSeconds_now());
+			
+		} else {//if (bm.getCreated_at() == null || bm.getCreated_at().equals(""))
+			
+			created_at = bm.getCreated_at();
+			
+		}//if (bm.getCreated_at() == null || bm.getCreated_at().equals(""))
+		
+		val.put("created_at", created_at);
+//		Methods.conv_MillSec_to_TimeLabel(
+//				Methods.getMillSeconds_now()));
+		
+		///////////////////////////////////
+		//
+		// modified_at
+		//
+		///////////////////////////////////
+		String modified_at = null;
+		
+		if (bm.getCreated_at() == null || bm.getCreated_at().equals("")) {
+			
+			modified_at = Methods.conv_MillSec_to_TimeLabel(
+					Methods.getMillSeconds_now());
+			
+		} else {//if (bm.getCreated_at() == null || bm.getCreated_at().equals(""))
+			
+			modified_at = bm.getModified_at();
+			
+		}//if (bm.getCreated_at() == null || bm.getCreated_at().equals(""))
+		
+		val.put("modified_at", modified_at);
+//		Methods.conv_MillSec_to_TimeLabel(
+//				Methods.getMillSeconds_now()));
+		
+//		val.put("modified_at", 
+//				Methods.conv_MillSec_to_TimeLabel(
+//						Methods.getMillSeconds_now()));
+		
+		///////////////////////////////////
+		//
+		// ai_id, position, title, ...
+		//
+		///////////////////////////////////
+		val.put("ai_id", bm.getAiId());
+		val.put("position", bm.getPosition());
+		
+		val.put("title", bm.getTitle());
+		val.put("memo", bm.getMemo());
+		
+		val.put("aiTableName", bm.getAiTableName());
+
+		return val;
+		
+	}//insertData_BM_static__GetCV
+
 	public static boolean
 	insertData_BMStore
 	(Activity actv, SQLiteDatabase wdb, BMStore bmStore) {
@@ -3958,6 +4048,13 @@ public class DBUtils extends SQLiteOpenHelper{
 			}
 			
 		}//for (int i = 0; i < list_bmStores.size(); i++)
+
+		///////////////////////////////////
+		//
+		// close
+		//
+		///////////////////////////////////
+		wdb.close();
 		
 		return counter;
 		
@@ -4059,6 +4156,48 @@ public class DBUtils extends SQLiteOpenHelper{
 		}
 
 	}//delete_BMs
+
+	public static int 
+	save_BMs(Activity actv, List<BM> list_BMs) {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// DB
+
+		////////////////////////////////
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		SQLiteDatabase wdb = dbu.getWritableDatabase();
+		
+		BM bm = null;
+		
+		int counter = 0;
+		int res_i;
+
+		for (int i = 0; i < list_BMs.size(); i++) {
+			
+			bm = list_BMs.get(i);
+
+			res_i = DBUtils.insertData_BM_static(actv, bm);
+			
+			if (res_i == 1) {
+				
+				counter ++;
+				
+			}
+			
+		}//for (int i = 0; i < list_bmStores.size(); i++)
+
+		///////////////////////////////////
+		//
+		// close
+		//
+		///////////////////////////////////
+		wdb.close();
+		
+		return counter;
+
+	}//save_BMs(Activity actv, List<BM> list_BMs)
 
 
 }//public class DBUtils

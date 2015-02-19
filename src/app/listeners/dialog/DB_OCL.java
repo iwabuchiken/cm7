@@ -472,14 +472,52 @@ public class DB_OCL implements OnClickListener {
 		// save: BMs
 		//
 		///////////////////////////////////
-		List<BM> list_BMs = Methods.conv_BMStores_to_BMs(actv, list_BMStores);
+		List<BM> list_BMs = Methods.conv_BMStores_to_BMs(actv, list_BMStores, ai);
 			
+		//debug
+		if (list_BMs == null) {
+			
+			// Log
+			msg_Log = String.format(
+					Locale.JAPAN,
+					"list_BMs => null"
+					);
+			
+			Log.d("DB_OCL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		} else {//if (list_BMs == null)
+			
+			// Log
+			msg_Log = String.format(
+					Locale.JAPAN,
+					"list_BMs.size => %d", list_BMs.size()
+					);
+			
+			Log.d("DB_OCL.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}//if (list_BMs == null)
+		
+		
 		///////////////////////////////////
 		//
 		// dialogues
 		//
 		///////////////////////////////////
+		int res_i = DBUtils.save_BMs(actv, list_BMs);
 		
+		// Log
+		msg_Log = String.format(
+				Locale.JAPAN,
+				"save_BMs => %d", res_i
+				);
+		
+		Log.d("DB_OCL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
 		
 	}//case_DLG_CONF_LOAD_BMSTORES_OK
 

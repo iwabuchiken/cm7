@@ -5242,7 +5242,7 @@ public class Methods {
 	(Activity actv, List<BM> bmList) {
 		// TODO Auto-generated method stub
 		
-		List<BMStore> list_BMStores = new ArrayList<BMStore>();
+		List<BMStore> list_BMs = new ArrayList<BMStore>();
 		
 		BM bm = null;
 		BMStore bm_Store = null;
@@ -5314,22 +5314,79 @@ public class Methods {
 			// build: list
 			//
 			///////////////////////////////////
-			list_BMStores.add(bm_Store);
+			list_BMs.add(bm_Store);
 			
 		}//for (int i = 0; i < bmList.size(); i++)
 		
-		return list_BMStores;
+		return list_BMs;
 		
 	}//conv_BMs_to_BMStores
 
-	public static BM 
+	public static List<BM> 
 	conv_BMStores_to_BMs
-	(Activity actv, List<BMStore> list_BMStores) {
+	(Activity actv, List<BMStore> list_BMStores, AI ai) {
 		// TODO Auto-generated method stub
 		
+		List<BM> list_BMs = new ArrayList<BM>();
 		
+		BM bm = null;
+		BMStore bm_Store = null;
 		
-		return null;
+//		AI ai = null;
+		
+		for (int i = 0; i < list_BMStores.size(); i++) {
+			
+			///////////////////////////////////
+			//
+			// get: BMStore
+			//
+			///////////////////////////////////
+			bm_Store = list_BMStores.get(i);
+			
+			///////////////////////////////////
+			//
+			// get: AI id
+			//
+			///////////////////////////////////
+			long ai_Id = ai.getDb_id();
+			
+//			ai = DBUtils.find_AI_ById(actv, bm.getAiId());
+
+			///////////////////////////////////
+			//
+			// build: BM
+			//
+			///////////////////////////////////
+//			android.provider.BaseColumns._ID,		// 0
+//			"created_at", "modified_at",			// 1,2
+//			"ai_id", "position",					// 3,4
+//			"title", "memo", "aiTableName"			// 5,6,7
+			
+			bm = new BM.Builder()
+						
+						.setCreated_at(bm_Store.getOrig_created_at())
+						.setModified_at(bm_Store.getOrig_modified_at())
+						
+						.setAiId(ai_Id)
+						
+						.setPosition(bm_Store.getPosition())
+						.setTitle(bm_Store.getTitle())
+						.setMemo(bm_Store.getMemo())
+
+						.setAiTableName(ai.getTable_name())
+						
+						.build();
+			
+			///////////////////////////////////
+			//
+			// build: list
+			//
+			///////////////////////////////////
+			list_BMs.add(bm);
+			
+		}//for (int i = 0; i < bmList.size(); i++)
+		
+		return list_BMs;
 		
 	}//conv_BMStores_to_BMs
 
