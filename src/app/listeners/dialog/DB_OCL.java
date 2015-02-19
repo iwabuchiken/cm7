@@ -504,7 +504,7 @@ public class DB_OCL implements OnClickListener {
 		
 		///////////////////////////////////
 		//
-		// dialogues
+		// save BMs
 		//
 		///////////////////////////////////
 		int res_i = DBUtils.save_BMs(actv, list_BMs);
@@ -518,6 +518,36 @@ public class DB_OCL implements OnClickListener {
 		Log.d("DB_OCL.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ "]", msg_Log);
+		
+		///////////////////////////////////
+		//
+		// error: BMs not inserted
+		//
+		///////////////////////////////////
+		if (res_i == 0) {
+			
+			d2.dismiss();
+			
+			String message = actv.getString(R.string.dlg_ALActv_list_long_click_LoadBM_CantLoadBMs);
+			int colorID = R.color.red;
+			
+			Methods_dlg.dlg_ShowMessage_ThirdDialog(actv, message, d1, d2, colorID);
+			
+			return;
+			
+		}
+		
+		///////////////////////////////////
+		//
+		// report
+		//
+		///////////////////////////////////
+		d2.dismiss();
+		d1.dismiss();
+
+		String message = actv.getString(R.string.dlg_ALActv_list_long_click_LoadBM_BMStoresLoaded);
+		
+		Methods_dlg.dlg_ShowMessage(actv, message);
 		
 	}//case_DLG_CONF_LOAD_BMSTORES_OK
 

@@ -4157,6 +4157,10 @@ public class DBUtils extends SQLiteOpenHelper{
 
 	}//delete_BMs
 
+	/*******************************
+	 * @return
+	 * num of BMs inserted
+	 *******************************/
 	public static int 
 	save_BMs(Activity actv, List<BM> list_BMs) {
 		// TODO Auto-generated method stub

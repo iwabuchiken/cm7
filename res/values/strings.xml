@@ -108,6 +108,8 @@
   		
   		<string name="dlg_ALActv_list_long_click_LoadBM_NoBMStores">No BMStores</string>
   		<string name="dlg_ALActv_list_long_click_LoadBM_BMsExist">BMs exist</string>
+  		<string name="dlg_ALActv_list_long_click_LoadBM_CantLoadBMs">Can\'t load BMs</string>
+  		<string name="dlg_ALActv_list_long_click_LoadBM_BMStoresLoaded">BMStores loaded</string>
   		
   		<string name="dlg_alactv_list_long_click_SaveBM_SaveModes">BMStores already exist</string>
   		
