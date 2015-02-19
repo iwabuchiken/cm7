@@ -259,6 +259,12 @@ public class DB_OCL implements OnClickListener {
 		//
 		switch (tag_name) {
 		
+		case DLG_CONF_LOAD_BMSTORE_RENEW_OK://------------------------------------------------
+			
+			case_DLG_CONF_LOAD_BMSTORE_RENEW_OK();
+			
+			break;
+			
 		case DLG_CONF_LOAD_BMSTORES_OK://------------------------------------------------
 			
 			case_DLG_CONF_LOAD_BMSTORES_OK();
@@ -440,6 +446,44 @@ public class DB_OCL implements OnClickListener {
 			break;
 		}//switch (tag_name)
 	}//public void onClick(View v)
+
+	private void 
+	case_DLG_CONF_LOAD_BMSTORE_RENEW_OK() {
+		// TODO Auto-generated method stub
+		
+		///////////////////////////////////
+		//
+		// delete: BMs
+		//
+		///////////////////////////////////
+		int res_i = DBUtils.delete_BMs__AIid(actv, this.ai.getDb_id());
+		
+		// Log
+		String msg_Log;
+		
+		msg_Log = String.format(
+				Locale.JAPAN,
+				"res_i => %d", res_i
+				);
+		
+		Log.d("DB_OCL.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+
+		///////////////////////////////////
+		//
+		// insert: BMs
+		//
+		///////////////////////////////////
+		case_DLG_CONF_LOAD_BMSTORES_OK();
+
+		///////////////////////////////////
+		//
+		// dialogues
+		//
+		///////////////////////////////////
+		
+	}
 
 	/*******************************
 	 * The method doesn't check if any entries in the BMStores table

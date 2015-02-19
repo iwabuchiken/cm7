@@ -375,7 +375,7 @@ public class DOI_CL implements OnItemClickListener {
 			///////////////////////////////////
 			d2.dismiss();
 			
-//			Methods_dlg.conf_LoadBMStores__Renew(actv, d1, ai);
+			Methods_dlg.conf_LoadBMStores__Renew(actv, d1, ai);
 
 		} else {//if (item.equals(actv.getString(R.string.generic_tv_edit)))
 			

@@ -3440,7 +3440,8 @@ public class Methods_dlg {
 //		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple_checkbox);
 		
 		// Title
-		d2.setTitle(R.string.generic_tv_confirm);
+		d2.setTitle(R.string.dlg_alactv_list_long_click_SaveBM);
+//		d2.setTitle(R.string.generic_tv_confirm);
 
 		////////////////////////////////
 
@@ -3681,7 +3682,8 @@ public class Methods_dlg {
 //		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple_checkbox);
 		
 		// Title
-		d2.setTitle(R.string.generic_tv_confirm);
+		d2.setTitle(R.string.dlg_ALActv_list_long_click_LoadBM);
+//		d2.setTitle(R.string.generic_tv_confirm);
 
 		////////////////////////////////
 
@@ -3847,5 +3849,92 @@ public class Methods_dlg {
 		d2.show();
 		
 	}//conf_LoadBMStores
+
+	public static void 
+	conf_LoadBMStores__Renew
+	(Activity actv, Dialog d1, AI ai) {
+		// TODO Auto-generated method stub
+	
+		///////////////////////////////////
+		//
+		// dialog
+		//
+		///////////////////////////////////
+		Dialog d2 = new Dialog(actv);
+
+		// layout
+		d2.setContentView(R.layout.dlg_tmpl_confirm_simple);
+//		dlg2.setContentView(R.layout.dlg_tmpl_confirm_simple_checkbox);
+		
+		// Title
+		d2.setTitle(R.string.generic_tv_confirm);
+
+		////////////////////////////////
+
+		// Set: Message
+
+		////////////////////////////////
+		String message = null;
+		
+		message = actv.getString(R.string.dlg_alactv_list_long_click_SaveBM_Renew) + "?";
+//		message = actv.getString(R.string.dlg_alactv_list_long_click_SaveBM) + "?";
+		
+		TextView tv_Message = (TextView) d2.findViewById(
+							R.id.dlg_tmpl_confirm_simple_tv_message);
+		
+		tv_Message.setText(message);
+
+		////////////////////////////////
+
+		// Set: AI file name
+
+		////////////////////////////////
+		TextView tv_ItemName = (TextView) d2.findViewById(
+							R.id.dlg_tmpl_confirm_simple_TV_ItemName);
+
+		tv_ItemName.setText(ai.getFile_name());
+
+		////////////////////////////////
+
+		// Add listeners => OnTouch
+
+		////////////////////////////////
+		Button btn_ok = (Button) d2.findViewById(
+								R.id.dlg_tmpl_confirm_simple_btn_ok);
+//		R.id.dlg_tmpl_confirm_simple_cb_btn_ok);
+		
+		Button btn_cancel = (Button) d2.findViewById(
+								R.id.dlg_tmpl_confirm_simple_btn_cancel);
+//		R.id.dlg_tmpl_confirm_simple_cb_btn_cancel);
+		
+		///////////////////////////////////
+		//
+		// tag
+		//
+		///////////////////////////////////
+		Tags.DialogTags tag = null;
+		
+		tag = Tags.DialogTags.DLG_CONF_LOAD_BMSTORE_RENEW_OK;
+		
+		btn_ok.setTag(tag);
+		btn_cancel.setTag(Tags.DialogTags.DLG_GENERIC_DISMISS_SECOND_DIALOG);
+		
+		//
+		btn_ok.setOnTouchListener(new DB_OTL(actv, d2));
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, d2));
+		
+		/****************************
+		 * 4. Add listeners => OnClick
+			****************************/
+		//
+		btn_ok.setOnClickListener(new DB_OCL(actv, d1, d2, ai));
+		btn_cancel.setOnClickListener(new DB_OCL(actv, d1, d2));
+		
+		/****************************
+		 * 5. Show dialog
+			****************************/
+		d2.show();
+		
+	}//conf_LoadBMStores__Renew
 
 }//public class Methods_dialog

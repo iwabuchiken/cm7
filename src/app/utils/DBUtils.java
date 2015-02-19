@@ -4203,6 +4203,112 @@ public class DBUtils extends SQLiteOpenHelper{
 
 	}//save_BMs(Activity actv, List<BM> list_BMs)
 
+	public static int 
+	delete_BMs__AIid(Activity actv, long db_id) {
+		// TODO Auto-generated method stub
+		
+		String dbName = CONS.DB.dbName;
+		
+		DBUtils dbu = new DBUtils(actv, dbName);
+		
+		//
+		SQLiteDatabase wdb = dbu.getWritableDatabase();
+		
+		////////////////////////////////
+		
+		// validate: table exists
+		
+		////////////////////////////////
+		String tname = CONS.DB.tname_BM;
+		
+		if (!DBUtils.tableExists(actv, dbName, tname)) {
+			// Log
+			Log.i("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Table doesn't exist => " + tname);
+			
+			wdb.close();
+			
+			return -1;
+			
+		}//if (!tableExists(SQLiteDatabase db, String tableName))
+		
+		////////////////////////////////
+		
+		// delete
+		
+		////////////////////////////////
+		////////////////////////////////
+		
+		// Query
+		
+		////////////////////////////////
+//		col_names_BM_full
+//		android.provider.BaseColumns._ID,		// 0
+//		"created_at", "modified_at",			// 1,2
+//		"ai_id", "position",					// 3,4
+//		"title", "memo", "aiTableName"			// 5,6,7
+		
+		String where = CONS.DB.col_names_BM_full[3] + " = ?";
+		
+		String[] args = new String[]{
+				
+				String.valueOf(db_id)
+				
+		};
+		
+		int res_int = wdb.delete(tname, where, args);
+		
+		
+		// Log
+		String msg_Log;
+		
+		msg_Log = String.format(
+				Locale.JAPAN,
+				"ai.db_id = %d / col name = %s", db_id, CONS.DB.col_names_BM[3]
+				);
+		
+		Log.d("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+//		
+//		// Log
+//		String msg_Log = "res_int => " + res_int;
+//		Log.d("DBUtils.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", msg_Log);
+		
+		////////////////////////////////
+		
+		// report
+		
+		////////////////////////////////
+		switch(res_int) {
+		
+		case 0:
+			
+			// Log
+//			String msg_Log;
+			
+			msg_Log = "deletion => failed";
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+			wdb.close();
+			
+			return -2;
+			
+		default:
+			
+			wdb.close();
+			
+			return res_int;
+			
+		}
+
+	}//delete_BMs__AIid
+
 
 }//public class DBUtils
 
