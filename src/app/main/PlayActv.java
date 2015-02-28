@@ -2,6 +2,7 @@ package app.main;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -161,10 +162,34 @@ public class PlayActv extends Activity {
 							CONS.Pref.pkey_PlayActv_CurrentFileName,
 							null);
 		
+		// Log
+		String msg_Log;
+		
+		msg_Log = String.format(
+				Locale.JAPAN,
+				"CONS.Pref.pkey_PlayActv_CurrentFileName => %s / "
+				+ "CONS.PlayActv.ai.getFile_name() => %s",
+				tmp, CONS.PlayActv.ai.getFile_name()
+				);
+		
+		Log.d("PlayActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+
+		
 		if(tmp == null
 				|| !tmp.equals(CONS.PlayActv.ai.getFile_name())) {
+			
 			// Pref current file name => not set yet
-			//	=> then, set the passed file name into the pref
+			//	=> then, (1)set the passed file name into the pref
+			//	=> (2) clear the current position to 0
+			//	=> (3) clear the current BM value
+			
+			///////////////////////////////////
+			//
+			// (1)set the passed file name into the pref
+			//
+			///////////////////////////////////
 			boolean res = Methods.set_Pref_String(this, 
 								CONS.Pref.pname_PlayActv, 
 								CONS.Pref.pkey_PlayActv_CurrentFileName, 
@@ -173,7 +198,7 @@ public class PlayActv extends Activity {
 			if (res == true) {
 				
 				// Log
-				String msg_Log = "Pref: file name => set";
+				msg_Log = "Pref: file name => set";
 				Log.d("PlayActv.java"
 						+ "["
 						+ Thread.currentThread().getStackTrace()[2]
@@ -182,7 +207,7 @@ public class PlayActv extends Activity {
 			} else {
 
 				// Log
-				String msg_Log = "Pref: file name => cant be set";
+				msg_Log = "Pref: file name => cant be set";
 				Log.d("PlayActv.java"
 						+ "["
 						+ Thread.currentThread().getStackTrace()[2]
@@ -203,7 +228,7 @@ public class PlayActv extends Activity {
 			if (res == true) {
 				
 				// Log
-				String msg_Log = "Pref: currentPosition => set to 0";
+				msg_Log = "Pref: currentPosition => set to 0";
 				Log.d("PlayActv.java"
 						+ "["
 						+ Thread.currentThread().getStackTrace()[2]
@@ -212,7 +237,7 @@ public class PlayActv extends Activity {
 			} else {
 				
 				// Log
-				String msg_Log = "Pref: currentPosition => can't be set to 0";
+				msg_Log = "Pref: currentPosition => can't be set to 0";
 				Log.d("PlayActv.java"
 						+ "["
 						+ Thread.currentThread().getStackTrace()[2]
@@ -233,10 +258,51 @@ public class PlayActv extends Activity {
 			////////////////////////////////
 			CONS.PlayActv.sb.setProgress(0);
 			
+			///////////////////////////////////
+			//
+			// (3) clear the current BM value
+			//
+			///////////////////////////////////
+			res = Methods.set_Pref_Int(
+							this, 
+							CONS.Pref.pname_BMActv, 
+							CONS.Pref.pkey_CurrentPosition_BMActv, 
+							CONS.Pref.dflt_IntExtra_value);
+//					boolean res = Methods.get_Pref_Int(
+//					this, 
+//					CONS.Pref.pname_BMActv, 
+//					CONS.Pref.pkey_CurrentPosition_BMActv, 
+//					CONS.Pref.dflt_IntExtra_value);
+			
+			if (res == true) {
+				
+				// Log
+				msg_Log = String.format(
+						Locale.JAPAN,
+						"BM current position => reset to 0"
+						);
+				
+				Log.d("PlayActv.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ "]", msg_Log);
+				
+			} else {//if (res == true)
+				
+				// Log
+				msg_Log = String.format(
+						Locale.JAPAN,
+						"BM current position => can't reset to 0"
+						);
+				
+				Log.d("PlayActv.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ "]", msg_Log);
+
+			}//if (res == true)
 			
 		} else {//if (!tmp.equals(CONS.PlayActv.ai.getFile_name()))
 			
-			// File name given by ALActv does match that in the pref
+			// File name given by ALActv DOES match that in the pref
 			//	i.e. The user is playing the same audio file
 			//	=> then, set the current position with the one
 			//		stored in the pref
@@ -248,7 +314,7 @@ public class PlayActv extends Activity {
 							CONS.Pref.dflt_LongExtra_value);
 			
 			// Log
-			String msg_Log = "savedPosition = " + savedPosition;
+			msg_Log = "savedPosition = " + savedPosition;
 			Log.d("PlayActv.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", msg_Log);
@@ -775,27 +841,50 @@ public class PlayActv extends Activity {
 		if (bm_Value != CONS.Pref.dflt_IntExtra_value
 				&& CONS.BMActv.bmList != null) {
 			
-			BM bm = CONS.BMActv.bmList.get(bm_Value);
-					
-			TextView tv_Bm = (TextView) findViewById(R.id.dlg_edit_ai_lbl_file_path);
+			BM bm = null;
 			
-			tv_Bm.setText(bm.getPosition());
+			if (CONS.BMActv.bmList.size() > bm_Value) {
+				
+				bm = CONS.BMActv.bmList.get(bm_Value);
+				
+				TextView tv_Bm = (TextView) findViewById(R.id.dlg_edit_ai_lbl_file_path);
+				
+				tv_Bm.setText(bm.getPosition());
+				
+			} else {//if (CONS.BMActv.bmList.size() > bm_Value)
+				
+				// Log
+				String msg_Log;
+				
+				msg_Log = String.format(
+						Locale.JAPAN,
+						"CONS.BMActv.bmList.size() <= bm_Value"
+						);
+				
+				Log.d("PlayActv.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ "]", msg_Log);
+				
+			}//if (CONS.BMActv.bmList.size() > bm_Value)
+			
+			
+//			BM bm = CONS.BMActv.bmList.get(bm_Value);
+					
+//			TextView tv_Bm = (TextView) findViewById(R.id.dlg_edit_ai_lbl_file_path);
+//			
+//			if (bm != null) {
+//				
+//				tv_Bm.setText(bm.getPosition());
+//				
+//			} else {//if (bm != null)
+//				
+////				tv_Bm.setText("00:00");
+//				
+//			}//if (bm != null)
+			
+//			tv_Bm.setText(bm.getPosition());
 		
 		} else {
-			
-//			// Log
-//			msg_Log = "bm_Value = " + bm_Value;
-//			Log.d("PlayActv.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", msg_Log);
-			
-//			msg_Log = "CONS.BMActv.bmList == null => " 
-//						+ (CONS.BMActv.bmList == null);
-//			
-//			Log.d("PlayActv.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", msg_Log);
-			
 			
 		}
 		
@@ -833,28 +922,9 @@ public class PlayActv extends Activity {
 				
 				onActivityResult_BM_OK(data);
 				
-//				long position = data.getLongExtra(CONS.Intent.bmactv_key_position, -1);
-//				
-//				// Log
-//				Log.d("PlayActv.java"
-//						+ "["
-//						+ Thread.currentThread().getStackTrace()[2]
-//								.getLineNumber()
-//						+ ":"
-//						+ Thread.currentThread().getStackTrace()[2]
-//								.getMethodName() + "]", "Returned position => " + position);
-				
 			} else if (resultCode == CONS.Intent.RESULT_CODE_SEE_BOOKMARKS_CANCEL) {//if (resultCode == CONS.Intent.RESULT_CODE_SEE_BOOKMARKS_OK)
 				
 				onActivityResult_BM_Cancel();
-//				// Log
-//				Log.d("PlayActv.java"
-//						+ "["
-//						+ Thread.currentThread().getStackTrace()[2]
-//								.getLineNumber()
-//						+ ":"
-//						+ Thread.currentThread().getStackTrace()[2]
-//								.getMethodName() + "]", "Cancelled");
 				
 			}//if (resultCode == CONS.Intent.RESULT_CODE_SEE_BOOKMARKS_OK)
 			
