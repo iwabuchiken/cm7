@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -85,28 +86,6 @@ public class MainActv extends ListActivity {
         
         vib = (Vibrator) this.getSystemService(this.VIBRATOR_SERVICE);
 
-//        ////////////////////////////////
-//
-//		// Set dir list
-//
-//		////////////////////////////////
-//        boolean res_b = set_DirList();
-//		
-//        if (res_b == false) {
-//			
-//        	// debug
-//        	String msg_log = "Dir list => Can't be set";
-//			Toast.makeText(this, msg_log, Toast.LENGTH_SHORT).show();
-//        	
-//        	// Log
-//			Log.e("MainActv.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", msg_log);
-//			
-//			return;
-//        	
-//		}
-        
 //		/*********************************
 //		 * Debugs
 //		 *********************************/
@@ -127,25 +106,6 @@ public class MainActv extends ListActivity {
     	
 //    	_do_debug__Conv_Path2Tname();
     	
-//		// TODO Auto-generated method stub
-//		String path = this.getFilesDir().getPath();
-//		
-//		String dbPath = this.getDatabasePath(CONS.DB.dbName).getPath();
-//		
-//		// Log
-//		String msg_log = "this.getFilesDir().getPath() = " + path;
-//		Log.d("MainActv.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ "]", msg_log);
-//		
-//		// Log
-//		msg_log = "getDatabasePath() = " + dbPath
-//					+ " / "
-//					+ "dbName = " + CONS.DB.dbName;
-//		Log.d("MainActv.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ "]", msg_log);
-		
 	}
 
 	private void _do_debug_Clear_CurrentPath() {
@@ -1249,13 +1209,20 @@ public class MainActv extends ListActivity {
 	@Override
 	protected void onStart() {
 
-        ////////////////////////////////
+//        ////////////////////////////////
+//
+//		// debug
+//
+//		////////////////////////////////
+//		this.do_debug();
 
-		// debug
-
-		////////////////////////////////
-		this.do_debug();
-
+		///////////////////////////////////
+		//
+		// re-install
+		//
+		///////////////////////////////////
+		reinstall_App();
+		
         ////////////////////////////////
 
 		// Set dir list
@@ -1299,33 +1266,73 @@ public class MainActv extends ListActivity {
 		////////////////////////////////
 		_Setup_UI_IB_Up();
 		
-		/*----------------------------
-		 * 1. Refresh DB
-			----------------------------*/
-//		refresh_db();
-//		SharedPreferences prefs_main =
-//							this.getSharedPreferences(this.getString(R.string.prefs_shared_prefs_name), 0);
-//		
-////		// Log
-////		Log.d("MainActv.java" + "["
-////				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-////				+ "]", "prefs_main: db_refresh => " + prefs_main.getBoolean(this.getString(R.string.prefs_db_refresh_key), false));
-//		
-//		if(prefs_main.getBoolean(this.getString(R.string.prefs_db_refresh_key), false)) {
-//			
-//			Methods.start_refreshDB(this);
-//			
-//		} else {//if(prefs_main.getBoolean(this.getString(R.string.prefs_db_refresh_key), false))
-//			
-////			// Log
-////			Log.d("MainActv.java" + "["
-////					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-////					+ "]", "Prefs: db_refresh => " + false);
-//			
-//		}//if(prefs_main.getBoolean(this.getString(R.string.prefs_db_refresh_key), false))
-		
 		super.onStart();
 	}//protected void onStart()
+
+	private void reinstall_App() {
+		// TODO Auto-generated method stub
+		
+        // Log
+		String msg_Log;
+		
+		//REF model name http://stackoverflow.com/questions/7071281/get-android-device-name answered Aug 15 '11 at 22:07
+		msg_Log = String.format(
+				Locale.JAPAN,
+				"model name => %s", android.os.Build.MODEL
+				);
+		
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+
+		///////////////////////////////////
+		//
+		// edit: paths
+		//
+		///////////////////////////////////
+		///////////////////////////////////
+		//
+		// adjust: adjust paths by model names
+		//
+		///////////////////////////////////
+		// data root path
+		if (android.os.Build.MODEL.equals(CONS.DB.modelname_IS13SH)) {
+
+			CONS.DB.dPath_Data_Root = "/mnt/sdcard/cm7_data";
+			
+			CONS.DB.dPath_dbFile_backup 
+									= CONS.DB.dPath_Data_Root + "/backup";
+//			= "/mnt/sdcard-ext/cm7_backup";
+			
+			CONS.DB.dPath_dbFile_backup_CM6 = 
+										"/mnt/sdcard/cm5_backup";
+			
+			CONS.DB.dPath_Lab 
+									= CONS.DB.dPath_Data_Root + "/lab";
+//			"/mnt/sdcard-ext/cm7_data/lab";
+//			cm7_test_wave_20140927_075811.wav
+			
+			CONS.DB.dPath_Log 
+									= CONS.DB.dPath_Data_Root + "/log";
+
+			CONS.Paths.dpath_Storage_Sdcard = "/mnt/sdcard";
+			
+			
+			// Log
+//			String msg_Log;
+			
+			msg_Log = String.format(
+					Locale.JAPAN,
+					"paths => modified"
+					);
+			
+			Log.i("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", msg_Log);
+			
+		}
+		
+	}//reinstall_App
 
 	private void _Setup_UI_IB_Up() {
 		// TODO Auto-generated method stub

@@ -6,6 +6,7 @@ import java.util.List;
 
 
 
+
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Vibrator;
@@ -334,6 +335,8 @@ public class CONS {
 		public static String jointString_TableName = "__";
 		
 		public static int pastXDays		= -10;
+		
+		public static Object modelname_IS13SH	= "IS13SH";
 
 		////////////////////////////////
 
