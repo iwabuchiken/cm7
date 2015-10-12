@@ -86,15 +86,16 @@ public class MainActv extends ListActivity {
         
         vib = (Vibrator) this.getSystemService(this.VIBRATOR_SERVICE);
 
-//		/*********************************
-//		 * Debugs
-//		 *********************************/
+		/*********************************
+		 * Debugs
+		 *********************************/
 //		do_debug();
         
     }//public void onCreate(Bundle savedInstanceState)
 
     private void do_debug() {
     	
+    	_do_debug_D14_v_1_0__DirExists();
 //    	_do_debug_Clear_CurrentPath();
     	
 //    	_do_debug_DB();
@@ -107,6 +108,28 @@ public class MainActv extends ListActivity {
 //    	_do_debug__Conv_Path2Tname();
     	
 	}
+
+	private void _do_debug_D14_v_1_0__DirExists() {
+		// TODO Auto-generated method stub
+		
+		File f = new File(CONS.DB.dPath_Data_Root);
+		
+		boolean tmp = f.exists();
+		
+		// Log
+		String msg_Log;
+		
+		msg_Log = String.format(
+				Locale.JAPAN,
+				"file eists => %s (%s)", tmp, f.getAbsolutePath()
+				);
+		
+		Log.i("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", msg_Log);
+		
+		
+	}//_do_debug_D14_v_1_0__DirExists
 
 	private void _do_debug_Clear_CurrentPath() {
 		// TODO Auto-generated method stub
@@ -1209,20 +1232,22 @@ public class MainActv extends ListActivity {
 	@Override
 	protected void onStart() {
 
-//        ////////////////////////////////
-//
-//		// debug
-//
-//		////////////////////////////////
-//		this.do_debug();
-
-		///////////////////////////////////
-		//
-		// re-install
-		//
-		///////////////////////////////////
-		reinstall_App();
+		super.onStart();
 		
+////        ////////////////////////////////
+////
+////		// debug
+////
+////		////////////////////////////////
+////		this.do_debug();
+//
+//		///////////////////////////////////
+//		//
+//		// re-install
+//		//
+//		///////////////////////////////////
+//		reinstall_App();
+//		
         ////////////////////////////////
 
 		// Set dir list
@@ -1266,7 +1291,7 @@ public class MainActv extends ListActivity {
 		////////////////////////////////
 		_Setup_UI_IB_Up();
 		
-		super.onStart();
+//		super.onStart();
 	}//protected void onStart()
 
 	private void reinstall_App() {
